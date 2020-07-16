@@ -1,0 +1,72 @@
+$color-bule: #3976EB;
+$color-green: #35B27D;
+$color-white: #F8F8FB;
+$color-red: #F53C56;
+$color-black: #172B4D;
+$color-gray1: #9CA2B4;
+$color-gray2: #A6ADBB;
+$color-redshade: #FEF8F8;
+
+.container-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  .title-left {
+    display: flex;
+  }
+
+  .backoption img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .backoption span {
+    font-size: 16px;
+    padding-left: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: "Roboto";
+    color: $color-black;
+  }
+  .title img {
+    width: 12px;
+    filter: invert(36%) sepia(89%) saturate(2041%) hue-rotate(208deg) brightness(98%) contrast(88%);
+  }
+  .title span {
+    font-size: 16px;
+    padding-left: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: "Roboto";
+    color: $color-bule;
+  }
+  .cursorpointer {
+    cursor: pointer;
+    .dot {
+      width: 4px;
+      margin: 4px;
+      height: 4px;
+      background: #172b4d;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+  .fullscreenicon {
+    padding: 0px 30px;
+  }
+  .fullscreenicon img {
+    height: 20px;
+    cursor: pointer;
+  }
+  .title-divder {
+    padding: 0px 15px;
+  }
+  .title-divder > span {
+    width: 0.5px;
+    height: 16px;
+    background-color: $color-gray2;
+  }
+}

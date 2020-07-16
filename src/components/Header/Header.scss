@@ -1,0 +1,141 @@
+$color-blue: #3976eb;
+$color-green: #35b27d;
+$color-white: #f8f8fb;
+$color-red: #f53c56;
+$color-black: #172b4d;
+$color-gray1: #9ca2b4;
+$color-gray2: #a6adbb;
+$color-redshade: #fef8f8;
+
+.top-container {
+  width: 100%;
+  height: 350px;
+  background-color: $color-blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .profilecontainer {
+    display: flex;
+    width: 280px;
+    padding: 20px;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    #ProfileCanvas {
+      background-color: $color-blue;
+    }
+    .profile {
+      height: 260px;
+      width: 220px;
+      flex-direction: column;
+      color: white;
+      position: absolute;
+      z-index: 2;
+      top: 75px;
+      left: 30px;
+    }
+    .profile img {
+      width: 75px;
+    }
+    .profile span {
+      padding-top: 25px;
+      font-weight: 500;
+      font-family: "Roboto";
+    }
+    .profilemenus {
+      display: flex;
+      width: 100%;
+      align-items: flex-end;
+      justify-content: center;
+      flex-direction: row;
+      cursor: pointer;
+      z-index: 3;
+    }
+    .profilemenu {
+      flex-direction: row;
+      width: 120px;
+      cursor: pointer;
+      color: white;
+      font-size: 12px;
+      padding: 0px 20px;
+    }
+    .profilemenu span {
+      font-weight: 400;
+      font-family: "Roboto";
+    }
+    .profilemenu img {
+      height: 13px;
+      margin-right: 7px;
+    }
+  }
+  .righttopcontainer {
+    display: flex;
+    margin-top: 40px;
+    margin-right: 50px;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    .rttimezone {
+      flex-direction: row;
+      height: 30px;
+      font-size: 10px;
+      color: white;
+      background-color: #2b64d9;
+      padding: 0px 0px 0px 7px;
+      border-radius: 3px;
+      font-weight: 400;
+      font-family: "Roboto";
+    }
+    .rttimezonearrow {
+      height: 100%;
+      padding: 0px 7px;
+      background-color: #2855b4;
+      margin-left: 25px;
+      cursor: pointer;
+      border-radius: 0px 3px 3px 0px;
+    }
+    .rttimezonearrow img {
+      width: 10px;
+    }
+    .rtholder {
+      padding: 0px 10px;
+      cursor: pointer;
+      font-weight: 400;
+      font-family: "Roboto";
+    }
+    .rtholder img {
+      width: 7px;
+      margin-left: 4px;
+      margin-top: 2px;
+    }
+    .rtname {
+      font-size: 10px;
+      color: white;
+    }
+    .rtprofile {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 35px;
+      border-radius: 20px;
+      background-color: #2855b4;
+    }
+    .righttopimg {
+      width: 33px;
+    }
+    .rtnotify {
+      width: 65px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+      cursor: pointer;
+    }
+    .rtnotify img {
+      width: 16px;
+    }
+  }
+}

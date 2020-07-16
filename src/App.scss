@@ -1,0 +1,29 @@
+$color-bule: #3976eb;
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #f1f5f7;
+  border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: $color-bule;
+  border-radius: 10px;
+}

@@ -1,0 +1,71 @@
+$color-blue: #3976eb;
+$color-green: #35b27d;
+$color-white: #f8f8fb;
+$color-red: #f53c56;
+$color-black: #172b4d;
+$color-gray1: #9ca2b4;
+$color-gray2: #a6adbb;
+$color-redshade: #fef8f8;
+
+.bottom-container {
+  width: 100%;
+  background-color: #f8f8fb;
+  min-height: calc(100vh - 350px);
+  padding-bottom: 100px;
+  .sidemenu {
+    display: flex;
+    flex-wrap: wrap;
+    width: 280px;
+    padding: 20px;
+    .menu {
+      display: flex;
+      flex-direction: column;
+      width: 110px;
+      height: 80px;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      color: $color-black;
+    }
+    .menu span {
+      font-size: 12px;
+      font-weight: 500;
+      font-family: "Roboto";
+      
+    }
+    .menuimg {
+      width: 21px;
+      height: 21px;
+      margin-bottom: 10px;
+    }
+    .btm-menu {
+      width: 280px;
+      margin-top: 40px;
+      font-size: 11px;
+    }
+    .notifydot {
+      width: 7px;
+      height: 7px;
+      background-color: #f3c65e;
+      border-radius: 4px;
+      position: absolute;
+      right: 25px;
+      top: 5px;
+    }
+    .btm-menu span {
+      cursor: pointer;
+      font-weight: 400;
+      font-family: "Roboto";
+      color:$color-gray1;
+    }
+    .selectionmenu {
+      background-color: #3976eb;
+      border-radius: 10px;
+      color: white;
+    }
+    .dividerlabel {
+      padding: 0px 10px;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+
+
+.tardis-container {
+  min-width: 1024px;
+}
+
+.centeralign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  position: absolute;
+  z-index: 3;
+  top: 140px;
+  left: 280px;
+  right: 50px;
+  bottom: 0px;
+  background-color: white;
+  border-radius: 10px 10px 0px 0px;
+  min-height: 725px;
+  padding: 60px 30px;
+  min-width: 700px;
+}
+
+.paddzero{
+  padding: 0px !important;
+}
+
+@keyframes fullscreenanimation {
+  0% {
+    top: 140px;
+    left: 280px;
+    right: 50px;
+    bottom: 0px;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+@keyframes originalscreenanimation {
+  0% {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  100% {
+    top: 140px;
+    left: 280px;
+    right: 50px;
+    bottom: 0px;
+  }
+}
+.fullscreen {
+  position: fixed;
+  z-index: 100500;
+  border-radius: 0px;
+  animation-name: fullscreenanimation;
+  animation-duration: 1s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.originalscreen{
+  animation-name: originalscreenanimation;
+  animation-duration: 1s;
+}

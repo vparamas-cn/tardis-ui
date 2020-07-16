@@ -1,0 +1,198 @@
+$color-bule: #3976eb;
+$color-green: #35b27d;
+$color-white: #f8f8fb;
+$color-red: #f53c56;
+$color-black: #172b4d;
+$color-gray1: #9ca2b4;
+$color-gray2: #a6adbb;
+$color-redshade: #fef8f8;
+.tablescroll {
+  overflow-y: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  .maintable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+  }
+  .detailtable {
+    margin-top: -20px;
+    width: 100%;
+    height: 110px;
+  }
+  table input {
+    height: 30px;
+    width: 100%;
+    padding-left: 10px;
+    border-radius: 4px;
+    border: 0.5px solid $color-gray1;
+    font-size: 11px;
+    font-family: "Roboto";    
+    background-color: #ffffff;
+  }
+  tbody tr {
+    height: 60px;
+    box-shadow: 0px 1px 7px #f5f3f3;
+    font-weight: 500;
+    font-family: "Roboto";
+    font-size: 11px;
+  }
+  thead th {
+    text-align: left;
+    //padding: 10px 10px;
+    font-size: 10px;
+    font-weight: 500;
+    font-family: "Roboto";
+    color: #9ca2b4;
+  }
+  .hidden_row {
+    display: none;
+  }
+  tbody tr td {
+    padding: 0px 10px;
+  }
+  .editimg {
+    height: 10px;
+    padding-right: 5px;
+  }
+  .downarr {
+    height: 15px;
+    -webkit-animation: spin360 2s;
+    -moz-animation: spin360 2s;
+    animation: spin360 2s;
+    transform: rotate(360deg);
+  }
+  .uparr {
+    height: 15px;
+    -webkit-animation: spin 2s;
+    -moz-animation: spin 2s;
+    animation: spin 2s;
+    transform: rotate(180deg);
+  }
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(180deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(180deg);
+    }
+  }
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+  }
+  @-moz-keyframes spin360 {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin360 {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin360 {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  .rowarrow {
+    background-color: #f1f5f7;
+    width: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  .detailimg {
+    width: 35px;
+    height: 35px;
+    background: $color-bule;
+    border-radius: 35px;
+  }
+  .detailimg img{
+    height: 15px;
+  }
+  tbody tr td:nth-child(6) {
+    cursor: pointer;
+  }
+  .detailcontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .detailcontainer select {
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin: 0px 10px;
+  }
+  .detailcontainer input {
+    width: 170px;
+  }
+  .detailname {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 15px;
+  }
+  .detailbuttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0px 10px;
+    align-items: center;
+  }
+  .nametitle {
+    font-size: 10px;
+    color: $color-gray2;
+    margin-bottom: 5px;
+  }
+  .editcontent {
+    box-shadow: none;
+  }
+
+  .buttonInsidecalc {
+    position: relative;
+    width: 130px;
+    margin: 0px 10px;
+  }
+  .buttonInsidecalc input {
+    width: 130px;
+  }
+  .calendaricon {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    right: 4px;
+    border: none;
+    height: 22px;
+    width: 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .calendaricon img {
+    height: 12px;
+  }
+  .failuredd {
+    width: 170px;
+    border: 1px solid #ccc;
+    padding: 7px 10px;
+    border-radius: 3px;
+    margin: 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .failuredd img {
+    width: 8px;
+  }
+}
+
+
