@@ -22,7 +22,7 @@ const customStyles = {
     borderTopColor        : "#3976eb",
     borderRadius          : "0px",
     padding               : "40px",
-    overflow              : "hidden",  
+    overflow              : "initial",  
   },
   overlay :{
     backgroundColor: "rgb(21 21 21 / 75%)",
@@ -41,10 +41,11 @@ const FilterContainer = (props) => {
     <div class="container-filter">
         <DropDown
           id={"sourcedd"}
-          class={"options"}
+          class={"options searchop"}
           label={"Source"}
+          search={true}
           imguri={require("../../assets/images/dropdownarrow.svg")}
-          options={["String_1_Source"]}
+          options={["String_1_Source","String_2_Source","String_3_Source"]}
         />
         <div class="options">
             <span>Log Date</span>

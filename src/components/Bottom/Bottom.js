@@ -6,7 +6,7 @@ import {menulist} from "../../assets/constant"
 
 const Bottom = () => {
   const [menu, SetMenu] = useState(menulist)
-
+  const [selection, SetSelection] = useState("")
   const Selection = (e) => {
       menu.forEach(function(a) {
          if(a.name == e.name)          
@@ -14,8 +14,8 @@ const Bottom = () => {
           else
           a.selection = false;
       });
-
        SetMenu(menu);
+       SetSelection(e.name);
   }
 
   

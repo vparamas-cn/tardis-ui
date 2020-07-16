@@ -13,10 +13,8 @@ const Maintennace =(props) => {
   });
   const showHideRow = (selectedrow,arrowimg) =>{
      var trd = document.getElementById(selectedrow);
-      $(".editcontent").hide();
-   
-      $(".rowarrow > img").removeClass("uparr").addClass("downarr");
-      
+      $(".editcontent:not([id~="+selectedrow+"])").hide();
+      $(".rowarrow > img").removeClass("uparr").addClass("downarr");      
       $(`#${selectedrow}`).toggle(500);
       // if (trd.className.indexOf("hidden_row") > -1){
       //   trd.classList.remove("hidden_row");

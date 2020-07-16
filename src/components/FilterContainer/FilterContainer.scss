@@ -19,6 +19,13 @@ $color-black: #172b4d;
     font-family: "Roboto";
     font-size: 12px;
   }
+  .searchop{
+     padding-left: 15px !important;
+  }
+  .searchop img:first-child{
+    filter: invert(1);
+    width: 12px;
+  }
   .options img {
     width: 13px;
     width: 15px;

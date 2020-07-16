@@ -7,7 +7,6 @@ $color-gray1: #9ca2b4;
 $color-gray2: #a6adbb;
 $color-redshade: #fef8f8;
 
-
 .buttonwrapper {
   position: relative;
   width: 280px;
@@ -50,11 +49,9 @@ $color-redshade: #fef8f8;
   height: 12px;
 }
 
-
 //Calendar
 
-
-.react-datepicker__input-container{
+.react-datepicker__input-container {
   position: relative;
 }
 .react-datepicker__input-container::after {
@@ -69,31 +66,49 @@ $color-redshade: #fef8f8;
   width: 20px;
   height: 20px;
 }
-.react-datepicker{
-      
-      border: 1px solid #efefef !important;
-      border-radius: 15px !important;
-.react-datepicker__header{
+.react-datepicker {
+  font-weight: 500;
+  font-family: "Roboto";
+  border: 1px solid #efefef !important;
+  border-radius: 15px !important;
+  .react-datepicker__header {
     background-color: #ffffff;
-    border-bottom: 0.5px solid #aeaeae; 
+    border-bottom: 0.5px solid #aeaeae;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    padding: 15px 0px;
-    .react-datepicker__day-names{
+    padding: 7px 0px;
+    margin: 0px 15px;
+    .react-datepicker__day-names {
       display: none;
     }
-}
-.react-datepicker__day--selected{
-   background-color: $color-bule;
-}
+  }
+  .react-datepicker__day--selected {
+    background-color: $color-bule;
+  }
 
-.react-datepicker__navigation{
-  top:17px;
-}
-.react-datepicker__navigation:focus{
-  outline:none;
-}
-.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
+  .react-datepicker__navigation {
+    top: 17px;
+  }
+  .react-datepicker__navigation:focus {
+    outline: none;
+  }
+  .react-datepicker-popper[data-placement^="bottom"]
+    .react-datepicker__triangle,
+  .react-datepicker-popper[data-placement^="bottom"]
+    .react-datepicker__triangle::before {
     border-bottom-color: #fff;
-}
+  }
+  .react-datepicker__navigation--previous {
+    left: 195px !important;
+  }
+  .react-datepicker__current-month {
+    text-align: left;
+    font-weight: 500;
+    font-family: "Roboto";
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .react-datepicker__month {
+    font-size: 0.7rem;
+  }
 }

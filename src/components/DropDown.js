@@ -33,7 +33,12 @@ const DropDown =(props) => {
         </ul>
     </div>:
     <div id={props.id} className={`wrapper-dropdown ${ props.class }`}  onClick={()=>ondropdown()}>          
-        <span>{props.label?props.label: selectedoption}</span>    
+        {props.search?
+        <div className="centeralign">
+            <img src={require("../assets/images/Search.svg")}/>  <span>{props.label?props.label: selectedoption}</span>   
+        </div>
+        :
+        <span>{props.label?props.label: selectedoption}</span>    }
         {props.imgclass ?<div className={ props.imgclass }>
         <img src={props.imguri} />
         </div>  : <img src={props.imguri} /> }  
