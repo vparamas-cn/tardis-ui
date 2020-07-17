@@ -11,7 +11,7 @@ const Pagination = props => {
     () => {
       let i = 1;
       var nopage = [];
-      while (noofpage > i) {
+      while (noofpage >= i) {
         nopage.push(i);
         i++;
       }
@@ -22,6 +22,16 @@ const Pagination = props => {
   const SelectPage = page => {
     SetSelection(page);
   };
+  const Previous = () =>{
+    if(selection > 1)
+    SetSelection(selection -1)
+    
+  }
+  const Next = () =>{
+    if(noofpage > selection)
+    SetSelection(selection + 1)
+    
+  }
   return (
     <div className="pagination">
       <div className="leftpaginiation">
@@ -36,7 +46,9 @@ const Pagination = props => {
         <span>entries</span>
       </div>
       <div className="rightpaginiation">
-        <div className="prev">
+        <div className="prev" onClick={() => {
+                  Previous();
+                }}>
           <img src={Images.prev} />
         </div>
         {pagecount &&
@@ -55,7 +67,9 @@ const Pagination = props => {
               </div>
             );
           })}
-        <div className="next">
+        <div className="next"  onClick={() => {
+                  Next();
+                }}>
           <img src={Images.next} />
         </div>
       </div>

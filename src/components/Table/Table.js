@@ -23,7 +23,7 @@ const Table = props => {
           {props.name == "Maintennace" ? <MaintennaceRow /> : null}
         </table>
       </section>
-      <Pagination rowcount={10} noofpage={6} />
+      <Pagination rowcount={10} noofpage={5} />
     </React.Fragment>
   );
 };
