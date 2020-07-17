@@ -37,9 +37,7 @@ const FilterContainer = props => {
   const openModal = () => {
     SetModal(true);
   };
-  const handleDate = () => {
-
-  }
+  const handleDate = () => {};
   return (
     <div class="container-filter">
       <DropDown
@@ -50,8 +48,13 @@ const FilterContainer = props => {
         imguri={require("../../assets/images/dropdownarrow.svg")}
         options={["String_1_Source", "String_2_Source", "String_3_Source"]}
       />
-      <Button class={"options"} name="Log Date" rightimg={require("../../assets/images/calendardetails.svg")} onClick={()=>{}} />
-   
+      <Button
+        class={"options"}
+        name="Log Date"
+        rightimg={require("../../assets/images/calendardetails.svg")}
+        onClick={() => {}}
+      />
+
       <DropDown
         id={"failturedd"}
         class={"options"}

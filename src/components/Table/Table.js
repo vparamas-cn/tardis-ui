@@ -20,10 +20,10 @@ const Table = props => {
                 })}
             </tr>
           </thead>
-          {props.name == "Maintennace" ?<MaintennaceRow />:null}
+          {props.name == "Maintennace" ? <MaintennaceRow /> : null}
         </table>
       </section>
-      <Pagination rowcount={10} noofpage={6}/>
+      <Pagination rowcount={10} noofpage={6} />
     </React.Fragment>
   );
 };

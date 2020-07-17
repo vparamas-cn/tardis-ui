@@ -8,10 +8,23 @@ const Header = () => {
   return (
     <section className="top-container">
       <div className="profilecontainer">
-        <Profile img={require("../../assets/images/profile.png")} name={"George Williams"} />
+        <Profile
+          img={require("../../assets/images/profile.png")}
+          name={"George Williams"}
+        />
         <div className="profilemenus">
-          <Button class={"profilemenu centeralign"} name="Edit Profie" leftimg={require("../../assets/images/Edit.svg")} onClick={()=>{}} />
-          <Button class={"profilemenu centeralign"} name="Logout" leftimg={require("../../assets/images/Logout.svg")} onClick={()=>{}} />
+          <Button
+            class={"profilemenu centeralign"}
+            name="Edit Profie"
+            leftimg={require("../../assets/images/Edit.svg")}
+            onClick={() => {}}
+          />
+          <Button
+            class={"profilemenu centeralign"}
+            name="Logout"
+            leftimg={require("../../assets/images/Logout.svg")}
+            onClick={() => {}}
+          />
         </div>
       </div>
       <div className="righttopcontainer">

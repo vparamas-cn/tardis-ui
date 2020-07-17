@@ -32,7 +32,6 @@ $color-redshade: #fef8f8;
       font-size: 12px;
       font-weight: 500;
       font-family: "Roboto";
-      
     }
     .menuimg {
       width: 21px;
@@ -57,16 +56,13 @@ $color-redshade: #fef8f8;
       cursor: pointer;
       font-weight: 400;
       font-family: "Roboto";
-      color:$color-gray1;
+      color: $color-gray1;
     }
     .selectionmenu {
       background-color: #3976eb;
       border-radius: 10px;
       color: white;
     }
-    // .selectionmenu img{
-    //   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(167deg) brightness(114%) contrast(101%);
-    // }
     .dividerlabel {
       padding: 0px 10px;
     }

@@ -7,9 +7,9 @@ function Main() {
   return (
     <div className="tardis-container">
       <Header />
-       <main id="maincontent">
-         <Maintennace/>
-       </main>
+      <main id="maincontent">
+        <Maintennace />
+      </main>
       <Bottom />
     </div>
   );

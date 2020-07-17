@@ -1,6 +1,7 @@
 import React from "react";
 import "./TitleContainer.scss";
-import InputButton from "../InputText/InputWithButton"
+import InputButton from "../InputText/InputWithButton";
+import Button from "../Button/Button";
 
 const TitleContainer = props => {
   const fullscreen = () => {
@@ -16,28 +17,36 @@ const TitleContainer = props => {
   return (
     <div className="container-title">
       <div className="title-left">
-        <div className="backoption centeralign">
-          <img src={require("../../assets/images/Back.svg")} />
-          <span>Back</span>
-        </div>
+        <Button
+          class={"backoption centeralign"}
+          name={"Back"}
+          leftimg={require("../../assets/images/Back.svg")}
+          onClick={() => {}}
+        />
         <div className="title-divder centeralign">
           <span />
         </div>
-        <div className="title centeralign">
-          <img src={props.img} />
-          <span>{props.name}</span>
-        </div>
+        <Button
+          class={"title centeralign"}
+          name={props.name}
+          leftimg={props.img}
+          onClick={() => {}}
+        />
       </div>
       <div className="centeralign">
-        <InputButton placeholder={"Search"} btnclass={"searchbtn"} ButtonClick={(text)=>{}}  btnimg={require("../../assets/images/Search.svg")}/>
-        <div
-          className="fullscreenicon"
+        <InputButton
+          placeholder={"Search"}
+          btnclass={"searchbtn"}
+          ButtonClick={text => {}}
+          btnimg={require("../../assets/images/Search.svg")}
+        />
+        <Button
+          class={"fullscreenicon"}
+          leftimg={require("../../assets/images/Fullscreen.svg")}
           onClick={() => {
             fullscreen();
           }}
-        >
-          <img src={require("../../assets/images/Fullscreen.svg")} />
-        </div>
+        />
         <div className="cursorpointer">
           <div className="dot" />
           <div className="dot" />

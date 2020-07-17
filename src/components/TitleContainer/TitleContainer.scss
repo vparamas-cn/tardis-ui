@@ -1,11 +1,11 @@
-$color-bule: #3976EB;
-$color-green: #35B27D;
-$color-white: #F8F8FB;
-$color-red: #F53C56;
-$color-black: #172B4D;
-$color-gray1: #9CA2B4;
-$color-gray2: #A6ADBB;
-$color-redshade: #FEF8F8;
+$color-bule: #3976eb;
+$color-green: #35b27d;
+$color-white: #f8f8fb;
+$color-red: #f53c56;
+$color-black: #172b4d;
+$color-gray1: #9ca2b4;
+$color-gray2: #a6adbb;
+$color-redshade: #fef8f8;
 
 .container-title {
   display: flex;
@@ -31,7 +31,8 @@ $color-redshade: #FEF8F8;
   }
   .title img {
     width: 12px;
-    filter: invert(36%) sepia(89%) saturate(2041%) hue-rotate(208deg) brightness(98%) contrast(88%);
+    filter: invert(36%) sepia(89%) saturate(2041%) hue-rotate(208deg)
+      brightness(98%) contrast(88%);
   }
   .title span {
     font-size: 16px;
