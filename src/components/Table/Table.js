@@ -5,7 +5,7 @@ import MaintennaceRow from "./TableRow/MaintennaceRow";
 import Pagination from "./Pagination";
 const Table = props => {
   const [header, SetHeader] = useState(TableHeader[props.name]);
-  const [data, SetData] = useState([{ id: 1 }, { id: 2 }, { id: 3 }]);
+
   useEffect(() => {});
 
   return (
@@ -20,15 +20,10 @@ const Table = props => {
                 })}
             </tr>
           </thead>
-          <tbody>
-            {data &&
-              data.map((item, index) => {
-                return <MaintennaceRow key={`td ${index}`} {...item} />;
-              })}
-          </tbody>
+          {props.name == "Maintennace" ?<MaintennaceRow />:null}
         </table>
       </section>
-      <Pagination />
+      <Pagination rowcount={10} noofpage={6}/>
     </React.Fragment>
   );
 };

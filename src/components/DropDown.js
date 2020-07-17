@@ -9,6 +9,18 @@ const DropDown =(props) => {
         SetOption(props.options[0])
     }
   });
+  useEffect(()=>{
+        document.addEventListener('mousedown', handleClickOutside); 
+        return(()=>{
+            document.removeEventListener('mousedown', handleClickOutside);
+        })   
+  })
+  const handleClickOutside = (event) => {
+    var dd = document.getElementById(props.id);
+    if (dd && !dd.id !== event.target.id) {
+        dd.classList.remove("active");
+    }
+  }
   const ondropdown =()=>{
     var dd = document.getElementById(props.id);
     if (dd.className.indexOf("active") > -1){
@@ -23,7 +35,7 @@ const DropDown =(props) => {
     <div id={props.id} className={`wrapper-dropdown ${ props.class }`}  onClick={()=>ondropdown()}>          
         <span class="rtname">{props.profilename}</span>    
         <img src={props.imguri} />   
-        <ul className="dropdown">
+        <ul className="dropdown" >
             {props.options.map((item,index)=>{
                 return (
                     <li key={"dd"+index}><a>{item}</a></li>

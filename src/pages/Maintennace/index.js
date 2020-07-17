@@ -1,5 +1,4 @@
 import React from "react";
-import "./Maintennace.scss";
 import { Table,TitleContainer,FilterContainer } from "../../components";
 
 const Maintennace = () => {

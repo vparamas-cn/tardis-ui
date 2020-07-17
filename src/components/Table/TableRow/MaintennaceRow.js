@@ -1,13 +1,13 @@
 import React ,{useState , useEffect} from "react";
 import "../Table.scss";
-import {TableHeader} from "../../../assets/constant"
 import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
 import DatePicker from "../../InputText/DatePicker";
 import $ from "jquery";
 
 const Maintennace =(props) => {
-  const [header, SetHeader] = useState(TableHeader[props.name]);
+
+  const [data, SetData] = useState([{ id: 1 }, { id: 2 }, { id: 3 }]);
   useEffect(() => {
    
   });
@@ -33,9 +33,9 @@ const Maintennace =(props) => {
   const handleDate = date => {
     
   };
-  return (
-      <React.Fragment>
-        <tr onClick={()=>{showHideRow(`hidden_row${props.id}`,`downimage${props.id}`)}}>
+  const Row = (props) =>{
+    return(
+       <tr onClick={()=>{showHideRow(`hidden_row${props.id}`,`downimage${props.id}`)}}>
             <td className="rowarrow"><img src={require("../../../assets/images/downarrow.svg")} className="downarr" id={`downimage${props.id}`}/></td>
             <td>Sources Names</td>
             <td>25/06/2020</td>
@@ -44,7 +44,11 @@ const Maintennace =(props) => {
             <td> <img src={require("../../../assets/images/RowEdit.svg")} className="editimg" />
             <span>Edit</span></td>
         </tr>
-        <tr id={`hidden_row${props.id}`} className="hidden_row editcontent">
+    )
+  }
+  const RowDetails = (props) =>{
+    return(
+       <tr id={`hidden_row${props.id}`} className="hidden_row editcontent">
             <td colspan="6" className="paddzero">
                 <table className="detailtable">
                   <tr>
@@ -77,8 +81,21 @@ const Maintennace =(props) => {
                 </table>
             </td>
         </tr>
-      </React.Fragment>
-      );
+    )
+  }
+  return (
+      <tbody>
+            {data &&
+              data.map((item, index) => {
+                return(
+                  <React.Fragment key={`MaintainanceRow${index}`}>
+                    <Row {...item} />
+                    <RowDetails {...item} />
+                  </React.Fragment>
+                )
+              })}
+      </tbody>  
+    );
 }
 
 export default Maintennace;

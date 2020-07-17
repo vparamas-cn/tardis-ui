@@ -1,7 +1,7 @@
 import React from "react";
 import "./main.scss";
-import { Header, Bottom } from "../../components";
-import Maintennace from "../Maintennace";
+import { Header, Bottom } from "../components";
+import Maintennace from "./Maintennace";
 
 function Main() {
   return (

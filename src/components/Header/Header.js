@@ -2,6 +2,7 @@ import React from "react";
 import "./Header.scss";
 import Profile from "./Profile";
 import DropDown from "../DropDown";
+import Button from "../Button/Button";
 
 const Header = () => {
   return (
@@ -9,14 +10,8 @@ const Header = () => {
       <div className="profilecontainer">
         <Profile img={require("../../assets/images/profile.png")} name={"George Williams"} />
         <div className="profilemenus">
-          <div className="profilemenu">
-            <img src={require("../../assets/images/Edit.svg")} />
-            <span>Edit Profie</span>
-          </div>
-          <div className="profilemenu centeralign">
-            <img src={require("../../assets/images/Logout.svg")} />
-            <span>Logout</span>
-          </div>
+          <Button class={"profilemenu centeralign"} name="Edit Profie" leftimg={require("../../assets/images/Edit.svg")} onClick={()=>{}} />
+          <Button class={"profilemenu centeralign"} name="Logout" leftimg={require("../../assets/images/Logout.svg")} onClick={()=>{}} />
         </div>
       </div>
       <div className="righttopcontainer">
