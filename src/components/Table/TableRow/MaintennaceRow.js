@@ -3,6 +3,7 @@ import "../Table.scss";
 import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
 import DatePicker from "../../InputText/DatePicker";
+import {Images} from "../../../assets/images";
 import $ from "jquery";
 
 const Maintennace = props => {
@@ -40,7 +41,7 @@ const Maintennace = props => {
       >
         <td className="rowarrow">
           <img
-            src={require("../../../assets/images/downarrow.svg")}
+            src={Images.downarrow}
             className="downarr"
             id={`downimage${props.id}`}
           />
@@ -58,7 +59,7 @@ const Maintennace = props => {
         <td>
           {" "}
           <img
-            src={require("../../../assets/images/RowEdit.svg")}
+            src={Images.RowEdit}
             className="editimg"
           />
           <span>Edit</span>
@@ -75,7 +76,7 @@ const Maintennace = props => {
               <td colspan="6">
                 <div className="detailcontainer">
                   <div className="detailimg centeralign">
-                    <img src={require("../../../assets/images/addlist.svg")} />
+                    <img src={Images.addlist} />
                   </div>
                   <div className="detailname">
                     <span className="nametitle">Source Name</span>
@@ -86,7 +87,7 @@ const Maintennace = props => {
                     id={`failuredd${props.id}`}
                     class={"failuredd"}
                     imgclass={"centeralign"}
-                    imguri={require("../../../assets/images/arrowblack.svg")}
+                    imguri={Images.arrowblack}
                     options={["Configuration Module"]}
                   />
                   <input type="text" placeholder="No Issue to the module" />
@@ -96,7 +97,7 @@ const Maintennace = props => {
                     <Button
                       class="deletebtn"
                       name="Delete Contact"
-                      leftimg={require("../../../assets/images/Delete.svg")}
+                      leftimg={Images.Delete}
                     />
                   </div>
                 </div>

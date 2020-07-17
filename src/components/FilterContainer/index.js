@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import AddMaintennace from "./AddMaintennace";
 import Modal from "react-modal";
 import DatePicker from "../InputText/DatePicker";
+import {Images} from "../../assets/images";
 
 const customStyles = {
   content: {
@@ -45,13 +46,13 @@ const FilterContainer = props => {
         class={"options searchop"}
         label={"Source"}
         search={true}
-        imguri={require("../../assets/images/dropdownarrow.svg")}
+        imguri={Images.dropdownarrow}
         options={["String_1_Source", "String_2_Source", "String_3_Source"]}
       />
       <Button
         class={"options"}
         name="Log Date"
-        rightimg={require("../../assets/images/calendardetails.svg")}
+        rightimg={Images.calendardetails}
         onClick={() => {}}
       />
 
@@ -59,7 +60,7 @@ const FilterContainer = props => {
         id={"failturedd"}
         class={"options"}
         label={"Failure Reasons"}
-        imguri={require("../../assets/images/dropdownarrow.svg")}
+        imguri={Images.dropdownarrow}
         options={["Configuration Module"]}
       />
       <Button

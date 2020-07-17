@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Pagination.scss";
 import DropDown from "../../DropDown";
+import {Images} from "../../../assets/images";
 
 const Pagination = props => {
   const [selection, SetSelection] = useState(1);
@@ -36,7 +37,7 @@ const Pagination = props => {
       </div>
       <div className="rightpaginiation">
         <div className="prev">
-          <img src={require("../../../assets/images/prev.svg")} />
+          <img src={Images.prev} />
         </div>
         {pagecount &&
           pagecount.map((item, index) => {
@@ -55,7 +56,7 @@ const Pagination = props => {
             );
           })}
         <div className="next">
-          <img src={require("../../../assets/images/next.svg")} />
+          <img src={Images.next} />
         </div>
       </div>
     </div>

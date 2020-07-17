@@ -3,26 +3,27 @@ import "./Header.scss";
 import Profile from "./Profile";
 import DropDown from "../DropDown";
 import Button from "../Button/Button";
+import {Images} from "../../assets/images";
 
 const Header = () => {
   return (
     <section className="top-container">
       <div className="profilecontainer">
         <Profile
-          img={require("../../assets/images/profile.png")}
+          img={Images.profile}
           name={"George Williams"}
         />
         <div className="profilemenus">
           <Button
             class={"profilemenu centeralign"}
             name="Edit Profie"
-            leftimg={require("../../assets/images/Edit.svg")}
+            leftimg={Images.Edit}
             onClick={() => {}}
           />
           <Button
             class={"profilemenu centeralign"}
             name="Logout"
-            leftimg={require("../../assets/images/Logout.svg")}
+            leftimg={Images.Logout}
             onClick={() => {}}
           />
         </div>
@@ -32,22 +33,22 @@ const Header = () => {
           id={"timedd"}
           class={"rttimezone centeralign"}
           imgclass={"rttimezonearrow centeralign"}
-          imguri={require("../../assets/images/whitedownarrow.svg")}
+          imguri={Images.whitedownarrow}
           options={["(UTC.08.00) Pacific Time (US & CANADA)"]}
         />
         <div className="rtnotify">
-          <img src={require("../../assets/images/Notification.svg")} />
+          <img src={Images.Notification} />
         </div>
         <div className="rtprofile">
           <img
-            src={require("../../assets/images/profile.png")}
+            src={Images.profile}
             className="righttopimg"
           />
           <DropDown
             id={"profiledd"}
             class={"rtholder centeralign"}
             profilename={"George"}
-            imguri={require("../../assets/images/whitedownarrow.svg")}
+            imguri={Images.whitedownarrow}
             options={["Logout"]}
           />
         </div>

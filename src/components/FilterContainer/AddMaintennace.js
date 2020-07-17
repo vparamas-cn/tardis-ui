@@ -4,6 +4,7 @@ import DropDown from "../DropDown";
 import Button from "../Button/Button";
 import SelectSearch from "react-select-search";
 import DatePicker from "../InputText/DatePicker";
+import {Images} from "../../assets/images";
 
 const options = [
   { name: "String_1_Source", value: "1" },
@@ -16,7 +17,7 @@ const AddMaintennace = props => {
       <div className="modal-title">
         <div className="title-left centeralign">
           <div className="detailimg centeralign">
-            <img src={require("../../assets/images/addlist.svg")} />
+            <img src={Images.addlist} />
           </div>
           <span>Add Item</span>
         </div>
@@ -26,7 +27,7 @@ const AddMaintennace = props => {
             props.closepop();
           }}
         >
-          <img src={require("../../assets/images/close.svg")} />
+          <img src={Images.close} />
         </div>
       </div>
       <div class="modal-content">
@@ -54,7 +55,7 @@ const AddMaintennace = props => {
               <DropDown
                 id={"addreasondd"}
                 class={"ddfailure"}
-                imguri={require("../../assets/images/arrowblack.svg")}
+                imguri={Images.arrowblack}
                 options={["Reason", "Reason1", "Reason2"]}
               />
             </div>

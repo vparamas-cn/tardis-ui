@@ -2,6 +2,7 @@ import React from "react";
 import "./TitleContainer.scss";
 import InputButton from "../InputText/InputWithButton";
 import Button from "../Button/Button";
+import { Images } from "../../assets/images";
 
 const TitleContainer = props => {
   const fullscreen = () => {
@@ -20,7 +21,7 @@ const TitleContainer = props => {
         <Button
           class={"backoption centeralign"}
           name={"Back"}
-          leftimg={require("../../assets/images/Back.svg")}
+          leftimg={Images.Back}
           onClick={() => {}}
         />
         <div className="title-divder centeralign">
@@ -38,11 +39,11 @@ const TitleContainer = props => {
           placeholder={"Search"}
           btnclass={"searchbtn"}
           ButtonClick={text => {}}
-          btnimg={require("../../assets/images/Search.svg")}
+          btnimg={Images.Search}
         />
         <Button
           class={"fullscreenicon"}
-          leftimg={require("../../assets/images/Fullscreen.svg")}
+          leftimg={Images.Fullscreen}
           onClick={() => {
             fullscreen();
           }}
