@@ -39,6 +39,7 @@ const TitleContainer = props => {
       <div className="centeralign">
         <InputButton
           placeholder={"Search"}
+          id ={"tablesearch"}
           btnclass={"searchbtn"}
           ButtonClick={text => {}}
           btnimg={Images.Search}

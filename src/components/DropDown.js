@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./DropDown.scss";
+import InputButton from "./InputText/InputWithButton";
+import { Images } from "../assets/images";
 
 const DropDown = props => {
   const [selectedoption, SetOption] = useState("");
@@ -16,7 +18,8 @@ const DropDown = props => {
   });
   const handleClickOutside = event => {
     var dd = document.getElementById(props.id);
-    if (dd && !dd.id !== event.target.id) {
+    var inputsearch = document.getElementById(`filtersearch-sourcedd`);
+    if (dd && !dd.id !== event.target.id && inputsearch && inputsearch.id !== event.target.id) {
       dd.classList.remove("active");
     }
   };
@@ -68,6 +71,15 @@ const DropDown = props => {
         <img src={props.imguri} />
       )}
       <ul className="dropdown">
+        {props.search ? <li className="searchinput" id="searchinput">
+          <InputButton
+          placeholder={"Search"}
+          id ={`filtersearch-${props.id}`}
+          btnclass={"searchbtn"}
+          ButtonClick={text => {}}
+          btnimg={Images.Search}
+        />
+          </li>:null}
         {props.options.map((item, index) => {
           return (
             <li key={"dd" + index}>

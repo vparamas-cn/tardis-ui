@@ -10,6 +10,7 @@ const InputButton = props => {
     <div className="buttonwrapper">
       <input
         type="text"
+        id={props.id}
         placeholder={props.placeholder}
         onChange={e => {
           TextChange(e);
