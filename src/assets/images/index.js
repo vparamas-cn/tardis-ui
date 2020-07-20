@@ -27,5 +27,7 @@ export const Images = {
   Settings: require("./Settings.svg"),
   Support: require("./Support.svg"),
   whitedownarrow: require("./whitedownarrow.svg"),
-  profile: require("./profile.png")
+  profile: require("./profile.png"),
+  SupportBG: require("./SupportBG.svg"),
+  NavBar: require("./NavBar.svg")
 };

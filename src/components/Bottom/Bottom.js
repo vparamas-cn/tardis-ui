@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Bottom.scss";
 import Menu from "./Menu";
-import { menulist } from "../../assets/constant";
+import { menulist, pagename } from "../../assets/constant";
+import { useHistory } from "react-router-dom";
+
 
 const Bottom = () => {
+  let history = useHistory();
   const [menu, SetMenu] = useState(menulist);
   const [selection, SetSelection] = useState("");
   const Selection = e => {
@@ -13,8 +16,17 @@ const Bottom = () => {
     });
     SetMenu(menu);
     SetSelection(e.name);
+    if(e.path)
+    history.push(e.path);
   };
-
+  useEffect(()=>{
+     menu.forEach(function(a) {
+      if (a.name == pagename()) a.selection = true;
+      else a.selection = false;
+    });
+    SetMenu(menu);
+    SetSelection(pagename());
+  })  
   return (
     <section class="bottom-container">
       <div class="sidemenu">

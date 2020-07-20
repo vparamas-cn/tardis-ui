@@ -1,0 +1,26 @@
+$color-black: #172b4d;
+.Support-page {
+  background-color: white;
+  border-radius: 10px 10px 0px 0px;
+  min-height: 670px;
+  padding: 60px 30px 30px 30px;
+  min-width: 700px;
+  .formcontainer{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 400px;
+    padding: 5px 30px;
+    .heading{
+        font-weight: 500;
+        color: $color-black;
+        font-family: "Roboto";
+        span{
+            font-size: 12px;
+            
+        }
+    }
+      
+  }
+}

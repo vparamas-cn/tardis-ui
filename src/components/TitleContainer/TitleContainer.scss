@@ -30,7 +30,7 @@ $color-lightgray: #a6adbb;
     width:100%;
   }
   .title img {
-    width: 12px;
+    height: 13px;
     filter: invert(36%) sepia(89%) saturate(2041%) hue-rotate(208deg)
       brightness(98%) contrast(88%);
   }
@@ -41,6 +41,7 @@ $color-lightgray: #a6adbb;
     font-weight: 500;
     font-family: "Roboto";
     color: $color-blue;
+    min-width: 200px;
   }
   .cursorpointer {
     cursor: pointer;

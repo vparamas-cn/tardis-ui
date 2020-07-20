@@ -1,12 +1,15 @@
-import React from 'react';
-import Main from './pages'
-import "./App.scss"
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.scss";
+import Main from "./pages";
 
 function App() {
   return (
-    <div className="App">
-      <Main />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" children={<Main />} />
+      </Switch>
+    </Router>
   );
 }
 

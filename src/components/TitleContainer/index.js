@@ -17,6 +17,20 @@ const TitleContainer = props => {
       document.body.style.overflowY  ="hidden";
     }
   };
+  const SearchField = (name) =>{
+    if(name == "Maintennace")
+    return (
+      <InputButton
+          placeholder={"Search"}
+          id ={"tablesearch"}
+          btnclass={"searchbtn"}
+          ButtonClick={text => {}}
+          btnimg={Images.Search}
+        />
+    )
+    else
+    return null
+  }
   return (
     <div className="container-title">
       <div className="title-left">
@@ -37,13 +51,7 @@ const TitleContainer = props => {
         />
       </div>
       <div className="centeralign">
-        <InputButton
-          placeholder={"Search"}
-          id ={"tablesearch"}
-          btnclass={"searchbtn"}
-          ButtonClick={text => {}}
-          btnimg={Images.Search}
-        />
+        <SearchField name={props.name}/>
         <Button
           class={"fullscreenicon"}
           leftimg={Images.Fullscreen}
@@ -60,5 +68,6 @@ const TitleContainer = props => {
     </div>
   );
 };
+
 
 export default TitleContainer;

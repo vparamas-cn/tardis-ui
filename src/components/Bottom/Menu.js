@@ -3,6 +3,7 @@ import "./Bottom.scss";
 import SVG from 'react-inlinesvg';
 
 const Menu = props => {
+  
   return (
     <div
       className={`menu centeralign ${props.selection ? "selectionmenu" : ""}`}

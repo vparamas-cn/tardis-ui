@@ -10,12 +10,11 @@
 
 main {
   position: absolute;
-  z-index: 3;
+  z-index: 3; 
   top: 140px;
   left: 280px;
   right: 50px;
   bottom: 0px;
-  
 }
 
 .paddzero {
@@ -55,7 +54,7 @@ main {
 .fullscreen {
   position: fixed;
   z-index: 100500;
-  border-radius: 0px !important;
+  border-radius: 0px;
   animation-name: fullscreenanimation;
   animation-duration: 1s;
   top: 0;
@@ -63,6 +62,9 @@ main {
   right: 0;
   bottom: 0;
   overflow-y: auto;
+  .MaintennacePage {
+    border-radius: 0px;
+  }
 }
 .originalscreen {
   animation-name: originalscreenanimation;

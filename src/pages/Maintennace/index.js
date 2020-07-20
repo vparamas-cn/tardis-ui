@@ -4,7 +4,7 @@ import {Images} from "../../assets/images";
 import "./Maintennace.scss"
 const Maintennace = () => {
   return (
-    <div className="MaintennacePage" id="maincontent">
+    <div className="MaintennacePage" >
       <TitleContainer
         name="Maintennace"
         img={Images.Maintennace}

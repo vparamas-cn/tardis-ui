@@ -21,7 +21,8 @@ export const menulist =[
         name:"Maintennace",
         image:require("../../assets/images/Maintennace.svg"),
         selection:false,
-        notify:false
+        notify:false,
+        path:"/Maintennace"
     },
     {
         name:"Configurations",
@@ -45,7 +46,8 @@ export const menulist =[
         name:"Support Link",
         image:require("../../assets/images/Support.svg"),
         selection:false,
-        notify:false
+        notify:false,
+        path:"/Support-Link"
     }
 ];
 
@@ -135,3 +137,11 @@ export const array = [
         color: "#3976EB"
       }
     ];
+
+   export const pagename = () =>{
+        var url = window.location.pathname;
+        if(url.indexOf("Maintennace") > -1)
+            return "Maintennace"
+        else if(url.indexOf("Support-Link") > -1)   
+             return "Support Link"    
+    }
