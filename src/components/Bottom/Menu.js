@@ -1,5 +1,6 @@
 import React from "react";
 import "./Bottom.scss";
+import SVG from 'react-inlinesvg';
 
 const Menu = props => {
   return (
@@ -9,7 +10,7 @@ const Menu = props => {
         props.onSelection(props);
       }}
     >
-      <img src={props.image} class="menuimg" />
+      <SVG src={props.image} class={props.name =="File Manager" ? 'menufileimg': "menuimg"}/>
       <span>{props.name}</span>
       {props.notify ? <span class="notifydot" /> : null}
     </div>

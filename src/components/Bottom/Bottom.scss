@@ -36,6 +36,29 @@ $color-redshade: #fef8f8;
       width: 21px;
       height: 21px;
       margin-bottom: 10px;
+      path {
+        fill: #40536c;
+      }
+      rect {
+        fill: #40536c;
+      }
+      ellipse {
+        fill: #40536c;
+      }
+      circle {
+        fill: #40536c;
+      }
+    }
+    .menufileimg {
+      width: 21px;
+      height: 21px;
+      margin-bottom: 10px;
+      path {
+        stroke: #40536c;
+      }
+      circle {
+        fill: #ff9f00;
+      }
     }
     .btm-menu {
       width: 280px;
@@ -61,6 +84,31 @@ $color-redshade: #fef8f8;
       background-color: #3976eb;
       border-radius: 10px;
       color: white;
+      .menuimg {
+        path {
+          fill: #ffffff;
+        }
+        rect {
+          fill: #ffffff;
+        }
+        ellipse {
+          fill: #ffffff;
+        }
+        circle {
+          fill: #ffffff;
+        }
+      }
+      .menufileimg {
+        width: 21px;
+        height: 21px;
+        margin-bottom: 10px;
+        path {
+          stroke: #ffffff;
+        }
+        circle {
+          fill: #ffffff;
+        }
+      }
     }
     .dividerlabel {
       padding: 0px 10px;
