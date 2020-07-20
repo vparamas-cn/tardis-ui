@@ -1,11 +1,6 @@
-$color-bule: #3976eb;
-$color-green: #35b27d;
-$color-white: #f8f8fb;
-$color-red: #f53c56;
+$color-blue: #3976eb;
 $color-black: #172b4d;
-$color-gray1: #9ca2b4;
-$color-gray2: #a6adbb;
-$color-redshade: #fef8f8;
+$color-lightgray: #a6adbb;
 
 .container-title {
   display: flex;
@@ -15,7 +10,9 @@ $color-redshade: #fef8f8;
   .title-left {
     display: flex;
   }
-
+  .backoption{
+    width:100%;
+  }
   .backoption img {
     width: 20px;
     height: 20px;
@@ -29,6 +26,9 @@ $color-redshade: #fef8f8;
     font-family: "Roboto";
     color: $color-black;
   }
+  .title{
+    width:100%;
+  }
   .title img {
     width: 12px;
     filter: invert(36%) sepia(89%) saturate(2041%) hue-rotate(208deg)
@@ -40,7 +40,7 @@ $color-redshade: #fef8f8;
     cursor: pointer;
     font-weight: 500;
     font-family: "Roboto";
-    color: $color-bule;
+    color: $color-blue;
   }
   .cursorpointer {
     cursor: pointer;
@@ -48,7 +48,7 @@ $color-redshade: #fef8f8;
       width: 4px;
       margin: 4px;
       height: 4px;
-      background: #172b4d;
+      background: $color-black;
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
       border-radius: 5px;
@@ -63,11 +63,11 @@ $color-redshade: #fef8f8;
     cursor: pointer;
   }
   .title-divder {
-    padding: 0px 15px;
+    padding: 0px 10px;
   }
   .title-divder > span {
     width: 0.5px;
     height: 16px;
-    background-color: $color-gray2;
+    background-color: $color-lightgray;
   }
 }

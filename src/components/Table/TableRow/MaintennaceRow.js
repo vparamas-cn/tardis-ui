@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,Fragment} from "react";
 import "../Table.scss";
 import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
 import DatePicker from "../../InputText/DatePicker";
-import {Images} from "../../../assets/images";
-import $ from "jquery";
+import { Images } from "../../../assets/images";
 
 const Maintennace = props => {
-  const [data, SetData] = useState([{ id: 1 }, { id: 2 }, { id: 3 }]);
+  const [data, SetData] = useState([
+    { id: 1 },
+    { id: 2 },
+    { id: 3 }
+  ]);
   useEffect(() => {});
   const showHideRow = (selectedrow, arrowimg) => {
     var trd = document.getElementById(selectedrow);
-    $(".editcontent:not([id~=" + selectedrow + "])").hide();
-    $(".rowarrow > img")
-      .removeClass("uparr")
-      .addClass("downarr");
-    $(`#${selectedrow}`).toggle(500);
-    // if (trd.className.indexOf("hidden_row") > -1){
-    //   trd.classList.remove("hidden_row");
-    // }
-    // else{
-    //   trd.classList.add("hidden_row");
-    // }
+    if (trd.className.indexOf("hidden_row") > -1){
+      trd.classList.remove("hidden_row");
+    }
+    else{
+      trd.classList.add("hidden_row");
+    }
     var imageid = document.getElementById(arrowimg);
     if (imageid.className.indexOf("downarr") > -1) {
       imageid.classList.remove("downarr");
@@ -57,11 +55,7 @@ const Maintennace = props => {
           />
         </td>
         <td>
-          {" "}
-          <img
-            src={Images.RowEdit}
-            className="editimg"
-          />
+          <img src={Images.RowEdit} className="editimg" />
           <span>Edit</span>
         </td>
       </tr>
@@ -113,10 +107,10 @@ const Maintennace = props => {
       {data &&
         data.map((item, index) => {
           return (
-            <React.Fragment key={`MaintainanceRow${index}`}>
+            <Fragment key={`MaintainanceRow-${index}`}>
               <Row {...item} />
               <RowDetails {...item} />
-            </React.Fragment>
+            </Fragment>
           );
         })}
     </tbody>

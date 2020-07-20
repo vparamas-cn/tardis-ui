@@ -8,10 +8,11 @@ $color-gray2: #a6adbb;
 $color-redshade: #fef8f8;
 
 .bottom-container {
-  width: 100%;
   background-color: #f8f8fb;
   min-height: calc(100vh - 350px);
-  padding-bottom: 100px;
+  position: absolute;
+  top: 350px;
+  width: 280px;
   .sidemenu {
     display: flex;
     flex-wrap: wrap;

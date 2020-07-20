@@ -31,7 +31,6 @@
   right: 0;
   background: white;
   border-radius: inherit;
-  //border: 1px solid rgba(0,0,0,0.17);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   font-weight: normal;
   -webkit-transition: all 0.5s ease-in;
@@ -43,18 +42,6 @@
   opacity: 0;
   pointer-events: none;
 }
-
-// .dropdown:before {
-//     content: "";
-//     width: 0;
-//     height: 0;
-//     position: absolute;
-//     bottom: 100%;
-//     right: 39%;
-//     border-width: 0 8px 8px 8px;
-//     border-style: solid;
-//     border-color: rgba(0,0,0,0.1) transparent;
-// }
 
 .wrapper-dropdown .dropdown li a {
   text-align: left;

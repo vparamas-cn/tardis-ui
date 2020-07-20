@@ -9,11 +9,10 @@
 }
 
 main {
-  position: absolute;
   z-index: 3;
-  top: 140px;
-  left: 280px;
-  right: 50px;
+  margin-top: -240px;
+  margin-left: 280px;
+  margin-right: 50px;
   bottom: 0px;
   background-color: white;
   border-radius: 10px 10px 0px 0px;
@@ -69,5 +68,49 @@ main {
 }
 .originalscreen {
   animation-name: originalscreenanimation;
+  animation-duration: 1s;
+}
+
+@keyframes sideopenanimation {
+  0% {
+    top: 0px;
+    left: -50px;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  100% {
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+}
+@keyframes sidecloseanimation {
+  0% {
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  100% {
+    top: 0px;
+    left: -50px;
+    right: 0px;
+    bottom: 0px;
+  }
+}
+.sideopen {
+  z-index: 100500;
+  animation-name: sideopenanimation;
+  animation-duration: 1s;
+  top: 0;
+  left: -50px;
+  right: 0;
+  bottom: 0;
+}
+.sideclose {
+  animation-name: sidecloseanimation;
   animation-duration: 1s;
 }

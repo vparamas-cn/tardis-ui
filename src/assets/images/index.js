@@ -11,6 +11,7 @@ export const Images = {
   Delete: require("./Delete.svg"),
   details: require("./details.svg"),
   downarrow: require("./downarrow.svg"),
+  dropdownarrow: require("./dropdownarrow.svg"),
   Edit: require("./Edit.svg"),
   Fullscreen: require("./Fullscreen.svg"),
   Logout: require("./Logout.svg"),
