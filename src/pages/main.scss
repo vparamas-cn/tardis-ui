@@ -55,13 +55,14 @@ main {
 .fullscreen {
   position: fixed;
   z-index: 100500;
-  border-radius: 0px;
+  border-radius: 0px !important;
   animation-name: fullscreenanimation;
   animation-duration: 1s;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  overflow-y: auto;
 }
 .originalscreen {
   animation-name: originalscreenanimation;

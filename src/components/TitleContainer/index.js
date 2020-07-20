@@ -10,9 +10,11 @@ const TitleContainer = props => {
     if (mainscreen.className.indexOf("fullscreen") > -1) {
       mainscreen.classList.remove("fullscreen");
       mainscreen.classList.add("originalscreen");
+      document.body.style.overflowY  ="auto";
     } else {
       mainscreen.classList.add("fullscreen");
       mainscreen.classList.remove("originalscreen");
+      document.body.style.overflowY  ="hidden";
     }
   };
   return (
