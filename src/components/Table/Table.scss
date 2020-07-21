@@ -26,21 +26,21 @@ $color-lightgray: #a6adbb;
     border-radius: 4px;
     border: 0.5px solid $color-gray;
     font-size: 11px;
-    font-family: "Roboto";
+    font-family: "Roboto-Regular";
     background-color: #ffffff;
   }
   tbody tr {
     height: 60px;
     box-shadow: 0px 1px 7px #f5f3f3;
     font-weight: 500;
-    font-family: "Roboto";
+    font-family: "Roboto-Regular";
     font-size: 11px;
   }
   thead th {
     text-align: left;
     font-size: 10px;
     font-weight: 500;
-    font-family: "Roboto";
+    font-family: "Roboto-Medium";
     color: #9ca2b4;
   }
   .hidden_row {

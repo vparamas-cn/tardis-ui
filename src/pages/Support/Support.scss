@@ -1,26 +1,61 @@
 $color-black: #172b4d;
+$color-blue: #3976eb;
+$color-lightgray: #a6adbb;
 .Support-page {
   background-color: white;
   border-radius: 10px 10px 0px 0px;
   min-height: 670px;
   padding: 60px 30px 30px 30px;
   min-width: 700px;
-  .formcontainer{
+  .formcontainer {
     width: 50%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     height: 400px;
     padding: 5px 30px;
-    .heading{
-        font-weight: 500;
-        color: $color-black;
-        font-family: "Roboto";
-        span{
-            font-size: 12px;
-            
-        }
+    flex-direction: column;
+    .formdesign{
+          width: 30px;
     }
-      
+    .heading {
+      font-weight: 500;
+      color: $color-black;
+      font-family: "Roboto-Medium";
+      span {
+        font-size: 12px;
+      }
+      h3{
+        margin: 10px 0px;
+        font-weight: 500;
+        color: #172b4d;
+      }
+    }
+    .inputcontainer {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      padding-top: 35px;
+    }
+    .btncontainer {
+      font-weight: 500;
+      font-family: "Roboto-Regular";
+      padding-top: 20px;
+      .supportbtn {
+        display: flex;
+        flex-direction: row;
+        background-color: $color-blue;
+        width: 150px;
+        font-size: 9px;
+        text-transform: uppercase;
+        margin: 0px 0px;
+      }
+      .content {
+        font-size: 7px;
+        padding-left: 15px;
+        line-height: 11px;
+        color:$color-lightgray;
+      }
+    }
   }
 }

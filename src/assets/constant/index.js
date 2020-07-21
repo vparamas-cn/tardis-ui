@@ -28,7 +28,8 @@ export const menulist =[
         name:"Configurations",
         image:require("../../assets/images/Settings.svg"),
         selection:false,
-        notify:false
+        notify:false,
+        path:"/Configurations"
     },
     {
         name:"Trend Chart",
@@ -143,5 +144,7 @@ export const array = [
         if(url.indexOf("Maintennace") > -1)
             return "Maintennace"
         else if(url.indexOf("Support-Link") > -1)   
-             return "Support Link"    
+             return "Support Link"   
+         else if(url.indexOf("Configurations") > -1)   
+             return "Configurations"       
     }

@@ -17,8 +17,8 @@ const TitleContainer = props => {
       document.body.style.overflowY  ="hidden";
     }
   };
-  const SearchField = (name) =>{
-    if(name == "Maintennace")
+  const SearchField = (props) =>{
+    if(props.name == "Maintennace" || props.name.indexOf("Configuration")>-1 )
     return (
       <InputButton
           placeholder={"Search"}
