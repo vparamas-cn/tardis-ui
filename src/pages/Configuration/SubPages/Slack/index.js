@@ -1,28 +1,28 @@
 import React from "react";
-import "./Source.scss";
+import "./Slack.scss";
 import FilterContainer from "./Components/FilterContainer";
 import { Table, TitleContainer } from "../../../../components";
 import { Images } from "../../../../assets/images";
 import { useHistory } from "react-router-dom";
 
-const Source = () => {
+const Slack = () => {
   let history = useHistory();
   const onBackHandler = page => {
     history.push("/Configurations");
   };
   return (
-    <div className="Sourcepage page">
+    <div className="Slackpage page">
       <TitleContainer
-        name="Source Configuration"
-        img={Images.Settings}
+        name="Slack Integration"
+        img={Images.slack}
         onBack={() => {
           onBackHandler();
         }}
       />
       <FilterContainer />
-      <Table name="SourceConfig" />
+      <Table name="SlackIntegration" />
     </div>
   );
 };
 
-export default Source;
+export default Slack;

@@ -23,9 +23,14 @@ const Support = props => {
   const Submit = () => {
     console.log(data);
   };
+  const onBackHandler = (page)=> {
+
+  }
   return (
     <div className="Support-page page">
-      <TitleContainer name="Support Link" img={Images.Support} />
+      <TitleContainer name="Support Link" img={Images.Support} onBack={() => {
+          onBackHandler();
+        }}/>
       <div className="centeralign">
         <div style={bgimage} />
         <div className="formcontainer">

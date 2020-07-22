@@ -1,15 +1,22 @@
-import React, {Fragment} from "react";
-import { Table, TitleContainer, FilterContainer } from "../../components";
+import React from "react";
+import { Table, TitleContainer } from "../../components";
+import FilterContainer from "./Components/FilterContainer"
 import {Images} from "../../assets/images";
 import "./Maintennace.scss"
 const Maintennace = () => {
+  const onBackHandler = (page)=> {
+
+  }
   return (
     <div className="MaintennacePage page" >
       <TitleContainer
         name="Maintennace"
         img={Images.Maintennace}
+        onBack={() => {
+          onBackHandler();
+        }}
       />
-      <FilterContainer name="Maintennace" />
+      <FilterContainer />
       <Table name="Maintennace" />
     </div>
   );

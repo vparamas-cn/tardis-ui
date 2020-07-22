@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import "./FilterContainer.scss";
-import DropDown from "../DropDown";
-import Button from "../Button/Button";
-import AddMaintennace from "./AddMaintennace";
 import Modal from "react-modal";
-import DatePicker from "../InputText/DatePicker";
-import {Images} from "../../assets/images";
-
+import { Images } from "../../../assets/images";
+import { DropDown, Button, DatePicker } from "../../../components";
 const customStyles = {
   content: {
     top: "50%",
@@ -42,46 +37,36 @@ const FilterContainer = props => {
   return (
     <div class="container-filter">
       <DropDown
-        id={"sourcedd"}
+        id={"accessdd"}
         class={"options searchop"}
-        label={"Source"}
+        label={"Select Access"}
         search={true}
         imguri={Images.dropdownarrow}
         options={["String_1_Source", "String_2_Source", "String_3_Source"]}
       />
-      <Button
+      <DropDown
+        id={"userdd"}
+        class={"options searchop"}
+        label={"Select User"}
+        search={true}
+        imguri={Images.dropdownarrow}
+        options={["String_1_Source", "String_2_Source", "String_3_Source"]}
+      />
+      <DropDown
+        id={"groupdd"}
         class={"options"}
-        name="Log Date"
-        rightimg={Images.calendardetails}
-        onClick={() => {}}
+        label={"Select Groups"}
+        imguri={Images.dropdownarrow}
+        options={["Active", "InActive"]}
       />
 
-      <DropDown
-        id={"failturedd"}
-        class={"options"}
-        label={"Failure Reasons"}
-        imguri={Images.dropdownarrow}
-        options={["Configuration Module"]}
-      />
       <Button
         class="greenclr addbtn"
-        name="Add Item"
+        name="Add Permission"
         onClick={() => {
           openModal();
         }}
       />
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Add Maintennace"
-      >
-        <AddMaintennace
-          closepop={() => {
-            closeModal();
-          }}
-        />
-      </Modal>
     </div>
   );
 };

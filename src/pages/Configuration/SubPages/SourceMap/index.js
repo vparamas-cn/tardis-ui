@@ -1,26 +1,26 @@
 import React from "react";
-import "./Source.scss";
+import "./SourceMap.scss";
 import FilterContainer from "./Components/FilterContainer";
 import { Table, TitleContainer } from "../../../../components";
 import { Images } from "../../../../assets/images";
 import { useHistory } from "react-router-dom";
 
 const Source = () => {
-  let history = useHistory();
+    let history = useHistory();
   const onBackHandler = page => {
     history.push("/Configurations");
   };
   return (
-    <div className="Sourcepage page">
+    <div className="SourceMappage page">
       <TitleContainer
-        name="Source Configuration"
+        name="Source Map Configuration"
         img={Images.Settings}
         onBack={() => {
           onBackHandler();
         }}
       />
       <FilterContainer />
-      <Table name="SourceConfig" />
+      <Table name="SourceMapConfig" />
     </div>
   );
 };

@@ -1,41 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./DropDown.scss";
 import InputButton from "./InputText/InputWithButton";
 import { Images } from "../assets/images";
 
+
+const useOnClickOutside = (ref, handler) => {
+  useEffect(
+    () => {
+      const listener = event => {
+       
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        if(event.target && event.target.className && typeof event.target.className =="string"  && event.target.className.indexOf("dontclose") >-1){
+          return;
+        }
+        handler(event);
+      };
+
+      document.addEventListener('mousedown', listener);
+      
+
+      return () => {
+        document.removeEventListener('mousedown', listener);
+       
+      };
+    },
+    [ref, handler]
+  );
+}
+
 const DropDown = props => {
+  const ref = useRef();
   const [selectedoption, SetOption] = useState("");
+  const [isOpen, setOpen] = useState(false);
   useEffect(() => {
     if (props.options && props.options.length > 0) {
       SetOption(props.options[0]);
     }
   });
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+  useOnClickOutside(ref, () => {
+    setOpen(false)
   });
-  const handleClickOutside = event => {
-    var dd = document.getElementById(props.id);
-    var inputsearch = document.getElementById(`filtersearch-sourcedd`);
-    if (dd && !dd.id !== event.target.id && inputsearch && inputsearch.id !== event.target.id) {
-      dd.classList.remove("active");
-    }
+  const onDropdown = () => {
+    setOpen(!isOpen)
   };
-  const ondropdown = () => {
-    var dd = document.getElementById(props.id);
-    if (dd.className.indexOf("active") > -1) {
-      dd.classList.remove("active");
-    } else {
-      dd.classList.add("active");
-    }
-  };
+  const onSelectedItem = (e,item) => {
+    SetOption(item)
+  }
   return props.profilename ? (
     <div
-      id={props.id}
-      className={`wrapper-dropdown ${props.class}`}
-      onClick={() => ondropdown()}
+      id={props.id} ref={ref}
+      className={`wrapper-dropdown ${props.class} ${isOpen?"active":""}`}
+      onClick={() => onDropdown()}
     >
       <span class="rtname">{props.profilename}</span>
       <img src={props.imguri} />
@@ -51,9 +68,9 @@ const DropDown = props => {
     </div>
   ) : (
     <div
-      id={props.id}
-      className={`wrapper-dropdown ${props.class}`}
-      onClick={() => ondropdown()}
+      id={props.id} ref={ref}
+      className={`wrapper-dropdown ${props.class} ${isOpen?"active":""}`}
+      onClick={() => onDropdown()}
     >
       {props.search ? (
         <div className="centeralign">
@@ -70,20 +87,20 @@ const DropDown = props => {
       ) : (
         <img src={props.imguri} />
       )}
-      <ul className="dropdown">
-        {props.search ? <li className="searchinput" id="searchinput">
+      <ul className="dropdown dontclose">
+        {props.search ? <li className="searchinput dontclose" id="searchinput">
           <InputButton
           placeholder={"Search"}
           id ={`filtersearch-${props.id}`}
-          btnclass={"searchbtn"}
+          btnclass={"searchbtn dontclose"}
           ButtonClick={text => {}}
           btnimg={Images.Search}
         />
           </li>:null}
         {props.options.map((item, index) => {
           return (
-            <li key={"dd" + index}>
-              <a>{item}</a>
+            <li key={"dd" + index} className="dontclose" onClick={(e)=>{onSelectedItem(e.item)}}>
+              {item}
             </li>
           );
         })}

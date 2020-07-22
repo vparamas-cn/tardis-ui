@@ -44,6 +44,7 @@
 }
 .wrapper-dropdown .dropdown .searchinput {
   height: 40px;
+  padding: 0px;
   .buttonwrapper {
     width: 100%;
     padding: 5px 5px;
@@ -66,7 +67,7 @@
   }
 }
 
-.wrapper-dropdown .dropdown li a {
+.wrapper-dropdown .dropdown li  {
   text-align: left;
   display: block;
   padding: 10px;

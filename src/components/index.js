@@ -3,8 +3,9 @@ export {default as DropDown} from './DropDown';
 export {default as Bottom} from './Bottom/Bottom';
 export {default as Table} from './Table/Table';
 export {default as TitleContainer} from './TitleContainer';
-export {default as FilterContainer} from './FilterContainer';
 export {default as TextInput} from "./InputText/InputWithLable"
 export {default as Textarea} from "./InputText/Textarea"
 export {default as Button} from "./Button/Button"
 export {default as FolderWrapper} from "./FolderWrapper"
+export {default as DatePicker} from "./InputText/DatePicker"
+export {default as Tabs} from "./Tabs"

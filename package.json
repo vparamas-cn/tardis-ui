@@ -37,5 +37,27 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "module-resolver",
+        {
+          "root": [
+            "./src"
+          ],
+          "alias": {
+            "assets": "./src/assets",
+            "components": "./src/components"
+          }
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^4.0.0"
   }
 }

@@ -11,10 +11,21 @@ const Configuration = () => {
     {
         history.push("/SourceConfigurations");
     }
+     if(page == "SourceMap")
+    {
+        history.push("/SourceMapConfigurations");
+    }
+     if(page == "Slack")
+    {
+        history.push("/SlackIntegration");
+    }
   }  
+  const onBackHandler = (page)=> {
+
+  }
   return (
     <div className="Configuration-page page">
-      <TitleContainer name="Configurations" img={Images.Settings} />
+      <TitleContainer name="Configurations" img={Images.Settings} onBack={()=>{onBackHandler()}}/>
       <div className="quickaccess">
         <div className="titlequick">
           <span>Quick Access</span>
@@ -32,12 +43,14 @@ const Configuration = () => {
             subname="Configuration"
             selection={false}
             img={Images.Settings}
+            OnClick={()=>{onPagenavigation("SourceMap")}}
           />
           <FolderWrapper
             titlename="Slack Intergration"
             subname="Configuration"
             selection={false}
             img={Images.slack}
+            OnClick={()=>{onPagenavigation("Slack")}}
           />
          
         </div>

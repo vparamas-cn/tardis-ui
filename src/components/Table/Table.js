@@ -2,7 +2,11 @@ import React, { useState, useEffect, Fragment } from "react";
 import "./Table.scss";
 import { TableHeader } from "../../assets/constant";
 import MaintennaceRow from "./TableRow/MaintennaceRow";
+import SourceConfig from "./TableRow/SourceConfig";
+import SourceMapConfig from "./TableRow/SourceMapConfig";
+import SlackRow from "./TableRow/SlackRow";
 import Pagination from "./Pagination";
+import AdminRow from "./TableRow/AdminRow"
 const Table = props => {
   const [header, SetHeader] = useState(TableHeader[props.name]);
   return (
@@ -17,7 +21,17 @@ const Table = props => {
                 })}
             </tr>
           </thead>
-          {props.name == "Maintennace" ? <MaintennaceRow /> : null}
+          {props.name == "Maintennace" ? (
+            <MaintennaceRow />
+          ) : props.name == "SourceConfig" ? (
+            <SourceConfig />
+          ) : props.name == "SourceMapConfig" ? (
+            <SourceMapConfig />
+          ) : props.name == "SlackIntegration" ? (
+            <SlackRow />
+          ) : props.name == "Admin" ? (
+            <AdminRow />
+          ) :null}
         </table>
       </section>
       <Pagination rowcount={5} noofpage={5} />

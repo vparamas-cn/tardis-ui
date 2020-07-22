@@ -1,10 +1,8 @@
 import React from "react";
 import "./FilterContainer.scss";
-import DropDown from "../DropDown";
-import Button from "../Button/Button";
+import {Images} from "../../../assets/images";
+import { DropDown, Button, DatePicker  } from "../../../components"
 import SelectSearch from "react-select-search";
-import DatePicker from "../InputText/DatePicker";
-import {Images} from "../../assets/images";
 
 const options = [
   { name: "String_1_Source", value: "1" },

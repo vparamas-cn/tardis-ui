@@ -3,6 +3,7 @@ import "./TitleContainer.scss";
 import InputButton from "../InputText/InputWithButton";
 import Button from "../Button/Button";
 import { Images } from "../../assets/images";
+import { SearchBar } from "../../assets/constant"
 
 const TitleContainer = props => {
   const fullscreen = () => {
@@ -18,7 +19,7 @@ const TitleContainer = props => {
     }
   };
   const SearchField = (props) =>{
-    if(props.name == "Maintennace" || props.name.indexOf("Configuration")>-1 )
+    if(SearchBar.indexOf(props.name) > -1)
     return (
       <InputButton
           placeholder={"Search"}
@@ -38,7 +39,7 @@ const TitleContainer = props => {
           class={"backoption centeralign"}
           name={"Back"}
           leftimg={Images.Back}
-          onClick={() => {}}
+          onClick={() => {props.onBack()}}
         />
         <div className="title-divder centeralign">
           <span />

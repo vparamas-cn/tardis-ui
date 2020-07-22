@@ -4,8 +4,13 @@ import Profile from "./Profile";
 import DropDown from "../DropDown";
 import Button from "../Button/Button";
 import {Images} from "../../assets/images";
+import { useHistory } from "react-router-dom";
+
 
 const Header = () => {
+  
+  let history = useHistory();
+
   return (
     <section className="top-container">
       <div className="profilecontainer">
@@ -18,7 +23,7 @@ const Header = () => {
             class={"profilemenu centeralign"}
             name="Edit Profie"
             leftimg={Images.Edit}
-            onClick={() => {}}
+            onClick={() => {history.push("/Profile")}}
           />
           <Button
             class={"profilemenu centeralign"}
