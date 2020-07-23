@@ -1,30 +1,10 @@
 import React, { useState } from "react";
+import AddSource from "./AddSource";
 import Modal from "react-modal";
-import {Images} from "../../../../../assets/images";
-import { DropDown, Button, DatePicker  } from "../../../../../components"
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    transition: "all 0.3s",
-    width: "500px",
-    height: "470px",
-    borderWidth: "5px 0px 0px 0px",
-    borderTopStyle: "solid",
-    borderTopColor: "#3976eb",
-    borderRadius: "0px",
-    padding: "40px",
-    overflow: "initial"
-  },
-  overlay: {
-    backgroundColor: "rgb(21 21 21 / 75%)",
-    zIndex: 2000
-  }
-};
+import { Images } from "../../../../../assets/images";
+import { DropDown, Button } from "../../../../../components";
+import { customStyles } from "../../../../../assets/constant";
+
 const FilterContainer = props => {
   const [modalIsOpen, SetModal] = useState(false);
   const closeModal = () => {
@@ -33,7 +13,6 @@ const FilterContainer = props => {
   const openModal = () => {
     SetModal(true);
   };
-  const handleDate = () => {};
   return (
     <div class="container-filter">
       <DropDown
@@ -72,7 +51,18 @@ const FilterContainer = props => {
           openModal();
         }}
       />
-     
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Add Maintennace"
+      >
+        <AddSource
+          closepop={() => {
+            closeModal();
+          }}
+        />
+      </Modal>
     </div>
   );
 };

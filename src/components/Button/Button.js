@@ -9,9 +9,9 @@ const Button = props => {
         props.onClick();
       }}
     >
-      {props.leftimg ? <img src={props.leftimg} /> : null}
+      {props.leftimg ? <img alt="" src={props.leftimg} /> : null}
       {props.name ? <span>{props.name}</span> : null}
-      {props.rightimg ? <img src={props.rightimg} /> : null}
+      {props.rightimg ? <img alt="" src={props.rightimg} /> : null}
     </div>
   );
 };

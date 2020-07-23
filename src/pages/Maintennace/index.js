@@ -15,6 +15,9 @@ const Maintennace = () => {
         onBack={() => {
           onBackHandler();
         }}
+        onSearch={(text)=>{
+          
+        }}
       />
       <FilterContainer />
       <Table name="Maintennace" />

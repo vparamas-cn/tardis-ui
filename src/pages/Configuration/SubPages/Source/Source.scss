@@ -5,3 +5,83 @@
   padding: 60px 30px 30px 30px;
   min-width: 700px;
 }
+.isactive {
+  padding: 15px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.controls {
+  .source1 {
+    width: 50%;
+    height: 100%;
+    .select-search__input {
+      height: 50px;
+    }
+  }
+  .source2 {
+    width: 50%;
+    height: 100%;
+  }
+  .paddingdiv {
+    padding: 10px 0px;
+    .extraheight {
+      height: 15px;
+    }
+  }
+  .timezonearrow{
+    height: 100%;
+    padding: 0px 10px;
+    background-color: #2855b4;
+    margin-left: 25px;
+    cursor: pointer;
+    border-radius: 0px 3px 3px 0px;
+  }
+  .description-container {
+    padding-bottom: 13px;
+  }
+  .addtimepicker {
+    width: 190px;
+    height: 40px;
+    margin-top: 5px;
+  }
+  .sourceaddtzdropdown {
+    width: 190px;
+    padding: 0px 0px 0px 10px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    .opendropdown{
+    font-size: 11px !important;
+    }
+    img{
+      width: 10px;
+    }
+  }
+  .sourceadddropdown {
+    width: 190px;
+    padding: 0px 10px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+  }
+
+  .sourceadddropdown span {
+    color: #172b4d;
+  }
+  .sourceadddropdown img {
+    height: 6px;
+  }
+}

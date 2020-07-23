@@ -15,6 +15,9 @@ const InputButton = props => {
         onChange={e => {
           TextChange(e);
         }}
+        onKeyDown={() => {
+          props.ButtonClick(text);
+        }}
       />
       <div
         className={props.btnclass}
@@ -22,7 +25,7 @@ const InputButton = props => {
           props.ButtonClick(text);
         }}
       >
-        <img src={props.btnimg} />
+        <img alt="" src={props.btnimg} />
       </div>
     </div>
   );

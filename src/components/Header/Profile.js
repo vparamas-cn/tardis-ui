@@ -24,7 +24,7 @@ const Profile = props => {
   return (
     <Fragment>
       <div className="profile centeralign">
-        <img src={props.img} />
+        <img alt="" src={props.img} />
         <span>{props.name}</span>
       </div>
       <canvas id="ProfileCanvas" width="220" height="260" />

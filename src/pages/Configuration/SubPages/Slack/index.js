@@ -18,6 +18,9 @@ const Slack = () => {
         onBack={() => {
           onBackHandler();
         }}
+        onSearch={(text)=>{
+          
+        }}
       />
       <FilterContainer />
       <Table name="SlackIntegration" />

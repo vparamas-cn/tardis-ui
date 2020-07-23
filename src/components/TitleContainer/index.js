@@ -18,14 +18,14 @@ const TitleContainer = props => {
       document.body.style.overflowY  ="hidden";
     }
   };
-  const SearchField = (props) =>{
-    if(SearchBar.indexOf(props.name) > -1)
+  const SearchField = (text) =>{
+    if(SearchBar.indexOf(text.name) > -1)
     return (
       <InputButton
           placeholder={"Search"}
           id ={"tablesearch"}
           btnclass={"searchbtn"}
-          ButtonClick={text => {}}
+          ButtonClick={text => {props.onSearch(text)}}
           btnimg={Images.Search}
         />
     )

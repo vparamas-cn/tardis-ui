@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Images } from "../../assets/images";
 import { TitleContainer, FolderWrapper } from "../../components";
 import "./Configuration.scss";
@@ -7,15 +7,15 @@ import { useHistory } from "react-router-dom";
 const Configuration = () => {
   let history = useHistory();
   const onPagenavigation = (page) =>{
-    if(page == "Source")
+    if(page === "Source")
     {
         history.push("/SourceConfigurations");
     }
-     if(page == "SourceMap")
+     if(page === "SourceMap")
     {
         history.push("/SourceMapConfigurations");
     }
-     if(page == "Slack")
+     if(page === "Slack")
     {
         history.push("/SlackIntegration");
     }
@@ -25,7 +25,9 @@ const Configuration = () => {
   }
   return (
     <div className="Configuration-page page">
-      <TitleContainer name="Configurations" img={Images.Settings} onBack={()=>{onBackHandler()}}/>
+      <TitleContainer name="Configurations" img={Images.Settings} onBack={()=>{onBackHandler()}} onSearch={(text)=>{
+        
+        }}/>
       <div className="quickaccess">
         <div className="titlequick">
           <span>Quick Access</span>

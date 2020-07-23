@@ -1,0 +1,25 @@
+$color-blue: #3976eb;
+.radio-container {
+  display: flex;
+  padding: 10px;
+  .radio-btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0px 9px;
+    .radiobtn {
+      width: 15px;
+      height: 15px;
+      border: 1px solid $color-blue;
+      margin-right: 5px;
+      border-radius: 10px;
+
+      .checked {
+        width: 6px;
+        height: 6px;
+        border-radius: 3px;
+        background-color: $color-blue;
+      }
+    }
+  }
+}

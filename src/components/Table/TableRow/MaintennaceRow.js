@@ -38,7 +38,7 @@ const Maintennace = props => {
         }}
       >
         <td className="rowarrow">
-          <img
+          <img alt=""
             src={Images.downarrow}
             className="downarr"
             id={`downimage${props.id}`}
@@ -55,7 +55,7 @@ const Maintennace = props => {
           />
         </td>
         <td>
-          <img src={Images.RowEdit} className="editimg" />
+          <img alt="" src={Images.RowEdit} className="editimg" />
           <span>Edit</span>
         </td>
       </tr>
@@ -70,7 +70,7 @@ const Maintennace = props => {
               <td colspan="6">
                 <div className="detailcontainer">
                   <div className="detailimg centeralign">
-                    <img src={Images.addlist} />
+                    <img alt="" src={Images.addlist} />
                   </div>
                   <div className="detailname">
                     <span className="nametitle">Source Name</span>

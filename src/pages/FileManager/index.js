@@ -14,6 +14,9 @@ const FileManager = () => {
         onBack={() => {
           onBackHandler();
         }}
+        onSearch={(text)=>{
+          
+        }}
       />
      
       

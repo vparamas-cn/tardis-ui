@@ -14,6 +14,9 @@ const Chart = () => {
         onBack={() => {
           onBackHandler();
         }}
+        onSearch={(text)=>{
+          
+        }}
       />
       <div className="quickaccess">
         <div className="titlequick">

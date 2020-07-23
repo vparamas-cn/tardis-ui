@@ -184,3 +184,28 @@ export const pagename = () => {
   else if (url.indexOf("FileManager") > -1) return "File Manager";
   else if (url.indexOf("TrendChart") > -1) return "Trend Chart";
 };
+
+
+export const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    transition: "all 0.3s",
+    width: "500px",
+    borderWidth: "5px 0px 0px 0px",
+    borderTopStyle: "solid",
+    borderTopColor: "#3976eb",
+    borderRadius: "0px",
+    padding: "40px",
+    overflow: "initial"
+  },
+  overlay: {
+    backgroundColor: "rgb(21 21 21 / 75%)",
+    zIndex: 2000,
+    overflowY:"auto"
+  }
+};

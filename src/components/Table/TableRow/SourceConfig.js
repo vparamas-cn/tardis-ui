@@ -3,7 +3,7 @@ import "../Table.scss";
 import "./Row.scss"
 import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
-import DatePicker from "../../InputText/DatePicker";
+import TimePicker from "../../TimePicker";
 import { Images } from "../../../assets/images";
 
 const SourceConfig = props => {
@@ -12,7 +12,19 @@ const SourceConfig = props => {
     { id: 2 },
     { id: 3 }
   ]);
+  const [detailinput, SetDetail] = useState([]);
   useEffect(() => {});
+  const Update = (formid) =>{
+    const form = document.getElementById(formid)
+    var data = Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
+    console.log(data);
+  }
+  const ClearForm = (formid) =>{
+     document.getElementById(formid).reset();
+  }
+  const Delete = (id) =>{
+
+  }
   const showHideRow = (selectedrow, arrowimg) => {
     var trd = document.getElementById(selectedrow);
     if (trd.className.indexOf("hidden_row") > -1){
@@ -30,7 +42,7 @@ const SourceConfig = props => {
       imageid.classList.remove("uparr");
     }
   };
-  const handleDate = date => {};
+ 
   const Row = props => {
     return (
       <tr
@@ -39,7 +51,7 @@ const SourceConfig = props => {
         }}
       >
         <td className="rowarrow">
-          <img
+          <img alt=""
             src={Images.downarrow}
             className="downarr"
             id={`downimage${props.id}`}
@@ -55,12 +67,12 @@ const SourceConfig = props => {
         <td>
           Type_01
         </td>
-        <td>Inactive</td>
+        <td><div className="centeralign"><div className={`greendot`} />Active</div></td>
         <td>025555</td>
         <td>Date_Source_name</td>
         <td>15:12:12</td>
         <td>
-          <img src={Images.RowEdit} className="editimg" />
+          <img alt="" src={Images.RowEdit} className="editimg" />
           <span>Edit</span>
         </td>
       </tr>
@@ -73,17 +85,18 @@ const SourceConfig = props => {
           <table className="detailtable">
             <tr>
               <td colspan="10">
+                <form id={`form${props.id}`}> 
                 <div className="detailcontainer">
                   <div className="detailimg centeralign">
-                    <img src={Images.addlist} />
+                    <img alt="" src={Images.addlist} />
                   </div>
                   <div className="detailname">
                     <span className="nametitle">Source Name</span>
                     <span>String_01_File</span>
                   </div>
-                  <input type="text"  className="sourceinput120"/>
-                  <input type="text" value="Alias"  className="sourceinput60"/>
-                  <input type="text"  value="Type" className="sourceinput60" />
+                  <input type="text"  name={`description${props.id}`} className="sourceinput120"/>
+                  <input type="text"  name={`alias${props.id}`} className="sourceinput60"/>
+                  <input type="text"  name={`type${props.id}`} className="sourceinput60" />
                   <DropDown
                     id={`activedd${props.id}`}
                     class={"failuredd sourceinput60"}
@@ -91,20 +104,22 @@ const SourceConfig = props => {
                     imguri={Images.arrowblack}
                     options={["True","False"]}
                   />
-                   <input type="text" value={"02555"} className="sourceinput60"/>
-                  <input type="text"  value={"Date_Source_name"}  className="sourceinput120"/>
-                   <input type="text"  value={"15:12:12"} className="sourceinput60"/>
+                   <input type="text" name={`num${props.id}`} className="sourceinput60"/>
+                  <input type="text" name={`dash${props.id}`}  className="sourceinput120"/>
+                   <TimePicker />
                   
                   <div className="detailbuttons">
-                    <Button class="greenclr" name="Update" />
-                    <Button class="clearbtncolor" name="Clear" />
+                    <Button class="greenclr" name="Update" onClick={()=>{Update(`form${props.id}`)}} />
+                    <Button class="clearbtncolor" name="Clear" onClick={()=>{ClearForm(`form${props.id}`)}} />
                     <Button
                       class="deletebtn"
                       name="Delete Contact"
                       leftimg={Images.Delete}
+                      onClick={()=>{Delete(props.id)}}
                     />
                   </div>
                 </div>
+                </form>
               </td>
             </tr>
           </table>

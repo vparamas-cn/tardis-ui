@@ -30,11 +30,14 @@ const Support = props => {
     <div className="Support-page page">
       <TitleContainer name="Support Link" img={Images.Support} onBack={() => {
           onBackHandler();
+        }}
+        onSearch={(text)=>{
+          
         }}/>
       <div className="centeralign">
         <div style={bgimage} />
         <div className="formcontainer">
-          <img src={Images.supportform} className="formdesign" />
+          <img alt="" src={Images.supportform} className="formdesign" />
           <div className="heading">
             <h3>Need a help? Don't worry just Contact us</h3>
             <span>

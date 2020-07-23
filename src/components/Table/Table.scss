@@ -24,10 +24,16 @@ $color-lightgray: #a6adbb;
     width: 100%;
     padding-left: 10px;
     border-radius: 4px;
-    border: 0.5px solid $color-gray;
+    border: 0.5px solid $color-lightgray;
     font-size: 11px;
     font-family: "Roboto-Regular";
     background-color: #ffffff;
+  }
+  table input:focus {
+    
+    border: 0.5px solid $color-gray;
+    outline: none;
+    
   }
   tbody tr {
     height: 60px;
@@ -116,6 +122,7 @@ $color-lightgray: #a6adbb;
   }
   .detailimg img {
     height: 15px;
+    width:35px;
   }
   tbody tr td:nth-child(6) {
     cursor: pointer;
@@ -137,6 +144,7 @@ $color-lightgray: #a6adbb;
     display: flex;
     flex-direction: column;
     padding: 0px 15px;
+    min-width: 100px;
   }
   .detailbuttons {
     display: flex;

@@ -18,6 +18,9 @@ const Source = () => {
         onBack={() => {
           onBackHandler();
         }}
+        onSearch={(text)=>{
+          
+        }}
       />
       <FilterContainer />
       <Table name="SourceMapConfig" />

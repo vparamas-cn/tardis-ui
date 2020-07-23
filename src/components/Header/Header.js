@@ -42,10 +42,10 @@ const Header = () => {
           options={["(UTC.08.00) Pacific Time (US & CANADA)"]}
         />
         <div className="rtnotify">
-          <img src={Images.Notification} />
+          <img alt="" src={Images.Notification} />
         </div>
         <div className="rtprofile">
-          <img
+          <img alt=""
             src={Images.profile}
             className="righttopimg"
           />

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Pagination.scss";
-import DropDown from "../../DropDown";
 import { Images } from "../../../assets/images";
 
 const Pagination = props => {
@@ -48,14 +47,14 @@ const Pagination = props => {
             Previous();
           }}
         >
-          <img src={Images.prev} />
+          <img alt="" src={Images.prev} />
         </div>
         {pagecount &&
           pagecount.map((item, index) => {
             return (
               <div
                 key={`pageno${index}`}
-                className={`pageno ${selection == item
+                className={`pageno ${selection === item
                   ? "selectedpageno"
                   : ""}`}
                 onClick={() => {
@@ -72,7 +71,7 @@ const Pagination = props => {
             Next();
           }}
         >
-          <img src={Images.next} />
+          <img alt="" src={Images.next} />
         </div>
       </div>
     </div>

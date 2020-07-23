@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import "./Table.scss";
 import { TableHeader } from "../../assets/constant";
 import MaintennaceRow from "./TableRow/MaintennaceRow";
@@ -21,15 +21,15 @@ const Table = props => {
                 })}
             </tr>
           </thead>
-          {props.name == "Maintennace" ? (
+          {props.name === "Maintennace" ? (
             <MaintennaceRow />
-          ) : props.name == "SourceConfig" ? (
+          ) : props.name === "SourceConfig" ? (
             <SourceConfig />
-          ) : props.name == "SourceMapConfig" ? (
+          ) : props.name === "SourceMapConfig" ? (
             <SourceMapConfig />
-          ) : props.name == "SlackIntegration" ? (
+          ) : props.name === "SlackIntegration" ? (
             <SlackRow />
-          ) : props.name == "Admin" ? (
+          ) : props.name === "Admin" ? (
             <AdminRow />
           ) :null}
         </table>

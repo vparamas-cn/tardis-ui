@@ -11,7 +11,7 @@ const Bottom = () => {
   const [selection, SetSelection] = useState("");
   const Selection = e => {
     menu.forEach(function(a) {
-      if (a.name == e.name) a.selection = true;
+      if (a.name === e.name) a.selection = true;
       else a.selection = false;
     });
     SetMenu(menu);
@@ -21,7 +21,7 @@ const Bottom = () => {
   };
   useEffect(()=>{
      menu.forEach(function(a) {
-      if (a.name == pagename()) a.selection = true;
+      if (a.name === pagename()) a.selection = true;
       else a.selection = false;
     });
     SetMenu(menu);

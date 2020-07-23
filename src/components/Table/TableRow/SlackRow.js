@@ -3,7 +3,6 @@ import "../Table.scss";
 import "./Row.scss";
 import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
-import DatePicker from "../../InputText/DatePicker";
 import { Images } from "../../../assets/images";
 
 const SourceConfig = props => {
@@ -25,7 +24,7 @@ const SourceConfig = props => {
       imageid.classList.remove("uparr");
     }
   };
-  const handleDate = date => {};
+  
   const Row = props => {
     return (
       <tr
@@ -34,7 +33,7 @@ const SourceConfig = props => {
         }}
       >
         <td className="rowarrow">
-          <img
+          <img alt=""
             src={Images.downarrow}
             className="downarr"
             id={`downimage${props.id}`}
@@ -45,7 +44,7 @@ const SourceConfig = props => {
         <td>True</td>
 
         <td>
-          <img src={Images.RowEdit} className="editimg" />
+          <img alt="" src={Images.RowEdit} className="editimg" />
           <span>Edit</span>
         </td>
       </tr>
@@ -60,7 +59,7 @@ const SourceConfig = props => {
               <td colspan="5">
                 <div className="detailcontainer">
                   <div className="detailimg centeralign">
-                    <img src={Images.addlist} />
+                    <img alt="" src={Images.addlist} />
                   </div>
 
                   <input

@@ -7,4 +7,20 @@
     width: 120px !important;
     margin: 0px 7px !important;
   }
+  .reddot{
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: red;
+    margin-right: 3px;
+    margin-top: 1px;
+  }
+  .greendot{
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #35b27d;
+    margin-right: 3px;
+    margin-top: 1px;
+  }
 }

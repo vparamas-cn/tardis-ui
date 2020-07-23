@@ -15,7 +15,7 @@ const AddMaintennace = props => {
       <div className="modal-title">
         <div className="title-left centeralign">
           <div className="detailimg centeralign">
-            <img src={Images.addlist} />
+            <img alt="" src={Images.addlist} />
           </div>
           <span>Add Item</span>
         </div>
@@ -25,7 +25,7 @@ const AddMaintennace = props => {
             props.closepop();
           }}
         >
-          <img src={Images.close} />
+          <img alt="" src={Images.close} />
         </div>
       </div>
       <div class="modal-content">
@@ -58,7 +58,7 @@ const AddMaintennace = props => {
               />
             </div>
           </div>
-          <div>
+          <div className="c2">
             <span>COMMENTS</span>
             <textarea rows="13" cols="23" />
           </div>

@@ -3,7 +3,6 @@ import "../Table.scss";
 import "./Row.scss";
 import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
-import DatePicker from "../../InputText/DatePicker";
 import { Images } from "../../../assets/images";
 
 const AdminRow = props => {
@@ -25,7 +24,6 @@ const AdminRow = props => {
       imageid.classList.remove("uparr");
     }
   };
-  const handleDate = date => {};
   const Row = props => {
     return (
       <tr
@@ -34,7 +32,7 @@ const AdminRow = props => {
         }}
       >
         <td className="rowarrow">
-          <img
+          <img alt=""
             src={Images.downarrow}
             className="downarr"
             id={`downimage${props.id}`}
@@ -45,7 +43,7 @@ const AdminRow = props => {
         <td>Configuration Module</td>
         <td>Inactive</td>
         <td>
-          <img src={Images.RowEdit} className="editimg" />
+          <img alt="" src={Images.RowEdit} className="editimg" />
           <span>Edit</span>
         </td>
       </tr>
@@ -60,7 +58,7 @@ const AdminRow = props => {
               <td colspan="6">
                 <div className="detailcontainer">
                   <div className="detailimg centeralign">
-                    <img src={Images.addlist} />
+                    <img alt="" src={Images.addlist} />
                   </div>
 
                   <input

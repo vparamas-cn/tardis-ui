@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React  from "react";
 import {  TitleContainer } from "../../components";
 import {Images} from "../../assets/images";
 import "./Profile.scss"
@@ -13,6 +13,9 @@ const Profile = () => {
         img={Images.Admin}
         onBack={() => {
           onBackHandler();
+        }}
+        onSearch={(text)=>{
+          
         }}
       />
      
