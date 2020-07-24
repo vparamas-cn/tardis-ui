@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TimePicker.scss";
-import TimePicker from "react-time-picker";
+import 'rc-time-picker/assets/index.css';
+import TimePicker from 'rc-time-picker';
+import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
 
 const CustomTimePicker = props => {
-  const [time, setTime] = useState("10:50:10");
+  const [time, setTime] = useState(null);
+  useEffect(()=>{
+    if(props.time)
+    {
+      setTime(props.time)
+    }
+  },[props])
   return (
     <TimePicker
-      onChange={time => setTime(time)}
-      value={time} 
-      className={`CustomTimePicker ${props.className?props.className:"" }`}
-      clearIcon={null}
-      clockClassName={"CustomClock"}
-      format="HH:mm:ss"
-    />
+    showSecond={true}
+    defaultValue={moment()}
+    name={props.name}
+    disabled={props.disabled}
+    value={time}
+    className={`CustomTimePicker ${props.className?props.className:"" }`}
+    onChange={time => setTime(time)}
+    inputIcon={<FontAwesomeIcon icon={faClock} size="lg" />}
+  />
+   
   );
 };
 

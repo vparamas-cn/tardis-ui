@@ -7,7 +7,7 @@ import { Images } from "../../../assets/images";
 
 const SourceConfig = props => {
   const [data, SetData] = useState([{ id: 1 }, { id: 2 }, { id: 3 }]);
-  useEffect(() => {});
+  useEffect(() => { });
   const showHideRow = (selectedrow, arrowimg) => {
     var trd = document.getElementById(selectedrow);
     if (trd.className.indexOf("hidden_row") > -1) {
@@ -24,7 +24,7 @@ const SourceConfig = props => {
       imageid.classList.remove("uparr");
     }
   };
-  
+
   const Row = props => {
     return (
       <tr
@@ -53,46 +53,48 @@ const SourceConfig = props => {
   const RowDetails = props => {
     return (
       <tr id={`hidden_row${props.id}`} className="hidden_row editcontent">
-        <td colspan="5" className="paddzero">
+        <td colSpan="5" className="paddzero">
           <table className="detailtable">
-            <tr>
-              <td colspan="5">
-                <div className="detailcontainer">
-                  <div className="detailimg centeralign">
-                    <img alt="" src={Images.addlist} />
-                  </div>
+            <tbody>
+              <tr>
+                <td colSpan="5">
+                  <div className="detailcontainer">
+                    <div className="detailimg centeralign">
+                      <img alt="" src={Images.addlist} />
+                    </div>
 
-                  <input
-                    type="text"
-                    value="Source_name"
-                    className="sourceinput120"
-                  />
-                  <input
-                    type="text"
-                    value="Date_source_name"
-                    className="sourceinput120"
-                  />
-
-                  <DropDown
-                    id={`optiondd${props.id}`}
-                    class={"failuredd sourceinput120"}
-                    imgclass={"centeralign"}
-                    imguri={Images.arrowblack}
-                    options={["True", "False"]}
-                  />
-
-                  <div className="detailbuttons">
-                    <Button class="greenclr" name="Update" />
-                    <Button class="clearbtncolor" name="Clear" />
-                    <Button
-                      class="deletebtn"
-                      name="Delete Contact"
-                      leftimg={Images.Delete}
+                    <input
+                      type="text"
+                      value="Source_name"
+                      className="sourceinput120"
                     />
+                    <input
+                      type="text"
+                      value="Date_source_name"
+                      className="sourceinput120"
+                    />
+
+                    <DropDown
+                      id={`optiondd${props.id}`}
+                      class={"failuredd sourceinput120"}
+                      imgclass={"centeralign"}
+                      imguri={Images.arrowblack}
+                      options={["True", "False"]}
+                    />
+
+                    <div className="detailbuttons">
+                      <Button class="greenclr" name="Update" />
+                      <Button class="clearbtncolor" name="Clear" />
+                      <Button
+                        class="deletebtn"
+                        name="Delete Contact"
+                        leftimg={Images.Delete}
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </td>
       </tr>

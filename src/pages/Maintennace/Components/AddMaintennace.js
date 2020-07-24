@@ -8,6 +8,7 @@ const options = [
   { name: "String_1_Source", value: "1" },
   { name: "String_1_Source", value: "2" }
 ];
+
 const AddMaintennace = props => {
   const handleDate = date => {};
   return (
@@ -28,9 +29,9 @@ const AddMaintennace = props => {
           <img alt="" src={Images.close} />
         </div>
       </div>
-      <div class="modal-content">
-        <div class="controls">
-          <div class="c1">
+      <div className="modal-content">
+        <div className="controls">
+          <div className="c1">
             <div>
               <span>VARIOUS SOURCES</span>
               <SelectSearch
@@ -43,7 +44,7 @@ const AddMaintennace = props => {
             </div>
             <div>
               <span>LOG DATE</span>
-              <div class="logdate">
+              <div className="logdate">
                 <DatePicker handleDate={e => handleDate(e)} />
               </div>
             </div>

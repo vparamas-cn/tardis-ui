@@ -133,6 +133,7 @@ $color-black: #172b4d;
 .select-search__select {
   background: #fff;
   box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
+  ul{padding: 0px 5px;;}
 }
 
 .select-search__options {

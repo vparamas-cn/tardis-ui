@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { Images } from "../../../../../assets/images";
 import { DropDown, Button } from "../../../../../components";
 import { customStyles } from "../../../../../assets/constant";
-
+Modal.setAppElement('#root')
 const FilterContainer = props => {
   const [modalIsOpen, SetModal] = useState(false);
   const closeModal = () => {
@@ -14,7 +14,7 @@ const FilterContainer = props => {
     SetModal(true);
   };
   return (
-    <div class="container-filter">
+    <div className="container-filter">
       <DropDown
         id={"sourcedd"}
         class={"options searchop"}
@@ -28,7 +28,7 @@ const FilterContainer = props => {
         class={"options"}
         label={"Type"}
         imguri={Images.dropdownarrow}
-        options={["Type 01", "Type 02"]}
+        options={["Datasource", "Datasource Group", "Dashboard"]}
       />
       <DropDown
         id={"isactivedd"}

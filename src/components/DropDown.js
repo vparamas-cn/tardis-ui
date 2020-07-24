@@ -25,7 +25,7 @@ const DropDown = props => {
     setOpen(false);
   });
   const onDropdown = e => {
-    if (e.target.className.indexOf("opendropdown") > -1) {
+    if (e.target.className.indexOf("opendropdown") > -1 && !props.disabled) {
       setOpen(!isOpen);
       setList(props.options);
     }
@@ -52,7 +52,7 @@ const DropDown = props => {
         : ""}`}
       onClick={e => onDropdown(e)}
     >
-      <span class="rtname opendropdown">{props.profilename}</span>
+      <span className="rtname opendropdown">{props.profilename}</span>
       <img alt="" className="opendropdown" src={props.imguri} />
       <ul className="dropdown">
         {props.options.map((item, index) => {
@@ -116,7 +116,7 @@ const DropDown = props => {
             return (
               <li
                 key={"dd" + index}
-                className="dontclose"
+                className={`dontclose ${selectedoption===item? "foucs":""}`}
                 onClick={e => {
                   onSelectedItem(e, item);
                 }}

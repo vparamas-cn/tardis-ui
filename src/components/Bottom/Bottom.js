@@ -28,8 +28,8 @@ const Bottom = () => {
     SetSelection(pagename());
   })  
   return (
-    <section class="bottom-container">
-      <div class="sidemenu">
+    <section className="bottom-container">
+      <div className="sidemenu">
         {menu &&
           menu.map((item, index) => {
             return (
@@ -42,9 +42,9 @@ const Bottom = () => {
               />
             );
           })}
-        <div class="btm-menu centeralign">
+        <div className="btm-menu centeralign">
           <span>About us</span>
-          <span class="dividerlabel">|</span>
+          <span className="dividerlabel">|</span>
           <span>Privacy Poilcy</span>
         </div>
       </div>

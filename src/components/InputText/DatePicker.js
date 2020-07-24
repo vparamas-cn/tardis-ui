@@ -6,14 +6,16 @@ import "react-datepicker/dist/react-datepicker.css";
 const CustomDatePicker = props => {
   const [startDate, SetDate] = useState(new Date());
   const handleChange = date => {
+    SetDate(date)
     props.handleDate(date);
   };
   return (
-    <DatePicker
-      selected={startDate}
-      onChange={handleChange}
-      customInput={props.customDesign ? props.customDesign : null}
-    />
+      <DatePicker
+        selected={startDate}
+        onChange={handleChange}
+        name={props.name} 
+        customInput={props.customDesign ? props.customDesign : null}
+      />
   );
 };
 

@@ -11,9 +11,9 @@ const Menu = props => {
         props.onSelection(props);
       }}
     >
-      <SVG src={props.image} class={props.name ==="File Manager" ? 'menufileimg': "menuimg"}/>
+      <SVG src={props.image} className={props.name ==="File Manager" ? 'menufileimg': "menuimg"}/>
       <span>{props.name}</span>
-      {props.notify ? <span class="notifydot" /> : null}
+      {props.notify ? <span className="notifydot" /> : null}
     </div>
   );
 };

@@ -14,7 +14,7 @@ const FilterContainer = props => {
     SetModal(true);
   };
   return (
-    <div class="container-filter">
+    <div className="container-filter">
       <DropDown
         id={"sourcedd"}
         class={"options searchop"}

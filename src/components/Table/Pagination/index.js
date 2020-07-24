@@ -27,11 +27,14 @@ const Pagination = props => {
   const Next = () => {
     if (noofpage > selection) SetSelection(selection + 1);
   };
+  const onPageSelection = (e) =>{
+
+  }
   return (
     <div className="pagination">
       <div className="leftpaginiation">
         <span>Show</span>
-        <select value={rowcount}>
+        <select value={rowcount} onChange={(e)=>{onPageSelection(e)}}>
           <option>5</option>
           <option>10</option>
           <option>15</option>

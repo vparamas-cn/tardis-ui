@@ -1,51 +1,12 @@
 $color-lightgray: #a6adbb;
 $color-blue: #3976eb;
 .CustomTimePicker {
-  .react-time-picker__wrapper {
-    border-radius: 4px;
-    border: thin solid $color-lightgray;
-    .react-time-picker__inputGroup {
-      padding: 0px 5px;
-      input {
-        border: none !important;
-        background-color: inherit;
-        padding-left: 0px;
-      }
-    }
-    .react-time-picker__button {
-      border-left: thin solid $color-lightgray;
-    }
-  }
-  .react-time-picker__clock {
-    width: 0px;
-    height: 0px;
-    max-width: 0px;
-    padding: 0px;
-    top:100% !important;
-    .CustomClock {
-      width: 100px !important;
-      height: 100px !important;
-      margin-top: 5px;
-      .react-clock__face {
-        background-color: $color-blue;
-        border: 1px solid  $color-blue;
-        .react-clock__minute-mark__body {
-          background-color: white;
-        }
-        .react-clock__hour-mark__body{
-            background-color: white;
-        }
-      }
-      .react-clock__hour-hand {
-        .react-clock__hour-hand__body {
-          background-color: white;
-        }
-      }
-      .react-clock__minute-hand {
-        .react-clock__minute-hand__body {
-          background-color: red;
-        }
-      }
-    }
-  }
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+.rc-time-picker-panel{
+  z-index:3000 !important;
+}
+.rc-time-picker-clear{
+  display: none;
 }

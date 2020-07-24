@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,Fragment} from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "../Table.scss";
 import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
@@ -11,13 +11,13 @@ const Maintennace = props => {
     { id: 2 },
     { id: 3 }
   ]);
-  useEffect(() => {});
+  useEffect(() => { });
   const showHideRow = (selectedrow, arrowimg) => {
     var trd = document.getElementById(selectedrow);
-    if (trd.className.indexOf("hidden_row") > -1){
+    if (trd.className.indexOf("hidden_row") > -1) {
       trd.classList.remove("hidden_row");
     }
-    else{
+    else {
       trd.classList.add("hidden_row");
     }
     var imageid = document.getElementById(arrowimg);
@@ -29,7 +29,7 @@ const Maintennace = props => {
       imageid.classList.remove("uparr");
     }
   };
-  const handleDate = date => {};
+  const handleDate = date => { };
   const Row = props => {
     return (
       <tr
@@ -64,39 +64,43 @@ const Maintennace = props => {
   const RowDetails = props => {
     return (
       <tr id={`hidden_row${props.id}`} className="hidden_row editcontent">
-        <td colspan="6" className="paddzero">
+        <td colSpan="6" className="paddzero">
           <table className="detailtable">
-            <tr>
-              <td colspan="6">
-                <div className="detailcontainer">
-                  <div className="detailimg centeralign">
-                    <img alt="" src={Images.addlist} />
-                  </div>
-                  <div className="detailname">
-                    <span className="nametitle">Source Name</span>
-                    <span>String_01_File</span>
-                  </div>
-                  <DatePicker handleDate={e => handleDate(e)} />
-                  <DropDown
-                    id={`failuredd${props.id}`}
-                    class={"failuredd"}
-                    imgclass={"centeralign"}
-                    imguri={Images.arrowblack}
-                    options={["Configuration Module"]}
-                  />
-                  <input type="text" placeholder="No Issue to the module" />
-                  <div className="detailbuttons">
-                    <Button class="greenclr" name="Update" />
-                    <Button class="clearbtncolor" name="Clear" />
-                    <Button
-                      class="deletebtn"
-                      name="Delete Contact"
-                      leftimg={Images.Delete}
+            <tbody>
+              <tr>
+                <td colSpan="6">
+                <form id={`formmaintainence-${props.id}`}>
+                  <div className="detailcontainer">
+                    <div className="detailimg centeralign">
+                      <img alt="" src={Images.addlist} />
+                    </div>
+                    <div className="detailname">
+                      <span className="nametitle">Source Name</span>
+                      <span>String_01_File</span>
+                    </div>
+                    <DatePicker handleDate={e => handleDate(e)}  name={`logdate-${props.id}`} />
+                    <DropDown
+                      id={`failuredd${props.id}`}
+                      class={"failuredd"}
+                      imgclass={"centeralign"}
+                      imguri={Images.arrowblack}
+                      options={["Configuration Module"]}
                     />
+                    <input type="text" name="comments" placeholder="No Issue to the module" />
+                    <div className="detailbuttons">
+                      <Button class="greenclr" name="Update" />
+                      <Button class="clearbtncolor" name="Clear" />
+                      <Button
+                        class="deletebtn"
+                        name="Delete Contact"
+                        leftimg={Images.Delete}
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </td>
       </tr>

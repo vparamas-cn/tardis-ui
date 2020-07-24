@@ -13,7 +13,13 @@ const options = [
   { name: "String_1_Source", value: "1" },
   { name: "String_1_Source", value: "2" }
 ];
+const disabled=false;
 const AddSource = props => {
+  const submit = () =>{
+    const form = document.getElementById("addsource")
+    var data = Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
+    console.log(data);
+  }
   return (
     <div className="modal-main">
       <div className="modal-title">
@@ -32,69 +38,73 @@ const AddSource = props => {
           <img alt="" src={Images.close} />
         </div>
       </div>
-      <div class="modal-content">
-        <div class="controls">
-          <div class="source1">
-            <div>
-              <span>SOURCES</span>
-              <SelectSearch
-                options={options}
-                value="1"
-                name="sources"
-                search={true}
-                placeholder="Search"
-              />
-            </div>
-            <div className="isactive">
-              <span>IsActive</span> <RadioBtn options={["True", "False"]} />
-            </div>
-            <div className="paddingdiv">
-              <span>TYPE</span>
-              <DropDown
-                id={"addtypedd"}
-                class={"sourceadddropdown"}
-                imguri={Images.arrowblack}
-                options={["Type", "Type2", "Type3"]}
-              />
-            </div>
-            <div className="paddingdiv">
-              <span>DASH-TRIGGER ID</span>
-              <input type="text" className={"sourceadddropdown"} />
-            </div>
+      <div className="modal-content">
+        <form id="addsource">
+          <div className="controls">
+            <div className="source1">
+              <div>
+                <span>SOURCES</span>
+                <SelectSearch
+                  options={options}
+                  value="1"
+                  search={true}
+                  placeholder="Search"
+                  renderValue={(valueProps) => <input disabled={disabled} name="sources" className="select-search__input" {...valueProps}  />} 
+                />
+              </div>
+              <div className="isactive">
+                <span>IsActive</span> <RadioBtn name="isactive" disabled={disabled} options={["True", "False"]} />
+              </div>
+              <div className="paddingdiv">
+                <span>TYPE</span>
+                <DropDown
+                  id={"addtypedd"}
+                  disabled={disabled}
+                  class={"sourceadddropdown"}
+                  imguri={Images.arrowblack}
+                  options={["Datasource", "Datasource Group", "Dashboard"]}
+                />
+              </div>
+              <div className="paddingdiv">
+                <span>DASH-TRIGGER ID</span>
+                <input type="text" name={"Dash"} disabled={disabled} className={"sourceadddropdown"} />
+              </div>
 
-            <div className="paddingdiv">
-              <span>AVAILABLITY_SCHEDULE</span>
-              <TimePicker className="addtimepicker" />
+              <div className="paddingdiv">
+                <span>AVAILABLITY_SCHEDULE</span>
+                <TimePicker className="addtimepicker" name="availablity" disabled={disabled} />
+              </div>
+            </div>
+            <div className="source2">
+              <div className="description-container">
+                <span>DESCRIPTION</span>
+                <textarea rows="5" cols="19" name="description" disabled={disabled}/>
+              </div>
+
+              <div className="paddingdiv">
+                <span>ALIAS</span>
+                <input type="text" disabled={disabled} name={"alias"} className={"sourceadddropdown"} />
+              </div>
+              <div className="paddingdiv">
+                <span>NUM PREV DAYS</span>
+                <input type="number" name={"numdays"} disabled={disabled} className={"sourceadddropdown"} />
+              </div>
+              <div className="paddingdiv">
+                <div className={"extraheight"} />
+                <DropDown
+                  id={"addreasondd"}
+                  disabled={disabled}
+                  class={"sourceaddtzdropdown"}
+                  imguri={Images.whitedownarrow}
+                  imgclass={"timezonearrow centeralign"}
+                  options={["(UTC-08:00) Pacific Time"]}
+                />
+              </div>
             </div>
           </div>
-          <div className="source2">
-            <div className="description-container">
-              <span>DESCRIPTION</span>
-              <textarea rows="5" cols="23" />
-            </div>
-
-            <div className="paddingdiv">
-              <span>ALIAS</span>
-              <input type="text" className={"sourceadddropdown"} />
-            </div>
-            <div className="paddingdiv">
-              <span>NUM PREV DAYS</span>
-              <input type="text" className={"sourceadddropdown"} />
-            </div>
-            <div className="paddingdiv">
-              <div className={"extraheight"} />
-              <DropDown
-                id={"addreasondd"}
-                class={"sourceaddtzdropdown"}
-                imguri={Images.whitedownarrow}
-                imgclass={"timezonearrow centeralign"}
-                options={["(UTC-08:00) Pacific Time"]}
-              />
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
-      <Button class="modaladdbtn" name="Add New Source" onClick={() => {}} />
+      <Button class="modaladdbtn" name="Add New Source" onClick={() => {submit()}} />
     </div>
   );
 };
