@@ -34,6 +34,7 @@ const FilterContainer = props => {
         id={"isactivedd"}
         class={"options"}
         label={"isActive"}
+        radiobtn={true}
         imguri={Images.dropdownarrow}
         options={["Active", "InActive"]}
       />
@@ -55,7 +56,7 @@ const FilterContainer = props => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Add Maintennace"
+        contentLabel="Add Source"
       >
         <AddSource
           closepop={() => {

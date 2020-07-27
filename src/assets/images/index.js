@@ -33,5 +33,6 @@ export const Images = {
   NavBar: require("./NavBar.svg"),
   supportform: require("./supportform.svg"),
   slack: require("./slack.svg"),
-  folderarrow: require("./folderarrow.svg")
+  folderarrow: require("./folderarrow.svg"),
+  map: require("./map.svg")
 };

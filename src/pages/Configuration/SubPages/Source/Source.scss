@@ -25,6 +25,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    .select-search__input {
+      height: 50px;
+    }
   }
   .paddingdiv {
     padding: 10px 0px;

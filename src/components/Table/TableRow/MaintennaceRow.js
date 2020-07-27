@@ -6,12 +6,38 @@ import DatePicker from "../../InputText/DatePicker";
 import { Images } from "../../../assets/images";
 
 const Maintennace = props => {
-  const [data, SetData] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 }
+  const [data, setData] = useState([
+    { id: 1, sourcename: "Sources Names", logdate: "25/06/2020", reason:"Configuration Module", comments: "" },
+    { id: 2, sourcename: "Sources Names", logdate: "25/06/2020", reason:"Configuration Module", comments: "" },
+    { id: 3, sourcename: "Sources Names", logdate: "25/06/2020", reason:"Configuration Module", comments: "" },
   ]);
-  useEffect(() => { });
+  useEffect(() => {
+    if (props.filtertext) {
+      let result = data.filter((obj, index) => {
+        let result = false, key;
+
+        for (let val in Object.values(obj)) {
+          if (val.indexOf(props.filtertext) > -1) {
+            result =true
+          }
+        }
+
+        return result;
+      });
+      setData(result);
+    }
+  }, [props]);
+  const Update = (formid) => {
+    const form = document.getElementById(formid)
+    var data = Object.values(form).reduce((obj, field) => { obj[field.name] = field.value; return obj }, {});
+    console.log(data);
+  }
+  const ClearForm = (formid) => {
+    document.getElementById(formid).reset();
+  }
+  const Delete = (id) => {
+
+  }
   const showHideRow = (selectedrow, arrowimg) => {
     var trd = document.getElementById(selectedrow);
     if (trd.className.indexOf("hidden_row") > -1) {
@@ -69,34 +95,35 @@ const Maintennace = props => {
             <tbody>
               <tr>
                 <td colSpan="6">
-                <form id={`formmaintainence-${props.id}`}>
-                  <div className="detailcontainer">
-                    <div className="detailimg centeralign">
-                      <img alt="" src={Images.addlist} />
-                    </div>
-                    <div className="detailname">
-                      <span className="nametitle">Source Name</span>
-                      <span>String_01_File</span>
-                    </div>
-                    <DatePicker handleDate={e => handleDate(e)}  name={`logdate-${props.id}`} />
-                    <DropDown
-                      id={`failuredd${props.id}`}
-                      class={"failuredd"}
-                      imgclass={"centeralign"}
-                      imguri={Images.arrowblack}
-                      options={["Configuration Module"]}
-                    />
-                    <input type="text" name="comments" placeholder="No Issue to the module" />
-                    <div className="detailbuttons">
-                      <Button class="greenclr" name="Update" />
-                      <Button class="clearbtncolor" name="Clear" />
-                      <Button
-                        class="deletebtn"
-                        name="Delete Contact"
-                        leftimg={Images.Delete}
+                  <form id={`formmaintainence-${props.id}`}>
+                    <div className="detailcontainer">
+                      <div className="detailimg centeralign">
+                        <img alt="" src={Images.addlist} />
+                      </div>
+                      <div className="detailname">
+                        <span className="nametitle">Source Name</span>
+                        <span>String_01_File</span>
+                      </div>
+                      <DatePicker handleDate={e => handleDate(e)} name={`logdate-${props.id}`} />
+                      <DropDown
+                        id={`failuredd${props.id}`}
+                        class={"failuredd"}
+                        imgclass={"centeralign"}
+                        imguri={Images.arrowblack}
+                        options={["Configuration Module"]}
                       />
+                      <input type="text" name="comments" placeholder="No Issue to the module" />
+                      <div className="detailbuttons">
+                        <Button class="greenclr" name="Update" onClick={() => { Update(`formmaintainence-${props.id}`) }} />
+                        <Button class="clearbtncolor" name="Clear" onClick={() => { ClearForm(`formmaintainence-${props.id}`) }} />
+                        <Button
+                          class="deletebtn"
+                          name="Delete Contact"
+                          leftimg={Images.Delete}
+                          onClick={() => { Delete(props.id) }}
+                        />
+                      </div>
                     </div>
-                  </div>
                   </form>
                 </td>
               </tr>
@@ -108,7 +135,7 @@ const Maintennace = props => {
   };
   return (
     <tbody>
-      {data &&
+      {data && data.length > 0?
         data.map((item, index) => {
           return (
             <Fragment key={`MaintainanceRow-${index}`}>
@@ -116,7 +143,10 @@ const Maintennace = props => {
               <RowDetails {...item} />
             </Fragment>
           );
-        })}
+        }):
+        <tr><td colSpan="6" className="norecord">No Data found!!</td></tr>
+        }
+
     </tbody>
   );
 };

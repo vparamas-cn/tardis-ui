@@ -22,15 +22,15 @@ const Table = props => {
             </tr>
           </thead>
           {props.name === "Maintennace" ? (
-            <MaintennaceRow />
+            <MaintennaceRow filtertext={props.filtertext}/>
           ) : props.name === "SourceConfig" ? (
-            <SourceConfig />
+            <SourceConfig filtertext={props.filtertext}/>
           ) : props.name === "SourceMapConfig" ? (
-            <SourceMapConfig />
+            <SourceMapConfig filtertext={props.filtertext}/>
           ) : props.name === "SlackIntegration" ? (
-            <SlackRow />
+            <SlackRow filtertext={props.filtertext}/>
           ) : props.name === "Admin" ? (
-            <AdminRow />
+            <AdminRow filtertext={props.filtertext}/>
           ) :null}
         </table>
       </section>

@@ -3,11 +3,23 @@ import "../Table.scss";
 import "./Row.scss";
 import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
+import FieldHolder from "../../InputText/FieldHolder"
 import { Images } from "../../../assets/images";
 
 const SourceConfig = props => {
   const [data, SetData] = useState([{ id: 1 }, { id: 2 }, { id: 3 }]);
   useEffect(() => { });
+  const Update = (formid) => {
+    const form = document.getElementById(formid)
+    var data = Object.values(form).reduce((obj, field) => { obj[field.name] = field.value; return obj }, {});
+    console.log(data);
+  }
+  const ClearForm = (formid) => {
+    document.getElementById(formid).reset();
+  }
+  const Delete = (id) => {
+
+  }
   const showHideRow = (selectedrow, arrowimg) => {
     var trd = document.getElementById(selectedrow);
     if (trd.className.indexOf("hidden_row") > -1) {
@@ -44,8 +56,16 @@ const SourceConfig = props => {
         <td>True</td>
 
         <td>
-          <img alt="" src={Images.RowEdit} className="editimg" />
-          <span>Edit</span>
+          <div className="action-td-container">
+            <div className="edit-action"><img alt="" src={Images.RowEdit} className="editimg" />
+              <span>Edit</span></div>
+            <Button
+              class="deletebtn"
+              name="Delete"
+              leftimg={Images.Delete}
+              onClick={() => { Delete(props.id) }}
+            />
+          </div>
         </td>
       </tr>
     );
@@ -58,40 +78,47 @@ const SourceConfig = props => {
             <tbody>
               <tr>
                 <td colSpan="5">
-                  <div className="detailcontainer">
-                    <div className="detailimg centeralign">
-                      <img alt="" src={Images.addlist} />
+                  <form id={`formsourcemap-${props.id}`}>
+                    <div className="detailcontainer">
+                      <div className="detailimg centeralign">
+                        <img alt="" src={Images.addlist} />
+                      </div>
+
+                      <FieldHolder lable="Source">
+                        <input
+                          type="text"
+                          name="source"
+                          className="sourceinput120"
+                        />
+                      </FieldHolder>
+                      <FieldHolder lable="Child Source">
+                        <input
+                          type="text"
+                          name="childsource"
+                          className="sourceinput120"
+                        />
+                      </FieldHolder>
+                      <FieldHolder lable="Isoptional">
+                        <DropDown
+                          id={`optiondd${props.id}`}
+                          class={"failuredd sourceinput120"}
+                          imgclass={"centeralign"}
+                          imguri={Images.arrowblack}
+                          options={["True", "False"]}
+                        />
+                      </FieldHolder>
+                      <div className="detailbuttons fieldholder">
+                        <Button class="greenclr" name="Update" onClick={() => { Update(`formsourcemap-${props.id}`) }} />
+                        <Button class="clearbtncolor" name="Clear" onClick={() => { ClearForm(`formsourcemap-${props.id}`) }} />
+                        <Button
+                          class="deletebtn"
+                          name="Delete Contact"
+                          leftimg={Images.Delete}
+                          onClick={() => { Delete(props.id) }}
+                        />
+                      </div>
                     </div>
-
-                    <input
-                      type="text"
-                      value="Source_name"
-                      className="sourceinput120"
-                    />
-                    <input
-                      type="text"
-                      value="Date_source_name"
-                      className="sourceinput120"
-                    />
-
-                    <DropDown
-                      id={`optiondd${props.id}`}
-                      class={"failuredd sourceinput120"}
-                      imgclass={"centeralign"}
-                      imguri={Images.arrowblack}
-                      options={["True", "False"]}
-                    />
-
-                    <div className="detailbuttons">
-                      <Button class="greenclr" name="Update" />
-                      <Button class="clearbtncolor" name="Clear" />
-                      <Button
-                        class="deletebtn"
-                        name="Delete Contact"
-                        leftimg={Images.Delete}
-                      />
-                    </div>
-                  </div>
+                  </form>
                 </td>
               </tr>
             </tbody>

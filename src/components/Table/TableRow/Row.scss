@@ -27,4 +27,22 @@
     margin-right: 3px;
     margin-top: 1px;
   }
+  .action-td-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .edit-action{
+      cursor: pointer;
+    }
+  }
+  .fieldholder{
+    margin-top: 20px;
+    .detailbtn{
+      height: 30px;
+    }
+  }
+  .norecord{
+    text-align: center;
+    font-size: 14px;
+  }
 }

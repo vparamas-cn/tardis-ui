@@ -44,7 +44,7 @@ const Configuration = () => {
             titlename="Map Configuration"
             subname="Configuration"
             selection={false}
-            img={Images.Settings}
+            img={Images.map}
             OnClick={()=>{onPagenavigation("SourceMap")}}
           />
           <FolderWrapper

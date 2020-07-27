@@ -89,6 +89,9 @@ $color-redshade: #fef8f8;
       border-radius: 3px;
       font-weight: 400;
       font-family: "Roboto-Regular";
+      li{
+        color: $color-black;
+      }
     }
     .rttimezonearrow {
       height: 100%;

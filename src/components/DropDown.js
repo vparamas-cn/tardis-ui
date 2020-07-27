@@ -3,6 +3,8 @@ import "./DropDown.scss";
 import InputButton from "./InputText/InputWithButton";
 import { Images } from "../assets/images";
 import useOnClickOutside from "./OutClickhandler";
+import Checkbox from "./Checkbox"
+import RadioBtn from "./RadioBtn"
 
 const DropDown = props => {
   const ref = useRef();
@@ -36,7 +38,7 @@ const DropDown = props => {
   };
   const onSearch = text => {
     let filterdata = props.options;
-    if (text && text.length > 0 && text.trim() != "") {
+    if (text && text.length > 0 && text.trim() !== "") {
       filterdata = props.options.filter(
         item => item.toLowerCase().indexOf(text.toLowerCase()) > -1
       );
@@ -70,67 +72,87 @@ const DropDown = props => {
       </ul>
     </div>
   ) : (
-    <div
-      id={props.id}
-      ref={ref}
-      className={`wrapper-dropdown opendropdown ${props.class} ${isOpen
-        ? "active"
-        : ""}`}
-      onClick={e => onDropdown(e)}
-    >
-      {props.search ? (
-        <div className="centeralign opendropdown">
-          <img alt=""
-            className="opendropdown"
-            src={require("../assets/images/Search.svg")}
-          />{" "}
-          <span className="opendropdown">{selectedoption}</span>
-        </div>
-      ) : (
-        <span className="opendropdown">{selectedoption}</span>
-      )}
-      {props.imgclass ? (
-        <div className={`opendropdown ${props.imgclass}`}>
-          <img alt="" className="opendropdown" src={props.imguri} />
-        </div>
-      ) : (
-        <img alt="" className="opendropdown" src={props.imguri} />
-      )}
-      <input type="hidden" name={props.id} value={selectedoption} />
-      <ul className="dropdown dontclose">
+      <div
+        id={props.id}
+        ref={ref}
+        className={`wrapper-dropdown opendropdown ${props.class} ${isOpen
+          ? "active"
+          : ""}`}
+        onClick={e => onDropdown(e)}
+      >
         {props.search ? (
-          <li className="searchinput dontclose" id="searchinput">
-            <InputButton
-              placeholder={"Search"}
-              id={`filtersearch-${props.id}`}
-              btnclass={"searchbtn dontclose"}
-              ButtonClick={text => {
-                onSearch(text);
-              }}
-              btnimg={Images.Search}
-            />
-          </li>
-        ) : null}
-        {listoption.length > 0 ? (
-          listoption.map((item, index) => {
-            return (
-              <li
-                key={"dd" + index}
-                className={`dontclose ${selectedoption===item? "foucs":""}`}
-                onClick={e => {
-                  onSelectedItem(e, item);
-                }}
-              >
-                {item}
-              </li>
-            );
-          })
+          <div className="centeralign opendropdown">
+            <img alt=""
+              className="opendropdown"
+              src={require("../assets/images/Search.svg")}
+            />{" "}
+            <span className="opendropdown">{selectedoption}</span>
+          </div>
         ) : (
-          <li>No data found</li>
-        )}
-      </ul>
-    </div>
-  );
+            <span className="opendropdown">{selectedoption}</span>
+          )}
+        {props.imgclass ? (
+          <div className={`opendropdown ${props.imgclass}`}>
+            <img alt="" className="opendropdown" src={props.imguri} />
+          </div>
+        ) : (
+            <img alt="" className="opendropdown" src={props.imguri} />
+          )}
+        <input type="hidden" name={props.id} value={selectedoption} />
+        <ul className="dropdown dontclose">
+          {props.search ? (
+            <li className="searchinput dontclose" id="searchinput">
+              <InputButton
+                placeholder={"Search"}
+                id={`filtersearch-${props.id}`}
+                btnclass={"searchbtn dontclose"}
+                ButtonClick={text => {
+                  onSearch(text);
+                }}
+                btnimg={Images.Search}
+              />
+            </li>
+          ) : null}
+          {props.radiobtn ?
+            <li
+              className={`dontclose radiofilter`}
+            >
+              <RadioBtn name="isactive" options={props.options} />
+            </li>
+
+            : 
+          listoption.length > 0 ? (
+            listoption.map((item, index) => {
+              if (props.checkbox) {
+                return (
+                  <li
+                    key={"checkbox-" + index}
+                    className={`dontclose`}
+                  >
+                    <Checkbox name={item} label={item} class="dontclose" />
+                  </li>
+                )
+              }
+              else {
+                return (
+                  <li
+                    key={"dd" + index}
+                    className={`dontclose ${selectedoption === item ? "foucs" : ""}`}
+                    onClick={e => {
+                      onSelectedItem(e, item);
+                    }}
+                  >
+                    {item}
+                  </li>
+                );
+              }
+            })
+          ) : (
+              <li>No data found</li>
+            )}
+        </ul>
+      </div>
+    );
 };
 
 export default DropDown;

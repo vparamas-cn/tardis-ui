@@ -14,7 +14,7 @@ const Source = () => {
     <div className="SourceMappage page">
       <TitleContainer
         name="Source Map Configuration"
-        img={Images.Settings}
+        img={Images.map}
         onBack={() => {
           onBackHandler();
         }}

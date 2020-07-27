@@ -45,7 +45,7 @@ const TitleContainer = props => {
           <span />
         </div>
         <Button
-          class={"title centeralign"}
+          class={`title centeralign ${props.name}`}
           name={props.name}
           leftimg={props.img}
           onClick={() => {}}

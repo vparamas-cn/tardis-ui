@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState} from "react";
 import { Table, TitleContainer } from "../../components";
 import FilterContainer from "./Components/FilterContainer"
 import {Images} from "../../assets/images";
 import "./Maintennace.scss"
 const Maintennace = () => {
+  const[searchtxt, setSearch] = useState("")
   const onBackHandler = (page)=> {
 
   }
@@ -16,11 +17,11 @@ const Maintennace = () => {
           onBackHandler();
         }}
         onSearch={(text)=>{
-          
+          setSearch(text)
         }}
       />
       <FilterContainer />
-      <Table name="Maintennace" />
+      <Table name="Maintennace" filtertext={searchtxt} />
     </div>
   );
 };

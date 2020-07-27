@@ -68,7 +68,7 @@ $color-redshade: #fef8f8;
 }
 .react-datepicker {
   font-weight: 500;
-  font-family:"Roboto-Regular";
+  font-family: "Roboto-Regular";
   border: 1px solid #efefef !important;
   border-radius: 15px !important;
   .react-datepicker__header {
@@ -92,10 +92,8 @@ $color-redshade: #fef8f8;
   .react-datepicker__navigation:focus {
     outline: none;
   }
-  .react-datepicker-popper[data-placement^="bottom"]
-    .react-datepicker__triangle,
-  .react-datepicker-popper[data-placement^="bottom"]
-    .react-datepicker__triangle::before {
+  .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
+  .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
     border-bottom-color: #fff;
   }
   .react-datepicker__navigation--previous {
@@ -162,5 +160,19 @@ $color-redshade: #fef8f8;
   .required {
     color: red;
     margin-left: 3px;
+  }
+}
+
+//field holder
+.field-holder {
+  display: flex;
+  flex-direction: column;
+  span {
+    margin: 7px;
+    font-size: 10px;
+    color: $color-gray1;
+  }
+  .wrapper-dropdown{
+    height: 30px;
   }
 }

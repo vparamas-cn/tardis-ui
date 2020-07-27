@@ -1,30 +1,10 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import AddMapSource from "./AddMapSource"
 import { Images } from "../../../../../assets/images";
 import { DropDown, Button, DatePicker } from "../../../../../components";
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    transition: "all 0.3s",
-    width: "500px",
-    height: "470px",
-    borderWidth: "5px 0px 0px 0px",
-    borderTopStyle: "solid",
-    borderTopColor: "#3976eb",
-    borderRadius: "0px",
-    padding: "40px",
-    overflow: "initial"
-  },
-  overlay: {
-    backgroundColor: "rgb(21 21 21 / 75%)",
-    zIndex: 2000
-  }
-};
+import { customStyles } from "../../../../../assets/constant";
+Modal.setAppElement('#root')
 const FilterContainer = props => {
   const [modalIsOpen, SetModal] = useState(false);
   const closeModal = () => {
@@ -56,8 +36,9 @@ const FilterContainer = props => {
         id={"isoptionaldd"}
         class={"options"}
         label={"Isoptional"}
+        checkbox={true}
         imguri={Images.dropdownarrow}
-        options={["Active", "InActive"]}
+        options={["True value", "False value"]}
       />
 
       <Button
@@ -67,6 +48,18 @@ const FilterContainer = props => {
           openModal();
         }}
       />
+       <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Add Map Source"
+      >
+        <AddMapSource
+          closepop={() => {
+            closeModal();
+          }}
+        />
+      </Modal>
     </div>
   );
 };

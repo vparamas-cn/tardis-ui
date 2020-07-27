@@ -178,11 +178,13 @@ main {
     }
     .modal-content {
       display: flex;
+      .addform-container{
+        width: 100%;
+      }
       .controls {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        align-items: center;
         margin: 30px 0px;
         font-weight: 400;
         font-family: "Roboto-Regular";

@@ -3,7 +3,8 @@ export const menulist = [
     name: "Dashboard",
     image: require("../../assets/images/Dashboard.svg"),
     selection: false,
-    notify: true
+    notify: true,
+    path:"/Dashboard"
   },
   {
     name: "File Manager",
@@ -183,6 +184,7 @@ export const pagename = () => {
   else if (url.indexOf("Admin") > -1) return "Admin";
   else if (url.indexOf("FileManager") > -1) return "File Manager";
   else if (url.indexOf("TrendChart") > -1) return "Trend Chart";
+  else if (url.indexOf("Dashboard") > -1) return "Dashboard";
 };
 
 
@@ -209,3 +211,7 @@ export const customStyles = {
     overflowY:"auto"
   }
 };
+
+export const api ={
+    MAINTENNACE_LIST:""
+}

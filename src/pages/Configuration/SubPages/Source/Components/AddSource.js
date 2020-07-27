@@ -4,9 +4,9 @@ import {
   DropDown,
   Button,
   RadioBtn,
-  TimePicker
+  TimePicker,
+  SelectSearch
 } from "../../../../../components";
-import SelectSearch from "react-select-search";
 import "../Source.scss";
 
 const options = [
@@ -47,9 +47,7 @@ const AddSource = props => {
                 <SelectSearch
                   options={options}
                   value="1"
-                  search={true}
-                  placeholder="Search"
-                  renderValue={(valueProps) => <input disabled={disabled} name="sources" className="select-search__input" {...valueProps}  />} 
+                  disabled={disabled} name="sources"
                 />
               </div>
               <div className="isactive">
