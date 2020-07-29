@@ -8,17 +8,23 @@ import {
   SelectSearch
 } from "../../../../../components";
 import "../Source.scss";
+import { useDispatch } from 'react-redux';
+import { AddSource } from '../../../../../reducers/configuration/actions'
 
 const options = [
   { name: "String_1_Source", value: "1" },
   { name: "String_1_Source", value: "2" }
 ];
 const disabled=false;
-const AddSource = props => {
+const AddModalSource = props => {
+  const dispatch = useDispatch();
   const submit = () =>{
     const form = document.getElementById("addsource")
-    var data = Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
+    var data = Object.values(form).reduce((obj,field) => { obj[field.name ? field.name: "unnamed"] = field.value; return obj }, {});
+    delete data.unnamed;
+    data.isactive = (data.isactive == "True"); 
     console.log(data);
+    dispatch(AddSource(data))
   }
   return (
     <div className="modal-main">
@@ -56,7 +62,7 @@ const AddSource = props => {
               <div className="paddingdiv">
                 <span>TYPE</span>
                 <DropDown
-                  id={"addtypedd"}
+                  id={"type"}
                   disabled={disabled}
                   class={"sourceadddropdown"}
                   imguri={Images.arrowblack}
@@ -65,12 +71,12 @@ const AddSource = props => {
               </div>
               <div className="paddingdiv">
                 <span>DASH-TRIGGER ID</span>
-                <input type="text" name={"Dash"} disabled={disabled} className={"sourceadddropdown"} />
+                <input type="text" name={"dashTriggerId"} disabled={disabled} className={"sourceadddropdown"} />
               </div>
 
               <div className="paddingdiv">
                 <span>AVAILABLITY_SCHEDULE</span>
-                <TimePicker className="addtimepicker" name="availablity" disabled={disabled} />
+                <TimePicker className="addtimepicker" name="availabilitySchedule" disabled={disabled} />
               </div>
             </div>
             <div className="source2">
@@ -85,12 +91,12 @@ const AddSource = props => {
               </div>
               <div className="paddingdiv">
                 <span>NUM PREV DAYS</span>
-                <input type="number" name={"numdays"} disabled={disabled} className={"sourceadddropdown"} />
+                <input type="number" name={"numPrevDays"} disabled={disabled} className={"sourceadddropdown"} />
               </div>
               <div className="paddingdiv">
                 <div className={"extraheight"} />
                 <DropDown
-                  id={"addreasondd"}
+                  id={"timezone"}
                   disabled={disabled}
                   class={"sourceaddtzdropdown"}
                   imguri={Images.whitedownarrow}
@@ -107,4 +113,4 @@ const AddSource = props => {
   );
 };
 
-export default AddSource;
+export default AddModalSource;

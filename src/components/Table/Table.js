@@ -22,19 +22,19 @@ const Table = props => {
             </tr>
           </thead>
           {props.name === "Maintennace" ? (
-            <MaintennaceRow filtertext={props.filtertext}/>
+            <MaintennaceRow />
           ) : props.name === "SourceConfig" ? (
-            <SourceConfig filtertext={props.filtertext}/>
+            <SourceConfig dataSource={props.dataSource && props.dataSource.data} />
           ) : props.name === "SourceMapConfig" ? (
-            <SourceMapConfig filtertext={props.filtertext}/>
+            <SourceMapConfig />
           ) : props.name === "SlackIntegration" ? (
-            <SlackRow filtertext={props.filtertext}/>
+            <SlackRow />
           ) : props.name === "Admin" ? (
-            <AdminRow filtertext={props.filtertext}/>
+            <AdminRow />
           ) :null}
         </table>
       </section>
-      <Pagination rowcount={5} noofpage={5} />
+      <Pagination rowcount={props.dataSource && props.dataSource.count} noofpage={5} />
     </Fragment>
   );
 };

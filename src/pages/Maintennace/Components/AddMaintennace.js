@@ -66,7 +66,7 @@ const AddMaintennace = props => {
             </div>
             <div className="c2">
               <span>COMMENTS</span>
-              <textarea rows="13" cols="21" name="comments" />
+              <textarea rows="13" cols="21" name="comments" maxLength="255"/>
             </div>
           </div>
 

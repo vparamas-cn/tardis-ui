@@ -1,13 +1,19 @@
-import React, {useState} from "react";
+import React, { useEffect } from "react";
 import "./Source.scss";
 import FilterContainer from "./Components/FilterContainer";
 import { Table, TitleContainer } from "../../../../components";
 import { Images } from "../../../../assets/images";
 import { useHistory } from "react-router-dom";
+import { connect , useSelector} from "react-redux";
+import { SourceRecords } from "../../../../reducers/configuration/actions"
 
-const Source = () => {
+const Source = ({ SourceRecords }) => {
+  const data = useSelector(state => state.source);
+  useEffect(()=>{
+    SourceRecords({page:1,count:5});
+  },[SourceRecords])
+
   let history = useHistory();
-  const [searchtxt, setSearch] = useState("");
   const onBackHandler = page => {
     history.push("/Configurations");
   };
@@ -19,14 +25,14 @@ const Source = () => {
         onBack={() => {
           onBackHandler();
         }}
-        onSearch={(text)=>{
-          setSearch(text)
-        }}
       />
       <FilterContainer />
-      <Table name="SourceConfig" search={searchtxt}/>
+      <Table name="SourceConfig" dataSource={data}/>
     </div>
   );
 };
 
-export default Source;
+
+export default connect(
+  null, { SourceRecords }
+)(Source);

@@ -12,20 +12,8 @@ const Maintennace = props => {
     { id: 3, sourcename: "Sources Names", logdate: "25/06/2020", reason:"Configuration Module", comments: "" },
   ]);
   useEffect(() => {
-    if (props.filtertext) {
-      let result = data.filter((obj, index) => {
-        let result = false, key;
-
-        for (let val in Object.values(obj)) {
-          if (val.indexOf(props.filtertext) > -1) {
-            result =true
-          }
-        }
-
-        return result;
-      });
-      setData(result);
-    }
+   
+    
   }, [props]);
   const Update = (formid) => {
     const form = document.getElementById(formid)
@@ -55,7 +43,7 @@ const Maintennace = props => {
       imageid.classList.remove("uparr");
     }
   };
-  const handleDate = date => { };
+  
   const Row = props => {
     return (
       <tr
@@ -104,7 +92,7 @@ const Maintennace = props => {
                         <span className="nametitle">Source Name</span>
                         <span>String_01_File</span>
                       </div>
-                      <DatePicker handleDate={e => handleDate(e)} name={`logdate-${props.id}`} />
+                      <DatePicker name={`logdate-${props.id}`} />
                       <DropDown
                         id={`failuredd${props.id}`}
                         class={"failuredd"}

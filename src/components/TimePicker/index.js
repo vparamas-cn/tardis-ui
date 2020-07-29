@@ -11,7 +11,10 @@ const CustomTimePicker = props => {
   useEffect(()=>{
     if(props.time)
     {
-      setTime(props.time)
+      let today = moment().format("YYYY-MM-DD")
+      today = today+ " "+props.time;
+      today = moment(today);
+      setTime(today)
     }
   },[props])
   return (

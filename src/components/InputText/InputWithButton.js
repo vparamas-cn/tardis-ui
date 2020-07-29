@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./InputText.scss";
 
 const InputButton = props => {
-  const [text, SetText] = useState("");
+  const [text, setText] = useState("");
   const TextChange = e => {
-    SetText(e.target.value);
+    setText(e.target.value);
   };
   return (
     <div className="buttonwrapper">
@@ -16,7 +16,7 @@ const InputButton = props => {
           TextChange(e);
         }}
         onKeyDown={() => {
-          props.ButtonClick(text);
+          //props.ButtonClick(text);
         }}
       />
       <div

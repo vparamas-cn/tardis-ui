@@ -7,7 +7,7 @@ const CustomDatePicker = props => {
   const [startDate, SetDate] = useState(new Date());
   const handleChange = date => {
     SetDate(date)
-    props.handleDate(date);
+    props.handleDate && props.handleDate(date);
   };
   return (
       <DatePicker

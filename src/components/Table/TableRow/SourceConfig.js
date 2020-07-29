@@ -5,34 +5,40 @@ import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
 import TimePicker from "../../TimePicker";
 import { Images } from "../../../assets/images";
+import { useDispatch } from 'react-redux';
+import { UpdateSource, DeleteSource } from '../../../reducers/configuration/actions'
 
 const SourceConfig = props => {
-  const [data, SetData] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 }
-  ]);
+  const dispatch = useDispatch();
+  const [data, SetData] = useState(
+    props.dataSource || []
+  );
   const [detailinput, SetDetail] = useState([]);
   useEffect(() => { });
-  const Update = (formid) => {
+  const Update = (formid ,id) => {
     const form = document.getElementById(formid)
-    var data = Object.values(form).reduce((obj, field) => { obj[field.name] = field.value; return obj }, {});
-    console.log(data);
+    var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`,""): "unnamed"] = field.value; return obj }, {});
+    delete data.unnamed;
+    dispatch(UpdateSource(data))
   }
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
   const Delete = (id) => {
-
+    dispatch(DeleteSource(id))
   }
-  const showHideRow = (selectedrow, arrowimg) => {
+  const showHideRow = (selectedrow, arrowimg, data) => {
     var trd = document.getElementById(selectedrow);
+    var isopen =false;
     if (trd.className.indexOf("hidden_row") > -1) {
       trd.classList.remove("hidden_row");
+      isopen =true;
     }
     else {
       trd.classList.add("hidden_row");
+      isopen =false;
     }
+    
     var imageid = document.getElementById(arrowimg);
     if (imageid.className.indexOf("downarr") > -1) {
       imageid.classList.remove("downarr");
@@ -41,13 +47,25 @@ const SourceConfig = props => {
       imageid.classList.add("downarr");
       imageid.classList.remove("uparr");
     }
+    if(isopen)
+    for(var x of Object.keys(data))
+    {
+      try{
+      let name = `${x}-${data.id}`;
+      document.getElementById(name).value = data[x];
+      }
+      catch(e)
+      {}
+    }
+    
   };
 
   const Row = props => {
+    const { source, description, alias, availabilitySchedule, numPrevDays, isactive, type, dashTriggerId } = props;
     return (
       <tr
         onClick={() => {
-          showHideRow(`hidden_row${props.id}`, `downimage${props.id}`);
+          showHideRow(`hidden_row${props.id}`, `downimage${props.id}`, props);
         }}
       >
         <td className="rowarrow">
@@ -57,20 +75,20 @@ const SourceConfig = props => {
             id={`downimage${props.id}`}
           />
         </td>
-        <td>Sources_File_01</td>
+        <td>{source}</td>
         <td> <input
           type="text"
           disabled="disabled"
-
+          value={description}
         /></td>
-        <td>Source</td>
+        <td>{alias}</td>
         <td>
-          Type_01
+          {type}
         </td>
-        <td><div className="centeralign"><div className={`greendot`} />Active</div></td>
-        <td>025555</td>
-        <td>Date_Source_name</td>
-        <td>15:12:12</td>
+        <td><div className="centeralign"><div className={isactive?`greendot`:'reddot'} />{isactive ?"Active":"InActive"}</div></td>
+        <td>{numPrevDays}</td>
+        <td>{dashTriggerId}</td>
+        <td>{availabilitySchedule}</td>
         <td>
           <img alt="" src={Images.RowEdit} className="editimg" />
           <span>Edit</span>
@@ -79,6 +97,7 @@ const SourceConfig = props => {
     );
   };
   const RowDetails = props => {
+    const { source ,availabilitySchedule } = props;
     return (
       <tr id={`hidden_row${props.id}`} className="hidden_row editcontent">
         <td colSpan="10" className="paddzero">
@@ -93,24 +112,20 @@ const SourceConfig = props => {
                       </div>
                       <div className="detailname">
                         <span className="nametitle">Source Name</span>
-                        <span>String_01_File</span>
+                        <span>{source}</span>
                       </div>
-                      <input type="text" name={`description${props.id}`} className="sourceinput120" />
-                      <input type="text" name={`alias${props.id}`} className="sourceinput60" />
-                      <input type="text" name={`type${props.id}`} className="sourceinput60" />
-                      <DropDown
-                        id={`activedd${props.id}`}
-                        class={"failuredd sourceinput60"}
-                        imgclass={"centeralign"}
-                        imguri={Images.arrowblack}
-                        options={["True", "False"]}
-                      />
-                      <input type="number" name={`num${props.id}`} className="sourceinput60" />
-                      <input type="text" name={`dash${props.id}`} className="sourceinput120" />
-                      <TimePicker className="sourceinput120" name={`avia${props.id}`} />
-
+                      <input type="text" id={`description-${props.id}`} name={`description-${props.id}`} className="sourceinput120" maxLength={255}/>
+                      <input type="text" id={`alias-${props.id}`} name={`alias-${props.id}`}  className="sourceinput60" />
+                      <input type="text" id={`type-${props.id}`} name={`type-${props.id}`} className="sourceinput60" />
+                      <select id={`isactive-${props.id}`} name={`isactive-${props.id}`} className="sourceinput60 customselect">
+                        <option value={"true"}>True</option>
+                        <option value={"false"}>False</option>
+                      </select>
+                      <input type="number" id={`numPrevDays-${props.id}`}  name={`numPrevDays-${props.id}`} className="sourceinput60" />
+                      <input type="text" id={`dashTriggerId-${props.id}`} name={`dash-${props.id}`} className="sourceinput120" />
+                      <TimePicker time={availabilitySchedule} className="sourceinput120"  name={`availabilitySchedule-${props.id}`} />
                       <div className="detailbuttons">
-                        <Button class="greenclr" name="Update" onClick={() => { Update(`formsource-${props.id}`) }} />
+                        <Button class="greenclr" name="Update" onClick={() => { Update(`formsource-${props.id}`,props.id) }} />
                         <Button class="clearbtncolor" name="Clear" onClick={() => { ClearForm(`formsource-${props.id}`) }} />
                         <Button
                           class="deletebtn"
@@ -131,16 +146,18 @@ const SourceConfig = props => {
   };
   return (
     <tbody>
-      {data &&
-        data.map((item, index) => {
-          return (
-            <Fragment key={`SourceConfig-${index}`}>
-              <Row {...item} />
-              <RowDetails {...item} />
-            </Fragment>
-          );
-        })}
-    </tbody>
+    {data && data.length > 0?
+      data.map((item, index) => {
+        return (
+          <Fragment key={`SourceConfig-${index}`}>
+            <Row {...item} id={index+1} />
+            <RowDetails {...item} id={index+1}/>
+          </Fragment>
+        );
+      }):
+      <tr><td colSpan="10" className="norecord">No Data found!!</td></tr>
+      }
+  </tbody>
   );
 };
 

@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 import { all, fork} from 'redux-saga/effects'
-import maintennaceReducers, {saga as maintennaceSaga} from './maintennace'
+import sourceReducers, {saga as sourceSaga} from './configuration'
 
 
 
 export function* rootSaga() {
     yield all([
-        fork(maintennaceSaga)
+        fork(sourceSaga)
     ])
 }
 
 export default combineReducers({
-    maintennace: maintennaceReducers
+    source: sourceReducers
 });

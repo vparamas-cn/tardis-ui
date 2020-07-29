@@ -34,13 +34,15 @@ const Pagination = props => {
     <div className="pagination">
       <div className="leftpaginiation">
         <span>Show</span>
-        <select value={rowcount} onChange={(e)=>{onPageSelection(e)}}>
+        <label>
+        <select onChange={(e)=>{onPageSelection(e)}}>
           <option>5</option>
           <option>10</option>
           <option>15</option>
           <option>20</option>
-          <option>25</option>
+          <option>255</option>
         </select>
+        </label>
         <span>entries</span>
       </div>
       <div className="rightpaginiation">

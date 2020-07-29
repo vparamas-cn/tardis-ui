@@ -14,9 +14,6 @@ const Admin = () => {
         onBack={() => {
           onBackHandler();
         }}
-        onSearch={(text)=>{
-          
-        }}
       />
       <FilterContainer />
       <Tabs>

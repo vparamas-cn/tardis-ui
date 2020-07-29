@@ -6,9 +6,10 @@ $color-gray: #9ca2b4;
 $color-lightgray: #a6adbb;
 
 .tablescroll {
-  overflow-y: auto;
+  overflow-y: hidden;
   padding-right: 10px;
   padding-left: 10px;
+  overflow-x: auto;
   .maintable {
     width: 100%;
     border-collapse: separate;

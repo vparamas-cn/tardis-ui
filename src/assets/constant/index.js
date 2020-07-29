@@ -212,6 +212,6 @@ export const customStyles = {
   }
 };
 
-export const api ={
-    MAINTENNACE_LIST:""
-}
+
+
+export const api = " https://tardis-api.k8s.us-east-1--nonproduction.containers.aws.conde.io/api/graphql"

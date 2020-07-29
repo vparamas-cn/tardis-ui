@@ -4,8 +4,11 @@ import InputButton from "../InputText/InputWithButton";
 import Button from "../Button/Button";
 import { Images } from "../../assets/images";
 import { SearchBar } from "../../assets/constant"
+import { useDispatch } from 'react-redux';
+import { SourceRecords } from '../../reducers/configuration/actions'
 
 const TitleContainer = props => {
+  const dispatch = useDispatch();
   const fullscreen = () => {
     var mainscreen = document.getElementById("maincontent");
     if (mainscreen.className.indexOf("fullscreen") > -1) {
@@ -18,6 +21,12 @@ const TitleContainer = props => {
       document.body.style.overflowY  ="hidden";
     }
   };
+  const SearchFilter = (text) => {
+    if(props.name=="Source Configuration")
+    {
+      dispatch(SourceRecords({search:text}))
+    }
+  }
   const SearchField = (text) =>{
     if(SearchBar.indexOf(text.name) > -1)
     return (
@@ -25,7 +34,7 @@ const TitleContainer = props => {
           placeholder={"Search"}
           id ={"tablesearch"}
           btnclass={"searchbtn"}
-          ButtonClick={text => {props.onSearch(text)}}
+          ButtonClick={text => SearchFilter(text)}
           btnimg={Images.Search}
         />
     )
