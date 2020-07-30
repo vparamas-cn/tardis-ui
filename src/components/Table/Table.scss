@@ -54,7 +54,7 @@ $color-lightgray: #a6adbb;
     display: none;
   }
   tbody tr td {
-    padding-right:10px;
+    padding: 0px 10px;
   }
   .editimg {
     height: 10px;
@@ -125,9 +125,11 @@ $color-lightgray: #a6adbb;
     height: 15px;
     width:35px;
   }
-  tbody tr td:nth-child(6) {
+  tbody tr td:last-child {
     cursor: pointer;
+    min-width: 60px;
   }
+  
   tbody tr td:nth-child(1) {
    padding-left: 10px;
   }

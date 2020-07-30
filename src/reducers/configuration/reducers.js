@@ -1,4 +1,4 @@
-import { SOURCE_LIST_REQUEST, SOURCE_LIST_SUCCESS, SOURCE_LIST_FAILURE, ADD_SOURCE_REQUEST, ADD_SOURCE_SUCCESS, ADD_SOURCE_FAILURE } from './actions'
+import { SOURCE_LIST_REQUEST, SOURCE_LIST_SUCCESS, SOURCE_LIST_FAILURE, ACTION_SOURCE_REQUEST, ACTION_SOURCE_SUCCESS, ACTION_SOURCE_FAILURE } from './actions'
 
 const initialState = {
     isLoading: false,
@@ -6,9 +6,9 @@ const initialState = {
     search: "",
     filter: {},
     page: 1,
-    count: 10,
+    size: 10,
     totalPage:1,
-    totalrow:10,
+    totalElements:10,
     currentpage:1
 }
 
@@ -18,25 +18,43 @@ const sourceReducer = (state = initialState, action) => {
         case SOURCE_LIST_REQUEST: {
             return {
                 ...state,
-                isLoading: false
+                isLoading: true
             }
         }
         case SOURCE_LIST_SUCCESS: {
             return {
                 ...state,
-                isLoading: true,
-                data: action.payroll.results,
-                totalPage: action.payroll.totalPages,
-                count: action.payroll.size,
-                page: action.payroll.currentPage,
-                totalrow: action.payroll.totalElements,
-                currentpage: action.payroll.currentPage
+                isLoading: false,
+                data: action.payroll.data.source.results,
+                totalPage: action.payroll.data.source.totalPages,
+                size: action.payroll.data.source.size,
+                page: action.payroll.data.source.currentPage,
+                totalrow: action.payroll.data.source.totalElements,
+                currentpage: action.payroll.data.source.currentPage
             }
         }
         case SOURCE_LIST_FAILURE: {
             return {
                 ...state,
+                isLoading: false
+            }
+        }
+        case ACTION_SOURCE_REQUEST: {
+            return {
+                ...state,
                 isLoading: true
+            }
+        }
+        case ACTION_SOURCE_SUCCESS: {
+            return {
+                ...state,
+                isLoading: false,
+            }
+        }
+        case ACTION_SOURCE_FAILURE: {
+            return {
+                ...state,
+                isLoading: false
             }
         }
         default: return state;

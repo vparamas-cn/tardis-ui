@@ -9,15 +9,15 @@ const Configuration = () => {
   const onPagenavigation = (page) =>{
     if(page === "Source")
     {
-        history.push("/SourceConfigurations");
+        history.push("/source-configurations");
     }
      if(page === "SourceMap")
     {
-        history.push("/SourceMapConfigurations");
+        history.push("/source-map-configurations");
     }
      if(page === "Slack")
     {
-        history.push("/SlackIntegration");
+        history.push("/slack-integration");
     }
   }  
   const onBackHandler = (page)=> {

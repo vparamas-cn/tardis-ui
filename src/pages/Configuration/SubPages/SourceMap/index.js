@@ -5,7 +5,7 @@ import { Table, TitleContainer } from "../../../../components";
 import { Images } from "../../../../assets/images";
 import { useHistory } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
-import { SourceMapRecords } from "../../../../reducers/mapsource/actions"
+import { SourceMapRecords } from "../../../../reducers/mapSource/actions"
 
 const SourceMap = () => {
   let history = useHistory();

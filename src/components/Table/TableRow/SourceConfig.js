@@ -6,7 +6,8 @@ import Button from "../../Button/Button";
 import TimePicker from "../../TimePicker";
 import { Images } from "../../../assets/images";
 import { useDispatch } from 'react-redux';
-import { UpdateSource, DeleteSource } from '../../../reducers/configuration/actions'
+import { ActionSource } from '../../../reducers/configuration/actions'
+import query from '../../../assets/constant/query'
 
 const SourceConfig = props => {
   const dispatch = useDispatch();
@@ -18,13 +19,13 @@ const SourceConfig = props => {
     const form = document.getElementById(formid)
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`,""): "unnamed"] = field.value; return obj }, {});
     delete data.unnamed;
-    dispatch(UpdateSource(data))
+    dispatch(ActionSource(query.updateSource(data)))
   }
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
   const Delete = (data) => {
-    dispatch(DeleteSource(data))
+    dispatch(ActionSource(query.deleteSource(data)))
   }
   const showHideRow = (selectedrow, arrowimg, data) => {
     var trd = document.getElementById(selectedrow);

@@ -1,45 +1,46 @@
+import axios from 'axios'
 export const menulist = [
   {
     name: "Dashboard",
     image: require("../../assets/images/Dashboard.svg"),
     selection: false,
     notify: true,
-    path:"/Dashboard"
+    path:"/dashboard"
   },
   {
     name: "File Manager",
     image: require("../../assets/images/File.svg"),
     selection: false,
     notify: false,
-    path: "/FileManager"
+    path: "/file-manager"
   },
   {
     name: "Admin",
     image: require("../../assets/images/Admin.svg"),
     selection: false,
     notify: false,
-    path: "/Admin"
+    path: "/admin"
   },
   {
     name: "Maintennace",
     image: require("../../assets/images/Maintennace.svg"),
     selection: false,
     notify: false,
-    path: "/Maintennace"
+    path: "/maintennace"
   },
   {
     name: "Configurations",
     image: require("../../assets/images/Settings.svg"),
     selection: false,
     notify: false,
-    path: "/Configurations"
+    path: "/configurations"
   },
   {
     name: "Trend Chart",
     image: require("../../assets/images/Chart.svg"),
     selection: false,
     notify: false,
-    path: "/TrendChart"
+    path: "/trend-chart"
   },
   {
     name: "User Manual",
@@ -52,7 +53,7 @@ export const menulist = [
     image: require("../../assets/images/Support.svg"),
     selection: false,
     notify: false,
-    path: "/Support-Link"
+    path: "/support-link"
   }
 ];
 
@@ -178,13 +179,13 @@ export const array = [
 
 export const pagename = () => {
   var url = window.location.pathname;
-  if (url.indexOf("Maintennace") > -1) return "Maintennace";
-  else if (url.indexOf("Support-Link") > -1) return "Support Link";
-  else if (url.indexOf("Configurations") > -1) return "Configurations";
-  else if (url.indexOf("Admin") > -1) return "Admin";
-  else if (url.indexOf("FileManager") > -1) return "File Manager";
-  else if (url.indexOf("TrendChart") > -1) return "Trend Chart";
-  else if (url.indexOf("Dashboard") > -1) return "Dashboard";
+  if (url.indexOf("maintennace") > -1) return "Maintennace";
+  else if (url.indexOf("support-link") > -1) return "Support Link";
+  else if (url.indexOf("configurations") > -1) return "Configurations";
+  else if (url.indexOf("admin") > -1) return "Admin";
+  else if (url.indexOf("file-manager") > -1) return "File Manager";
+  else if (url.indexOf("trend-chart") > -1) return "Trend Chart";
+  else if (url.indexOf("dashboard") > -1) return "Dashboard";
 };
 
 
@@ -214,4 +215,15 @@ export const customStyles = {
 
 
 
-export const api = " https://tardis-api.k8s.us-east-1--nonproduction.containers.aws.conde.io/api/graphql"
+export const apiUrl = "https://tardis-api.k8s.us-east-1--nonproduction.containers.aws.conde.io/api/graphql"
+
+export const fetch = (params) => {
+  return axios({
+    url: apiUrl,
+    method: 'post',
+    data:  {
+      query: params
+    }
+    
+  })
+}

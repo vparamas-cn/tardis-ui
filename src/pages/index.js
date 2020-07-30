@@ -21,18 +21,17 @@ function Main(props) {
         <Header />
         <main id="maincontent">
           <Switch>
-            <Route path="/Dashboard" children={<Dashboard />} />
-            <Route path="/Maintennace" children={<Maintennace />} />
-            <Route path="/Support-Link" children={<Support />} />
-            <Route path="/Configurations" children={<Configurations />} />
-            <Route path="/Configurations" children={<Configurations />} />
-            <Route path="/SourceConfigurations" children={<Source />} />
-            <Route path="/SourceMapConfigurations" children={<SourceMap />} />
-            <Route path="/SlackIntegration" children={<SlackIntegration />} />
-            <Route path="/Profile" children={<Profile />} />
-            <Route path="/Admin" children={<Admin />} />
-            <Route path="/FileManager" children={<FileManager />} />
-            <Route path="/TrendChart" children={<TrendChart />} />
+            <Route path="/dashboard" children={<Dashboard />} />
+            <Route path="/maintennace" children={<Maintennace />} />
+            <Route path="/support-link" children={<Support />} />
+            <Route path="/configurations" children={<Configurations />} />
+            <Route path="/source-configurations" children={<Source />} />
+            <Route path="/source-map-configurations" children={<SourceMap />} />
+            <Route path="/slack-integration" children={<SlackIntegration />} />
+            <Route path="/profile" children={<Profile />} />
+            <Route path="/admin" children={<Admin />} />
+            <Route path="/file-manager" children={<FileManager />} />
+            <Route path="/trend-chart" children={<TrendChart />} />
           </Switch>
         </main>
         <Bottom />

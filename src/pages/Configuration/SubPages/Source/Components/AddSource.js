@@ -9,7 +9,8 @@ import {
 } from "../../../../../components";
 import "../Source.scss";
 import { useDispatch } from 'react-redux';
-import { AddSource } from '../../../../../reducers/configuration/actions'
+import { ActionSource } from '../../../../../reducers/configuration/actions'
+import query from '../../../../../assets/constant/query'
 
 const options = [
   { name: "String_1_Source", value: "1" },
@@ -24,7 +25,7 @@ const AddModalSource = props => {
     delete data.unnamed;
     data.isactive = (data.isactive == "True"); 
     console.log(data);
-    dispatch(AddSource(data))
+    dispatch(ActionSource(query.addSource(data)))
   }
   return (
     <div className="modal-main">
@@ -53,7 +54,7 @@ const AddModalSource = props => {
                 <SelectSearch
                   options={options}
                   value="1"
-                  disabled={disabled} name="sources"
+                  disabled={disabled} name="source"
                 />
               </div>
               <div className="isactive">

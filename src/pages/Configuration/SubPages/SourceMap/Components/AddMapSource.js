@@ -7,7 +7,7 @@ import {
 } from "../../../../../components";
 import "../SourceMap.scss";
 import { useDispatch } from 'react-redux';
-import { AddSourceMap } from '../../../../../reducers/mapsource/actions'
+import { AddSourceMap } from '../../../../../reducers/mapSource/actions'
 
 const options = [
   { name: "String_1_Source", value: "1" },

@@ -6,11 +6,12 @@ import { Images } from "../../../../assets/images";
 import { useHistory } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import { SourceRecords } from "../../../../reducers/configuration/actions"
+import query from '../../../../assets/constant/query'
 
 const Source = ({ SourceRecords }) => {
   const data = useSelector(state => state.source);
   useEffect(() => {
-    SourceRecords({ page: 1, count: 5 });
+    SourceRecords(query.source(data));
   }, [SourceRecords])
 
   let history = useHistory();
