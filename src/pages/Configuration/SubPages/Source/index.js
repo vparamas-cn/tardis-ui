@@ -4,14 +4,14 @@ import FilterContainer from "./Components/FilterContainer";
 import { Table, TitleContainer } from "../../../../components";
 import { Images } from "../../../../assets/images";
 import { useHistory } from "react-router-dom";
-import { connect , useSelector} from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { SourceRecords } from "../../../../reducers/configuration/actions"
 
 const Source = ({ SourceRecords }) => {
   const data = useSelector(state => state.source);
-  useEffect(()=>{
-    SourceRecords({page:1,count:5});
-  },[SourceRecords])
+  useEffect(() => {
+    SourceRecords({ page: 1, count: 5 });
+  }, [SourceRecords])
 
   let history = useHistory();
   const onBackHandler = page => {
@@ -27,7 +27,7 @@ const Source = ({ SourceRecords }) => {
         }}
       />
       <FilterContainer />
-      <Table name="SourceConfig" dataSource={data}/>
+      <Table name="SourceConfig" dataSource={data} LoadRecord={(data)=>SourceRecords(data)}/>
     </div>
   );
 };

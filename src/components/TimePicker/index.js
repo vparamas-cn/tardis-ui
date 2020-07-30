@@ -26,7 +26,7 @@ const CustomTimePicker = props => {
     value={time}
     className={`CustomTimePicker ${props.className?props.className:"" }`}
     onChange={time => setTime(time)}
-    inputIcon={<FontAwesomeIcon icon={faClock} size="lg" />}
+    inputIcon={<FontAwesomeIcon icon={faClock} color={"#3976eb"} size="lg" />}
   />
    
   );

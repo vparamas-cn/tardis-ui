@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import "../Table.scss";
 import "./Row.scss"
 import DropDown from "../../DropDown";
@@ -13,8 +13,7 @@ const SourceConfig = props => {
   const [data, SetData] = useState(
     props.dataSource || []
   );
-  const [detailinput, SetDetail] = useState([]);
-  useEffect(() => { });
+
   const Update = (formid ,id) => {
     const form = document.getElementById(formid)
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`,""): "unnamed"] = field.value; return obj }, {});
@@ -24,8 +23,8 @@ const SourceConfig = props => {
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
-  const Delete = (id) => {
-    dispatch(DeleteSource(id))
+  const Delete = (data) => {
+    dispatch(DeleteSource(data))
   }
   const showHideRow = (selectedrow, arrowimg, data) => {
     var trd = document.getElementById(selectedrow);
@@ -131,7 +130,7 @@ const SourceConfig = props => {
                           class="deletebtn"
                           name="Delete Contact"
                           leftimg={Images.Delete}
-                          onClick={() => { Delete(props.id) }}
+                          onClick={() => { Delete({source:props.source}) }}
                         />
                       </div>
                     </div>

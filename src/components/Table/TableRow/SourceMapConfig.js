@@ -1,31 +1,40 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import "../Table.scss";
 import "./Row.scss";
-import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
 import FieldHolder from "../../InputText/FieldHolder"
 import { Images } from "../../../assets/images";
+import { useDispatch } from 'react-redux';
+import { UpdateSourceMap, DeleteSourceMap } from '../../../reducers/mapsource/actions'
 
 const SourceConfig = props => {
-  const [data, SetData] = useState([{ id: 1 }, { id: 2 }, { id: 3 }]);
-  useEffect(() => { });
-  const Update = (formid) => {
+  const dispatch = useDispatch();
+  const [data, SetData] = useState(
+    props.dataSource || []
+  );
+  const Update = (formid, id) => {
     const form = document.getElementById(formid)
-    var data = Object.values(form).reduce((obj, field) => { obj[field.name] = field.value; return obj }, {});
-    console.log(data);
+    var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`, "") : "unnamed"] = field.value; return obj }, {});
+    delete data.unnamed;
+    if(data.source !="" && data.childSource !="")
+    dispatch(UpdateSourceMap(data))
   }
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
-  const Delete = (id) => {
-
+  const Delete = (data) => {
+    dispatch(DeleteSourceMap(data))
   }
-  const showHideRow = (selectedrow, arrowimg) => {
+  const showHideRow = (selectedrow, arrowimg, data) => {
     var trd = document.getElementById(selectedrow);
+    var isopen =false;
     if (trd.className.indexOf("hidden_row") > -1) {
       trd.classList.remove("hidden_row");
-    } else {
+      isopen =true;
+    }
+    else {
       trd.classList.add("hidden_row");
+      isopen =false;
     }
     var imageid = document.getElementById(arrowimg);
     if (imageid.className.indexOf("downarr") > -1) {
@@ -35,13 +44,24 @@ const SourceConfig = props => {
       imageid.classList.add("downarr");
       imageid.classList.remove("uparr");
     }
+    if(isopen)
+    for(var x of Object.keys(data))
+    {
+      try{
+      let name = `${x}-${data.id}`;
+      document.getElementById(name).value = data[x];
+      }
+      catch(e)
+      {}
+    }
   };
 
   const Row = props => {
+    const { source, childSource, isoptional } = props;
     return (
       <tr
         onClick={() => {
-          showHideRow(`hidden_row${props.id}`, `downimage${props.id}`);
+          showHideRow(`hidden_row${props.id}`, `downimage${props.id}`,props);
         }}
       >
         <td className="rowarrow">
@@ -51,9 +71,9 @@ const SourceConfig = props => {
             id={`downimage${props.id}`}
           />
         </td>
-        <td>Sources Names</td>
-        <td>DateSource_Source_name</td>
-        <td>True</td>
+        <td>{source}</td>
+        <td>{childSource}</td>
+        <td>{isoptional ? "True" : "False"}</td>
 
         <td>
           <div className="action-td-container">
@@ -87,34 +107,33 @@ const SourceConfig = props => {
                       <FieldHolder lable="Source">
                         <input
                           type="text"
-                          name="source"
+                          id={`source-${props.id}`}
+                          name={`source-${props.id}`}
                           className="sourceinput120"
                         />
                       </FieldHolder>
                       <FieldHolder lable="Child Source">
                         <input
                           type="text"
-                          name="childsource"
+                          id={`childSource-${props.id}`}
+                          name={`childSource-${props.id}`}
                           className="sourceinput120"
                         />
                       </FieldHolder>
                       <FieldHolder lable="Isoptional">
-                        <DropDown
-                          id={`optiondd${props.id}`}
-                          class={"failuredd sourceinput120"}
-                          imgclass={"centeralign"}
-                          imguri={Images.arrowblack}
-                          options={["True", "False"]}
-                        />
+                        <select id={`isoptional-${props.id}`} name={`isoptional-${props.id}`} className="sourceinput120 customselect">
+                          <option value={"true"}>True</option>
+                          <option value={"false"}>False</option>
+                        </select>
                       </FieldHolder>
                       <div className="detailbuttons fieldholder">
-                        <Button class="greenclr" name="Update" onClick={() => { Update(`formsourcemap-${props.id}`) }} />
+                        <Button class="greenclr" name="Update" onClick={() => { Update(`formsourcemap-${props.id}`, props.id) }} />
                         <Button class="clearbtncolor" name="Clear" onClick={() => { ClearForm(`formsourcemap-${props.id}`) }} />
                         <Button
                           class="deletebtn"
                           name="Delete Contact"
                           leftimg={Images.Delete}
-                          onClick={() => { Delete(props.id) }}
+                          onClick={() => { Delete(props) }}
                         />
                       </div>
                     </div>
@@ -133,8 +152,8 @@ const SourceConfig = props => {
         data.map((item, index) => {
           return (
             <Fragment key={`SourceMapConfig-${index}`}>
-              <Row {...item} />
-              <RowDetails {...item} />
+              <Row {...item} id={index+1} />
+              <RowDetails {...item} id={index+1}/>
             </Fragment>
           );
         })}

@@ -6,6 +6,8 @@ import {
   SelectSearch
 } from "../../../../../components";
 import "../SourceMap.scss";
+import { useDispatch } from 'react-redux';
+import { AddSourceMap } from '../../../../../reducers/mapsource/actions'
 
 const options = [
   { name: "String_1_Source", value: "1" },
@@ -13,10 +15,13 @@ const options = [
 ];
 const disabled=false;
 const AddMapSource = props => {
+  const dispatch = useDispatch();
   const submit = () =>{
     const form = document.getElementById("addmapsource")
     var data = Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
+    data.isoptional = (data.isoptional == "True"); 
     console.log(data);
+    dispatch(AddSourceMap(data))
   }
   return (
     <div className="modal-main">
@@ -49,7 +54,7 @@ const AddMapSource = props => {
                 />
               </div>
               <div className="isoptional-container">
-                <span>ISOPTIONAL</span> <RadioBtn name="isactive" disabled={disabled} options={["True", "False"]} />
+                <span>ISOPTIONAL</span> <RadioBtn name="isoptional" disabled={disabled} options={["True", "False"]} />
               </div>
            
             </div>
@@ -59,7 +64,7 @@ const AddMapSource = props => {
                 <SelectSearch
                   options={options}
                   value="1"
-                  disabled={disabled} name="childsources"
+                  disabled={disabled} name="childSource"
                 />
               </div>
             </div>

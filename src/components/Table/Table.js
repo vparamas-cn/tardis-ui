@@ -26,7 +26,7 @@ const Table = props => {
           ) : props.name === "SourceConfig" ? (
             <SourceConfig dataSource={props.dataSource && props.dataSource.data} />
           ) : props.name === "SourceMapConfig" ? (
-            <SourceMapConfig />
+            <SourceMapConfig dataSource={props.dataSource && props.dataSource.data} />
           ) : props.name === "SlackIntegration" ? (
             <SlackRow />
           ) : props.name === "Admin" ? (
@@ -34,7 +34,7 @@ const Table = props => {
           ) :null}
         </table>
       </section>
-      <Pagination rowcount={props.dataSource && props.dataSource.count} noofpage={5} />
+      <Pagination dataSource={props.dataSource || {count:5,totalPage:1, totalrow:10, currentpage:1} } LoadRecord={(data)=>props.LoadRecord(data)} />
     </Fragment>
   );
 };

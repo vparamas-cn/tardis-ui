@@ -2,16 +2,23 @@ import axios from 'axios'
 import { api } from '../../assets/constant'
 
 export const getList = (params) => {
-    return axios.post(api, null, {
+    return axios.get(api, null, {
         query: `{
         source(page: ${params.page}, size: ${params.count}){
           currentPage
           totalPages
           totalElements
           size
+          numberOfElements
           results{
             source
             description
+            alias
+            type
+            isactive
+            numPrevDays
+            dashTriggerId
+            availabilitySchedule
           }
         }
       }` });

@@ -1,4 +1,4 @@
-import { SOURCE_LIST_REQUEST, SOURCE_LIST_SUCCESS, SOURCE_LIST_FAILURE, ADD_SOURCE_REQUEST, ADD_SOURCE_SUCCESS, ADD_SOURCE_FAILURE } from './actions'
+import { MAP_LIST_REQUEST, MAP_LIST_SUCCESS, MAP_LIST_FAILURE, ADD_MAP_REQUEST, ADD_MAP_SUCCESS, ADD_MAP_FAILURE } from './actions'
 
 const initialState = {
     isLoading: false,
@@ -15,13 +15,13 @@ const initialState = {
 const sourceReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case SOURCE_LIST_REQUEST: {
+        case MAP_LIST_REQUEST: {
             return {
                 ...state,
                 isLoading: false
             }
         }
-        case SOURCE_LIST_SUCCESS: {
+        case MAP_LIST_SUCCESS: {
             return {
                 ...state,
                 isLoading: true,
@@ -33,7 +33,7 @@ const sourceReducer = (state = initialState, action) => {
                 currentpage: action.payroll.currentPage
             }
         }
-        case SOURCE_LIST_FAILURE: {
+        case MAP_LIST_FAILURE: {
             return {
                 ...state,
                 isLoading: true

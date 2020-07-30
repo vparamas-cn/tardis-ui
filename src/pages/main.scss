@@ -3,7 +3,13 @@ $color-black: #172b4d;
 .tardis-container {
   min-width: 1024px;
 }
-
+.page{
+  min-height: 99vh !important;
+  background-color: white;
+  border-radius: 10px 10px 0px 0px;
+  padding: 60px 30px 30px 30px;
+  min-width: 700px;
+}
 .centeralign {
   display: flex;
   justify-content: center;

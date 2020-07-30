@@ -56,6 +56,7 @@ const FilterContainer = props => {
         id={"isoptionaldd"}
         class={"options"}
         label={"Slack channel"}
+        radiobtn={true}
         imguri={Images.dropdownarrow}
         options={["Active", "InActive"]}
       />
