@@ -11,7 +11,7 @@ import Loader from '../Loader'
 
 const Table = props => {
   const [header, SetHeader] = useState(TableHeader[props.name]);
-  if(props.dataSource.isLoading)
+  if(props.dataSource && props.dataSource.isLoading)
   return <Loader />
   return (
  

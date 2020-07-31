@@ -5,15 +5,12 @@ import { Images } from "../../assets/images";
 import "./Admin.scss";
 
 const Admin = () => {
-  const onBackHandler = page => {};
+ 
   return (
     <div className="AdminPage page">
       <TitleContainer
         name="Manage Permissions"
         img={Images.Admin}
-        onBack={() => {
-          onBackHandler();
-        }}
       />
       <FilterContainer />
       <Tabs>

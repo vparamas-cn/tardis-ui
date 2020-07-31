@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import "./TitleContainer.scss";
 import InputButton from "../InputText/InputWithButton";
 import Button from "../Button/Button";
@@ -44,6 +44,8 @@ const TitleContainer = props => {
   return (
     <div className="container-title">
       <div className="title-left">
+        {props.onBack ?
+        <Fragment>
         <Button
           class={"backoption centeralign"}
           name={"Back"}
@@ -53,6 +55,7 @@ const TitleContainer = props => {
         <div className="title-divder centeralign">
           <span />
         </div>
+        </Fragment>:null}
         <Button
           class={`title centeralign ${props.name}`}
           name={props.name}
@@ -61,7 +64,7 @@ const TitleContainer = props => {
         />
       </div>
       <div className="centeralign">
-        <SearchField name={props.name}/>
+        {/* <SearchField name={props.name}/> */}
         <Button
           class={"fullscreenicon"}
           leftimg={Images.Fullscreen}
@@ -69,11 +72,11 @@ const TitleContainer = props => {
             fullscreen();
           }}
         />
-        <div className="cursorpointer">
+        {/* <div className="cursorpointer">
           <div className="dot" />
           <div className="dot" />
           <div className="dot" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

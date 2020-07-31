@@ -76,11 +76,7 @@ const SourceConfig = props => {
           />
         </td>
         <td>{source}</td>
-        <td> <input
-          type="text"
-          disabled="disabled"
-          value={description}
-        /></td>
+        <td>{description}</td>
         <td>{alias}</td>
         <td>
           {type}
@@ -113,6 +109,7 @@ const SourceConfig = props => {
                       <div className="detailname">
                         <span className="nametitle">Source Name</span>
                         <span>{source}</span>
+                        <input type="hidden" name="source" value={source} />
                       </div>
                       <input type="text" id={`description-${props.id}`} name={`description-${props.id}`} className="sourceinput120" maxLength={255}/>
                       <input type="text" id={`alias-${props.id}`} name={`alias-${props.id}`}  className="sourceinput60" />
@@ -122,7 +119,7 @@ const SourceConfig = props => {
                         <option value={"false"}>False</option>
                       </select>
                       <input type="number" id={`numPrevDays-${props.id}`}  name={`numPrevDays-${props.id}`} className="sourceinput60" />
-                      <input type="text" id={`dashTriggerId-${props.id}`} name={`dash-${props.id}`} className="sourceinput120" />
+                      <input type="text" id={`dashTriggerId-${props.id}`} name={`dashTriggerId-${props.id}`} className="sourceinput120" />
                       <TimePicker time={availabilitySchedule} className="sourceinput120"  name={`availabilitySchedule-${props.id}`} />
                       <div className="detailbuttons">
                         <Button class="greenclr" name="Update" onClick={() => { Update(`formsource-${props.id}`,props.id) }} />

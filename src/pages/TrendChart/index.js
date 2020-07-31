@@ -5,15 +5,11 @@ import "./Chart.scss";
 
 const Chart = () => {
   const onPagenavigation = page => {};
-  const onBackHandler = page => {};
   return (
     <div className="Chart-page page">
       <TitleContainer
         name="Chart"
         img={Images.Chart}
-        onBack={() => {
-          onBackHandler();
-        }}
         onSearch={(text)=>{
           
         }}

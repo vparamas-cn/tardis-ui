@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddSource from "./AddSource";
 import Modal from "react-modal";
 import { Images } from "../../../../../assets/images";
 import { DropDown, Button } from "../../../../../components";
 import { customStyles } from "../../../../../assets/constant";
+import { useSelector, useDispatch } from 'react-redux';
+import { ACTION_RESET } from "../../../../../reducers/configuration/actions";
+
 Modal.setAppElement('#root')
 const FilterContainer = props => {
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.source);
   const [modalIsOpen, SetModal] = useState(false);
   const closeModal = () => {
     SetModal(false);
@@ -13,6 +18,25 @@ const FilterContainer = props => {
   const openModal = () => {
     SetModal(true);
   };
+  useEffect(()=>{
+    if(data.actiondata.message =="success")
+    {
+      closeModal();
+      dispatch({type:ACTION_RESET})
+      var x = document.getElementById("snackbar");
+      x.className = "show greenclr";
+      x.innerHTML =data.actiondata.data
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+    else if(data.actiondata.message =="error")
+    {
+      dispatch({type:ACTION_RESET})
+      var x = document.getElementById("snackbar");
+      x.className = "show redclr";
+      x.innerHTML =data.actiondata.data
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+  },[data])
   return (
     <div className="container-filter">
       <DropDown

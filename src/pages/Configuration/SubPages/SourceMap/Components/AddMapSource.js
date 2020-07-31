@@ -7,8 +7,8 @@ import {
 } from "../../../../../components";
 import "../SourceMap.scss";
 import { useDispatch } from 'react-redux';
-import { AddSourceMap } from '../../../../../reducers/mapSource/actions'
-
+import { ActionSource } from '../../../../../reducers/mapSource/actions'
+import query from '../../../../../assets/constant/query'
 const options = [
   { name: "String_1_Source", value: "1" },
   { name: "String_1_Source", value: "2" }
@@ -21,7 +21,7 @@ const AddMapSource = props => {
     var data = Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
     data.isoptional = (data.isoptional == "True"); 
     console.log(data);
-    dispatch(AddSourceMap(data))
+    dispatch(ActionSource(query.addSourceMap(data)))
   }
   return (
     <div className="modal-main">

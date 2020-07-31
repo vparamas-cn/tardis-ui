@@ -8,7 +8,7 @@ import {
   SelectSearch
 } from "../../../../../components";
 import "../Source.scss";
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { ActionSource } from '../../../../../reducers/configuration/actions'
 import query from '../../../../../assets/constant/query'
 
@@ -18,6 +18,7 @@ const options = [
 ];
 const disabled=false;
 const AddModalSource = props => {
+  const data = useSelector(state => state.source);
   const dispatch = useDispatch();
   const submit = () =>{
     const form = document.getElementById("addsource")
@@ -50,12 +51,8 @@ const AddModalSource = props => {
           <div className="controls">
             <div className="source1">
               <div>
-                <span>SOURCES</span>
-                <SelectSearch
-                  options={options}
-                  value="1"
-                  disabled={disabled} name="source"
-                />
+                <span>SOURCE</span>
+                <input type="text" name={"source"}  disabled={disabled} className={"sourceadddropdown"} />
               </div>
               <div className="isactive">
                 <span>IsActive</span> <RadioBtn name="isactive" disabled={disabled} options={["True", "False"]} />
@@ -67,7 +64,7 @@ const AddModalSource = props => {
                   disabled={disabled}
                   class={"sourceadddropdown"}
                   imguri={Images.arrowblack}
-                  options={["Datasource", "Datasource Group", "Dashboard"]}
+                  options={["Dashboard","Datasource", "Datasource Group","Data"]}
                 />
               </div>
               <div className="paddingdiv">
@@ -100,8 +97,7 @@ const AddModalSource = props => {
                   id={"timezone"}
                   disabled={disabled}
                   class={"sourceaddtzdropdown"}
-                  imguri={Images.whitedownarrow}
-                  imgclass={"timezonearrow centeralign"}
+                  disabled={true}
                   options={["(UTC-08:00) Pacific Time"]}
                 />
               </div>
@@ -109,7 +105,7 @@ const AddModalSource = props => {
           </div>
         </form>
       </div>
-      <Button class="modaladdbtn" name="Add New Source" onClick={() => {submit()}} />
+      <Button class="modaladdbtn" name="Add New Source" loading={data.isactionLoading} onClick={() => {submit()}} />
     </div>
   );
 };

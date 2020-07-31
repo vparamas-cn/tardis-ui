@@ -23,14 +23,10 @@ const Support = props => {
   const Submit = () => {
     console.log(data);
   };
-  const onBackHandler = (page)=> {
 
-  }
   return (
     <div className="Support-page page">
-      <TitleContainer name="Support Link" img={Images.Support} onBack={() => {
-          onBackHandler();
-        }}
+      <TitleContainer name="Support Link" img={Images.Support} 
         onSearch={(text)=>{
           
         }}/>

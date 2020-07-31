@@ -15,8 +15,14 @@ $color-blue: #3976eb;
         height: 40px;
         -webkit-animation: spin 2s linear infinite; /* Safari */
         animation: spin 2s linear infinite;
+       
     }
-  
+    .small{
+        width: 25px !important;
+        height: 25px !important;
+        border: 3px solid #f3f3f3 !important;
+        border-top: 3px solid $color-blue !important;
+    }
     /* Safari */
     @-webkit-keyframes spin {
         0% {

@@ -4,39 +4,75 @@ import { Images } from "../../../assets/images";
 
 const Pagination = props => {
 
-  const { count, totalPage, totalrow, currentpage } = props.dataSource;
+  const { size, totalPage, totalrow, currentpage } = props.dataSource;
 
   const [selection, SetSelection] = useState(currentpage);
-  const [pagecount, SetCount] = useState([]);
-  const [rowcount, setRowCount] = useState(count)
-  useEffect(
-    () => {
-      let i = 1;
-      var nopage = [];
-      while (totalPage >= i) {
-        nopage.push(i);
-        i++;
-      }
-      SetCount(nopage);
-    },
-    [props]
-  );
+  const [rowcount, setRowCount] = useState(size == totalrow ? "all" : size);
+  const [pagecount, SetCount] = useState();
+  const [upperbound, setUpper] = useState();
+  const [lowerbound, setLower] = useState();
+  const [isPrevBtnActive, setIsPrevActive] = useState('disabled');
+  const [isNextBtnActive, setIsNextActive] = useState('');
+  useEffect(()=>{
+    setUpper(5)
+    setLower(0)
+    SetCount(5)
+  },[props])
+  const setPrevAndNextBtnClass = (listid) => {
+    setIsNextActive('disabled');
+    setIsPrevActive('disabled');
+    if (totalPage === listid && totalPage > 1) {
+      setIsPrevActive('');
+    }
+    else if (listid === 1 && totalPage > 1) {
+      setIsNextActive('');
+    }
+    else if (totalPage > 1) {
+      setIsNextActive('');
+      setIsPrevActive('');
+    }
+    props.LoadRecord({ size: size, page: listid })
+  }
+
+  const btnPrevClick = () => {
+
+    if ((selection) % pagecount === 0) {
+      setUpper(upperbound - pagecount);
+      setLower(lowerbound - pagecount);
+      console.log(upperbound - pagecount)
+    }
+    let listid = selection - 1;
+    SetSelection(listid);
+    setPrevAndNextBtnClass(listid);
+  }
+  const btnNextClick = () => {
+   
+    if ((selection) % pagecount === 0) {
+      setUpper(upperbound + pagecount);
+      setLower(lowerbound + pagecount);
+      console.log(upperbound + pagecount)
+    }
+    let listid = selection + 1;
+    SetSelection(listid);
+    setPrevAndNextBtnClass(listid);
+  }
+
   const SelectPage = page => {
     SetSelection(page);
-    props.LoadRecord({ count: count, page: page })
+    props.LoadRecord({ size: size, page: page })
+    setPrevAndNextBtnClass(page);
   };
-  const Previous = () => {
-    if (selection > 1) SetSelection(selection - 1);
-  };
-  const Next = () => {
-    if (totalPage > selection) SetSelection(selection + 1);
-  };
+
   const onPageSelection = (e) => {
     let count = e.target.value;
     setRowCount(count)
     count = count != "all" ? parseInt(count) : totalrow;
-    props.LoadRecord({ count: count, page: selection })
+    props.LoadRecord({ size: count, page: selection })
 
+  }
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalrow / size); i++) {
+    pageNumbers.push(i);
   }
   return (
     <div className="pagination">
@@ -59,41 +95,53 @@ const Pagination = props => {
         </label>
         <span>entries</span>
       </div>
-      {pagecount > 1 ?
-        <div className="rightpaginiation">
-          <div
-            className="prev"
-            onClick={() => {
-              Previous();
-            }}
-          >
-            <img alt="" src={Images.prev} />
-          </div>
-          {pagecount &&
-            pagecount.map((item, index) => {
+      <div className="rightpaginiation">
+        <div
+          className="prev"
+          onClick={() => {
+            isPrevBtnActive !== 'disabled' && btnPrevClick()
+          }}
+        >
+          <img alt="" src={Images.prev} />
+        </div>
+        {pageNumbers &&
+          pageNumbers.map((item, index) => {
+            if (item === 1 && selection === 1) {
               return (
                 <div
                   key={`pageno${index}`}
-                  className={`pageno ${selection === item
-                    ? "selectedpageno"
-                    : ""}`}
+                  className={`pageno ${item == selection ? "selectedpageno":""}`}
                   onClick={() => {
                     SelectPage(item);
                   }}
                 >
                   {item}
                 </div>
-              );
-            })}
-          <div
-            className="next"
-            onClick={() => {
-              Next();
-            }}
-          >
-            <img alt="" src={Images.next} />
-          </div>
-        </div> : null}
+              )
+            }
+            else if ((item < upperbound + 1) && item > lowerbound) {
+              return (
+                <div
+                  key={`pageno${index}`}
+                  className={`pageno ${item == selection ? "selectedpageno":""}`}
+                  onClick={() => {
+                    SelectPage(item);
+                  }}
+                >
+                  {item}
+                </div>
+              )
+            }
+          })}
+        <div
+          className="next"
+          onClick={() => {
+            isNextBtnActive !== 'disabled' && btnNextClick()
+          }}
+        >
+          <img alt="" src={Images.next} />
+        </div>
+      </div>
     </div>
   );
 };

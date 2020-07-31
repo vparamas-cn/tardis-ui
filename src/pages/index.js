@@ -36,6 +36,7 @@ function Main(props) {
         </main>
         <Bottom />
       </div>
+      <div id="snackbar">Some text some message..</div>
     </Router>
   );
 }

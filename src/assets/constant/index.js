@@ -217,13 +217,13 @@ export const customStyles = {
 
 export const apiUrl = "https://tardis-api.k8s.us-east-1--nonproduction.containers.aws.conde.io/api/graphql"
 
-export const fetch = (params) => {
+export const fetch = (params) => { 
   return axios({
     url: apiUrl,
     method: 'post',
-    data:  {
+    data: {
       query: params
-    }
+    } 
     
   })
 }

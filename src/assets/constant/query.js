@@ -19,41 +19,59 @@ const query = {
         }
       }
     }`,
-    addSource: (params) => `{
+    addSource: (params) => 
+    ` mutation{\n            createSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , type:  \"${params.type}\", dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n                    isactive\n                    alias\n                    availabilitySchedule\n                    type\n                }\n            }\n } `
+    ,
+    updateSource: (params) => 
+    ` mutation{\n            updateSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n                    isactive\n                    alias\n                    availabilitySchedule\n                    type\n                }\n            }\n } `
+    ,
+    deleteSource: (params) =>
+    ` mutation{\n  deleteSource(source: \"${params.source}\"){\n    deleteSource\n  }\n} `,  
+    sourceMap: (params) => `
+    query {
+      sourceMap(page: ${params.page}, size: ${params.count}){
+        currentPage
+        totalPages
+        totalElements
+        size
+        results{
+          source,
+          childSource,
+          isoptional
+        }
+      }
+    }`,
+    addSourceMap: (params) => `{
         query { 
            mutation{
-            createSource(source: ${params.source}, description:${params.description} ,alias: ${params.alias}, availabilitySchedule: ${params.availabilitySchedule}, numPrevDays: ${params.numPrevDays}, isactive: ${params.isactive}, type: ${params.type}, dashTriggerId: ${params.dashTriggerId}){
-                source{
-                    source
-                    description
-                    dashTriggerId
-                    numPrevDays
-                    isactive
-                }
+            createSourceMap(source: ${params.source}, childSource:${params.childSource}, isoptional: ${params.isoptional} ){
+              sourceMap{
+                source,
+                childSource,
+                isoptional
+              }
             }
           }
         }`,
-    updateSource: (params) => `{
+    updateSourceMap: (params) => `{
         query { 
            mutation{
-            updateSource(source: ${params.source}, description:${params.description} ,alias: ${params.alias}, availabilitySchedule: ${params.availabilitySchedule}, numPrevDays: ${params.numPrevDays}, isactive: ${params.isactive}, type: ${params.type}, dashTriggerId: ${params.dashTriggerId}){
-                source{
-                    source
-                    description
-                    dashTriggerId
-                    numPrevDays
-                    isactive
-                }
+            updateSourceMap(source: ${params.source}, childSource:${params.childSource}, isoptional: ${params.isoptional} ){
+              sourceMap{
+                source,
+                childSource,
+                isoptional
+              }
             }
           }
         }`, 
-    deleteSource: (params) =>`{
+    deleteSourceMap: (params) =>`{
         query { 
             mutation{
-            deleteSource(source: ${params.source}){
-                deleteSource
+            deleteSourceMap(source: ${params.source} , childSource:${params.childSource}){
+                deleteSourceMap
             }
         }
-    }`,  
+    }`, 
 }
 export default query

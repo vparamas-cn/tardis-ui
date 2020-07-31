@@ -28,7 +28,7 @@ const Source = ({ SourceRecords }) => {
         }}
       />
       <FilterContainer />
-      <Table name="SourceConfig" dataSource={data} LoadRecord={(data)=>SourceRecords(data)}/>
+      <Table name="SourceConfig" dataSource={data} LoadRecord={(data)=>SourceRecords(query.source(data))}/>
     </div>
   );
 };

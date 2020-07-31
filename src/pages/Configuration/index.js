@@ -20,12 +20,9 @@ const Configuration = () => {
         history.push("/slack-integration");
     }
   }  
-  const onBackHandler = (page)=> {
-
-  }
   return (
     <div className="Configuration-page page">
-      <TitleContainer name="Configurations" img={Images.Settings} onBack={()=>{onBackHandler()}} onSearch={(text)=>{
+      <TitleContainer name="Configurations" img={Images.Settings} onSearch={(text)=>{
         
         }}/>
       <div className="quickaccess">
@@ -43,7 +40,7 @@ const Configuration = () => {
           <FolderWrapper
             titlename="Map Configuration"
             subname="Configuration"
-            selection={false}
+            selection={true}
             img={Images.map}
             OnClick={()=>{onPagenavigation("SourceMap")}}
           />

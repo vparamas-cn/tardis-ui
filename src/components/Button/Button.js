@@ -1,7 +1,19 @@
 import React from "react";
 import "./Button.scss";
+import Loader from "../Loader";
 
 const Button = props => {
+  if(props.loading)
+  return (
+    <div
+    className={`detailbtn centeralign ${props.class}`}
+    onClick={() => {
+      props.onClick();
+    }}
+  >
+    <Loader small={true}/>
+    </div>
+  )
   return (
     <div
       className={`detailbtn centeralign ${props.class}`}

@@ -8,6 +8,7 @@ const FolderWrapper = props => {
       className={`folder-container ${props.selection
         ? "selected"
         : "unselected"}`}
+        onClick={()=>{props.OnClick()}}
     >
       <div className="topcontainer">
         <div className="whitecontainer" />
@@ -24,7 +25,7 @@ const FolderWrapper = props => {
             <span className="folder">Folder</span>
             <span className="viewname">{props.subname}</span>
           </div>
-          <div className="knowmore centeralign" onClick={()=>{props.OnClick()}}>Know More <SVG src={Images.folderarrow} /></div>
+          <div className="knowmore centeralign">Know More <SVG src={Images.folderarrow} /></div>
         </div>
       </div>
     </div>

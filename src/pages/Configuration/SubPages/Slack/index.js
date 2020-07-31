@@ -20,7 +20,7 @@ const Slack = () => {
         }}
       />
       <FilterContainer />
-      <Table name="SlackIntegration" />
+      <Table name="SlackIntegration" LoadRecord={(data)=>{}}/>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
-import { MAP_LIST_FAILURE, MAP_LIST_SUCCESS ,MAP_LIST_REQUEST  } from './actions';
+import { MAP_LIST_FAILURE, MAP_LIST_SUCCESS ,MAP_LIST_REQUEST , ACTION_SOURCE_REQUEST, ACTION_SOURCE_SUCCESS, ACTION_SOURCE_FAILURE } from './actions';
 import { fetch } from '../../assets/constant'
 
 export const getSourceMap = (state) => state.map
@@ -17,7 +17,6 @@ export function* fetchList(action) {
 }
 export function* actionHandler(action) {
     try {
-        let details = yield select(getSource); 
         const response = yield call(fetch,action.payroll);
         const data = yield response.data;
         yield put({ type: ACTION_SOURCE_SUCCESS, payroll: data });

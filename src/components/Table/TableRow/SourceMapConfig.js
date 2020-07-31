@@ -6,6 +6,7 @@ import FieldHolder from "../../InputText/FieldHolder"
 import { Images } from "../../../assets/images";
 import { useDispatch } from 'react-redux';
 import { ActionSource} from '../../../reducers/mapSource/actions'
+import query from '../../../assets/constant/query'
 
 const SourceConfig = props => {
   const dispatch = useDispatch();
@@ -17,13 +18,13 @@ const SourceConfig = props => {
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`, "") : "unnamed"] = field.value; return obj }, {});
     delete data.unnamed;
     if(data.source !="" && data.childSource !="")
-    dispatch(ActionSource(data))
+    dispatch(ActionSource(query.updateSourceMap(data)))
   }
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
   const Delete = (data) => {
-    dispatch(ActionSource(data))
+    dispatch(ActionSource(query.deleteSourceMap(data)))
   }
   const showHideRow = (selectedrow, arrowimg, data) => {
     var trd = document.getElementById(selectedrow);
@@ -83,7 +84,7 @@ const SourceConfig = props => {
               class="deletebtn"
               name="Delete"
               leftimg={Images.Delete}
-              onClick={() => { Delete(props.id) }}
+              onClick={() => { Delete(props) }}
             />
           </div>
         </td>

@@ -19,7 +19,6 @@ export function* fetchList(action) {
 
 export function* actionHandler(action) {
     try {
-        let details = yield select(getSource); 
         const response = yield call(fetch,action.payroll);
         const data = yield response.data;
         yield put({ type: ACTION_SOURCE_SUCCESS, payroll: data });
