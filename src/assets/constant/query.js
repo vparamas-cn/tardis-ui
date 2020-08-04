@@ -1,12 +1,13 @@
 const query = {
-    source: (params) => `
+    source: (size) => `
     query {
-      source(page:${params.page}, size: ${params.size}){
+      source(size: ${size}){
         currentPage
         totalPages
         totalElements
         size
         numberOfElements
+        hasNextPage
         results{
           source
           description
@@ -27,16 +28,36 @@ const query = {
     ,
     deleteSource: (params) =>
     ` mutation{\n  deleteSource(source: \"${params.source}\"){\n    deleteSource\n  }\n} `,  
-    sourceMap: (params) => `
+    sourceMap: (size) => `
     query {
-      sourceMap(page: ${params.page}, size: ${params.count}){
+      sourceMap(size: ${size}){
         currentPage
         totalPages
         totalElements
         size
+        numberOfElements
+        hasNextPage
         results{
-          source,
-          childSource,
+          source{
+            source
+            description
+            alias
+            type
+            isactive
+            numPrevDays
+            dashTriggerId
+            availabilitySchedule
+          },
+          childSource{
+            source
+            description
+            alias
+            type
+            isactive
+            numPrevDays
+            dashTriggerId
+            availabilitySchedule
+          },
           isoptional
         }
       }
@@ -73,5 +94,6 @@ const query = {
             }
         }
     }`, 
+    sourceType :() =>`{\n  sourceType{\n    isactive\n    isgroup\n    type\n  }\n}\n\n`
 }
 export default query

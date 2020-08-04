@@ -1,36 +1,42 @@
-import { all, call, put, select, takeLatest } from 'redux-saga/effects';
-import { SOURCE_LIST_REQUEST, SOURCE_LIST_FAILURE, SOURCE_LIST_SUCCESS, ACTION_SOURCE_REQUEST, ACTION_SOURCE_SUCCESS, ACTION_SOURCE_FAILURE } from './actions';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { SOURCE_LIST_REQUEST, SOURCE_LIST_FAILURE, SOURCE_LIST_SUCCESS, SOURCE_TYPE_SUCCESS, SOURCE_TYPE_REQUEST } from './actions';
 import { fetch } from '../../assets/constant'
-import { ACTION_MAP_SUCCESS } from '../mapSource/actions';
+import query from '../../assets/constant/query'
 
-export const getSource = (state) => state.source
-
-export function* fetchList(action) {
+export function* fetchList() {
+    let response;
     try {
-        let details = yield select(getSource); 
-        const response = yield call(fetch,action.payroll);
+        let hasrow = false; let size = 1000;
+        do{
+        response = yield call(fetch,query.source(size));
         const data = yield response.data;
+        size += 1000;
+        hasrow = data.hasNextPage;
         yield put({ type: SOURCE_LIST_SUCCESS, payroll: data });
+        }
+        while(hasrow)
     }
     catch (error) {
         yield put({ type: SOURCE_LIST_FAILURE });
     }
 }
 
-export function* actionHandler(action) {
+export function* fetchType() {
+
     try {
-        const response = yield call(fetch,action.payroll);
+        let response = yield call(fetch,query.sourceType());
         const data = yield response.data;
-        yield put({ type: ACTION_SOURCE_SUCCESS, payroll: data });
+        yield put({ type: SOURCE_TYPE_SUCCESS, payroll: data });
     }
     catch (error) {
-        yield put({ type: ACTION_SOURCE_FAILURE });
+
     }
 }
 
+
 export function* loadList() {
     yield takeLatest(SOURCE_LIST_REQUEST, fetchList);
-    yield takeLatest(ACTION_SOURCE_REQUEST, actionHandler);
+    yield takeLatest(SOURCE_TYPE_REQUEST, fetchType);
 }
 
 export default function* mainSaga() {

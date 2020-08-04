@@ -4,53 +4,48 @@ import { Images } from "../../../assets/images";
 
 const Pagination = props => {
 
-  const { size, totalPage, totalrow, currentpage } = props.dataSource;
+  const { size, totalPage, totalElements, page, pageBound } = props.dataSource;
+  const { current,
+    lowerbound,
+    upperbound } = pageBound;
+  const [selection, SetSelection] = useState(page);
+  const [rowcount, setRowCount] = useState(size === totalElements ? "all" : size);
+  const [pagecount, SetCount] = useState(current);
+  const [upperbd, setUpper] = useState(upperbound);
+  const [lowerbd, setLower] = useState(lowerbound);
 
-  const [selection, SetSelection] = useState(currentpage);
-  const [rowcount, setRowCount] = useState(size == totalrow ? "all" : size);
-  const [pagecount, SetCount] = useState();
-  const [upperbound, setUpper] = useState();
-  const [lowerbound, setLower] = useState();
-  const [isPrevBtnActive, setIsPrevActive] = useState('disabled');
-  const [isNextBtnActive, setIsNextActive] = useState('');
-  useEffect(()=>{
-    setUpper(5)
-    setLower(0)
-    SetCount(5)
-  },[props])
+  useEffect(() => {
+    SetCount(current);
+    setUpper(upperbound);
+    setLower(lowerbound)
+  }, [props])
+
   const setPrevAndNextBtnClass = (listid) => {
-    setIsNextActive('disabled');
-    setIsPrevActive('disabled');
-    if (totalPage === listid && totalPage > 1) {
-      setIsPrevActive('');
-    }
-    else if (listid === 1 && totalPage > 1) {
-      setIsNextActive('');
-    }
-    else if (totalPage > 1) {
-      setIsNextActive('');
-      setIsPrevActive('');
-    }
     props.LoadRecord({ size: size, page: listid })
   }
 
   const btnPrevClick = () => {
 
     if ((selection) % pagecount === 0) {
-      setUpper(upperbound - pagecount);
-      setLower(lowerbound - pagecount);
-      console.log(upperbound - pagecount)
+      let resultupper = (upperbd - pagecount)
+      resultupper = resultupper > 0 ? resultupper : 0;
+      let resultlower = (lowerbd - pagecount)
+      resultlower = resultlower > 0 ? resultlower : 0;
+      setUpper(resultupper);
+      setLower(resultlower);
+
     }
     let listid = selection - 1;
+    listid = listid > 0 ?listid :1;
     SetSelection(listid);
     setPrevAndNextBtnClass(listid);
   }
   const btnNextClick = () => {
-   
+
     if ((selection) % pagecount === 0) {
-      setUpper(upperbound + pagecount);
-      setLower(lowerbound + pagecount);
-      console.log(upperbound + pagecount)
+      setUpper(upperbd + pagecount);
+      setLower(lowerbd + pagecount);
+
     }
     let listid = selection + 1;
     SetSelection(listid);
@@ -66,12 +61,12 @@ const Pagination = props => {
   const onPageSelection = (e) => {
     let count = e.target.value;
     setRowCount(count)
-    count = count != "all" ? parseInt(count) : totalrow;
+    count = count !== "all" ? parseInt(count) : totalElements;
     props.LoadRecord({ size: count, page: selection })
 
   }
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalrow / size); i++) {
+  for (let i = 1; i <= Math.ceil(totalElements / size); i++) {
     pageNumbers.push(i);
   }
   return (
@@ -99,7 +94,7 @@ const Pagination = props => {
         <div
           className="prev"
           onClick={() => {
-            isPrevBtnActive !== 'disabled' && btnPrevClick()
+             btnPrevClick()
           }}
         >
           <img alt="" src={Images.prev} />
@@ -110,7 +105,7 @@ const Pagination = props => {
               return (
                 <div
                   key={`pageno${index}`}
-                  className={`pageno ${item == selection ? "selectedpageno":""}`}
+                  className={`pageno ${item === selection ? "selectedpageno" : ""}`}
                   onClick={() => {
                     SelectPage(item);
                   }}
@@ -119,11 +114,11 @@ const Pagination = props => {
                 </div>
               )
             }
-            else if ((item < upperbound + 1) && item > lowerbound) {
+            else if ((item < upperbd + 1) && item > lowerbd) {
               return (
                 <div
                   key={`pageno${index}`}
-                  className={`pageno ${item == selection ? "selectedpageno":""}`}
+                  className={`pageno ${item === selection ? "selectedpageno" : ""}`}
                   onClick={() => {
                     SelectPage(item);
                   }}
@@ -132,11 +127,12 @@ const Pagination = props => {
                 </div>
               )
             }
+            return ''
           })}
         <div
           className="next"
           onClick={() => {
-            isNextBtnActive !== 'disabled' && btnNextClick()
+             btnNextClick()
           }}
         >
           <img alt="" src={Images.next} />

@@ -1,52 +1,34 @@
 import React, { useState, Fragment } from "react";
 import "../Table.scss";
 import "./Row.scss"
-import DropDown from "../../DropDown";
 import Button from "../../Button/Button";
 import TimePicker from "../../TimePicker";
 import { Images } from "../../../assets/images";
 import { useDispatch } from 'react-redux';
-import { ActionSource } from '../../../reducers/configuration/actions'
 import query from '../../../assets/constant/query'
+import { fetch } from '../../../assets/constant'
+import { showHide, ActionUpdate} from '../../../utils'
+import { ActionSource } from '../../../reducers/configuration/actions'
 
 const SourceConfig = props => {
   const dispatch = useDispatch();
-  const [data, SetData] = useState(
-    props.dataSource || []
-  );
-
-  const Update = (formid ,id) => {
+  const { dataSource } = props;
+  const Update = async(formid ,id) => {
     const form = document.getElementById(formid)
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`,""): "unnamed"] = field.value; return obj }, {});
     delete data.unnamed;
-    dispatch(ActionSource(query.updateSource(data)))
+    var response = await fetch(query.updateSource(data))
+    ActionUpdate(response,data,"Update",()=>{dispatch(ActionSource(data))})
   }
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
-  const Delete = (data) => {
-    dispatch(ActionSource(query.deleteSource(data)))
+  const Delete = async(data) => {
+    var response = await fetch(query.deleteSource(data))
+    ActionUpdate(response,data,"Delete",()=>{dispatch(ActionSource(data))})
   }
   const showHideRow = (selectedrow, arrowimg, data) => {
-    var trd = document.getElementById(selectedrow);
-    var isopen =false;
-    if (trd.className.indexOf("hidden_row") > -1) {
-      trd.classList.remove("hidden_row");
-      isopen =true;
-    }
-    else {
-      trd.classList.add("hidden_row");
-      isopen =false;
-    }
-    
-    var imageid = document.getElementById(arrowimg);
-    if (imageid.className.indexOf("downarr") > -1) {
-      imageid.classList.remove("downarr");
-      imageid.classList.add("uparr");
-    } else {
-      imageid.classList.add("downarr");
-      imageid.classList.remove("uparr");
-    }
+    let isopen = showHide(selectedrow, arrowimg, data);
     if(isopen)
     for(var x of Object.keys(data))
     {
@@ -57,18 +39,15 @@ const SourceConfig = props => {
       catch(e)
       {}
     }
-    
   };
 
   const Row = props => {
     const { source, description, alias, availabilitySchedule, numPrevDays, isactive, type, dashTriggerId } = props;
     return (
-      <tr
-        onClick={() => {
+      <tr >
+        <td className="rowarrow" onClick={() => {
           showHideRow(`hidden_row${props.id}`, `downimage${props.id}`, props);
-        }}
-      >
-        <td className="rowarrow">
+        }}>
           <img alt=""
             src={Images.downarrow}
             className="downarr"
@@ -85,7 +64,9 @@ const SourceConfig = props => {
         <td>{numPrevDays}</td>
         <td>{dashTriggerId}</td>
         <td>{availabilitySchedule}</td>
-        <td>
+        <td onClick={() => {
+          showHideRow(`hidden_row${props.id}`, `downimage${props.id}`, props);
+        }}>
           <img alt="" src={Images.RowEdit} className="editimg" />
           <span>Edit</span>
         </td>
@@ -143,8 +124,8 @@ const SourceConfig = props => {
   };
   return (
     <tbody>
-    {data && data.length > 0?
-      data.map((item, index) => {
+    {dataSource && dataSource.length > 0?
+      dataSource.map((item, index) => {
         return (
           <Fragment key={`SourceConfig-${index}`}>
             <Row {...item} id={index+1} />

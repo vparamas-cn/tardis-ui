@@ -1,11 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Images } from "../../assets/images";
 import { TitleContainer, FolderWrapper } from "../../components";
 import "./Configuration.scss";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { SourceType } from '../../reducers/configuration/actions'
 
-const Configuration = () => {
+const Configuration = ({SourceType}) => {
   let history = useHistory();
+
+  useEffect(()=>{
+    SourceType()
+  })
+
   const onPagenavigation = (page) =>{
     if(page === "Source")
     {
@@ -20,6 +27,7 @@ const Configuration = () => {
         history.push("/slack-integration");
     }
   }  
+
   return (
     <div className="Configuration-page page">
       <TitleContainer name="Configurations" img={Images.Settings} onSearch={(text)=>{
@@ -58,4 +66,6 @@ const Configuration = () => {
   );
 };
 
-export default Configuration;
+export default connect(
+  null, { SourceType }
+)(Configuration);

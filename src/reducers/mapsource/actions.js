@@ -1,20 +1,27 @@
-export const MAP_LIST_REQUEST= "MAP_LIST_REQUEST";
-export const MAP_LIST_SUCCESS= "MAP_LIST_SUCCESS";
-export const MAP_LIST_FAILURE= "MAP_LIST_FAILURE";
-export const ACTION_SOURCE_REQUEST= "ACTION_SOURCE_REQUEST";
-export const ACTION_SOURCE_SUCCESS= "ACTION_SOURCE_SUCCESS";
-export const ACTION_SOURCE_FAILURE= "ACTION_SOURCE_FAILURE";
+export const MAP_LIST_REQUEST = "MAP_LIST_REQUEST";
+export const MAP_LIST_SUCCESS = "MAP_LIST_SUCCESS";
+export const MAP_LIST_FAILURE = "MAP_LIST_FAILURE";
+export const ACTION_SOURCEMAP_ADD = "ACTION_SOURCEMAP_ADD";
+export const ACTION_SOURCEMAP_UPDATE = "ACTION_SOURCEMAP_UPDATE";
+export const ACTION_SOURCEMAP_DELETE = "ACTION_SOURCEMAP_DELETE";
+export const FILTER_MAP_PAGINATION = "FILTER_MAP_PAGINATION";
 
-export const SourceMapRecords = (data) =>{
+export const SourceMapRecords = () => {
     return {
-        type: MAP_LIST_REQUEST,
+        type: MAP_LIST_REQUEST
+    }
+}
+
+export const ActionSource = (data) => {
+    return {
+        type: data.type == "add" ? ACTION_SOURCEMAP_ADD : data.type == "update" ? ACTION_SOURCEMAP_UPDATE : ACTION_SOURCEMAP_DELETE,
         payroll: data
     }
 }
 
-export const ActionSource = (data) =>{
+export const UpdateFilterPagination = (data) => {
     return {
-        type: ACTION_SOURCE_REQUEST,
+        type: FILTER_MAP_PAGINATION,
         payroll: data
     }
 }

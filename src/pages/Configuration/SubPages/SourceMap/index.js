@@ -5,17 +5,33 @@ import { Table, TitleContainer } from "../../../../components";
 import { Images } from "../../../../assets/images";
 import { useHistory } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
-import { SourceMapRecords } from "../../../../reducers/mapSource/actions"
+import { SourceMapRecords, UpdateFilterPagination } from "../../../../reducers/mapSource/actions"
+import { paginationFilter } from '../../../../utils'
 
-const SourceMap = () => {
+const SourceMap = ({SourceMapRecords, UpdateFilterPagination}) => {
   let history = useHistory();
-  const data = useSelector(state => state.sourcemap);
+  const data = useSelector(state => state.map);
+
   useEffect(() => {
-    SourceMapRecords({ page: 1, count: 5 });
+    SourceMapRecords();
+    if(data.data.length> 0){
+      let result = paginationFilter(data)
+      result.page = 1;
+      result.filter={};
+      UpdateFilterPagination(result)
+    }
   }, [SourceMapRecords])
+
   const onBackHandler = page => {
     history.push("/Configurations");
   };
+
+  const LoadRecord = (filterdata) =>{
+    filterdata = {...data,...filterdata}
+    let result = paginationFilter(filterdata)
+    UpdateFilterPagination(result)
+  }
+
   return (
     <div className="SourceMappage page">
       <TitleContainer
@@ -25,13 +41,13 @@ const SourceMap = () => {
           onBackHandler();
         }}
       />
-      <FilterContainer />
-      <Table name="SourceMapConfig" dataSource={data} LoadRecord={(data)=>SourceMapRecords(data)}/>
+      <FilterContainer LoadRecord={(data)=>LoadRecord(data)}/>
+      <Table name="SourceMapConfig" dataSource={data} LoadRecord={(data)=>LoadRecord(data)}/>
     </div>
   );
 };
 
 export default connect(
-  null, { SourceMapRecords }
+  null, { SourceMapRecords,UpdateFilterPagination }
 )(SourceMap);
 

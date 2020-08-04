@@ -1,18 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useState , useEffect } from "react";
 import "./Source.scss";
 import FilterContainer from "./Components/FilterContainer";
 import { Table, TitleContainer } from "../../../../components";
 import { Images } from "../../../../assets/images";
 import { useHistory } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
-import { SourceRecords } from "../../../../reducers/configuration/actions"
-import query from '../../../../assets/constant/query'
+import { SourceRecords, UpdateFilterPagination } from "../../../../reducers/configuration/actions"
+import { paginationFilter } from '../../../../utils'
 
-const Source = ({ SourceRecords }) => {
+const Source = ({ SourceRecords, UpdateFilterPagination }) => {
   const data = useSelector(state => state.source);
   useEffect(() => {
-    SourceRecords(query.source(data));
-  }, [SourceRecords])
+    SourceRecords();
+    if(data.data.length> 0){
+      let result = paginationFilter(data)
+      result.page = 1;
+      result.filter={};
+      UpdateFilterPagination(result)
+    }
+  }, [])
+
+  const LoadRecord = (filterdata) =>{
+    
+      filterdata = {...data,...filterdata}
+      let result = paginationFilter(filterdata)
+      UpdateFilterPagination(result)
+    
+  }
 
   let history = useHistory();
   const onBackHandler = page => {
@@ -27,13 +41,13 @@ const Source = ({ SourceRecords }) => {
           onBackHandler();
         }}
       />
-      <FilterContainer />
-      <Table name="SourceConfig" dataSource={data} LoadRecord={(data)=>SourceRecords(query.source(data))}/>
+      <FilterContainer LoadRecord={(data)=>LoadRecord(data)}/>
+      <Table name="SourceConfig" dataSource={data} LoadRecord={(data)=>LoadRecord(data)}/>
     </div>
   );
 };
 
 
 export default connect(
-  null, { SourceRecords }
+  null, { SourceRecords, UpdateFilterPagination }
 )(Source);

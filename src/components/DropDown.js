@@ -5,9 +5,11 @@ import { Images } from "../assets/images";
 import useOnClickOutside from "./OutClickhandler";
 import Checkbox from "./Checkbox"
 import RadioBtn from "./RadioBtn"
+import { Multiselect } from 'multiselect-react-dropdown';
 
 const DropDown = props => {
   const ref = useRef();
+  const multiselectRef = useRef();
   const [selectedoption, setOption] = useState("");
   const [isOpen, setOpen] = useState(false);
   const [listoption, setList] = useState([]);
@@ -20,6 +22,14 @@ const DropDown = props => {
       if (props.label) {
         setOption(props.label);
       }
+      if(props.value && !props.radiobtn)
+      {
+        setOption(props.value);
+      }
+      if(props.reset)
+      {
+        multiselectRef.current.resetSelectedValues();
+      }
     },
     [props]
   );
@@ -30,21 +40,16 @@ const DropDown = props => {
     if (e.target.className.indexOf("opendropdown") > -1 && !props.disabled) {
       setOpen(!isOpen);
       setList(props.options);
+      props.onClick && props.onClick()
     }
   };
+ 
   const onSelectedItem = (e, item) => {
     setOption(item);
     setOpen(false);
+    props.onChange && props.onChange(item)
   };
-  const onSearch = text => {
-    let filterdata = props.options;
-    if (text && text.length > 0 && text.trim() !== "") {
-      filterdata = props.options.filter(
-        item => item.toLowerCase().indexOf(text.toLowerCase()) > -1
-      );
-    }
-    setList(filterdata);
-  };
+ 
   return props.profilename ? (
     <div
       id={props.id}
@@ -99,25 +104,24 @@ const DropDown = props => {
             <img alt="" className="opendropdown" src={props.imguri} />
           )}
         <input type="hidden" name={props.id} value={selectedoption} />
-        <ul className="dropdown dontclose">
-          {props.search ? (
-            <li className="searchinput dontclose" id="searchinput">
-              <InputButton
-                placeholder={"Search"}
-                id={`filtersearch-${props.id}`}
-                btnclass={"searchbtn dontclose"}
-                ButtonClick={text => {
-                  onSearch(text);
-                }}
-                btnimg={Images.Search}
-              />
-            </li>
-          ) : null}
-          {props.radiobtn ?
+        <ul className={`dropdown dontclose ${props.multi?"":"normaldd"}`}>
+          {props.multi ? (
+           <Multiselect
+            options={listoption} 
+            placeholder="Search"
+            showCheckbox ={props.search}
+            singleSelect= {!props.search}
+            onSelect={props.onFilterselect}
+            onRemove={props.onFilterselect}
+            displayValue={props.displaynode} 
+            ref={multiselectRef}
+            />)
+          :
+          props.radiobtn ?
             <li
               className={`dontclose radiofilter`}
             >
-              <RadioBtn name="isactive" options={props.options} />
+              <RadioBtn name="isactive" options={props.options} value={props.value} onChange={(e)=>props.onChange(e)} />
             </li>
 
             : 
@@ -127,17 +131,19 @@ const DropDown = props => {
                 return (
                   <li
                     key={"checkbox-" + index}
-                    className={`dontclose`}
+                    className={`dontclose li`}
                   >
                     <Checkbox name={item} label={item} class="dontclose" />
                   </li>
                 )
               }
               else {
+                if(props.displaynode)
+                item = item[props.displaynode]
                 return (
                   <li
                     key={"dd" + index}
-                    className={`dontclose ${selectedoption === item ? "foucs" : ""}`}
+                    className={`dontclose li ${selectedoption === item ? "foucs" : ""}`}
                     onClick={e => {
                       onSelectedItem(e, item);
                     }}

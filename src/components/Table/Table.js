@@ -10,7 +10,7 @@ import AdminRow from "./TableRow/AdminRow"
 import Loader from '../Loader'
 
 const Table = props => {
-  const [header, SetHeader] = useState(TableHeader[props.name]);
+  const header  = TableHeader[props.name];
   if(props.dataSource && props.dataSource.isLoading)
   return <Loader />
   return (
@@ -30,9 +30,9 @@ const Table = props => {
           props.name === "Maintennace" ? (
             <MaintennaceRow />
           ) : props.name === "SourceConfig" ? (
-            <SourceConfig dataSource={props.dataSource && props.dataSource.data} />
+            <SourceConfig dataSource={props.dataSource && props.dataSource.filterData} />
           ) : props.name === "SourceMapConfig" ? (
-            <SourceMapConfig dataSource={props.dataSource && props.dataSource.data} />
+            <SourceMapConfig dataSource={props.dataSource && props.dataSource.filterData} />
           ) : props.name === "SlackIntegration" ? (
             <SlackRow />
           ) : props.name === "Admin" ? (
@@ -40,7 +40,7 @@ const Table = props => {
           ) :null }
         </table>
       </section>
-      <Pagination dataSource={props.dataSource || {count:5,totalPage:1, totalrow:10, currentpage:1} } LoadRecord={(data)=>props.LoadRecord(data)} />
+      <Pagination dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)} />
     </Fragment>
   );
 };

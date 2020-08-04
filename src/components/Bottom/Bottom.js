@@ -9,6 +9,7 @@ const Bottom = () => {
   let history = useHistory();
   const [menu, SetMenu] = useState(menulist);
   const [selection, SetSelection] = useState("");
+
   const Selection = e => {
     menu.forEach(function(a) {
       if (a.name === e.name) a.selection = true;
@@ -19,6 +20,7 @@ const Bottom = () => {
     if(e.path)
     history.push(e.path);
   };
+
   useEffect(()=>{
      menu.forEach(function(a) {
       if (a.name === pagename()) a.selection = true;
@@ -26,7 +28,8 @@ const Bottom = () => {
     });
     SetMenu(menu);
     SetSelection(pagename());
-  })  
+  },[menu])  
+  
   return (
     <section className="bottom-container">
       <div className="sidemenu">

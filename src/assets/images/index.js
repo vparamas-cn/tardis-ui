@@ -34,5 +34,6 @@ export const Images = {
   supportform: require("./supportform.svg"),
   slack: require("./slack.svg"),
   folderarrow: require("./folderarrow.svg"),
-  map: require("./map.svg")
+  map: require("./map.svg"),
+  reset: require("./Reset.png")
 };

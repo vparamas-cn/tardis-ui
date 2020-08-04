@@ -9,6 +9,18 @@ const RadioGroup = props => {
   useEffect(()=>{
     setIndex(0)
     setValue(props.options[0])
+    if(props.value)
+    {
+      let index=0;
+      for(let x in props.options){
+        if(props.value === props.options[x])
+        {
+          index=x;
+        }
+      }
+      setIndex(parseInt(index));
+      setValue(props.value);
+    }
   },[props])
 
   const toggleRadioBtn = index => {
@@ -16,6 +28,7 @@ const RadioGroup = props => {
     setIndex(index);
     setValue(options[index]);
     setOption(options);
+    props.onChange && props.onChange(options[index])
     }
   };
 

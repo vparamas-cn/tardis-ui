@@ -1,91 +1,91 @@
 import React, { useState, Fragment } from "react";
+import Modal from "react-modal";
 import "../Table.scss";
 import "./Row.scss";
 import Button from "../../Button/Button";
 import FieldHolder from "../../InputText/FieldHolder"
 import { Images } from "../../../assets/images";
 import { useDispatch } from 'react-redux';
-import { ActionSource} from '../../../reducers/mapSource/actions'
+import { ActionSource } from '../../../reducers/mapSource/actions'
+import { customStyles, fetch } from '../../../assets/constant'
+import { showHide, ActionUpdate } from '../../../utils'
 import query from '../../../assets/constant/query'
+import AddSource from '../../../pages/Configuration/SubPages/Source/Components/AddSource'
+
+Modal.setAppElement('#root')
 
 const SourceConfig = props => {
   const dispatch = useDispatch();
-  const [data, SetData] = useState(
-    props.dataSource || []
-  );
-  const Update = (formid, id) => {
+  const [modalIsOpen, SetModal] = useState(false);
+  const [modaldata, SetData] = useState();
+
+  const closeModal = () => {
+    SetModal(false);
+  };
+  const openModal = () => {
+    SetModal(true);
+  };
+
+  const { dataSource } = props;
+
+  const Update = async (formid, id) => {
     const form = document.getElementById(formid)
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`, "") : "unnamed"] = field.value; return obj }, {});
     delete data.unnamed;
-    if(data.source !="" && data.childSource !="")
-    dispatch(ActionSource(query.updateSourceMap(data)))
+    if (data.source != "" && data.childSource != "")
+      var response = await fetch(query.updateSourceMap(data))
+    ActionUpdate(response, data, "Update", () => { dispatch(ActionSource(data)) })
   }
+
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
-  const Delete = (data) => {
-    dispatch(ActionSource(query.deleteSourceMap(data)))
+
+  const Delete = async (data) => {
+    var response = await fetch(query.deleteSourceMap(data))
+    ActionUpdate(response, data, "Delete", () => { dispatch(ActionSource(data)) })
   }
+
+  const onOpenSource = (data) => {
+    openModal();
+    SetData(data);
+  }
+
   const showHideRow = (selectedrow, arrowimg, data) => {
-    var trd = document.getElementById(selectedrow);
-    var isopen =false;
-    if (trd.className.indexOf("hidden_row") > -1) {
-      trd.classList.remove("hidden_row");
-      isopen =true;
-    }
-    else {
-      trd.classList.add("hidden_row");
-      isopen =false;
-    }
-    var imageid = document.getElementById(arrowimg);
-    if (imageid.className.indexOf("downarr") > -1) {
-      imageid.classList.remove("downarr");
-      imageid.classList.add("uparr");
-    } else {
-      imageid.classList.add("downarr");
-      imageid.classList.remove("uparr");
-    }
-    if(isopen)
-    for(var x of Object.keys(data))
-    {
-      try{
-      let name = `${x}-${data.id}`;
-      document.getElementById(name).value = data[x];
+    let isopen = showHide(selectedrow, arrowimg, data);
+    if (isopen)
+      for (var x of Object.keys(data)) {
+        try {
+          let name = `${x}-${data.id}`;
+          document.getElementById(name).value = typeof data[x] == "object" ? data[x].source : data[x];
+        }
+        catch (e) { }
       }
-      catch(e)
-      {}
-    }
   };
 
   const Row = props => {
     const { source, childSource, isoptional } = props;
     return (
-      <tr
-        onClick={() => {
-          showHideRow(`hidden_row${props.id}`, `downimage${props.id}`,props);
-        }}
-      >
-        <td className="rowarrow">
+      <tr>
+        <td className="rowarrow" onClick={() => {
+              showHideRow(`hidden_row${props.id}`, `downimage${props.id}`, props);
+            }}>
           <img alt=""
             src={Images.downarrow}
             className="downarr"
             id={`downimage${props.id}`}
           />
         </td>
-        <td>{source}</td>
-        <td>{childSource}</td>
+        <td className="foucscell" onClick={()=>onOpenSource(source)}>{source.source}</td>
+        <td className="foucscell" onClick={()=>onOpenSource(childSource)}>{childSource.source}</td>
         <td>{isoptional ? "True" : "False"}</td>
 
         <td>
           <div className="action-td-container">
-            <div className="edit-action"><img alt="" src={Images.RowEdit} className="editimg" />
+            <div className="edit-action" onClick={() => {
+              showHideRow(`hidden_row${props.id}`, `downimage${props.id}`, props);
+            }}><img alt="" src={Images.RowEdit} className="editimg" />
               <span>Edit</span></div>
-            <Button
-              class="deletebtn"
-              name="Delete"
-              leftimg={Images.Delete}
-              onClick={() => { Delete(props) }}
-            />
           </div>
         </td>
       </tr>
@@ -111,6 +111,7 @@ const SourceConfig = props => {
                           id={`source-${props.id}`}
                           name={`source-${props.id}`}
                           className="sourceinput120"
+                          disabled={true}
                         />
                       </FieldHolder>
                       <FieldHolder lable="Child Source">
@@ -119,6 +120,7 @@ const SourceConfig = props => {
                           id={`childSource-${props.id}`}
                           name={`childSource-${props.id}`}
                           className="sourceinput120"
+                          disabled={true}
                         />
                       </FieldHolder>
                       <FieldHolder lable="Isoptional">
@@ -148,17 +150,34 @@ const SourceConfig = props => {
     );
   };
   return (
-    <tbody>
-      {data &&
-        data.map((item, index) => {
-          return (
-            <Fragment key={`SourceMapConfig-${index}`}>
-              <Row {...item} id={index+1} />
-              <RowDetails {...item} id={index+1}/>
-            </Fragment>
-          );
-        })}
-    </tbody>
+    <Fragment>
+      <tbody>
+        {dataSource && dataSource.length > 0 ?
+          dataSource.map((item, index) => {
+            return (
+              <Fragment key={`SourceMapConfig-${index}`}>
+                <Row {...item} id={index + 1} />
+                <RowDetails {...item} id={index + 1} />
+              </Fragment>
+            );
+          }) :
+          <tr><td colSpan="10" className="norecord">No Data found!!</td></tr>
+        }
+      </tbody>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Add Source"
+      >
+          <AddSource
+            closepop={() => {
+              closeModal();
+            }}
+            data={modaldata}
+          />
+      </Modal>
+  </Fragment>
   );
 };
 
