@@ -4,7 +4,7 @@ import { Images } from "../../../assets/images";
 
 const Pagination = props => {
 
-  const { size, totalPage, totalElements, page, pageBound } = props.dataSource;
+  const { size, totalElements, page, pageBound } = props.dataSource;
   const { current,
     lowerbound,
     upperbound } = pageBound;
@@ -18,7 +18,7 @@ const Pagination = props => {
     SetCount(current);
     setUpper(upperbound);
     setLower(lowerbound)
-  }, [props])
+  }, [current,upperbound,lowerbound])
 
   const setPrevAndNextBtnClass = (listid) => {
     props.LoadRecord({ size: size, page: listid })
@@ -88,7 +88,7 @@ const Pagination = props => {
             <option value={"all"}>All</option>
           </select>
         </label>
-        <span>entries</span>
+      <span>of {totalElements} entries</span>
       </div>
       <div className="rightpaginiation">
         <div

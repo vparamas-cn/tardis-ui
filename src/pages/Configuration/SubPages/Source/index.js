@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Source.scss";
 import FilterContainer from "./Components/FilterContainer";
 import { Table, TitleContainer } from "../../../../components";
@@ -10,6 +10,7 @@ import { paginationFilter } from '../../../../utils'
 
 const Source = ({ SourceRecords, UpdateFilterPagination }) => {
   const data = useSelector(state => state.source);
+
   useEffect(() => {
     SourceRecords();
     if(data.data.length> 0){
@@ -18,20 +19,19 @@ const Source = ({ SourceRecords, UpdateFilterPagination }) => {
       result.filter={};
       UpdateFilterPagination(result)
     }
-  }, [])
+  }, [SourceRecords,UpdateFilterPagination,data])
 
   const LoadRecord = (filterdata) =>{
-    
       filterdata = {...data,...filterdata}
       let result = paginationFilter(filterdata)
       UpdateFilterPagination(result)
-    
   }
 
   let history = useHistory();
   const onBackHandler = page => {
     history.push("/Configurations");
   };
+
   return (
     <div className="Sourcepage page">
       <TitleContainer

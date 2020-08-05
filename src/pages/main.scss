@@ -1,5 +1,6 @@
 $color-bule: #3976eb;
 $color-black: #172b4d;
+$color-white: #f8f8fb;
 .tardis-container {
   min-width: 1024px;
 }
@@ -270,6 +271,7 @@ select:focus{
 }
 .reset{
   cursor: pointer;
+  margin-right: 10px;
   img{
     width: 24px;
     cursor: pointer;
@@ -291,8 +293,14 @@ select:focus{
   position: absolute;
   z-index: 1;
   bottom: 100%;
+  font-size: 12px;
+  font-family: "Roboto-Regular";
 }
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+input:disabled{
+  background-color: $color-white !important;
 }

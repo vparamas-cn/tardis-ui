@@ -17,7 +17,7 @@ export const SourceRecords = (data) => {
 
 export const ActionSource = (data) => {
     return {
-        type: data.type == "add" ? ACTION_SOURCE_ADD : data.type == "update" ? ACTION_SOURCE_UPDATE : ACTION_SOURCE_DELETE,
+        type: data.type === "add" ? ACTION_SOURCE_ADD : data.type === "update" ? ACTION_SOURCE_UPDATE : ACTION_SOURCE_DELETE,
         payroll: data
     }
 }

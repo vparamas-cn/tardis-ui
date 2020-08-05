@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Bottom.scss";
 import Menu from "./Menu";
-import { menulist, pagename } from "../../assets/constant";
+import { menulist } from "../../assets/constant";
 import { useHistory } from "react-router-dom";
-
+import { pagename } from "../../utils"
 
 const Bottom = () => {
   let history = useHistory();

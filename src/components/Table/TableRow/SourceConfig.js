@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import "../Table.scss";
 import "./Row.scss"
 import Button from "../../Button/Button";
@@ -6,8 +6,7 @@ import TimePicker from "../../TimePicker";
 import { Images } from "../../../assets/images";
 import { useDispatch } from 'react-redux';
 import query from '../../../assets/constant/query'
-import { fetch } from '../../../assets/constant'
-import { showHide, ActionUpdate} from '../../../utils'
+import { showHide, ActionUpdate, fetch} from '../../../utils'
 import { ActionSource } from '../../../reducers/configuration/actions'
 
 const SourceConfig = props => {
@@ -18,14 +17,14 @@ const SourceConfig = props => {
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`,""): "unnamed"] = field.value; return obj }, {});
     delete data.unnamed;
     var response = await fetch(query.updateSource(data))
-    ActionUpdate(response,data,"Update",()=>{dispatch(ActionSource(data))})
+    ActionUpdate(response,data,"Update",(e)=>{dispatch(ActionSource(e))})
   }
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
   const Delete = async(data) => {
     var response = await fetch(query.deleteSource(data))
-    ActionUpdate(response,data,"Delete",()=>{dispatch(ActionSource(data))})
+    ActionUpdate(response,data,"Delete",(e)=>{dispatch(ActionSource(e))})
   }
   const showHideRow = (selectedrow, arrowimg, data) => {
     let isopen = showHide(selectedrow, arrowimg, data);

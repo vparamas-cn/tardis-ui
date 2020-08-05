@@ -7,8 +7,8 @@ import FieldHolder from "../../InputText/FieldHolder"
 import { Images } from "../../../assets/images";
 import { useDispatch } from 'react-redux';
 import { ActionSource } from '../../../reducers/mapSource/actions'
-import { customStyles, fetch } from '../../../assets/constant'
-import { showHide, ActionUpdate } from '../../../utils'
+import { customStyles } from '../../../assets/constant'
+import { showHide, ActionUpdate, fetch } from '../../../utils'
 import query from '../../../assets/constant/query'
 import AddSource from '../../../pages/Configuration/SubPages/Source/Components/AddSource'
 
@@ -32,9 +32,9 @@ const SourceConfig = props => {
     const form = document.getElementById(formid)
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`, "") : "unnamed"] = field.value; return obj }, {});
     delete data.unnamed;
-    if (data.source != "" && data.childSource != "")
-      var response = await fetch(query.updateSourceMap(data))
-    ActionUpdate(response, data, "Update", () => { dispatch(ActionSource(data)) })
+    if (data.source !== "" && data.childSource !== "")
+    var response = await fetch(query.updateSourceMap(data))
+    ActionUpdate(response, data, "Update", (e) => { dispatch(ActionSource(e)) })
   }
 
   const ClearForm = (formid) => {
@@ -42,8 +42,12 @@ const SourceConfig = props => {
   }
 
   const Delete = async (data) => {
-    var response = await fetch(query.deleteSourceMap(data))
-    ActionUpdate(response, data, "Delete", () => { dispatch(ActionSource(data)) })
+    let request ={
+      source:data.source.source,
+      childSource:data.childSource.source
+    }
+    var response = await fetch(query.deleteSourceMap(request))
+    ActionUpdate(response, data, "Delete", (e) => { dispatch(ActionSource(e)) })
   }
 
   const onOpenSource = (data) => {

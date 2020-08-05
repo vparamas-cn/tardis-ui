@@ -22,7 +22,7 @@ const TitleContainer = props => {
     }
   };
   const SearchFilter = (text) => {
-    if(props.name=="Source Configuration")
+    if(props.name === "Source Configuration")
     {
       dispatch(SourceRecords({search:text}))
     }

@@ -1,4 +1,4 @@
-import { SOURCE_LIST_REQUEST, SOURCE_LIST_SUCCESS, SOURCE_LIST_FAILURE, ACTION_SOURCE_ADD, ACTION_SOURCE_UPDATE, ACTION_SOURCE_DELETE, FILTER_SOURCE_PAGINATION, SOURCE_TYPE_REQUEST, SOURCE_TYPE_SUCCESS } from './actions'
+import { SOURCE_LIST_REQUEST, SOURCE_LIST_SUCCESS, SOURCE_LIST_FAILURE, ACTION_SOURCE_ADD, ACTION_SOURCE_UPDATE, ACTION_SOURCE_DELETE, FILTER_SOURCE_PAGINATION, SOURCE_TYPE_SUCCESS } from './actions'
 
 const initialState = {
     isLoading: false,
@@ -49,12 +49,13 @@ const sourceReducer = (state = initialState, action) => {
                 ...state,
                 data: state.data.concat(action.payroll),
                 filterData: state.filterData.concat(action.payroll),
+                totalElements: state.totalElements + 1
             }
         }
         case ACTION_SOURCE_UPDATE: {
-            var data = action.payroll;
-            var DataUpdate = updateData(state.data, data);
-            var FilterUpdate = updateData(state.filterData, data);
+            let payrolldata = action.payroll;
+            var DataUpdate = updateData(state.data, payrolldata);
+            var FilterUpdate = updateData(state.filterData, payrolldata);
             return {
                 ...state,
                 data: DataUpdate,
@@ -62,11 +63,12 @@ const sourceReducer = (state = initialState, action) => {
             }
         }
         case ACTION_SOURCE_DELETE: {
-            var data = action.payroll;
+            let payrolldata = action.payroll;
             return {
                 ...state,
-                data: state.data.filter((e, i) => e.source !== data.source),
-                filterData: state.filterData.filter((e, i) => e.source !== data.source),
+                data: state.data.filter((e, i) => e.source !== payrolldata.source),
+                filterData: state.filterData.filter((e, i) => e.source !== payrolldata.source),
+                totalElements: state.totalElements - 1
             }
         }
         case FILTER_SOURCE_PAGINATION: {

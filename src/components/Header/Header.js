@@ -37,8 +37,7 @@ const Header = () => {
         <DropDown
           id={"timedd"}
           class={"rttimezone centeralign"}
-          disabled={true}
-          options={["(UTC.08.00) Pacific Time (US & CANADA)"]}
+          label="(UTC.08.00) Pacific Time (US & CANADA)"
         />
         <div className="rtnotify">
           <img alt="" src={Images.Notification} />
@@ -51,9 +50,7 @@ const Header = () => {
           <DropDown
             id={"profiledd"}
             class={"rtholder centeralign"}
-            profilename={"George"}
-            disabled={true}
-            options={["Logout"]}
+            label={"George"}
           />
         </div>
       </div>

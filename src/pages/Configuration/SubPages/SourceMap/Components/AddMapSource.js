@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Images } from "../../../../../assets/images";
 import {
   Button,
@@ -6,23 +6,38 @@ import {
   SelectSearch
 } from "../../../../../components";
 import "../SourceMap.scss";
-import { useDispatch } from 'react-redux';
-import { ActionSource } from '../../../../../reducers/mapSource/actions'
-import query from '../../../../../assets/constant/query'
-const options = [
-  { name: "String_1_Source", value: "1" },
-  { name: "String_1_Source", value: "2" }
-];
-const disabled=false;
+
+
 const AddMapSource = props => {
-  const dispatch = useDispatch();
+
+  const [sourcelist, setSource] = useState([]);
+  const [childsourcelist, setChild] = useState([]);
+
   const submit = () =>{
     const form = document.getElementById("addmapsource")
-    var data = Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
-    data.isoptional = (data.isoptional == "True"); 
-    console.log(data);
-    dispatch(ActionSource(query.addSourceMap(data)))
+    var data = Object.values(form).reduce((obj,field) => { obj[field.name ? field.name: "unnamed"] = field.value; return obj }, {});
+    delete data.unnamed;
+    data.isoptional = (data.isoptional === "True"); 
+    props.onSubmit(data)
   }
+
+  useEffect(() => {
+    if(props.source && props.childSource)
+    {
+      let result=[];
+      props.source.forEach((e)=>{
+        result.push({name:e.source,value:e.source})
+      })
+      setSource(result);
+      result=[];
+      props.childSource.forEach((e)=>{
+        result.push({name:e.source,value:e.source})
+      })
+      setChild(result);
+
+    }
+  }, [props])
+
   return (
     <div className="modal-main">
       <div className="modal-title">
@@ -42,19 +57,19 @@ const AddMapSource = props => {
         </div>
       </div>
       <div className="modal-content">
-        <form id="addmapsource" className="addform-container">
+        <form id="addmapsource" className="addform-container" autoComplete="off" >
           <div className="controls">
             <div className="source1">
               <div>
                 <span>SOURCES</span>
                 <SelectSearch
-                  options={options}
-                  value="1"
-                  disabled={disabled} name="sources"
+                  options={sourcelist}
+                  value=""
+                  disabled={false} name="source"
                 />
               </div>
               <div className="isoptional-container">
-                <span>ISOPTIONAL</span> <RadioBtn name="isoptional" disabled={disabled} options={["True", "False"]} />
+                <span>ISOPTIONAL</span> <RadioBtn name="isoptional" disabled={false} options={["True", "False"]} />
               </div>
            
             </div>
@@ -62,16 +77,16 @@ const AddMapSource = props => {
             <div>
                 <span>CHILD SOURCES</span>
                 <SelectSearch
-                  options={options}
-                  value="1"
-                  disabled={disabled} name="childSource"
+                  options={childsourcelist}
+                  value=""
+                  disabled={false} name="childSource"
                 />
               </div>
             </div>
           </div>
         </form>
       </div>
-      <Button class="modaladdbtn" name="Add Map Source" onClick={() => {submit()}} />
+      <Button class="modaladdbtn" name="Add Map Source" loading={props.isLoading} onClick={() => {submit()}} />
     </div>
   );
 };

@@ -48,12 +48,13 @@ const sourceReducer = (state = initialState, action) => {
                 ...state,
                 data: state.data.concat(action.payroll),
                 filterData: state.filterData.concat(action.payroll),
+                totalElements: state.totalElements + 1
             }
         }
         case ACTION_SOURCEMAP_UPDATE: {
-            var data = action.payroll;
-            var DataUpdate = updateData(state.data, data);
-            var FilterUpdate = updateData(state.filterData, data);
+            let payroll = action.payroll;
+            var DataUpdate = updateData(state.data, payroll);
+            var FilterUpdate = updateData(state.filterData, payroll);
             return {
                 ...state,
                 data: DataUpdate,
@@ -61,11 +62,12 @@ const sourceReducer = (state = initialState, action) => {
             }
         }
         case ACTION_SOURCEMAP_DELETE: {
-            var data = action.payroll;
+            let payroll = action.payroll;
             return {
                 ...state,
-                data: state.data.filter((e, i) => e.source.source !== data.source.source && e.childSource.source !== data.childSource.source),
-                filterData: state.filterData.filter((e, i) =>e.source.source !== data.source.source && e.childSource.source !== data.childSource.source),
+                data: state.data.filter((e, i) => e.source.source !== payroll.source.source && e.childSource.source !== payroll.childSource.source),
+                filterData: state.filterData.filter((e, i) =>e.source.source !== payroll.source.source && e.childSource.source !== payroll.childSource.source),
+                totalElements: state.totalElements - 1
             }
         }
         case FILTER_MAP_PAGINATION: {

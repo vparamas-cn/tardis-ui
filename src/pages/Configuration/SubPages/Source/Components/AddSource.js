@@ -7,10 +7,11 @@ import {
   TimePicker
 } from "../../../../../components";
 import "../Source.scss";
+import { sourcetype } from '../../../../../assets/constant'
 
 const AddModalSource = props => {
   const [disabled , setDisabled] =useState(false)
-  
+  const [types , setType] =useState(sourcetype)
   const submit = () =>{
     const form = document.getElementById("addsource")
     var data = Object.values(form).reduce((obj,field) => { obj[field.name ? field.name: "unnamed"] = field.value; return obj }, {});
@@ -30,7 +31,15 @@ const AddModalSource = props => {
         catch (e) { }
       }
     }
-  },[props.data])
+    if(props.Type)
+    {
+      let result = [];
+      props.Type.forEach((e)=>{
+        result.push(e.type)
+      })
+      setType(result);
+    }
+  },[props])
 
   return (
     <div className="modal-main">
@@ -51,16 +60,21 @@ const AddModalSource = props => {
         </div>
       </div>
       <div className="modal-content">
-        <form id="addsource" autocomplete="off">
+        <form id="addsource" autoComplete="off">
           <div className="controls">
             <div className="source1">
               <div>
                 <span>SOURCE</span>
                 <input type="text" name={"source"} id= {"source"}autocomplete="off" disabled={disabled} className={"sourceadddropdown"} />
               </div>
-              <div className="isactive">
+              {!props.data?<div className="isactive">
                 <span>IsActive</span> <RadioBtn name="isactive" disabled={disabled} options={["True", "False"]} />
+              </div>: 
+              <div className="activecnt">
+                <span>IsActive</span>
+                <input type="text" disabled value={props.data.isactive? "Active": "InActive"} className={"sourceadddropdown"} />
               </div>
+              }
               <div className="paddingdiv">
                 <span>TYPE</span>
                 <DropDown
@@ -69,7 +83,7 @@ const AddModalSource = props => {
                   class={"sourceadddropdown"}
                   value={props.data?props.data.type:false}
                   imguri={Images.arrowblack}
-                  options={["Dashboard","Datasource", "Datasource Group","Data", "Process","Group"]}
+                  options={types}
                 />
               </div>
               <div className="paddingdiv">
@@ -85,7 +99,7 @@ const AddModalSource = props => {
             <div className="source2">
               <div className="description-container">
                 <span>DESCRIPTION</span>
-                <textarea rows="5" cols="22" name="description" id="description" disabled={disabled}/>
+                <textarea rows="5" cols="22" name="description" id="description" disabled={disabled} maxLength={255}/>
               </div>
 
               <div className="paddingdiv">
@@ -101,8 +115,8 @@ const AddModalSource = props => {
                 <DropDown
                   id={"timezone"}
                   class={"sourceaddtzdropdown"}
-                  disabled={true}
-                  options={["(UTC-08:00) Pacific Time"]}
+                  label={"(UTC-08:00) Pacific Time"}
+                  disabled={disabled}
                 />
               </div>
             </div>

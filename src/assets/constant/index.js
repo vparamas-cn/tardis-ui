@@ -1,32 +1,31 @@
-import axios from 'axios'
 export const menulist = [
   {
     name: "Dashboard",
     image: require("../../assets/images/Dashboard.svg"),
     selection: false,
     notify: true,
-    path:"/dashboard"
+   // path: "/dashboard"
   },
   {
     name: "File Manager",
     image: require("../../assets/images/File.svg"),
     selection: false,
     notify: false,
-    path: "/file-manager"
+   // path: "/file-manager"
   },
   {
     name: "Admin",
     image: require("../../assets/images/Admin.svg"),
     selection: false,
     notify: false,
-    path: "/admin"
+    //path: "/admin"
   },
   {
     name: "Maintennace",
     image: require("../../assets/images/Maintennace.svg"),
     selection: false,
     notify: false,
-    path: "/maintennace"
+    //path: "/maintennace"
   },
   {
     name: "Configurations",
@@ -40,7 +39,7 @@ export const menulist = [
     image: require("../../assets/images/Chart.svg"),
     selection: false,
     notify: false,
-    path: "/trend-chart"
+   // path: "/trend-chart"
   },
   {
     name: "User Manual",
@@ -177,17 +176,6 @@ export const array = [
   }
 ];
 
-export const pagename = () => {
-  var url = window.location.pathname;
-  if (url.indexOf("maintennace") > -1) return "Maintennace";
-  else if (url.indexOf("support-link") > -1) return "Support Link";
-  else if (url.indexOf("configurations") > -1) return "Configurations";
-  else if (url.indexOf("admin") > -1) return "Admin";
-  else if (url.indexOf("file-manager") > -1) return "File Manager";
-  else if (url.indexOf("trend-chart") > -1) return "Trend Chart";
-  else if (url.indexOf("dashboard") > -1) return "Dashboard";
-};
-
 
 export const customStyles = {
   content: {
@@ -209,7 +197,7 @@ export const customStyles = {
   overlay: {
     backgroundColor: "rgb(21 21 21 / 75%)",
     zIndex: 2000,
-    overflowY:"auto"
+    overflowY: "auto"
   }
 };
 
@@ -217,13 +205,4 @@ export const customStyles = {
 
 export const apiUrl = "https://tardis-api.k8s.us-east-1--nonproduction.containers.aws.conde.io/api/graphql"
 
-export const fetch = (params) => { 
-  return axios({
-    url: apiUrl,
-    method: 'post',
-    data: {
-      query: params
-    } 
-    
-  })
-}
+export const sourcetype = ["Process", "Data", "Datasource", "Group", "Datasource Group", "Dashboard"];

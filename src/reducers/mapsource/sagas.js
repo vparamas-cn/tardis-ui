@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { MAP_LIST_FAILURE, MAP_LIST_SUCCESS ,MAP_LIST_REQUEST } from './actions';
-import { fetch } from '../../assets/constant'
+import { fetch } from '../../utils'
 import query from '../../assets/constant/query'
 
 export function* fetchList(action) {

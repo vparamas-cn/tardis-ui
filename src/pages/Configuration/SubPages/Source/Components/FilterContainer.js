@@ -3,9 +3,9 @@ import AddSource from "./AddSource";
 import Modal from "react-modal";
 import { Images } from "../../../../../assets/images";
 import { DropDown, Button } from "../../../../../components";
-import { customStyles, fetch } from "../../../../../assets/constant";
+import { customStyles } from "../../../../../assets/constant";
 import { useSelector, useDispatch } from 'react-redux';
-import { ActionUpdate } from '../../../../../utils'
+import { ActionUpdate, fetch } from '../../../../../utils'
 import query from '../../../../../assets/constant/query'
 import { ActionSource } from '../../../../../reducers/configuration/actions'
 
@@ -27,15 +27,15 @@ const FilterContainer = props => {
   const onSubmit = async (request) => {
     setLoading(true);
     var response = await fetch(query.addSource(request))
-    ActionUpdate(response, request, "Add", () => {
-      dispatch(ActionSource(data))
+    ActionUpdate(response, request, "Add", (e) => {
+      dispatch(ActionSource(e))
       closeModal();
     })
     setLoading(false);
   }
   useEffect(() => {
     if (data.filterData) {
-      let result = data.data.filter((e, i) => { return e.dashTriggerId != null && e.dashTriggerId.trim() != "" });
+      let result = data.data.filter((e, i) => { return e.dashTriggerId !== null && e.dashTriggerId.trim() !== "" });
       SetDash(result);
     }
   }, [data])
@@ -45,7 +45,7 @@ const FilterContainer = props => {
   }
   const onFilterChange = (type, value) => {
     let filter = data.filter ? data.filter : {};
-    if (type == "source") {
+    if (type === "source") {
       let result = [];
       for (let x in value) {
         result.push(value[x].source)
@@ -91,7 +91,7 @@ const FilterContainer = props => {
         id={"isactivedd"}
         class={"options"}
         label={"isActive"}
-        value={data.filter.isactive != undefined ? (data.filter.isactive ? "Active" : "InActive") : false}
+        value={data.filter.isactive !== undefined ? (data.filter.isactive ? "Active" : "InActive") : false}
         radiobtn={true}
         imguri={Images.dropdownarrow}
         onChange={(data) => { onFilterChange("isactive", data === "Active") }}
@@ -109,7 +109,7 @@ const FilterContainer = props => {
       />
       <div class="tooltip centeralign reset">
         <span class="tooltiptext">Reset</span>
-        <img src={Images.reset} onClick={() => onReset()} />
+        <img src={Images.reset} alt="" onClick={() => onReset()} />
       </div>
       <Button
         class="greenclr addbtn"

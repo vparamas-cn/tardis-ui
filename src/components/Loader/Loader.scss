@@ -1,45 +1,51 @@
 $color-blue: #3976eb;
 
-.loader-container {
+@mixin loading-spinner($activeColor: $color-blue, $selector: "&::before", $time: 1.5s ) {
+    @keyframes spinner {
+        0% {
+            transform: translate3d(-50%, -50%, 0) rotate(0deg);
+        }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
+        100% {
+            transform: translate3d(-50%, -50%, 0) rotate(360deg);
+        }
+    }
+    
+    animation-play-state: running;
+    opacity: 1;
+    position: relative;
+    
+    &.-paused { 
+        animation-play-state: paused; 
+        opacity: 0.2;
+        transition: opacity linear 0.1s;
+    }
 
-    .loader {
-        border: 5px solid #f3f3f3;
+    #{$selector} {
+        animation: $time linear infinite spinner;
+        animation-play-state: inherit;
+        border: solid 3px #dedede;
+        border-bottom-color: #{$activeColor};
         border-radius: 50%;
-        border-top: 5px solid $color-blue;
-        width: 40px;
+        content: "";
         height: 40px;
-        -webkit-animation: spin 1s linear infinite; /* Safari */
-        animation: spin 1s linear infinite;
-       
+        left: 50%;
+        opacity: inherit;
+        position: absolute;
+        top: 50%; 
+        transform: translate3d(-50%, -50%, 0);
+        width: 40px;
+        will-change: transform;
     }
-    .small{
-        width: 25px !important;
-        height: 25px !important;
-        border: 3px solid #f3f3f3 !important;
-        border-top: 3px solid $color-blue !important;
-    }
-    /* Safari */
-    @-webkit-keyframes spin {
-        0% {
-            -webkit-transform: rotate(0deg);
-        }
-        100% {
-            -webkit-transform: rotate(360deg);
-        }
-    }
-  
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-  }
+}
 
+
+.loading-spinner {
+    @include loading-spinner;
+    height: 100vh;
+}
+
+.small:before{
+    height: 25px !important;
+    width: 25px !important;
+}

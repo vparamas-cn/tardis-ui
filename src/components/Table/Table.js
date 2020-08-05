@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import "./Table.scss";
 import { TableHeader } from "../../assets/constant";
 import MaintennaceRow from "./TableRow/MaintennaceRow";

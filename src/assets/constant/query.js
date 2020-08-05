@@ -27,7 +27,8 @@ const query = {
     ` mutation{\n            updateSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n                    isactive\n                    alias\n                    availabilitySchedule\n                    type\n                }\n            }\n } `
     ,
     deleteSource: (params) =>
-    ` mutation{\n  deleteSource(source: \"${params.source}\"){\n    deleteSource\n  }\n} `,  
+    ` mutation{\n  deleteSource(source: \"${params.source}\"){\n    deleteSource\n  }\n} `
+    ,  
     sourceMap: (size) => `
     query {
       sourceMap(size: ${size}){
@@ -62,38 +63,15 @@ const query = {
         }
       }
     }`,
-    addSourceMap: (params) => `{
-        query { 
-           mutation{
-            createSourceMap(source: ${params.source}, childSource:${params.childSource}, isoptional: ${params.isoptional} ){
-              sourceMap{
-                source,
-                childSource,
-                isoptional
-              }
-            }
-          }
-        }`,
-    updateSourceMap: (params) => `{
-        query { 
-           mutation{
-            updateSourceMap(source: ${params.source}, childSource:${params.childSource}, isoptional: ${params.isoptional} ){
-              sourceMap{
-                source,
-                childSource,
-                isoptional
-              }
-            }
-          }
-        }`, 
-    deleteSourceMap: (params) =>`{
-        query { 
-            mutation{
-            deleteSourceMap(source: ${params.source} , childSource:${params.childSource}){
-                deleteSourceMap
-            }
-        }
-    }`, 
+    addSourceMap: (params) => 
+    `mutation{\n            createSourceMap(source:\"${params.source}\" , childSource:\"${params.childSource}\", isoptional: ${params.isoptional} ){\n              sourceMap{\n                source{\n                  source\n                },\n                childSource{\n                  source\n                },\n                isoptional\n              }\n            }\n}`
+    ,
+    updateSourceMap: (params) => 
+    `mutation{\n            updateSourceMap(source:\"${params.source}\" , childSource:\"${params.childSource}\", isoptional: ${params.isoptional} ){\n              sourceMap{\n                source{\n                  source\n                },\n                childSource{\n                  source\n                },\n                isoptional\n              }\n            }\n}`
+    ,
+    deleteSourceMap: (params) =>
+    ` mutation{\n  deleteSourceMap(source: \"${params.source}\" , , childSource:\"${params.childSource}\" ){\n    deleteSourceMap\n  }\n} `
+    , 
     sourceType :() =>`{\n  sourceType{\n    isactive\n    isgroup\n    type\n  }\n}\n\n`
 }
 export default query

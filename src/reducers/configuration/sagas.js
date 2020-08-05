@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { SOURCE_LIST_REQUEST, SOURCE_LIST_FAILURE, SOURCE_LIST_SUCCESS, SOURCE_TYPE_SUCCESS, SOURCE_TYPE_REQUEST } from './actions';
-import { fetch } from '../../assets/constant'
+import { fetch } from '../../utils'
 import query from '../../assets/constant/query'
 
 export function* fetchList() {

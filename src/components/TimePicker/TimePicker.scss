@@ -1,5 +1,6 @@
 $color-lightgray: #a6adbb;
 $color-blue: #3976eb;
+$color-black: #172b4d;
 .CustomTimePicker {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 3px;
@@ -9,4 +10,7 @@ $color-blue: #3976eb;
 }
 .rc-time-picker-clear{
   display: none;
+}
+.rc-time-picker-input[disabled] {
+  color: $color-black;
 }
