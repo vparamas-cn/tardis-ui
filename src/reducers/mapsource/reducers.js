@@ -8,13 +8,13 @@ const initialState = {
     page: 1,
     size: 5,
     totalPage: 1,
-    totalElements: 5,
+    totalElements: 0,
     pageBound: { current: 1, upperbound: 1, lowerbound: 0 }
 }
 const updateData = (data, update) => {
     for (var x in data) {
-        if (data[x].source.source === update.source.source && data[x].childSource.source === update.childSource.source) {
-            data[x] = update
+        if (data[x].source.source === update.source && data[x].childSource.source === update.childSource) {
+            data[x].isoptional = update.isoptional;
         }
     }
     return data
@@ -26,14 +26,20 @@ const sourceReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                data:[]
+                data: [],
+                filterData: [],
+                pageBound: { current: 1, upperbound: 1, lowerbound: 0 },
+                page: 1,
+                totalPage: 1,
+                totalElements: 0,
             }
         }
         case MAP_LIST_SUCCESS: {
             return {
                 ...state,
                 isLoading: false,
-                data: state.data.concat(action.payroll.data.sourceMap.results),
+                data: state.data.concat(action.payroll.data.sourceMap.results.filter
+                    ((e) => e !== null)),
                 totalElements: action.payroll.data.sourceMap.totalElements,
             }
         }
@@ -65,8 +71,8 @@ const sourceReducer = (state = initialState, action) => {
             let payroll = action.payroll;
             return {
                 ...state,
-                data: state.data.filter((e, i) => e.source.source !== payroll.source.source && e.childSource.source !== payroll.childSource.source),
-                filterData: state.filterData.filter((e, i) =>e.source.source !== payroll.source.source && e.childSource.source !== payroll.childSource.source),
+                data: state.data.filter((e, i) => { return e.source.source !== payroll.source.source && e.childSource.source !== payroll.childSource.source }),
+                filterData: state.filterData.filter((e, i) =>{ return e.source.source !== payroll.source.source && e.childSource.source !== payroll.childSource.source}),
                 totalElements: state.totalElements - 1
             }
         }
@@ -79,7 +85,7 @@ const sourceReducer = (state = initialState, action) => {
                 page: data.page ? data.page : 1,
                 size: data.size ? data.size : 5,
                 totalPage: data.totalPage ? data.totalPage : 1,
-                totalElements: data.totalElements ? data.totalElements : 5,
+                totalElements: data.totalElements ? data.totalElements : 0,
                 pageBound: data.pageBound ? data.pageBound : { current: 1, upperbound: 1, lowerbound: 0 }
             }
         }

@@ -34,11 +34,11 @@ const FilterContainer = props => {
     setLoading(false);
   }
   useEffect(() => {
-    if (data.filterData) {
-      let result = data.data.filter((e, i) => { return e.dashTriggerId !== null && e.dashTriggerId.trim() !== "" });
+    if (data.data.length > 0) {
+      let result = data.data.filter((e, i) => { return  e!=null && e.dashTriggerId !== null && e.dashTriggerId.toString().trim() !== "" });
       SetDash(result);
     }
-  }, [data])
+  }, [data.data])
   const onReset = () => {
     props.LoadRecord({ filter: {} });
     setReset(true);
@@ -107,8 +107,8 @@ const FilterContainer = props => {
         displaynode={"dashTriggerId"}
         options={dashIds}
       />
-      <div class="tooltip centeralign reset">
-        <span class="tooltiptext">Reset</span>
+      <div className="tooltip centeralign reset">
+        <span className="tooltiptext">Reset</span>
         <img src={Images.reset} alt="" onClick={() => onReset()} />
       </div>
       <Button

@@ -38,9 +38,9 @@ const DropDown = props => {
       setOpen(!isOpen);
       setList(props.options);
       props.onClick && props.onClick()
-      if (props.multi) {
-        multiselectRef.current.searchBox.current.focus();
-      }
+      // if (props.multi) {
+      //   multiselectRef.current.searchBox.current.focus();
+      // }
     }
   };
 

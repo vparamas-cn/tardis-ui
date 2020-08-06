@@ -18,7 +18,7 @@ const SourceConfig = props => {
   const dispatch = useDispatch();
   const [modalIsOpen, SetModal] = useState(false);
   const [modaldata, SetData] = useState();
-
+  const { filterData } = props.dataSource;
   const closeModal = () => {
     SetModal(false);
   };
@@ -47,7 +47,7 @@ const SourceConfig = props => {
       childSource:data.childSource.source
     }
     var response = await fetch(query.deleteSourceMap(request))
-    ActionUpdate(response, data, "Delete", (e) => { dispatch(ActionSource(e)) })
+    ActionUpdate(response, data, "Delete", (e) => { dispatch(ActionSource(e));    props.LoadRecord({})  })
   }
 
   const onOpenSource = (data) => {
@@ -61,7 +61,7 @@ const SourceConfig = props => {
       for (var x of Object.keys(data)) {
         try {
           let name = `${x}-${data.id}`;
-          document.getElementById(name).value = typeof data[x] == "object" ? data[x].source : data[x];
+          document.getElementById(name).value = typeof data[x] == "object" && data[x] !=null ? data[x].source : data[x] == null? false :data[x];
         }
         catch (e) { }
       }
@@ -103,7 +103,7 @@ const SourceConfig = props => {
             <tbody>
               <tr>
                 <td colSpan="5">
-                  <form id={`formsourcemap-${props.id}`}>
+                  <form id={`formsourcemap-${props.id}`} autoComplete="off">
                     <div className="detailcontainer">
                       <div className="detailimg centeralign">
                         <img alt="" src={Images.addlist} />
@@ -114,7 +114,7 @@ const SourceConfig = props => {
                           type="text"
                           id={`source-${props.id}`}
                           name={`source-${props.id}`}
-                          className="sourceinput120"
+                          className="sourceinput200"
                           disabled={true}
                         />
                       </FieldHolder>
@@ -123,7 +123,7 @@ const SourceConfig = props => {
                           type="text"
                           id={`childSource-${props.id}`}
                           name={`childSource-${props.id}`}
-                          className="sourceinput120"
+                          className="sourceinput200"
                           disabled={true}
                         />
                       </FieldHolder>
@@ -156,8 +156,8 @@ const SourceConfig = props => {
   return (
     <Fragment>
       <tbody>
-        {dataSource && dataSource.length > 0 ?
-          dataSource.map((item, index) => {
+        {filterData && filterData.length > 0 ?
+          filterData.map((item, index) => {
             return (
               <Fragment key={`SourceMapConfig-${index}`}>
                 <Row {...item} id={index + 1} />

@@ -4,7 +4,7 @@ import { Images } from "../../../assets/images";
 
 const Pagination = props => {
 
-  const { size, totalElements, page, pageBound } = props.dataSource;
+  const { size, totalPage, totalElements, page, pageBound } = props.dataSource;
   const { current,
     lowerbound,
     upperbound } = pageBound;
@@ -25,31 +25,34 @@ const Pagination = props => {
   }
 
   const btnPrevClick = () => {
+    if(selection > 1)
+    {
+      if ((selection - 1) % pagecount === 0) {
+        let resultupper = (upperbd - pagecount)
+        resultupper = resultupper > 0 ? resultupper : 0;
+        let resultlower = (lowerbd - pagecount)
+        resultlower = resultlower > 0 ? resultlower : 0;
+        setUpper(resultupper);
+        setLower(resultlower);
 
-    if ((selection) % pagecount === 0) {
-      let resultupper = (upperbd - pagecount)
-      resultupper = resultupper > 0 ? resultupper : 0;
-      let resultlower = (lowerbd - pagecount)
-      resultlower = resultlower > 0 ? resultlower : 0;
-      setUpper(resultupper);
-      setLower(resultlower);
-
+      }
+      let listid = selection - 1;
+      listid = listid > 0 ?listid :1;
+      SetSelection(listid);
+      setPrevAndNextBtnClass(listid);
     }
-    let listid = selection - 1;
-    listid = listid > 0 ?listid :1;
-    SetSelection(listid);
-    setPrevAndNextBtnClass(listid);
   }
   const btnNextClick = () => {
+    if(totalPage > selection){
+      if ((selection) % pagecount === 0) {
+        setUpper(upperbd + pagecount);
+        setLower(lowerbd + pagecount);
 
-    if ((selection) % pagecount === 0) {
-      setUpper(upperbd + pagecount);
-      setLower(lowerbd + pagecount);
-
+      }
+      let listid = selection + 1;
+      SetSelection(listid);
+      setPrevAndNextBtnClass(listid);
     }
-    let listid = selection + 1;
-    SetSelection(listid);
-    setPrevAndNextBtnClass(listid);
   }
 
   const SelectPage = page => {

@@ -4,6 +4,7 @@
   justify-content: flex-start;
   align-items: center;
 }
+
 .controls {
   .source1 {
     width: 50%;
@@ -28,7 +29,7 @@
       height: 15px;
     }
   }
-  .timezonearrow{
+  .timezonearrow {
     height: 100%;
     padding: 0px 10px;
     background-color: #2855b4;
@@ -44,15 +45,14 @@
     width: 190px;
     height: 40px;
     margin-top: 5px;
-    
 
-    input{
+    input {
       height: 37px;
       width: 85%;
       border: none;
     }
   }
-  .activecnt{
+  .activecnt {
     margin-top: 7px;
   }
   .sourceaddtzdropdown {
@@ -67,10 +67,10 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 5px;
-    .opendropdown{
-    font-size: 11px !important;
+    .opendropdown {
+      font-size: 11px !important;
     }
-    img{
+    img {
       width: 10px;
     }
   }
@@ -93,5 +93,30 @@
   }
   .sourceadddropdown img {
     height: 6px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  #maincontent:not(.fullscreen) {
+    .Sourcepage {
+      .container-filter {
+        #sourcedd {
+          width: 260px;
+        }
+        #typedd {
+          width: 165px;
+        }
+        #isactivedd {
+          width: 160px;
+        }
+        #Dashdd {
+          width: 170px;
+        }
+        .addbtn {
+          width: 130px;
+          margin-left: 0px;
+        }
+      }
+    }
   }
 }

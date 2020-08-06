@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./RadioBtn.scss";
 import RadioBtn from "./Radio";
 const RadioGroup = props => {
-  const [selectedIndex, setIndex] = useState(0);
+  const [selectedIndex, setIndex] = useState(-1);
   const [selectedValue, setValue] = useState("");
   const [options, setOption] = useState(props.options);
 
   useEffect(()=>{
-    setIndex(0)
-    setValue(props.options[0])
     if(props.value)
     {
       let index=0;

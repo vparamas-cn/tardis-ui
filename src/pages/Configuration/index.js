@@ -11,7 +11,7 @@ const Configuration = ({SourceType}) => {
 
   useEffect(()=>{
     SourceType()
-  })
+  },[SourceType])
 
   const onPagenavigation = (page) =>{
     if(page === "Source")

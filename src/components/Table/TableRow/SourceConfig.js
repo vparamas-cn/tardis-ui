@@ -11,7 +11,7 @@ import { ActionSource } from '../../../reducers/configuration/actions'
 
 const SourceConfig = props => {
   const dispatch = useDispatch();
-  const { dataSource } = props;
+  const { filterData ,sourceType} = props.dataSource;
   const Update = async(formid ,id) => {
     const form = document.getElementById(formid)
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`,""): "unnamed"] = field.value; return obj }, {});
@@ -24,7 +24,7 @@ const SourceConfig = props => {
   }
   const Delete = async(data) => {
     var response = await fetch(query.deleteSource(data))
-    ActionUpdate(response,data,"Delete",(e)=>{dispatch(ActionSource(e))})
+    ActionUpdate(response,data,"Delete",(e)=>{dispatch(ActionSource(e));     props.LoadRecord({})})
   }
   const showHideRow = (selectedrow, arrowimg, data) => {
     let isopen = showHide(selectedrow, arrowimg, data);
@@ -33,7 +33,7 @@ const SourceConfig = props => {
     {
       try{
       let name = `${x}-${data.id}`;
-      document.getElementById(name).value = data[x];
+      document.getElementById(name).value = x === "type" ?data[x].type:data[x];
       }
       catch(e)
       {}
@@ -57,7 +57,7 @@ const SourceConfig = props => {
         <td>{description}</td>
         <td>{alias}</td>
         <td>
-          {type}
+          {type.type}
         </td>
         <td><div className="centeralign"><div className={isactive?`greendot`:'reddot'} />{isactive ?"Active":"InActive"}</div></td>
         <td>{numPrevDays}</td>
@@ -81,7 +81,7 @@ const SourceConfig = props => {
             <tbody>
               <tr>
                 <td colSpan="10">
-                  <form id={`formsource-${props.id}`}>
+                  <form id={`formsource-${props.id}`} autoComplete="off">
                     <div className="detailcontainer">
                       <div className="detailimg centeralign">
                         <img alt="" src={Images.addlist} />
@@ -92,8 +92,12 @@ const SourceConfig = props => {
                         <input type="hidden" name="source" value={source} />
                       </div>
                       <input type="text" id={`description-${props.id}`} name={`description-${props.id}`} className="sourceinput120" maxLength={255}/>
-                      <input type="text" id={`alias-${props.id}`} name={`alias-${props.id}`}  className="sourceinput60" />
-                      <input type="text" id={`type-${props.id}`} name={`type-${props.id}`} className="sourceinput60" />
+                      <input type="text" id={`alias-${props.id}`} name={`alias-${props.id}`}  className="sourceinput120" />
+                      <select id={`type-${props.id}`} name={`type-${props.id}`} className="customselect130">
+                        {sourceType.map((e,i)=>{
+                          return <option key={i} value={e.type}>{e.type}</option>
+                        })}
+                      </select>
                       <select id={`isactive-${props.id}`} name={`isactive-${props.id}`} className="sourceinput60 customselect">
                         <option value={"true"}>True</option>
                         <option value={"false"}>False</option>
@@ -123,8 +127,8 @@ const SourceConfig = props => {
   };
   return (
     <tbody>
-    {dataSource && dataSource.length > 0?
-      dataSource.map((item, index) => {
+    {filterData && filterData.length > 0?
+      filterData.map((item, index) => {
         return (
           <Fragment key={`SourceConfig-${index}`}>
             <Row {...item} id={index+1} />

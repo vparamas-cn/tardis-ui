@@ -8,11 +8,12 @@ const initialState = {
     page: 1,
     size: 5,
     totalPage: 1,
-    totalElements: 5,
+    totalElements: 0,
     pageBound: { current: 1, upperbound: 1, lowerbound: 0 },
     sourceType:[]
 }
 const updateData = (data, update) => {
+    delete update.type;
     for (var x in data) {
         if (data[x].source === update.source) {
             data[x] = update
@@ -27,14 +28,20 @@ const sourceReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                data: []
+                data: [],
+                filterData: [],
+                pageBound: { current: 1, upperbound: 1, lowerbound: 0 },
+                page: 1,
+                totalPage: 1,
+                totalElements: 0,
             }
         }
         case SOURCE_LIST_SUCCESS: {
             return {
                 ...state,
                 isLoading: false,
-                data: state.data.concat(action.payroll.data.source.results),
+                data: state.data.concat(action.payroll.data.source.results.filter
+                    ((e) => e !== null)),
                 totalElements: action.payroll.data.source.totalElements,
             }
         }
@@ -66,8 +73,8 @@ const sourceReducer = (state = initialState, action) => {
             let payrolldata = action.payroll;
             return {
                 ...state,
-                data: state.data.filter((e, i) => e.source !== payrolldata.source),
-                filterData: state.filterData.filter((e, i) => e.source !== payrolldata.source),
+                data: state.data.filter(e => e.source !== payrolldata.source ),
+                filterData: state.filterData.filter(e => e.source !== payrolldata.source ),
                 totalElements: state.totalElements - 1
             }
         }
@@ -80,7 +87,7 @@ const sourceReducer = (state = initialState, action) => {
                 page: data.page ? data.page : 1,
                 size: data.size ? data.size : 5,
                 totalPage: data.totalPage ? data.totalPage : 1,
-                totalElements: data.totalElements ? data.totalElements : 5,
+                totalElements: data.totalElements ? data.totalElements : 0,
                 pageBound: data.pageBound ? data.pageBound : { current: 1, upperbound: 1, lowerbound: 0 }
             }
         }

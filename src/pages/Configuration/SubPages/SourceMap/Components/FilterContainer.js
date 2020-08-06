@@ -7,14 +7,12 @@ import { customStyles } from "../../../../../assets/constant";
 import { useSelector, useDispatch } from 'react-redux';
 import { ActionUpdate, fetch } from '../../../../../utils'
 import query from '../../../../../assets/constant/query'
-import { ActionSource } from '../../../../../reducers/configuration/actions'
-import { filterType } from '../../../../../utils';
+import { ActionSource } from '../../../../../reducers/mapSource/actions'
 
 Modal.setAppElement('#root')
 const FilterContainer = props => {
   const dispatch = useDispatch();
   const data = useSelector(state => state.map);
-  const sourceType = useSelector(state => state.source.sourceType);
 
   const [modalIsOpen, SetModal] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -31,8 +29,8 @@ const FilterContainer = props => {
   };
 
   useEffect(() => {
-    let typelist = filterType(sourceType);
-    let source = data.data.filter((e, i) => { return typelist.indexOf(e["source"]["type"] > -1) });
+    if(data.data.length > 0){
+    let source = data.data.filter((e, i) => { return e.source.type && e.source.type.isgroup });
     let sourceList = [], childSourceList = [], unique =[];
     source.forEach((e) => { 
       if (unique.indexOf(e.source.source) === -1) {
@@ -49,7 +47,8 @@ const FilterContainer = props => {
     })
     setSource(sourceList);
     setChild(childSourceList);
-  }, [sourceType,data])
+  }
+  }, [data])
 
   const onSubmit = async (request) => {
     setLoading(true);
@@ -133,14 +132,14 @@ const FilterContainer = props => {
         id={"isoptionaldd"}
         class={"options"}
         label={"Isoptional"}
-        value={data.filter.isoptional ? data.filter.isoptional : false}
+        value={data.filter.isoptional !== undefined ? (data.filter.isoptional ? "True value":"False value") : false}
         onChange={(data) => { onFilterChange("isoptional", data === "True value") }}
-        checkbox={true}
+        radiobtn={true}
         imguri={Images.dropdownarrow}
         options={["True value", "False value"]}
       />
-      <div class="tooltip centeralign reset">
-        <span class="tooltiptext">Reset</span>
+      <div className="tooltip centeralign reset">
+        <span className="tooltiptext">Reset</span>
         <img src={Images.reset} alt="" onClick={() => onReset()} />
       </div>
       <Button

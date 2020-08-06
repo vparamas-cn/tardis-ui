@@ -11,6 +11,14 @@
       border: none;
     }
   }
+  .sourceinput200{
+    width: 200px !important;
+    margin: 0px 7px !important;
+    input{
+      width: 80% !important;
+      border: none;
+    }
+  }
   .reddot{
     width: 6px;
     height: 6px;
@@ -49,6 +57,14 @@
     width: 75px!important;
     border: 0.5px solid #a6adbb;
     font-size: 11px;
+    height:30px;
+  }
+  .customselect130{
+    width: 135px!important;
+    border: 0.5px solid #a6adbb;
+    font-size: 11px;
+    margin: 0px 7px !important;
+    height:30px;
   }
   .foucscell{
     text-decoration: underline;

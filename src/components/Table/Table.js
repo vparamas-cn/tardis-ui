@@ -30,9 +30,9 @@ const Table = props => {
           props.name === "Maintennace" ? (
             <MaintennaceRow />
           ) : props.name === "SourceConfig" ? (
-            <SourceConfig dataSource={props.dataSource && props.dataSource.filterData} />
+            <SourceConfig dataSource={props.dataSource}  LoadRecord={(data)=>props.LoadRecord(data)}/>
           ) : props.name === "SourceMapConfig" ? (
-            <SourceMapConfig dataSource={props.dataSource && props.dataSource.filterData} />
+            <SourceMapConfig dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)}/>
           ) : props.name === "SlackIntegration" ? (
             <SlackRow />
           ) : props.name === "Admin" ? (

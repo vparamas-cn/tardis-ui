@@ -59,6 +59,9 @@ export const filterdata = (data, params) => {
           else
             return e[y] !== true;
         }
+        else if (typeof e[y] === "object") {
+            return e[y][y] === params[y];
+        }
         else {
           return e[y] === params[y];
         }
@@ -104,7 +107,7 @@ export const paginationFilter = (dataSource) => {
 export const alert = (status, data) => {
   var x = document.getElementById("snackbar");
   x.className = `show " ${status === "success" ? "greenclr" : "redclr"}`;
-  x.innerHTML = data.substring(0, 60)
+  x.innerHTML = data.substring(0, 120)
   setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
@@ -173,7 +176,7 @@ export const ActionUpdate = (response, data, type, cb) => {
       }
       else {
         alert("success", "Added Successfully!!");
-        const newObj = Object.assign({selected: false}, data);
+        const newObj = Object.assign(data);
         newObj.type = "add"
         cb(newObj);
       }

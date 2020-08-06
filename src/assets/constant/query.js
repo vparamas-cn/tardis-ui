@@ -12,7 +12,11 @@ const query = {
           source
           description
           alias
-          type
+          type {
+            type
+            isactive
+            isgroup
+          }
           isactive
           numPrevDays
           dashTriggerId
@@ -21,10 +25,10 @@ const query = {
       }
     }`,
     addSource: (params) => 
-    ` mutation{\n            createSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , type:  \"${params.type}\", dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n                    isactive\n                    alias\n                    availabilitySchedule\n                    type\n                }\n            }\n } `
+    ` mutation{\n            createSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , type:  \"${params.type}\", dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n                    isactive\n                    alias\n                    availabilitySchedule\n                }\n            }\n } `
     ,
     updateSource: (params) => 
-    ` mutation{\n            updateSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n                    isactive\n                    alias\n                    availabilitySchedule\n                    type\n                }\n            }\n } `
+    ` mutation{\n            updateSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n                    isactive\n                    alias\n                    availabilitySchedule\n                      }\n            }\n } `
     ,
     deleteSource: (params) =>
     ` mutation{\n  deleteSource(source: \"${params.source}\"){\n    deleteSource\n  }\n} `
@@ -43,7 +47,11 @@ const query = {
             source
             description
             alias
-            type
+            type {
+              type
+              isactive
+              isgroup
+            }
             isactive
             numPrevDays
             dashTriggerId
@@ -53,7 +61,11 @@ const query = {
             source
             description
             alias
-            type
+            type {
+              type
+              isactive
+              isgroup
+            }
             isactive
             numPrevDays
             dashTriggerId
@@ -70,7 +82,7 @@ const query = {
     `mutation{\n            updateSourceMap(source:\"${params.source}\" , childSource:\"${params.childSource}\", isoptional: ${params.isoptional} ){\n              sourceMap{\n                source{\n                  source\n                },\n                childSource{\n                  source\n                },\n                isoptional\n              }\n            }\n}`
     ,
     deleteSourceMap: (params) =>
-    ` mutation{\n  deleteSourceMap(source: \"${params.source}\" , , childSource:\"${params.childSource}\" ){\n    deleteSourceMap\n  }\n} `
+    `mutation{\n  deleteSourceMap(source: \"${params.source}\" , , childSource:\"${params.childSource}\" ){\n    deleteSourceMap\n  }\n} `
     , 
     sourceType :() =>`{\n  sourceType{\n    isactive\n    isgroup\n    type\n  }\n}\n\n`
 }
