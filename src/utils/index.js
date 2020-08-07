@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {apiUrl} from '../assets/constant'
+import { apiUrl } from '../assets/constant'
 
 export const fetch = (params) => {
   try {
@@ -9,15 +9,15 @@ export const fetch = (params) => {
       data: {
         query: params
       }
-    }).then(response => { 
+    }).then(response => {
       return response
     })
-    .catch(error => {
-      return {status:400}
-    });
+      .catch(error => {
+        return { status: 400 }
+      });
   }
   catch (e) {
-    return {status:400}
+    return { status: 400 }
   }
 }
 
@@ -42,7 +42,7 @@ export const filterdata = (data, params) => {
   for (var y of Object.keys(params)) {
     if (Array.isArray(params[y])) {
       result = result.filter(function (e) {
-        if (typeof e[y] === "object" && e[y] !=null) {
+        if (typeof e[y] === "object" && e[y] != null) {
           return params[y].indexOf(e[y]["source"]) > -1;
         }
         else {
@@ -59,8 +59,8 @@ export const filterdata = (data, params) => {
           else
             return e[y] !== true;
         }
-        else if (typeof e[y] === "object" && e[y] !=null) {
-            return e[y][y] === params[y];
+        else if (typeof e[y] === "object" && e[y] != null) {
+          return e[y][y] === params[y];
         }
         else {
           return e[y] === params[y];
@@ -109,7 +109,7 @@ export const alert = (status, data) => {
   setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
-export const showHide = (data,page) => {
+export const showHide = (data, page) => {
   let selectedrow = `hidden_row${data.id}`;
   let arrowimg = `downimage${data.id}`;
   var trd = document.getElementById(selectedrow);
@@ -131,19 +131,17 @@ export const showHide = (data,page) => {
     imageid.classList.add("downarr");
     imageid.classList.remove("uparr");
   }
-  if(isopen)
-  for(var x of Object.keys(data))
-  {
-    try{
-    let name = `${x}-${data.id}`;
-    if(page === "source")
-    document.getElementById(name).value = x === "type" ?data[x].type:data[x];
-    else if(page === "sourceMap")
-    document.getElementById(name).value = typeof data[x] == "object" && data[x] != null ? data[x].source : data[x] == null ? false : data[x];
+  if (isopen)
+    for (var x of Object.keys(data)) {
+      try {
+        let name = `${x}-${data.id}`;
+        if (page === "source")
+          document.getElementById(name).value = x === "type" ? data[x].type : data[x];
+        else if (page === "sourceMap")
+          document.getElementById(name).value = typeof data[x] == "object" && data[x] != null ? data[x].source : data[x] == null ? false : data[x];
+      }
+      catch (e) { }
     }
-    catch(e)
-    {}
-  }
 }
 
 export const ActionUpdate = (response, data, type, cb) => {
@@ -171,7 +169,7 @@ export const ActionUpdate = (response, data, type, cb) => {
       }
       else {
         alert("success", "Deleted Successfully!!");
-        const newObj = Object.assign({selected: false}, data);
+        const newObj = Object.assign({ selected: false }, data);
         newObj.actiontype = "delete"
         cb(newObj);
       }

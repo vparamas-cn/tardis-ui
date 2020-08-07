@@ -10,8 +10,8 @@ const initialState = {
     totalPage: 1,
     totalElements: 0,
     pageBound: { current: 1, upperbound: 1, lowerbound: 0 },
-    sourceType:[],
-    updatecount:0
+    sourceType: [],
+    updatecount: 0
 }
 const updateData = (data, update) => {
     delete update.type;
@@ -73,8 +73,8 @@ const sourceReducer = (state = initialState, action) => {
         }
         case ACTION_SOURCE_DELETE: {
             let payrolldelete = action.payroll;
-            let dataafterremoved = state.data.filter(e => e.source !== payrolldelete.source )
-            let filterdataafterremoved = state.filterData.filter(e => e.source !== payrolldelete.source )
+            let dataafterremoved = state.data.filter(e => e.source !== payrolldelete.source)
+            let filterdataafterremoved = state.filterData.filter(e => e.source !== payrolldelete.source)
             return {
                 ...state,
                 data: dataafterremoved,
@@ -98,7 +98,7 @@ const sourceReducer = (state = initialState, action) => {
         case SOURCE_TYPE_SUCCESS: {
             return {
                 ...state,
-                sourceType : action.payroll.data.sourceType
+                sourceType: action.payroll.data.sourceType
             }
         }
         default: return state;

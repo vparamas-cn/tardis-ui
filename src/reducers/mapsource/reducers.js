@@ -10,7 +10,7 @@ const initialState = {
     totalPage: 1,
     totalElements: 0,
     pageBound: { current: 1, upperbound: 1, lowerbound: 0 },
-    updatecount:0
+    updatecount: 0
 }
 const updateData = (data, update) => {
     for (var x in data) {
@@ -72,7 +72,7 @@ const sourceReducer = (state = initialState, action) => {
         case ACTION_SOURCEMAP_DELETE: {
             let payrolldelete = action.payroll;
             let dataafterremoved = state.data.filter((e) => { return e.id !== payrolldelete.id })
-            let filterdataafterremoved = state.filterData.filter((e) => {  return e.id !== payrolldelete.id })
+            let filterdataafterremoved = state.filterData.filter((e) => { return e.id !== payrolldelete.id })
             return {
                 ...state,
                 data: dataafterremoved,

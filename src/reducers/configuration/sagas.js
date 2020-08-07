@@ -6,17 +6,17 @@ import query from '../../assets/constant/query'
 export function* fetchList() {
     let response;
     try {
-        let hasrow = false, size = 100 ,datalist =[];
-        do{
-            response = yield call(fetch,query.source(size));
+        let hasrow = false, size = 100, datalist = [];
+        do {
+            response = yield call(fetch, query.source(size));
             const data = yield response.data;
             size += 100;
             hasrow = data.data.source.hasNextPage;
-            if(hasrow)
-            size = data.data.source.totalElements;
+            if (hasrow)
+                size = data.data.source.totalElements;
             yield put({ type: SOURCE_LIST_SUCCESS, payroll: data });
         }
-        while(hasrow)
+        while (hasrow)
 
     }
     catch (error) {
@@ -27,7 +27,7 @@ export function* fetchList() {
 export function* fetchType() {
 
     try {
-        let response = yield call(fetch,query.sourceType());
+        let response = yield call(fetch, query.sourceType());
         const data = yield response.data;
         yield put({ type: SOURCE_TYPE_SUCCESS, payroll: data });
     }
