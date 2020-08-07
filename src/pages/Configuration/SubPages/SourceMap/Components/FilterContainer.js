@@ -54,7 +54,8 @@ const FilterContainer = props => {
     setLoading(true);
     var response = await fetch(query.addSourceMap(request))
     ActionUpdate(response, request, "Add", (e) => {
-      dispatch(ActionSource(e))
+      dispatch(ActionSource(e.createSourceMap.sourceMap))
+      props.LoadRecord({});
       closeModal();
     })
     setLoading(false);
@@ -139,6 +140,7 @@ const FilterContainer = props => {
         options={["True value", "False value"]}
       />
       <div className="tooltip centeralign reset">
+      {Object.keys(data.filter).length >0 ?<span className="dot"/>:null}
         <span className="tooltiptext">Reset</span>
         <img src={Images.reset} alt="" onClick={() => onReset()} />
       </div>

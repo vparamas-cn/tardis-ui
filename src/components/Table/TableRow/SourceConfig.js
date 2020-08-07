@@ -17,14 +17,16 @@ const SourceConfig = props => {
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`,""): "unnamed"] = field.value; return obj }, {});
     delete data.unnamed;
     var response = await fetch(query.updateSource(data))
-    ActionUpdate(response,data,"Update",(e)=>{dispatch(ActionSource(e))})
+    ActionUpdate(response,data,"Update",(e)=>{
+      dispatch(ActionSource(e))
+    })
   }
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
   const Delete = async(data) => {
     var response = await fetch(query.deleteSource(data))
-    ActionUpdate(response,data,"Delete",(e)=>{dispatch(ActionSource(e));     props.LoadRecord({})})
+    ActionUpdate(response,data,"Delete",(e)=>{dispatch(ActionSource(e)); })
   }
   const showHideRow = (selectedrow, arrowimg, data) => {
     let isopen = showHide(selectedrow, arrowimg, data);
@@ -57,7 +59,7 @@ const SourceConfig = props => {
         <td>{description}</td>
         <td>{alias}</td>
         <td>
-          {type.type}
+          {type && type.type}
         </td>
         <td><div className="centeralign"><div className={isactive?`greendot`:'reddot'} />{isactive ?"Active":"InActive"}</div></td>
         <td>{numPrevDays}</td>
@@ -73,7 +75,7 @@ const SourceConfig = props => {
     );
   };
   const RowDetails = props => {
-    const { source ,availabilitySchedule } = props;
+    const { source ,availabilitySchedule} = props;
     return (
       <tr id={`hidden_row${props.id}`} className="hidden_row editcontent">
         <td colSpan="10" className="paddzero">
@@ -93,7 +95,7 @@ const SourceConfig = props => {
                       </div>
                       <input type="text" id={`description-${props.id}`} name={`description-${props.id}`} className="sourceinput120" maxLength={255}/>
                       <input type="text" id={`alias-${props.id}`} name={`alias-${props.id}`}  className="sourceinput120" />
-                      <select id={`type-${props.id}`} name={`type-${props.id}`} className="customselect130">
+                      <select id={`type-${props.id}`} name={`type-${props.id}`} className="customselect130" disabled>
                         {sourceType.map((e,i)=>{
                           return <option key={i} value={e.type}>{e.type}</option>
                         })}
@@ -103,7 +105,7 @@ const SourceConfig = props => {
                         <option value={"false"}>False</option>
                       </select>
                       <input type="number" id={`numPrevDays-${props.id}`}  name={`numPrevDays-${props.id}`} className="sourceinput60" />
-                      <input type="text" id={`dashTriggerId-${props.id}`} name={`dashTriggerId-${props.id}`} className="sourceinput120" />
+                      <input type="text" id={`dashTriggerId-${props.id}`} disabled={props.type && props.type.type !== "Dashboard"} name={`dashTriggerId-${props.id}`} className="sourceinput120" />
                       <TimePicker time={availabilitySchedule} className="sourceinput120"  name={`availabilitySchedule-${props.id}`} />
                       <div className="detailbuttons">
                         <Button class="greenclr" name="Update" onClick={() => { Update(`formsource-${props.id}`,props.id) }} />

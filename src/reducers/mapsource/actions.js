@@ -14,7 +14,7 @@ export const SourceMapRecords = () => {
 
 export const ActionSource = (data) => {
     return {
-        type: data.type === "add" ? ACTION_SOURCEMAP_ADD : data.type === "update" ? ACTION_SOURCEMAP_UPDATE : ACTION_SOURCEMAP_DELETE,
+        type: data.actiontype === "delete" ? ACTION_SOURCEMAP_DELETE : data.actiontype === "update" ? ACTION_SOURCEMAP_UPDATE : ACTION_SOURCEMAP_ADD,
         payroll: data
     }
 }

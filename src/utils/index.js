@@ -42,7 +42,7 @@ export const filterdata = (data, params) => {
   for (var y of Object.keys(params)) {
     if (Array.isArray(params[y])) {
       result = result.filter(function (e) {
-        if (typeof e[y] === "object") {
+        if (typeof e[y] === "object" && e[y] !=null) {
           return params[y].indexOf(e[y]["source"]) > -1;
         }
         else {
@@ -59,7 +59,7 @@ export const filterdata = (data, params) => {
           else
             return e[y] !== true;
         }
-        else if (typeof e[y] === "object") {
+        else if (typeof e[y] === "object" && e[y] !=null) {
             return e[y][y] === params[y];
         }
         else {
@@ -80,7 +80,7 @@ export const paginationFilter = (dataSource) => {
   }
   let totalEle = isFilter ? resultdata.length : totalElements;
   let totalPage = Math.ceil(totalEle / size);
-  if (totalPage < page) {
+  if (totalPage < page || totalPage === 1) {
     page = 1
   }
   let sizecheck = page * size;
@@ -142,8 +142,8 @@ export const ActionUpdate = (response, data, type, cb) => {
       }
       else {
         alert("success", "Updated Successfully!!");
-        const newObj = Object.assign({selected: false}, data);
-        newObj.type = "update"
+        const newObj = Object.assign(response.data.data);
+        newObj.actiontype = "update"
         cb(newObj);
       }
     }
@@ -160,7 +160,7 @@ export const ActionUpdate = (response, data, type, cb) => {
       else {
         alert("success", "Deleted Successfully!!");
         const newObj = Object.assign({selected: false}, data);
-        newObj.type = "delete"
+        newObj.actiontype = "delete"
         cb(newObj);
       }
     }
@@ -176,8 +176,7 @@ export const ActionUpdate = (response, data, type, cb) => {
       }
       else {
         alert("success", "Added Successfully!!");
-        const newObj = Object.assign(data);
-        newObj.type = "add"
+        const newObj = Object.assign(response.data.data);
         cb(newObj);
       }
     }

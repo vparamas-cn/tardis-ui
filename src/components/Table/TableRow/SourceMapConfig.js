@@ -34,7 +34,9 @@ const SourceConfig = props => {
     delete data.unnamed;
     if (data.source !== "" && data.childSource !== "")
     var response = await fetch(query.updateSourceMap(data))
-    ActionUpdate(response, data, "Update", (e) => { dispatch(ActionSource(e)) })
+    ActionUpdate(response,data,"Update",(e)=>{
+      dispatch(ActionSource(e))
+    })
   }
 
   const ClearForm = (formid) => {
@@ -47,7 +49,7 @@ const SourceConfig = props => {
       childSource:data.childSource.source
     }
     var response = await fetch(query.deleteSourceMap(request))
-    ActionUpdate(response, data, "Delete", (e) => { dispatch(ActionSource(e));    props.LoadRecord({})  })
+    ActionUpdate(response, data, "Delete", (e) => { dispatch(ActionSource(e));  })
   }
 
   const onOpenSource = (data) => {
@@ -160,8 +162,8 @@ const SourceConfig = props => {
           filterData.map((item, index) => {
             return (
               <Fragment key={`SourceMapConfig-${index}`}>
-                <Row {...item} id={index + 1} />
-                <RowDetails {...item} id={index + 1} />
+                <Row {...item} />
+                <RowDetails {...item} />
               </Fragment>
             );
           }) :

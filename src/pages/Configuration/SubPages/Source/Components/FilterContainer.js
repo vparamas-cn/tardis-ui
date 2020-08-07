@@ -28,7 +28,7 @@ const FilterContainer = props => {
     setLoading(true);
     var response = await fetch(query.addSource(request))
     ActionUpdate(response, request, "Add", (e) => {
-      dispatch(ActionSource(e))
+      dispatch(ActionSource(e.createSource.source))
       closeModal();
     })
     setLoading(false);
@@ -108,6 +108,7 @@ const FilterContainer = props => {
         options={dashIds}
       />
       <div className="tooltip centeralign reset">
+        {Object.keys(data.filter).length >0 ?<span className="dot"/>:null}
         <span className="tooltiptext">Reset</span>
         <img src={Images.reset} alt="" onClick={() => onReset()} />
       </div>

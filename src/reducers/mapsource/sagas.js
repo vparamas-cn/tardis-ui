@@ -6,15 +6,18 @@ import query from '../../assets/constant/query'
 export function* fetchList(action) {
     let response;
     try {
-        let hasrow = false; let size = 1000;
+        let hasrow = false, size = 1000 ,datalist =[];
         do{
-        response = yield call(fetch,query.sourceMap(size));
-        const data = yield response.data;
-        size += 1000;
-        hasrow = data.hasNextPage;
-        yield put({ type: MAP_LIST_SUCCESS, payroll: data });
+            response = yield call(fetch,query.sourceMap(size));
+            const data = yield response.data;
+            size += 1000;
+            hasrow = data.data.sourceMap.hasNextPage;
+            if(hasrow)
+            size = data.data.sourceMap.totalElements;
+            yield put({ type: MAP_LIST_SUCCESS, payroll: data });
         }
         while(hasrow)
+        
     }
     catch (error) {
         yield put({ type: MAP_LIST_FAILURE });

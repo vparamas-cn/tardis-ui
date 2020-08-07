@@ -13,7 +13,7 @@ const initialState = {
 }
 const updateData = (data, update) => {
     for (var x in data) {
-        if (data[x].source.source === update.source && data[x].childSource.source === update.childSource) {
+        if (data[x].id === update.id) {
             data[x].isoptional = update.isoptional;
         }
     }
@@ -58,9 +58,9 @@ const sourceReducer = (state = initialState, action) => {
             }
         }
         case ACTION_SOURCEMAP_UPDATE: {
-            let payroll = action.payroll;
-            var DataUpdate = updateData(state.data, payroll);
-            var FilterUpdate = updateData(state.filterData, payroll);
+            let payrollupdate = action.payroll.updateSourceMap.sourceMap;
+            var DataUpdate = updateData(state.data, payrollupdate);
+            var FilterUpdate = updateData(state.filterData, payrollupdate);
             return {
                 ...state,
                 data: DataUpdate,
@@ -68,25 +68,27 @@ const sourceReducer = (state = initialState, action) => {
             }
         }
         case ACTION_SOURCEMAP_DELETE: {
-            let payroll = action.payroll;
+            let payrolldelete = action.payroll;
+            let dataafterremoved = state.data.filter((e) => { return e.id !== payrolldelete.id })
+            let filterdataafterremoved = state.filterData.filter((e) => {  return e.id !== payrolldelete.id })
             return {
                 ...state,
-                data: state.data.filter((e, i) => { return e.source.source !== payroll.source.source && e.childSource.source !== payroll.childSource.source }),
-                filterData: state.filterData.filter((e, i) =>{ return e.source.source !== payroll.source.source && e.childSource.source !== payroll.childSource.source}),
+                data: dataafterremoved,
+                filterData: filterdataafterremoved,
                 totalElements: state.totalElements - 1
             }
         }
         case FILTER_MAP_PAGINATION: {
-            var data = action.payroll;
+            let datafilter = action.payroll;
             return {
                 ...state,
-                filter: data.filter ? data.filter : {},
-                filterData: data.filterData ? data.filterData : [],
-                page: data.page ? data.page : 1,
-                size: data.size ? data.size : 5,
-                totalPage: data.totalPage ? data.totalPage : 1,
-                totalElements: data.totalElements ? data.totalElements : 0,
-                pageBound: data.pageBound ? data.pageBound : { current: 1, upperbound: 1, lowerbound: 0 }
+                filter: datafilter.filter ? datafilter.filter : {},
+                filterData: datafilter.filterData ? datafilter.filterData : [],
+                page: datafilter.page ? datafilter.page : 1,
+                size: datafilter.size ? datafilter.size : 5,
+                totalPage: datafilter.totalPage ? datafilter.totalPage : 1,
+                totalElements: datafilter.totalElements ? datafilter.totalElements : 0,
+                pageBound: datafilter.pageBound ? datafilter.pageBound : { current: 1, upperbound: 1, lowerbound: 0 }
             }
         }
         default: return state;

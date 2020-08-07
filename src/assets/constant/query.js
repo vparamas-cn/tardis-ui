@@ -25,10 +25,10 @@ const query = {
       }
     }`,
     addSource: (params) => 
-    ` mutation{\n            createSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , type:  \"${params.type}\", dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n                    isactive\n                    alias\n                    availabilitySchedule\n                }\n            }\n } `
+    ` mutation{\n            createSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , type:  \"${params.type}\", dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n              type {\n          type\n          isactive\n          isgroup\n        }\n        isactive\n                    alias\n                    availabilitySchedule\n                }\n            }\n } `
     ,
     updateSource: (params) => 
-    ` mutation{\n            updateSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} , dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n                    isactive\n                    alias\n                    availabilitySchedule\n                      }\n            }\n } `
+    ` mutation{\n            updateSource(source: \"${params.source}\", description: \"${params.description}\" ,alias:  \"${params.alias}\", availabilitySchedule:  \"${params.availabilitySchedule}\", numPrevDays: ${params.numPrevDays}, isactive:${params.isactive} ,  dashTriggerId:\"${params.dashTriggerId}\"){\n                source{\n                    source\n                    description\n                    dashTriggerId\n                    numPrevDays\n              type {\n          type\n          isactive\n          isgroup\n        }\n       isactive\n                    alias\n                    availabilitySchedule\n                      }\n            }\n } `
     ,
     deleteSource: (params) =>
     ` mutation{\n  deleteSource(source: \"${params.source}\"){\n    deleteSource\n  }\n} `
@@ -43,6 +43,7 @@ const query = {
         numberOfElements
         hasNextPage
         results{
+          id
           source{
             source
             description
@@ -76,10 +77,10 @@ const query = {
       }
     }`,
     addSourceMap: (params) => 
-    `mutation{\n            createSourceMap(source:\"${params.source}\" , childSource:\"${params.childSource}\", isoptional: ${params.isoptional} ){\n              sourceMap{\n                source{\n                  source\n                },\n                childSource{\n                  source\n                },\n                isoptional\n              }\n            }\n}`
+    `mutation{\n  createSourceMap(source:\"${params.source}\" , childSource:\"${params.childSource}\", isoptional: ${params.isoptional}){\n    sourceMap{\n  id\n    source{\n        source\n        description\n        alias\n        type {\n          type\n          isactive\n          isgroup\n        }\n        isactive\n        numPrevDays\n        dashTriggerId\n        availabilitySchedule\n      },\n      childSource{\n        source\n        description\n        alias\n        type {\n          type\n          isactive\n          isgroup\n        }\n        isactive\n        numPrevDays\n        dashTriggerId\n        availabilitySchedule\n      },\n      isoptional\n    }\n  }\n}`
     ,
     updateSourceMap: (params) => 
-    `mutation{\n            updateSourceMap(source:\"${params.source}\" , childSource:\"${params.childSource}\", isoptional: ${params.isoptional} ){\n              sourceMap{\n                source{\n                  source\n                },\n                childSource{\n                  source\n                },\n                isoptional\n              }\n            }\n}`
+    `mutation{\n            updateSourceMap(source:\"${params.source}\" , childSource:\"${params.childSource}\", isoptional: ${params.isoptional} ){\n              sourceMap{\n          id\n      source{\n                  source\n                },\n                childSource{\n                  source\n                },\n                isoptional\n              }\n            }\n}`
     ,
     deleteSourceMap: (params) =>
     `mutation{\n  deleteSourceMap(source: \"${params.source}\" , , childSource:\"${params.childSource}\" ){\n    deleteSourceMap\n  }\n} `

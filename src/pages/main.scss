@@ -301,6 +301,17 @@ select:focus {
     width: 24px;
     cursor: pointer;
   }
+  .dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: red;
+    margin-right: 3px;
+    margin-top: 1px;
+    position: absolute;
+    top: 0%;
+    right: 0px;
+  }
 }
 
 .tooltip {

@@ -60,9 +60,9 @@ const sourceReducer = (state = initialState, action) => {
             }
         }
         case ACTION_SOURCE_UPDATE: {
-            let payrolldata = action.payroll;
-            var DataUpdate = updateData(state.data, payrolldata);
-            var FilterUpdate = updateData(state.filterData, payrolldata);
+            let payrolldataupdate = action.payroll.updateSource.source;
+            var DataUpdate = updateData(state.data, payrolldataupdate);
+            var FilterUpdate = updateData(state.filterData, payrolldataupdate);
             return {
                 ...state,
                 data: DataUpdate,
@@ -70,25 +70,27 @@ const sourceReducer = (state = initialState, action) => {
             }
         }
         case ACTION_SOURCE_DELETE: {
-            let payrolldata = action.payroll;
+            let payrolldelete = action.payroll;
+            let dataafterremoved = state.data.filter(e => e.source !== payrolldelete.source )
+            let filterdataafterremoved = state.filterData.filter(e => e.source !== payrolldelete.source )
             return {
                 ...state,
-                data: state.data.filter(e => e.source !== payrolldata.source ),
-                filterData: state.filterData.filter(e => e.source !== payrolldata.source ),
+                data: dataafterremoved,
+                filterData: filterdataafterremoved,
                 totalElements: state.totalElements - 1
             }
         }
         case FILTER_SOURCE_PAGINATION: {
-            var data = action.payroll;
+            let datafilter = action.payroll;
             return {
                 ...state,
-                filter: data.filter ? data.filter : {},
-                filterData: data.filterData ? data.filterData : [],
-                page: data.page ? data.page : 1,
-                size: data.size ? data.size : 5,
-                totalPage: data.totalPage ? data.totalPage : 1,
-                totalElements: data.totalElements ? data.totalElements : 0,
-                pageBound: data.pageBound ? data.pageBound : { current: 1, upperbound: 1, lowerbound: 0 }
+                filter: datafilter.filter ? datafilter.filter : {},
+                filterData: datafilter.filterData ? datafilter.filterData : [],
+                page: datafilter.page ? datafilter.page : 1,
+                size: datafilter.size ? datafilter.size : 5,
+                totalPage: datafilter.totalPage ? datafilter.totalPage : 1,
+                totalElements: datafilter.totalElements ? datafilter.totalElements : 0,
+                pageBound: datafilter.pageBound ? datafilter.pageBound : { current: 1, upperbound: 1, lowerbound: 0 }
             }
         }
         case SOURCE_TYPE_SUCCESS: {
