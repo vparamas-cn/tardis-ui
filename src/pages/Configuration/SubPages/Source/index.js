@@ -19,7 +19,7 @@ const Source = ({ SourceRecords, UpdateFilterPagination }) => {
       result.filter={};
       UpdateFilterPagination(result)
     }
-  }, [SourceRecords,UpdateFilterPagination])
+  }, [])
 
   const LoadRecord = (filterdata) =>{
       filterdata = {...data,...filterdata}

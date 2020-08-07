@@ -20,7 +20,7 @@ const SourceMap = ({SourceMapRecords, UpdateFilterPagination}) => {
       result.filter={};
       UpdateFilterPagination(result)
     }
-  }, [SourceMapRecords,UpdateFilterPagination])
+  }, [])
 
   const onBackHandler = page => {
     history.push("/Configurations");

@@ -83,9 +83,7 @@ export const paginationFilter = (dataSource) => {
   if (totalPage < page || totalPage === 1) {
     page = 1
   }
-  let sizecheck = page * size;
-  let pagecheck = (sizecheck - size)
-  resultdata = resultdata.slice(pagecheck, sizecheck);
+
   let pageBound;
   if (totalPage > 5) {
     pageBound = { current: 5, upperbound: 5, lowerbound: 0 }

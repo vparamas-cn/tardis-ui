@@ -9,7 +9,8 @@ const initialState = {
     size: 5,
     totalPage: 1,
     totalElements: 0,
-    pageBound: { current: 1, upperbound: 1, lowerbound: 0 }
+    pageBound: { current: 1, upperbound: 1, lowerbound: 0 },
+    updatecount:0
 }
 const updateData = (data, update) => {
     for (var x in data) {
@@ -64,7 +65,8 @@ const sourceReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: DataUpdate,
-                filterData: FilterUpdate
+                filterData: FilterUpdate,
+                updatecount: state.updatecount + 1
             }
         }
         case ACTION_SOURCEMAP_DELETE: {

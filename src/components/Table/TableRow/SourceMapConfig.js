@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment,useEffect } from "react";
 import Modal from "react-modal";
 import "../Table.scss";
 import "./Row.scss";
@@ -18,15 +18,15 @@ const SourceConfig = props => {
   const dispatch = useDispatch();
   const [modalIsOpen, SetModal] = useState(false);
   const [modaldata, SetData] = useState();
-  const { filterData } = props.dataSource;
+  const [list, setList] = useState([]);
+  const { filterData, page, size,updatecount } = props.dataSource;
+
   const closeModal = () => {
     SetModal(false);
   };
   const openModal = () => {
     SetModal(true);
   };
-
-  const { dataSource } = props;
 
   const Update = async (formid, id) => {
     const form = document.getElementById(formid)
@@ -51,6 +51,13 @@ const SourceConfig = props => {
     var response = await fetch(query.deleteSourceMap(request))
     ActionUpdate(response, data, "Delete", (e) => { dispatch(ActionSource(e));  })
   }
+
+  useEffect(()=>{
+    let sizecheck = page * size;
+    let pagecheck = (sizecheck - size)
+    let resultdata = filterData.slice(pagecheck, sizecheck); 
+    setList(resultdata);
+  },[page, size, filterData, updatecount])
 
   const onOpenSource = (data) => {
     openModal();
@@ -158,8 +165,8 @@ const SourceConfig = props => {
   return (
     <Fragment>
       <tbody>
-        {filterData && filterData.length > 0 ?
-          filterData.map((item, index) => {
+        {list && list.length > 0 ?
+          list.map((item, index) => {
             return (
               <Fragment key={`SourceMapConfig-${index}`}>
                 <Row {...item} />

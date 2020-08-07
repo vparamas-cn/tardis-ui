@@ -28,7 +28,7 @@ const DropDown = props => {
         multiselectRef.current.resetSelectedValues();
       }
     },
-    [props]
+    []
   );
   useOnClickOutside(ref, () => {
     setOpen(false);

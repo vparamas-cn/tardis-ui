@@ -8,7 +8,7 @@ const CustomSelectSearch = (props) => {
         value={props.value}
         search={true}
         placeholder="Search"
-        renderValue={(valueProps) => <input disabled={props.disabled} name={props.name}className="select-search__input" {...valueProps}  />} 
+        renderValue={(valueProps) => <input disabled={props.disabled} name={props.name}className="select-search__input" {...valueProps} autoComplete={"off"} />} 
     />
     )
 }

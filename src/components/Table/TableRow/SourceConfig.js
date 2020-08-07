@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "../Table.scss";
 import "./Row.scss"
 import Button from "../../Button/Button";
@@ -11,7 +11,9 @@ import { ActionSource } from '../../../reducers/configuration/actions'
 
 const SourceConfig = props => {
   const dispatch = useDispatch();
-  const { filterData ,sourceType} = props.dataSource;
+  const [list, setList] = useState([]);
+  const { filterData ,sourceType, page, size, updatecount} = props.dataSource;
+
   const Update = async(formid ,id) => {
     const form = document.getElementById(formid)
     var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`,""): "unnamed"] = field.value; return obj }, {});
@@ -21,6 +23,14 @@ const SourceConfig = props => {
       dispatch(ActionSource(e))
     })
   }
+
+  useEffect(()=>{
+    let sizecheck = page * size;
+    let pagecheck = (sizecheck - size)
+    let resultdata = filterData.slice(pagecheck, sizecheck); 
+    setList(resultdata);
+  },[page, size, filterData, updatecount])
+
   const ClearForm = (formid) => {
     document.getElementById(formid).reset();
   }
@@ -105,7 +115,7 @@ const SourceConfig = props => {
                         <option value={"false"}>False</option>
                       </select>
                       <input type="number" id={`numPrevDays-${props.id}`}  name={`numPrevDays-${props.id}`} className="sourceinput60" />
-                      <input type="text" id={`dashTriggerId-${props.id}`} disabled={props.type && props.type.type !== "Dashboard"} name={`dashTriggerId-${props.id}`} className="sourceinput120" />
+                      <input type="text" id={`dashTriggerId-${props.id}`} disabled={props.type && props.type.type === "Dashboard"?false:true} name={`dashTriggerId-${props.id}`} className="sourceinput120" />
                       <TimePicker time={availabilitySchedule} className="sourceinput120"  name={`availabilitySchedule-${props.id}`} />
                       <div className="detailbuttons">
                         <Button class="greenclr" name="Update" onClick={() => { Update(`formsource-${props.id}`,props.id) }} />
@@ -129,8 +139,8 @@ const SourceConfig = props => {
   };
   return (
     <tbody>
-    {filterData && filterData.length > 0?
-      filterData.map((item, index) => {
+    {list && list.length > 0?
+      list.map((item, index) => {
         return (
           <Fragment key={`SourceConfig-${index}`}>
             <Row {...item} id={index+1} />

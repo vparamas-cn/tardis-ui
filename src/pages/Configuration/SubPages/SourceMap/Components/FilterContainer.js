@@ -55,7 +55,6 @@ const FilterContainer = props => {
     var response = await fetch(query.addSourceMap(request))
     ActionUpdate(response, request, "Add", (e) => {
       dispatch(ActionSource(e.createSourceMap.sourceMap))
-      props.LoadRecord({});
       closeModal();
     })
     setLoading(false);
