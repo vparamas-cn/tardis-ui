@@ -109,7 +109,9 @@ export const alert = (status, data) => {
   setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
-export const showHide = (selectedrow, arrowimg, data) => {
+export const showHide = (data,page) => {
+  let selectedrow = `hidden_row${data.id}`;
+  let arrowimg = `downimage${data.id}`;
   var trd = document.getElementById(selectedrow);
   var isopen = false;
   if (trd.className.indexOf("hidden_row") > -1) {
@@ -129,7 +131,19 @@ export const showHide = (selectedrow, arrowimg, data) => {
     imageid.classList.add("downarr");
     imageid.classList.remove("uparr");
   }
-  return isopen
+  if(isopen)
+  for(var x of Object.keys(data))
+  {
+    try{
+    let name = `${x}-${data.id}`;
+    if(page === "source")
+    document.getElementById(name).value = x === "type" ?data[x].type:data[x];
+    else if(page === "sourceMap")
+    document.getElementById(name).value = typeof data[x] == "object" && data[x] != null ? data[x].source : data[x] == null ? false : data[x];
+    }
+    catch(e)
+    {}
+  }
 }
 
 export const ActionUpdate = (response, data, type, cb) => {

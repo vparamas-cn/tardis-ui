@@ -8,48 +8,26 @@ import { useDispatch } from 'react-redux';
 import query from '../../../assets/constant/query'
 import { showHide, ActionUpdate, fetch} from '../../../utils'
 import { ActionSource } from '../../../reducers/configuration/actions'
+import { usePaginationControl, UpdateData, ClearForm } from './ActionControls'
 
 const SourceConfig = props => {
   const dispatch = useDispatch();
-  const [list, setList] = useState([]);
   const { filterData ,sourceType, page, size, updatecount} = props.dataSource;
-
-  const Update = async(formid ,id) => {
-    const form = document.getElementById(formid)
-    var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`,""): "unnamed"] = field.value; return obj }, {});
-    delete data.unnamed;
-    var response = await fetch(query.updateSource(data))
-    ActionUpdate(response,data,"Update",(e)=>{
-      dispatch(ActionSource(e))
+  const list = usePaginationControl(page, size, filterData, updatecount);
+  const Update = (formid ,id) => {
+    UpdateData(formid ,id , async (data)=>{
+      var response = await fetch(query.updateSource(data))
+      ActionUpdate(response,data,"Update",(e)=>{
+        dispatch(ActionSource(e))
+      })
     })
-  }
-
-  useEffect(()=>{
-    let sizecheck = page * size;
-    let pagecheck = (sizecheck - size)
-    let resultdata = filterData.slice(pagecheck, sizecheck); 
-    setList(resultdata);
-  },[page, size, filterData, updatecount])
-
-  const ClearForm = (formid) => {
-    document.getElementById(formid).reset();
   }
   const Delete = async(data) => {
     var response = await fetch(query.deleteSource(data))
     ActionUpdate(response,data,"Delete",(e)=>{dispatch(ActionSource(e)); })
   }
-  const showHideRow = (selectedrow, arrowimg, data) => {
-    let isopen = showHide(selectedrow, arrowimg, data);
-    if(isopen)
-    for(var x of Object.keys(data))
-    {
-      try{
-      let name = `${x}-${data.id}`;
-      document.getElementById(name).value = x === "type" ?data[x].type:data[x];
-      }
-      catch(e)
-      {}
-    }
+  const showHideRow = (data) => {
+     showHide(data,"source");
   };
 
   const Row = props => {
@@ -57,7 +35,7 @@ const SourceConfig = props => {
     return (
       <tr >
         <td className="rowarrow" onClick={() => {
-          showHideRow(`hidden_row${props.id}`, `downimage${props.id}`, props);
+          showHideRow(props);
         }}>
           <img alt=""
             src={Images.downarrow}
@@ -76,7 +54,7 @@ const SourceConfig = props => {
         <td>{dashTriggerId}</td>
         <td>{availabilitySchedule}</td>
         <td onClick={() => {
-          showHideRow(`hidden_row${props.id}`, `downimage${props.id}`, props);
+          showHideRow(props);
         }}>
           <img alt="" src={Images.RowEdit} className="editimg" />
           <span>Edit</span>

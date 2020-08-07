@@ -13,34 +13,34 @@ const AddModalSource = props => {
   const [disabled, setDisabled] = useState(false)
   const [types, setType] = useState(sourcetype)
   const [dashdisable, setDashDisable] = useState(true)
-
+  const {data, Type} = props
   const submit = () => {
     const form = document.getElementById("addsource")
-    var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name : "unnamed"] = field.value; return obj }, {});
-    delete data.unnamed;
-    data.isactive = (data.isactive === "True");
-    props.onSubmit(data)
+    var formdata = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name : "unnamed"] = field.value; return obj }, {});
+    delete formdata.unnamed;
+    formdata.isactive = (formdata.isactive === "True");
+    props.onSubmit(formdata)
   }
 
   useEffect(() => {
-    if (props.data) {
+    if (data) {
       setDisabled(true)
-      for (var x of Object.keys(props.data)) {
+      for (var x of Object.keys(data)) {
         try {
           let name = `${x}`;
-          document.getElementById(name).value = typeof props.data[x] == "object" && x === "type" ? props.data[x].type : props.data[x];
+          document.getElementById(name).value = typeof data[x] == "object" && x === "type" ? data[x].type : data[x];
         }
         catch (e) { }
       }
     }
-    if (props.Type) {
+    if (Type) {
       let result = [];
-      props.Type.forEach((e) => {
+      Type.forEach((e) => {
         result.push(e.type)
       })
       setType(result);
     }
-  }, [props])
+  }, [data, Type])
 
   return (
     <div className="modal-main">
@@ -49,7 +49,7 @@ const AddModalSource = props => {
           <div className="detailimg centeralign">
             <img alt="" src={Images.addlist} />
           </div>
-          <span>{props.data ? props.data.source : "Add Source"}</span>
+          <span>{data ? data.source : "Add Source"}</span>
         </div>
         <div
           className="title-close"
@@ -68,17 +68,17 @@ const AddModalSource = props => {
                 <span>SOURCE</span>
                 <input type="text" name={"source"} id={"source"} autoComplete="off" disabled={disabled} className={"sourceadddropdown"} />
               </div>
-              {!props.data ? <div className="isactive">
+              {!data ? <div className="isactive">
                 <span>IsActive</span> <RadioBtn name="isactive" disabled={disabled} options={["True", "False"]} />
               </div> :
                 <div className="activecnt">
                   <span>IsActive</span>
-                  <input type="text" disabled value={props.data.isactive ? "Active" : "InActive"} className={"sourceadddropdown"} />
+                  <input type="text" disabled value={data.isactive ? "Active" : "InActive"} className={"sourceadddropdown"} />
                 </div>
               }
               <div className="paddingdiv">
                 <span>TYPE</span>
-                {!props.data ? <DropDown
+                {!data ? <DropDown
                   id={"type"}
                   disabled={disabled}
                   class={"sourceadddropdown"}
@@ -86,7 +86,7 @@ const AddModalSource = props => {
                   options={types}
                   onChange={(data) => { data === "Dashboard" ? setDashDisable(false) : setDashDisable(true) }}
                 /> :
-                  <input type="text" disabled value={props.data.type.type} className={"sourceadddropdown"} />
+                  <input type="text" disabled value={data.type.type} className={"sourceadddropdown"} />
                 }
               </div>
               <div className="paddingdiv">
@@ -96,7 +96,7 @@ const AddModalSource = props => {
 
               <div className="paddingdiv">
                 <span>AVAILABLITY_SCHEDULE</span>
-                <TimePicker time={props.data ? props.data.availabilitySchedule : ""} className="addtimepicker" name="availabilitySchedule" disabled={disabled} />
+                <TimePicker time={data ? data.availabilitySchedule : ""} className="addtimepicker" name="availabilitySchedule" disabled={disabled} />
               </div>
             </div>
             <div className="source2">
@@ -126,7 +126,7 @@ const AddModalSource = props => {
           </div>
         </form>
       </div>
-      {!props.data ? <Button class="modaladdbtn" name="Add New Source" loading={props.isLoading} onClick={() => { submit() }} /> : <Button class="modaladdbtn" name="Done" onClick={() => { props.closepop() }} />}
+      {!data ? <Button class="modaladdbtn" name="Add New Source" loading={props.isLoading} onClick={() => { submit() }} /> : <Button class="modaladdbtn" name="Done" onClick={() => { props.closepop() }} />}
     </div>
   );
 };

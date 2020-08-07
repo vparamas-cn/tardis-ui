@@ -12,31 +12,32 @@ const DropDown = props => {
   const [selectedoption, setOption] = useState("");
   const [isOpen, setOpen] = useState(false);
   const [listoption, setList] = useState([]);
+  const { options, label, value, reset, radiobtn, checkbox} = props
   useEffect(
     () => {
-      if (props.options && props.options.length > 0) {
-        setOption(props.options[0]);
-        setList(props.options);
+      if (options && options.length > 0) {
+        setOption(options[0]);
+        setList(options);
       }
-      if (props.label) {
-        setOption(props.label);
+      if (label) {
+        setOption(label);
       }
-      if (props.value && !props.radiobtn && !props.checkbox) {
-        setOption(props.value);
+      if (value && !radiobtn && !checkbox) {
+        setOption(value);
       }
-      if (props.reset) {
+      if (reset) {
         multiselectRef.current.resetSelectedValues();
       }
     },
-    []
+    [value,reset]
   );
   useOnClickOutside(ref, () => {
     setOpen(false);
   });
   const onDropdown = e => {
-    if (e.target.className.indexOf("opendropdown") > -1 && !props.disabled && props.options !== undefined) {
+    if (e.target.className.indexOf("opendropdown") > -1 && !props.disabled && options !== undefined) {
       setOpen(!isOpen);
-      setList(props.options);
+      setList(options);
       props.onClick && props.onClick()
       // if (props.multi) {
       //   multiselectRef.current.searchBox.current.focus();
@@ -93,17 +94,17 @@ const DropDown = props => {
             closeIcon={"close"}
           />)
           :
-          props.radiobtn &&  props.options?
+          radiobtn &&  options?
             <li
               className={`dontclose radiofilter`}
             >
-              <RadioBtn name="isactive" options={props.options} value={props.value} onChange={(e) => props.onChange(e)} />
+              <RadioBtn name="isactive" options={options} value={value} onChange={(e) => props.onChange(e)} />
             </li>
 
             :
             listoption.length > 0 ? (
               listoption.map((item, index) => {
-                if (props.checkbox) {
+                if (checkbox) {
                   return (
                     <li
                       key={"checkbox-" + index}

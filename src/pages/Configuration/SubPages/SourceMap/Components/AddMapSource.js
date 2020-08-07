@@ -12,6 +12,7 @@ const AddMapSource = props => {
 
   const [sourcelist, setSource] = useState([]);
   const [childsourcelist, setChild] = useState([]);
+  const {source, childSource} = props;
 
   const submit = () =>{
     const form = document.getElementById("addmapsource")
@@ -22,21 +23,21 @@ const AddMapSource = props => {
   }
 
   useEffect(() => {
-    if(props.source && props.childSource)
+    if(source && childSource)
     {
       let result=[];
-      props.source.forEach((e)=>{
+      source.forEach((e)=>{
         result.push({name:e.source,value:e.source})
       })
       setSource(result);
       result=[];
-      props.childSource.forEach((e)=>{
+      childSource.forEach((e)=>{
         result.push({name:e.source,value:e.source})
       })
       setChild(result);
 
     }
-  }, [props])
+  }, [source, childSource])
 
   return (
     <div className="modal-main">

@@ -1,4 +1,4 @@
-import React, { useState, Fragment,useEffect } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import Modal from "react-modal";
 import "../Table.scss";
 import "./Row.scss";
@@ -11,6 +11,7 @@ import { customStyles } from '../../../assets/constant'
 import { showHide, ActionUpdate, fetch } from '../../../utils'
 import query from '../../../assets/constant/query'
 import AddSource from '../../../pages/Configuration/SubPages/Source/Components/AddSource'
+import { usePaginationControl, UpdateData, ClearForm } from './ActionControls'
 
 Modal.setAppElement('#root')
 
@@ -18,9 +19,9 @@ const SourceConfig = props => {
   const dispatch = useDispatch();
   const [modalIsOpen, SetModal] = useState(false);
   const [modaldata, SetData] = useState();
-  const [list, setList] = useState([]);
-  const { filterData, page, size,updatecount } = props.dataSource;
 
+  const { filterData, page, size, updatecount } = props.dataSource;
+  const list = usePaginationControl(page, size, filterData, updatecount);
   const closeModal = () => {
     SetModal(false);
   };
@@ -28,52 +29,32 @@ const SourceConfig = props => {
     SetModal(true);
   };
 
-  const Update = async (formid, id) => {
-    const form = document.getElementById(formid)
-    var data = Object.values(form).reduce((obj, field) => { obj[field.name ? field.name.replace(`-${id}`, "") : "unnamed"] = field.value; return obj }, {});
-    delete data.unnamed;
-    if (data.source !== "" && data.childSource !== "")
-    var response = await fetch(query.updateSourceMap(data))
-    ActionUpdate(response,data,"Update",(e)=>{
-      dispatch(ActionSource(e))
-    })
-  }
-
-  const ClearForm = (formid) => {
-    document.getElementById(formid).reset();
+  const Update = (formid, id) => {
+    UpdateData(formid, id, async(data) => {
+      if (data.source !== "" && data.childSource !== "")
+        var response = await fetch(query.updateSourceMap(data))
+      ActionUpdate(response, data, "Update", (e) => {
+        dispatch(ActionSource(e))
+      })
+    });
   }
 
   const Delete = async (data) => {
-    let request ={
-      source:data.source.source,
-      childSource:data.childSource.source
+    let request = {
+      source: data.source.source,
+      childSource: data.childSource.source
     }
     var response = await fetch(query.deleteSourceMap(request))
-    ActionUpdate(response, data, "Delete", (e) => { dispatch(ActionSource(e));  })
+    ActionUpdate(response, data, "Delete", (e) => { dispatch(ActionSource(e)); })
   }
-
-  useEffect(()=>{
-    let sizecheck = page * size;
-    let pagecheck = (sizecheck - size)
-    let resultdata = filterData.slice(pagecheck, sizecheck); 
-    setList(resultdata);
-  },[page, size, filterData, updatecount])
 
   const onOpenSource = (data) => {
     openModal();
     SetData(data);
   }
 
-  const showHideRow = (selectedrow, arrowimg, data) => {
-    let isopen = showHide(selectedrow, arrowimg, data);
-    if (isopen)
-      for (var x of Object.keys(data)) {
-        try {
-          let name = `${x}-${data.id}`;
-          document.getElementById(name).value = typeof data[x] == "object" && data[x] !=null ? data[x].source : data[x] == null? false :data[x];
-        }
-        catch (e) { }
-      }
+  const showHideRow = (data) => {
+    showHide(data,"sourceMap");
   };
 
   const Row = props => {
@@ -81,22 +62,22 @@ const SourceConfig = props => {
     return (
       <tr>
         <td className="rowarrow" onClick={() => {
-              showHideRow(`hidden_row${props.id}`, `downimage${props.id}`, props);
-            }}>
+          showHideRow(props);
+        }}>
           <img alt=""
             src={Images.downarrow}
             className="downarr"
             id={`downimage${props.id}`}
           />
         </td>
-        <td className="foucscell" onClick={()=>onOpenSource(source)}>{source.source}</td>
-        <td className="foucscell" onClick={()=>onOpenSource(childSource)}>{childSource.source}</td>
+        <td className="foucscell" onClick={() => onOpenSource(source)}>{source.source}</td>
+        <td className="foucscell" onClick={() => onOpenSource(childSource)}>{childSource.source}</td>
         <td>{isoptional ? "True" : "False"}</td>
 
         <td>
           <div className="action-td-container">
             <div className="edit-action" onClick={() => {
-              showHideRow(`hidden_row${props.id}`, `downimage${props.id}`, props);
+              showHideRow(props);
             }}><img alt="" src={Images.RowEdit} className="editimg" />
               <span>Edit</span></div>
           </div>
@@ -183,14 +164,14 @@ const SourceConfig = props => {
         style={customStyles}
         contentLabel="Add Source"
       >
-          <AddSource
-            closepop={() => {
-              closeModal();
-            }}
-            data={modaldata}
-          />
+        <AddSource
+          closepop={() => {
+            closeModal();
+          }}
+          data={modaldata}
+        />
       </Modal>
-  </Fragment>
+    </Fragment>
   );
 };
 
