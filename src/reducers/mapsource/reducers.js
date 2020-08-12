@@ -1,5 +1,4 @@
-import { MAP_LIST_REQUEST, MAP_LIST_SUCCESS, MAP_LIST_FAILURE, ACTION_SOURCEMAP_ADD, ACTION_SOURCEMAP_UPDATE, ACTION_SOURCEMAP_DELETE, FILTER_MAP_PAGINATION } from './actions'
-
+import types from './types'
 const initialState = {
     isLoading: false,
     data: [],
@@ -23,7 +22,7 @@ const updateData = (data, update) => {
 const sourceReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case MAP_LIST_REQUEST: {
+        case types.MAP_LIST_REQUEST: {
             return {
                 ...state,
                 isLoading: true,
@@ -35,22 +34,22 @@ const sourceReducer = (state = initialState, action) => {
                 totalElements: 0,
             }
         }
-        case MAP_LIST_SUCCESS: {
+        case types.MAP_LIST_SUCCESS: {
             return {
                 ...state,
                 isLoading: false,
-                data: state.data.concat(action.payroll.data.sourceMap.results.filter
-                    ((e) => e !== null)),
+                data: action.payroll.data.sourceMap.results.filter
+                    ((e) => e !== null),
                 totalElements: action.payroll.data.sourceMap.totalElements,
             }
         }
-        case MAP_LIST_FAILURE: {
+        case types.MAP_LIST_FAILURE: {
             return {
                 ...state,
                 isLoading: false
             }
         }
-        case ACTION_SOURCEMAP_ADD: {
+        case types.ACTION_SOURCEMAP_ADD: {
             return {
                 ...state,
                 data: state.data.concat(action.payroll),
@@ -58,7 +57,7 @@ const sourceReducer = (state = initialState, action) => {
                 totalElements: state.totalElements + 1
             }
         }
-        case ACTION_SOURCEMAP_UPDATE: {
+        case types.ACTION_SOURCEMAP_UPDATE: {
             let payrollupdate = action.payroll.updateSourceMap.sourceMap;
             var DataUpdate = updateData(state.data, payrollupdate);
             var FilterUpdate = updateData(state.filterData, payrollupdate);
@@ -69,7 +68,7 @@ const sourceReducer = (state = initialState, action) => {
                 updatecount: state.updatecount + 1
             }
         }
-        case ACTION_SOURCEMAP_DELETE: {
+        case types.ACTION_SOURCEMAP_DELETE: {
             let payrolldelete = action.payroll;
             let dataafterremoved = state.data.filter((e) => { return e.id !== payrolldelete.id })
             let filterdataafterremoved = state.filterData.filter((e) => { return e.id !== payrolldelete.id })
@@ -80,7 +79,7 @@ const sourceReducer = (state = initialState, action) => {
                 totalElements: state.totalElements - 1
             }
         }
-        case FILTER_MAP_PAGINATION: {
+        case types.FILTER_MAP_PAGINATION: {
             let datafilter = action.payroll;
             return {
                 ...state,

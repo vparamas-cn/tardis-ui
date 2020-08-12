@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { Images } from "../../../../../assets/images";
-import { DropDown, Button, DatePicker } from "../../../../../components";
+import { DropDown, Button } from "../../../../../components";
 const customStyles = {
   content: {
     top: "50%",

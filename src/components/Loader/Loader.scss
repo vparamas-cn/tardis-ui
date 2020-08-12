@@ -42,7 +42,7 @@ $color-blue: #3976eb;
 
 .loading-spinner {
     @include loading-spinner;
-    height: 100vh;
+    height: 50vh;
 }
 
 .small:before{

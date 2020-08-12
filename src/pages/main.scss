@@ -40,7 +40,7 @@ main {
 
   100% {
     top: 0;
-    left: 0;
+    left: 60px;
     right: 0;
     bottom: 0;
   }
@@ -48,7 +48,7 @@ main {
 @keyframes originalscreenanimation {
   0% {
     top: 0;
-    left: 0;
+    left: 60px;
     right: 0;
     bottom: 0;
   }
@@ -67,7 +67,7 @@ main {
   animation-name: fullscreenanimation;
   animation-duration: 1s;
   top: 0;
-  left: 0;
+  left: 60px;
   right: 0;
   bottom: 0;
   overflow-y: auto;
@@ -124,7 +124,7 @@ main {
   animation-duration: 1s;
 }
 //filter container
-.container-filter {
+.container-filter,.titleleft {
   display: flex;
   justify-content: space-between;
   padding: 40px 10px;
@@ -302,9 +302,9 @@ select:focus {
     cursor: pointer;
   }
   .dot{
-    width: 6px;
+    width: 7px;
     height: 6px;
-    border-radius: 3px;
+    border-radius: 6px;
     background-color: red;
     margin-right: 3px;
     margin-top: 1px;

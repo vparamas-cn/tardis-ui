@@ -35,5 +35,8 @@ export const Images = {
   slack: require("./slack.svg"),
   folderarrow: require("./folderarrow.svg"),
   map: require("./map.svg"),
-  reset: require("./Reset.png")
+  reset: require("./Reset.png"),
+  circletick: require("./CircleTick.svg"),
+  circleclose: require("./CircleClose.svg"),
+  circledelay: require("./CircleDelay.svg")
 };

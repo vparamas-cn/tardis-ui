@@ -1,7 +1,7 @@
 import React from "react";
 import "./main.scss";
-import { Header, Bottom } from "../components";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Header, Bottom, Aside } from "../components";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Maintennace from "./Maintennace";
 import Support from "./Support";
 import Configurations from "./Configuration"
@@ -33,8 +33,10 @@ function Main(props) {
             <Route path="/file-manager" children={<FileManager />} />
             <Route path="/trend-chart" children={<TrendChart />} />
           </Switch>
+          <Redirect from="/" to="dashboard" />
         </main>
         <Bottom />
+        <Aside />
       </div>
       <div id="snackbar">Some text some message..</div>
     </Router>

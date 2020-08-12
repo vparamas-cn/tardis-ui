@@ -83,8 +83,30 @@ const query = {
     `mutation{\n            updateSourceMap(source:\"${params.source}\" , childSource:\"${params.childSource}\", isoptional: ${params.isoptional} ){\n              sourceMap{\n          id\n      source{\n                  source\n                },\n                childSource{\n                  source\n                },\n                isoptional\n              }\n            }\n}`
     ,
     deleteSourceMap: (params) =>
-    `mutation{\n  deleteSourceMap(source: \"${params.source}\" , , childSource:\"${params.childSource}\" ){\n    deleteSourceMap\n  }\n} `
+    `mutation{\n  deleteSourceMap(source: \"${params.source}\" ,  childSource:\"${params.childSource}\" ){\n    deleteSourceMap\n  }\n} `
     , 
-    sourceType :() =>`{\n  sourceType{\n    isactive\n    isgroup\n    type\n  }\n}\n\n`
+    sourceType :() =>`{\n  sourceType{\n    isactive\n    isgroup\n    type\n  }\n}\n\n`,
+    dashboardList :(params) =>`
+    query {
+      dataAvailability(sourceName:${params.sourceName},startLogdate: \"${params.startLogdate}\" ,endLogdate: \"${params.endLogdate}\"){
+    		currentPage
+        totalPages
+        totalElements
+        size
+        numberOfElements
+        hasNextPage
+        results{
+          source{
+            source
+          }
+          status{
+        		status
+          }
+          logdate
+          comments
+          lastUpdatedTs
+        }
+      }
+    }`
 }
 export default query

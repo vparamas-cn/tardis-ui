@@ -6,21 +6,11 @@ import { Images } from "../../assets/images";
 import { SearchBar } from "../../assets/constant"
 import { useDispatch } from 'react-redux';
 import { SourceRecords } from '../../reducers/configuration/actions'
+import {fullscreen} from '../../utils'
 
 const TitleContainer = props => {
   const dispatch = useDispatch();
-  const fullscreen = () => {
-    var mainscreen = document.getElementById("maincontent");
-    if (mainscreen.className.indexOf("fullscreen") > -1) {
-      mainscreen.classList.remove("fullscreen");
-      mainscreen.classList.add("originalscreen");
-      document.body.style.overflowY  ="auto";
-    } else {
-      mainscreen.classList.add("fullscreen");
-      mainscreen.classList.remove("originalscreen");
-      document.body.style.overflowY  ="hidden";
-    }
-  };
+  
   const SearchFilter = (text) => {
     if(props.name === "Source Configuration")
     {

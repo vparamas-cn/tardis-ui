@@ -4,7 +4,7 @@ import { Images } from "../../../assets/images";
 
 const Pagination = props => {
 
-  const { size, totalPage, totalElements, page, pageBound } = props.dataSource;
+  const { size, totalPage, totalElements, page, pageBound, filterData } = props.dataSource;
   const { current,
     lowerbound,
     upperbound } = pageBound;
@@ -79,14 +79,14 @@ const Pagination = props => {
         <label>
           <select value={rowcount} onChange={(e) => { onPageSelection(e) }}>
             <option value={"5"}>5</option>
-            <option value={"10"}>15</option>
+            <option value={"15"}>15</option>
             <option value={"25"}>25</option>
             <option value={"150"}>150</option>
             <option value={"200"}>200</option>
             <option value={"all"}>All</option>
           </select>
         </label>
-      <span>of {totalElements} entries</span>
+      <span>of {filterData.length} entries</span>
       </div>
       <div className="rightpaginiation">
         <div

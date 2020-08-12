@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Support.scss";
 import { TextInput, Textarea, Button, TitleContainer } from "../../components";
 import { Images } from "../../assets/images";
+import {alert, vaildateEmail, vaildatePhoneNo} from '../../utils'
 
 const Support = props => {
   const [data, setData] = useState({
@@ -21,7 +22,42 @@ const Support = props => {
     backgroundImage: `url(${Images.SupportBG})`
   };
   const Submit = () => {
-    console.log(data);
+    if(data.name.length == 0)
+    {
+      alert("error", "Full Name is required!")
+      return false;
+    }
+    if(data.email.length == 0)
+    {
+      alert("error", "Email is required!")
+      return false;
+    }
+    else{
+      let isvaild = vaildateEmail(data.email);
+      if(!isvaild)
+      {
+        alert("error", "Email is Invalid!")
+        return false;
+      }
+    }
+    if(data.phone.length == 0)
+    {
+      alert("error", "Phone is required!")
+      return false;
+    }
+    else{
+      let isvaild = vaildatePhoneNo(data.phone);
+      if(!isvaild)
+      {
+        alert("error", "Phone is Invalid!")
+        return false;
+      }
+    }
+    if(data.queries.length == 0)
+    {
+      alert("error", "Queries is required!")
+      return false;
+    }
   };
 
   return (
@@ -41,6 +77,7 @@ const Support = props => {
               below
             </span>
           </div>
+          <form id="supportform" className="support-container" autoComplete="off" >
           <div className="inputcontainer">
             <TextInput
               lable="Full Name"
@@ -80,6 +117,7 @@ const Support = props => {
               }}
             />
           </div>
+          </form>
           <div className="btncontainer centeralign">
             <Button
               class="supportbtn"

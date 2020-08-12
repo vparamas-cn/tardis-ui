@@ -1,5 +1,4 @@
-import { SOURCE_LIST_REQUEST, SOURCE_LIST_SUCCESS, SOURCE_LIST_FAILURE, ACTION_SOURCE_ADD, ACTION_SOURCE_UPDATE, ACTION_SOURCE_DELETE, FILTER_SOURCE_PAGINATION, SOURCE_TYPE_SUCCESS } from './actions'
-
+import types from './types'
 const initialState = {
     isLoading: false,
     data: [],
@@ -25,7 +24,7 @@ const updateData = (data, update) => {
 const sourceReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case SOURCE_LIST_REQUEST: {
+        case types.SOURCE_LIST_REQUEST: {
             return {
                 ...state,
                 isLoading: true,
@@ -37,22 +36,22 @@ const sourceReducer = (state = initialState, action) => {
                 totalElements: 0,
             }
         }
-        case SOURCE_LIST_SUCCESS: {
+        case types.SOURCE_LIST_SUCCESS: {
             return {
                 ...state,
                 isLoading: false,
-                data: state.data.concat(action.payroll.data.source.results.filter
-                    ((e) => e !== null)),
+                data: action.payroll.data.source.results.filter
+                    ((e) => e !== null),
                 totalElements: action.payroll.data.source.totalElements,
             }
         }
-        case SOURCE_LIST_FAILURE: {
+        case types.SOURCE_LIST_FAILURE: {
             return {
                 ...state,
                 isLoading: false
             }
         }
-        case ACTION_SOURCE_ADD: {
+        case types.ACTION_SOURCE_ADD: {
             return {
                 ...state,
                 data: state.data.concat(action.payroll),
@@ -60,7 +59,7 @@ const sourceReducer = (state = initialState, action) => {
                 totalElements: state.totalElements + 1
             }
         }
-        case ACTION_SOURCE_UPDATE: {
+        case types.ACTION_SOURCE_UPDATE: {
             let payrolldataupdate = action.payroll.updateSource.source;
             var DataUpdate = updateData(state.data, payrolldataupdate);
             var FilterUpdate = updateData(state.filterData, payrolldataupdate);
@@ -71,7 +70,7 @@ const sourceReducer = (state = initialState, action) => {
                 updatecount: state.updatecount + 1
             }
         }
-        case ACTION_SOURCE_DELETE: {
+        case types.ACTION_SOURCE_DELETE: {
             let payrolldelete = action.payroll;
             let dataafterremoved = state.data.filter(e => e.source !== payrolldelete.source)
             let filterdataafterremoved = state.filterData.filter(e => e.source !== payrolldelete.source)
@@ -82,12 +81,13 @@ const sourceReducer = (state = initialState, action) => {
                 totalElements: state.totalElements - 1
             }
         }
-        case FILTER_SOURCE_PAGINATION: {
+        case types.FILTER_SOURCE_PAGINATION: {
             let datafilter = action.payroll;
             return {
                 ...state,
                 filter: datafilter.filter ? datafilter.filter : {},
-                filterData: datafilter.filterData ? datafilter.filterData : [],
+                filterData: datafilter.filterData ? datafilter.filterData.filter
+                ((e) => e !== null) : [],
                 page: datafilter.page ? datafilter.page : 1,
                 size: datafilter.size ? datafilter.size : 5,
                 totalPage: datafilter.totalPage ? datafilter.totalPage : 1,
@@ -95,7 +95,7 @@ const sourceReducer = (state = initialState, action) => {
                 pageBound: datafilter.pageBound ? datafilter.pageBound : { current: 1, upperbound: 1, lowerbound: 0 }
             }
         }
-        case SOURCE_TYPE_SUCCESS: {
+        case types.SOURCE_TYPE_SUCCESS: {
             return {
                 ...state,
                 sourceType: action.payroll.data.sourceType

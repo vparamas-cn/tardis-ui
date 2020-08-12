@@ -2,17 +2,19 @@ import { combineReducers } from 'redux';
 import { all, fork} from 'redux-saga/effects'
 import sourceReducers, {saga as sourceSaga} from './configuration'
 import sourceMapReducers, {saga as sourceMapSaga} from './mapSource'
-
+import dashboardMapReducers, {saga as dashboardMapSaga} from './dashboard'
 
 
 export function* rootSaga() {
     yield all([
         fork(sourceSaga),
-        fork(sourceMapSaga)
+        fork(sourceMapSaga),
+        fork(dashboardMapSaga)
     ])
 }
 
 export default combineReducers({
     source: sourceReducers,
-    map: sourceMapReducers
+    map: sourceMapReducers,
+    dashboard: dashboardMapReducers
 });

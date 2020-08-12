@@ -4,7 +4,7 @@ export const menulist = [
     image: require("../../assets/images/Dashboard.svg"),
     selection: false,
     notify: true,
-   // path: "/dashboard"
+    path: "/dashboard"
   },
   {
     name: "File Manager",

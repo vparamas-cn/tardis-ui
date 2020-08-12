@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from 'moment'
 import { apiUrl } from '../assets/constant'
 
 export const fetch = (params) => {
@@ -108,7 +109,26 @@ export const alert = (status, data) => {
   x.innerHTML = data.substring(0, 120)
   setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
-
+export const vaildateEmail = (email) => {
+  const expression = /\S+@\S+/
+  return expression.test(String(email).toLowerCase())
+}
+export const vaildatePhoneNo = (phone) =>{
+  const phoneno = /^\d{10}$/;
+  return phone.match(phoneno)
+}
+export const getDates = (startDate, stopDate) => {
+  var dateArray = new Array();
+  var currentDate = startDate;
+  while (currentDate <= stopDate) {
+    dateArray.push(moment(currentDate).format("MMM DD"))
+    currentDate = currentDate.add(1, "days");
+  }
+  return dateArray;
+}
+export const checkDates = (header,item) =>{
+  return header === moment(item).format("MMM DD")
+}
 export const showHide = (data, page) => {
   let selectedrow = `hidden_row${data.id}`;
   let arrowimg = `downimage${data.id}`;
@@ -143,6 +163,22 @@ export const showHide = (data, page) => {
       catch (e) { }
     }
 }
+
+export const fullscreen = () => {
+  var mainscreen = document.getElementById("maincontent");
+  var aside = document.getElementById("asidebar");
+  if (mainscreen.className.indexOf("fullscreen") > -1) {
+    mainscreen.classList.remove("fullscreen");
+    mainscreen.classList.add("originalscreen");
+    aside.style.display = "none";
+    document.body.style.overflowY  ="auto";
+  } else {
+    mainscreen.classList.add("fullscreen");
+    aside.style.display = "block";
+    mainscreen.classList.remove("originalscreen");
+    document.body.style.overflowY  ="hidden";
+  }
+};
 
 export const ActionUpdate = (response, data, type, cb) => {
   if (type === "Update") {
