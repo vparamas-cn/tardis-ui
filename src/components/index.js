@@ -1,3 +1,5 @@
+import { ActionUpdate } from '../utils';
+
 export {default as Header} from './Header/Header';
 export {default as DropDown} from './DropDown';
 export {default as Bottom} from './Bottom/Bottom';
@@ -18,3 +20,4 @@ export {default as Pagination} from "./Table/Pagination"
 export {default as DateRanger} from "./InputText/DateRanger"
 export {default as useOnClickOutside} from "./DropDown/OutClickhandler"
 export {default as Loader} from "./Loader"
+export {default as Reset} from "./Reset"

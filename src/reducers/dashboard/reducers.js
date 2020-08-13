@@ -10,7 +10,10 @@ const initialState = {
     sourceNames: [],
     startdate:new Date(),
     endcount:1,
-    filter:false
+    filter:false,
+    successCount:0,
+    failureCount:0,
+    delayCount:0
 }
 
 const sourceReducer = (state = initialState, action) => {
@@ -21,14 +24,7 @@ const sourceReducer = (state = initialState, action) => {
                 ...state,
                 data: [],
                 filterData: [],
-                pageBound: { current: 1, upperbound: 1, lowerbound: 0 },
-                page: 1,
-                totalPage: 1,
-                totalElements: 0,
-                sourceNames: [],
-                startdate:new Date(),
-                endcount:1,
-                filter:false
+                totalElements:0
             }
         }
         case types.PIPELINE_LIST_SUCCESS: {
@@ -45,7 +41,8 @@ const sourceReducer = (state = initialState, action) => {
                 ...state,
                 filterData: datafilter.filterData ? datafilter.filterData.filter
                 ((e) => e !== null) : [],
-                page: datafilter.page ? datafilter.page : 1,
+                page: datafilter.page ? datafilter.page : state.page,
+                filter:datafilter.filter !=undefined ? datafilter.filter:false,
                 size: datafilter.size ? datafilter.size : 5,
                 sourceNames: datafilter.sourceNames ? datafilter.sourceNames : [],
                 totalPage: datafilter.totalPage ? datafilter.totalPage : 1,
@@ -53,7 +50,9 @@ const sourceReducer = (state = initialState, action) => {
                 pageBound: datafilter.pageBound ? datafilter.pageBound : { current: 1, upperbound: 1, lowerbound: 0 },
                 startdate:datafilter.startdate ? datafilter.startdate:new Date(),
                 endcount:datafilter.endcount ? datafilter.endcount:1,
-                filter:datafilter.filter ? datafilter.filter:false
+                successCount: datafilter.successCount ? datafilter.successCount : 0,
+                failureCount: datafilter.failureCount ? datafilter.failureCount : 0,
+                delayCount: datafilter.delayCount ? datafilter.delayCount : 0
             }
         }
         default: return state;

@@ -293,49 +293,6 @@ select:focus {
 .redclr {
   background-color: #e65050 !important;
 }
-.reset {
-  cursor: pointer;
-  margin-right: 20px;
-  height: 45px;
-  img {
-    width: 24px;
-    cursor: pointer;
-  }
-  .dot{
-    width: 7px;
-    height: 6px;
-    border-radius: 6px;
-    background-color: red;
-    margin-right: 3px;
-    margin-top: 1px;
-    position: absolute;
-    top: 0%;
-    right: 0px;
-  }
-}
-
-.tooltip {
-  position: relative;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: auto;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 10px;
-  position: absolute;
-  z-index: 1;
-  bottom: 100%;
-  font-size: 12px;
-  font-family: "Roboto-Regular";
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
 
 input:disabled {
   background-color: $color-white !important;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import AddMapSource from "./AddMapSource"
 import { Images } from "../../../../../assets/images";
-import { DropDown, Button } from "../../../../../components";
+import { DropDown, Button, Reset } from "../../../../../components";
 import { customStyles } from "../../../../../assets/constant";
 import { useSelector, useDispatch } from 'react-redux';
 import { ActionUpdate, fetch } from '../../../../../utils'
@@ -138,11 +138,7 @@ const FilterContainer = props => {
         imguri={Images.dropdownarrow}
         options={["True value", "False value"]}
       />
-      <div className="tooltip centeralign reset">
-      {Object.keys(data.filter).length >0 ?<span className="dot"/>:null}
-        <span className="tooltiptext">Reset</span>
-        <img src={Images.reset} alt="" onClick={() => onReset()} />
-      </div>
+      <Reset onClick={()=>onReset()} isactive={Object.keys(data.filter).length >0} />
       <Button
         class="greenclr addbtn"
         name="Add New Mapping"

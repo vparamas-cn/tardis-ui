@@ -88,7 +88,7 @@ const query = {
     sourceType :() =>`{\n  sourceType{\n    isactive\n    isgroup\n    type\n  }\n}\n\n`,
     dashboardList :(params) =>`
     query {
-      dataAvailability(sourceName:${params.sourceName},startLogdate: \"${params.startLogdate}\" ,endLogdate: \"${params.endLogdate}\"){
+      dataAvailability(size: ${params.size}, sourceName:${params.sourceName},startLogdate: \"${params.startLogdate}\" ,endLogdate: \"${params.endLogdate}\"){
     		currentPage
         totalPages
         totalElements

@@ -58,6 +58,11 @@ $color-white: #f8f8fb;
       }
     }
   }
+  .buttoncontainer{
+    display: flex;
+      justify-content: space-between;
+      padding: 10px 5px;
+  }
 }
 .wrapper-dropdown .dropdown .searchinput {
   height: 40px;
@@ -87,6 +92,8 @@ $color-white: #f8f8fb;
 .wrapper-dropdown .dropdown .foucs{
   background-color: #f1f5f7;
 }
+
+
 .wrapper-dropdown .dropdown li  {
   text-align: left;
   display: block;
@@ -99,6 +106,7 @@ $color-white: #f8f8fb;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
   word-break: break-word;
+  border-bottom: thin solid #f1f1f1;
 }
 .wrapper-dropdown .dropdown .li:hover{
   background: #f1f5f7;

@@ -86,7 +86,7 @@ const Pagination = props => {
             <option value={"all"}>All</option>
           </select>
         </label>
-      <span>of {filterData.length} entries</span>
+      <span>of {props.dashboard? totalElements : filterData.length} entries</span>
       </div>
       <div className="rightpaginiation">
         <div

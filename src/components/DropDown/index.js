@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import "./DropDown.scss";
 import { Images } from "../../assets/images";
 import useOnClickOutside from "./OutClickhandler";
 import Checkbox from "../Checkbox"
 import RadioBtn from "../RadioBtn"
 import { Multiselect } from 'multiselect-react-dropdown';
+import Button from "../Button/Button"
 
 const DropDown = props => {
   const ref = useRef();
@@ -12,7 +13,8 @@ const DropDown = props => {
   const [selectedoption, setOption] = useState("");
   const [isOpen, setOpen] = useState(false);
   const [listoption, setList] = useState([]);
-  const { options, label, value, reset, radiobtn, checkbox} = props
+  const [multilist, setMulti] = useState([]);
+  const { options, label, value, reset, radiobtn, checkbox } = props
   useEffect(
     () => {
       if (options && options.length > 0) {
@@ -29,7 +31,7 @@ const DropDown = props => {
         multiselectRef.current.resetSelectedValues();
       }
     },
-    [value,reset]
+    [value, reset]
   );
   useOnClickOutside(ref, () => {
     setOpen(false);
@@ -50,14 +52,16 @@ const DropDown = props => {
     setOpen(false);
     props.onChange && props.onChange(item)
   };
-
+  const onMultiSelectRemove = (data) => {
+    setMulti(data)
+  }
   return (
     <div
       id={props.id}
       ref={ref}
       className={`wrapper-dropdown opendropdown ${props.class} ${isOpen
         ? "active"
-        : ""} ${props.disabled?"disabled":""}`}
+        : ""} ${props.disabled ? "disabled" : ""}`}
       onClick={e => onDropdown(e)}
     >
       {props.search ? (
@@ -81,20 +85,39 @@ const DropDown = props => {
       <input type="hidden" name={props.id} value={selectedoption} />
       <ul className={`dropdown dontclose ${props.multi ? "" : "normaldd"}`}>
         {props.multi ? (
-          <Multiselect
-            options={listoption}
-            placeholder="Search"
-            showCheckbox={props.search}
-            singleSelect={!props.search}
-            onSelect={props.onFilterselect}
-            onRemove={props.onFilterselect}
-            displayValue={props.displaynode}
-            ref={multiselectRef}
-            disable={props.disabled}
-            closeIcon={"close"}
-          />)
+          <Fragment>
+            {multilist && multilist.length > 0 ? <div className="buttoncontainer"><Button
+              class="greenclr"
+              name="Done"
+              onClick={() => {
+                props.onFilterselect(multilist)
+                document.getElementById(props.id).click()
+              }} /><Button
+                class="redclr"
+                name="Clear"
+                onClick={() => {
+                  multiselectRef.current.resetSelectedValues();
+                  props.onFilterselect([]);
+                  setMulti([])
+                }} /></div> : null}
+            <Multiselect
+              options={listoption}
+              placeholder="Search"
+              showCheckbox={props.search}
+              singleSelect={!props.search}
+              onSelect={(e) => onMultiSelectRemove(e)}
+              onRemove={(e) => onMultiSelectRemove(e)}
+              displayValue={props.displaynode}
+              ref={multiselectRef}
+              disable={props.disabled}
+              closeIcon={"close"}
+              closeOnSelect={false}
+            />
+
+          </Fragment>
+        )
           :
-          radiobtn &&  options?
+          radiobtn && options ?
             <li
               className={`dontclose radiofilter`}
             >

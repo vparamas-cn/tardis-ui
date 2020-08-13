@@ -11,7 +11,7 @@ import { paginationFilter } from '../../../../utils'
 const SourceMap = ({SourceMapRecords, UpdateFilterPagination}) => {
   let history = useHistory();
   const data = useSelector(state => state.map);
-
+  
   useEffect(() => {
     SourceMapRecords();
     if(data.data.length> 0){

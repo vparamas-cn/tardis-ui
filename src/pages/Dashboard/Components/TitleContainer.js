@@ -1,7 +1,6 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../Dashboard.scss";
-import {fullscreen} from '../../../utils'
-import {  Button, DropDown,DateRanger,useOnClickOutside } from "../../../components";
+import { DropDown, DateRanger, Reset } from "../../../components";
 import { Images } from "../../../assets/images";
 import SVG from 'react-inlinesvg';
 import moment from 'moment'
@@ -10,89 +9,76 @@ import { useSelector } from 'react-redux';
 const TitleContainer = props => {
     const ref = useRef();
     const data = useSelector(state => state.source);
+    const dashboard = useSelector(state => state.dashboard);
     const [reset, setReset] = useState(false);
-    const [show, setShow] = useState(false);
     const [daterange, SetRange] = useState(false)
 
-    useEffect(()=>{
-        if(daterange)
-        {
+    useEffect(() => {
+        if (daterange) {
             let startdate = moment(daterange.start);
             let enddate = moment(daterange.end);
-            props.LoadRecords({startdate,enddate})
+            props.LoadRecords({ startdate, enddate })
         }
-    },[daterange])
+    }, [daterange])
 
     const onFilterChange = (value) => {
-    
         let result = [];
         for (let x in value) {
             result.push(value[x].source)
-        } 
-        props.LoadRecords({sourceNames:result})
+        }
+        props.LoadRecords({ sourceNames: result })
     }
-    useOnClickOutside(ref, () => {
-        setShow(false);
-    });
-    const onCalendarClick =()=>{
-        setShow(true)
+
+
+    const onReset = () => {
+        props.LoadRecords({ filter: false });
+        setReset(true);
     }
     return (
         <div className="container-title">
             <div className="titleleft">
                 <DropDown
-                id={"sourcedd"}
-                class={"options searchop"}
-                label={"Source"}
-                search={true}
-                multi={true}
-                reset={reset}
-                displaynode={"source"}
-                onClick={() => setReset(false)}
-                imguri={Images.dropdownarrow}
-                onFilterselect={(list) => { onFilterChange(list) }}
-                options={data.data}
+                    id={"sourcedd"}
+                    class={"options searchop"}
+                    label={"Source"}
+                    search={true}
+                    multi={true}
+                    reset={reset}
+                    displaynode={"source"}
+                    onClick={() => setReset(false)}
+                    imguri={Images.dropdownarrow}
+                    onFilterselect={(list) => { onFilterChange(list) }}
+                    options={data.data}
                 />
                 <span className="title">{props.name}</span>
+                <Reset onClick={() => onReset()} isactive={dashboard.filter} />
             </div>
             <div className="titleright">
-                <div className="holder margin40">
-                    <div className="status success">
-                        <span>15</span>
-                    </div>
-                    <span className="statustxt">Success</span>
-                </div>
-                <div className="holder margin40">
-                    <div className="status failure">
-                        <span>04</span>
-                    </div>
-                    <span className="statustxt">Failure</span>
-                </div>
-                <div className="holder margin20">
-                    <div className="status delay">
-                        <span>06</span>
-                    </div>
-                    <span className="statustxt">Delay</span>
-                </div>
-                {/* <Button
-                class={"fullscreenicon"}
-                leftimg={Images.Fullscreen}
-                onClick={() => {
-                    fullscreen();
-                }}
-                /> */}
+                <StatusHolder count={dashboard.successCount} label={"Success"} margin={"40"} />
+                <StatusHolder count={dashboard.failureCount} label={"Failure"} margin={"40"} />
+                <StatusHolder count={dashboard.delayCount} label={"Delay"} margin={"20"} />
             </div>
-            <div className="dashborad-control"  ref={ref}>
-                {show ? <DateRanger onChange={(data)=>{SetRange(data)}}/>:null}
-                <SVG src={Images.calendardetails} className="dontclose" onClick={()=>{onCalendarClick()}}/>
+            <div className="dashborad-control" ref={ref}>
+                <DateRanger refer={ref} onChange={(data) => { SetRange(data) }}>
+                    <SVG src={Images.calendardetails} className="dontclose" />
+                </DateRanger>
                 <div className="calendar">
                     <span className="lable">Create Dashboard</span>
                     <div className="plus">
                         <span>&#43;</span></div>
-                    </div>
+                </div>
             </div>
         </div>
     );
 };
+
+const StatusHolder = (props) => {
+    return <div className={`holder margin${props.margin}`}>
+        <div className={`statuscircle ${props.label.toLowerCase()}`}>
+            <span>{props.count}</span>
+        </div>
+        <span className="statustxt">{props.label}</span>
+    </div>
+}
 
 export default TitleContainer;
