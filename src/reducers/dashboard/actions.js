@@ -14,3 +14,10 @@ export const UpdateFilterPagination = (data) => {
         payroll: data
     }
 }
+
+export const SourceDashRecords = (data) => {
+    return {
+        type: types.SOURCE_DASH_LIST_REQUEST,
+        payroll: data
+    }
+}

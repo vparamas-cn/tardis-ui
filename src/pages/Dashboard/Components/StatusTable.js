@@ -5,12 +5,12 @@ import { getDates, checkDates } from '../../../utils'
 import { Images } from '../../../assets/images'
 import { Pagination } from "../../../components"
 import ReactTooltip from 'react-tooltip';
-import { usePaginationControl } from "../../../components/Table/TableRow/ActionControls"
+
 
 const StatusTable = props => {
     const { filterData, page, size, startdate, endcount, sourceNames } = props.dataSource;
     let dates = getDates(moment(startdate), moment(startdate).add(endcount, 'days'));
-    const list = usePaginationControl(page, size, filterData, 0);
+   
     return (
         <Fragment>
             <div className="table-container">
@@ -31,7 +31,7 @@ const StatusTable = props => {
                         </div>
                         <div className="container">
                             <div className="content">
-                                {list && list.map((e, i) => {
+                                {filterData && filterData.map((e, i) => {
                                     return <div key={`statusrow-${i}`} className={`statusrow ${e.length === 0 ? "emptyrow" : ""}`}>
                                         {dates && dates.map((f, j) => {
                                             let matchedrec = e.filter((r) => { return checkDates(f, r.logdate) })

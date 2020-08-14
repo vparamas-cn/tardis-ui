@@ -10,24 +10,28 @@ import { paginationFilter } from '../../../../utils'
 
 const SourceMap = ({SourceMapRecords, UpdateFilterPagination}) => {
   let history = useHistory();
-  const data = useSelector(state => state.map);
+  const map = useSelector(state => state.map);
+  const {data} = map;
   
   useEffect(() => {
     SourceMapRecords();
-    if(data.data.length> 0){
-      let result = paginationFilter(data)
+  }, [])
+
+  useEffect(() => {
+    if(data.length> 0){
+      let result = paginationFilter(map)
       result.page = 1;
       result.filter={};
       UpdateFilterPagination(result)
     }
-  }, [])
+  }, [data])
 
-  const onBackHandler = page => {
+  const onBackHandler = () => {
     history.push("/Configurations");
   };
 
   const LoadRecord = (filterdata) =>{
-    filterdata = {...data,...filterdata}
+    filterdata = {...map,...filterdata}
     let result = paginationFilter(filterdata)
     UpdateFilterPagination(result)
   }
@@ -41,8 +45,8 @@ const SourceMap = ({SourceMapRecords, UpdateFilterPagination}) => {
           onBackHandler();
         }}
       />
-      <FilterContainer LoadRecord={(data)=>LoadRecord(data)}/>
-      <Table name="SourceMapConfig" dataSource={data} LoadRecord={(data)=>LoadRecord(data)}/>
+      <FilterContainer LoadRecord={(e)=>LoadRecord(e)}/>
+      <Table name="SourceMapConfig" dataSource={map} LoadRecord={(e)=>LoadRecord(e)}/>
     </div>
   );
 };

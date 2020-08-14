@@ -107,6 +107,21 @@ const query = {
           lastUpdatedTs
         }
       }
-    }`
+    }`,
+    sourceDash: (size) => `
+    query {
+      source(size: ${size}, isactive:true){
+        currentPage
+        totalPages
+        totalElements
+        size
+        numberOfElements
+        hasNextPage
+        results{
+          source
+        }
+      }
+    }`,
+
 }
 export default query

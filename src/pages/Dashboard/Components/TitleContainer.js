@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 
 const TitleContainer = props => {
     const ref = useRef();
-    const data = useSelector(state => state.source);
     const dashboard = useSelector(state => state.dashboard);
     const [reset, setReset] = useState(false);
     const [daterange, SetRange] = useState(false)
@@ -26,12 +25,12 @@ const TitleContainer = props => {
         for (let x in value) {
             result.push(value[x].source)
         }
-        props.LoadRecords({ sourceNames: result })
+        props.LoadRecords({ filterSource: result })
     }
 
 
     const onReset = () => {
-        props.LoadRecords({ filter: false });
+        props.LoadRecords({ filterSource: false });
         setReset(true);
     }
     return (
@@ -48,7 +47,7 @@ const TitleContainer = props => {
                     onClick={() => setReset(false)}
                     imguri={Images.dropdownarrow}
                     onFilterselect={(list) => { onFilterChange(list) }}
-                    options={data.data}
+                    options={dashboard.sourceList}
                 />
                 <span className="title">{props.name}</span>
                 <Reset onClick={() => onReset()} isactive={dashboard.filter} />

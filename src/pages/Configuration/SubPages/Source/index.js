@@ -9,26 +9,29 @@ import { SourceRecords, UpdateFilterPagination } from "../../../../reducers/conf
 import { paginationFilter } from '../../../../utils'
 
 const Source = ({ SourceRecords, UpdateFilterPagination }) => {
-  const data = useSelector(state => state.source);
-
+  const source = useSelector(state => state.source);
+  const { data } =source;
   useEffect(() => {
     SourceRecords();
-    if(data.data.length> 0){
-      let result = paginationFilter(data)
+  }, [])
+
+  useEffect(() => {
+    if(data.length> 0){
+      let result = paginationFilter(source)
       result.page = 1;
       result.filter={};
       UpdateFilterPagination(result)
     }
-  }, [])
+  }, [data])
 
   const LoadRecord = (filterdata) =>{
-      filterdata = {...data,...filterdata}
+      filterdata = {...source,...filterdata}
       let result = paginationFilter(filterdata)
       UpdateFilterPagination(result)
   }
 
   let history = useHistory();
-  const onBackHandler = page => {
+  const onBackHandler = () => {
     history.push("/Configurations");
   };
 
@@ -41,8 +44,8 @@ const Source = ({ SourceRecords, UpdateFilterPagination }) => {
           onBackHandler();
         }}
       />
-      <FilterContainer LoadRecord={(data)=>LoadRecord(data)}/>
-      <Table name="SourceConfig" dataSource={data} LoadRecord={(data)=>LoadRecord(data)}/>
+      <FilterContainer LoadRecord={(e)=>LoadRecord(e)}/>
+      <Table name="SourceConfig" dataSource={source} LoadRecord={(e)=>LoadRecord(e)}/>
     </div>
   );
 };

@@ -20,8 +20,8 @@ const Pagination = props => {
     setLower(lowerbound)
   }, [current,upperbound,lowerbound])
 
-  const setPrevAndNextBtnClass = (listid) => {
-    props.LoadRecord({ size: size, page: listid })
+  const setPrevAndNextBtnClass = (listid,nav) => {
+    props.LoadRecord({ size: size, page: listid, nav: nav})
   }
 
   const btnPrevClick = () => {
@@ -39,7 +39,7 @@ const Pagination = props => {
       let listid = selection - 1;
       listid = listid > 0 ?listid :1;
       SetSelection(listid);
-      setPrevAndNextBtnClass(listid);
+      setPrevAndNextBtnClass(listid,"Prev");
     }
   }
   const btnNextClick = () => {
@@ -51,7 +51,7 @@ const Pagination = props => {
       }
       let listid = selection + 1;
       SetSelection(listid);
-      setPrevAndNextBtnClass(listid);
+      setPrevAndNextBtnClass(listid,"Next");
     }
   }
 

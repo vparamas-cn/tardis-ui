@@ -88,13 +88,13 @@ const DropDown = props => {
           <Fragment>
             {multilist && multilist.length > 0 ? <div className="buttoncontainer"><Button
               class="greenclr"
-              name="Done"
+              name="Apply"
               onClick={() => {
                 props.onFilterselect(multilist)
                 document.getElementById(props.id).click()
               }} /><Button
                 class="redclr"
-                name="Clear"
+                name="Reset"
                 onClick={() => {
                   multiselectRef.current.resetSelectedValues();
                   props.onFilterselect([]);
