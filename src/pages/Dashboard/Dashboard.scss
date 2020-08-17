@@ -4,6 +4,11 @@ $color-black: #172b4d;
     justify-content: flex-start;
     flex-direction: column;
     margin-top: 65px;
+    .emptytable{
+        display: flex;
+        justify-content: center;
+        margin: 70px;
+    }
     .container-title {
         width: 100%;
         flex-wrap: wrap;

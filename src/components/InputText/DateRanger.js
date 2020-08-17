@@ -1,10 +1,11 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import "./InputText.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useOnClickOutside from "../DropDown/OutClickhandler"
 
 const CustomDateRanger = props => {
+    const {reset} =props;
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(null);
     const [show, setShow] = useState(false);
@@ -19,7 +20,14 @@ const CustomDateRanger = props => {
     }
     useOnClickOutside(props.refer, () => {
       setShow(false);
-  });
+    });
+    useEffect(()=>{
+      if(reset)
+      {
+        setStartDate(new Date());
+        setEndDate(null);
+      }
+    },[reset])
     return (
       <Fragment>
       {show?<DatePicker

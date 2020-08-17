@@ -10,13 +10,15 @@ const TitleContainer = props => {
     const ref = useRef();
     const dashboard = useSelector(state => state.dashboard);
     const [reset, setReset] = useState(false);
+    const [resetDate, setResetDate] = useState(false);
     const [daterange, SetRange] = useState(false)
 
     useEffect(() => {
         if (daterange) {
             let startdate = moment(daterange.start);
             let enddate = moment(daterange.end);
-            props.LoadRecords({ startdate, enddate })
+            props.DateRange({ startdate, enddate })
+            setReset(true);
         }
     }, [daterange])
 
@@ -30,8 +32,9 @@ const TitleContainer = props => {
 
 
     const onReset = () => {
-        props.LoadRecords({ filterSource: false });
+        props.LoadRecords({ filterSource: false ,dateFilter:false});
         setReset(true);
+        setResetDate(true);
     }
     return (
         <div className="container-title">
@@ -50,7 +53,7 @@ const TitleContainer = props => {
                     options={dashboard.sourceList}
                 />
                 <span className="title">{props.name}</span>
-                <Reset onClick={() => onReset()} isactive={dashboard.filter} />
+                <Reset onClick={() => onReset()} isactive={dashboard.filter || dashboard.dateFilter} />
             </div>
             <div className="titleright">
                 <StatusHolder count={dashboard.successCount} label={"Success"} margin={"40"} />
@@ -58,7 +61,7 @@ const TitleContainer = props => {
                 <StatusHolder count={dashboard.delayCount} label={"Delay"} margin={"20"} />
             </div>
             <div className="dashborad-control" ref={ref}>
-                <DateRanger refer={ref} onChange={(data) => { SetRange(data) }}>
+                <DateRanger refer={ref} onChange={(data) => { SetRange(data) }} reset={resetDate}>
                     <SVG src={Images.calendardetails} className="dontclose" />
                 </DateRanger>
                 <div className="calendar">

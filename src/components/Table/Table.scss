@@ -109,12 +109,10 @@ $color-lightgray: #a6adbb;
   }
   .rowarrow {
     background-color: #f1f5f7;
-    width: 40px;
     cursor: pointer;
-    display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
+    width: 40px;
   }
   .detailimg {
     width: 35px;
@@ -132,7 +130,7 @@ $color-lightgray: #a6adbb;
   }
   
   tbody tr td:nth-child(1) {
-   padding-left: 10px;
+   padding-left: 13px;
   }
   .detailcontainer {
     display: flex;

@@ -1,10 +1,30 @@
 import moment from 'moment';
 
 export const PageController = (dashboard) => {
-  let { size, page, data, sourceNames, filter, filterSource, sourceList, totalElements, pageBound, Nav } = dashboard;
+  let { size, page, data, sourceNames, filter, sourceList, totalElements, pageBound, Nav, dateFilter, filterSource } = dashboard;
   let successCount = 0, failureCount = 0, delayCount = 0;
+  let sourceListFilter = [], unique = [];
+  if (dateFilter) {
 
-  sourceNames = sourceNames && sourceNames.length > 0 ? sourceNames : sourceList.slice(0, size).map((e, i) => { return e.source });
+    data.forEach((e) => {
+      if (unique.indexOf(e.source.source) === -1) {
+        sourceListFilter.push(e.source)
+        unique.push(e.source.source);
+      }
+    })
+    if (filter) {
+      totalElements = filterSource.length;
+    }
+    else
+      totalElements = unique.length;
+  }
+  else if (filter) {
+    totalElements = filterSource.length;
+  }
+  else {
+    totalElements = sourceList.length;
+  }
+  sourceNames = dateFilter ? sourceNames.length > 0 ? sourceNames : unique : (filter ? sourceNames : (!filter && data.length > 0) ? sourceList.slice(0, size).map((e, i) => { return e.source }) : []);
   let arr = [], startdate = false, endcount = 0;
   sourceNames.forEach((e) => {
     let filterarr = data.filter((item, i) => { return item.source.source === e }).sort((a, b) => new Date(a.logdate) - new Date(b.logdate));
@@ -23,32 +43,36 @@ export const PageController = (dashboard) => {
     }
     arr.push(filterarr)
   });
+  if (dateFilter) {
+    startdate = dashboard.startdate;
+    endcount = dashboard.endcount;
+  }
   let totalPage = Math.ceil(filter ? arr.length / size : totalElements / size);
+
   if (totalPage < page || totalPage === 1) {
     page = 1
   }
-  sourceNames = filter ? PaginationControl(page,size,sourceNames):sourceNames;
-  arr = filter ? PaginationControl(page,size,arr): arr;
+  sourceNames = filter || dateFilter ? PaginationControl(page, size, sourceNames) : sourceNames;
+  arr = filter || dateFilter ? PaginationControl(page, size, arr) : arr;
   let pageBounds;
   if (totalPage > 5) {
-    if(Nav === "Next" && (page - 1) % 5 === 0){
-      let upperbound =(pageBound.upperbound + 5);
-      let lowerbound =(pageBound.lowerbound + 5);
+    if (Nav === "Next" && (page - 1) % 5 === 0) {
+      let upperbound = (pageBound.upperbound + 5);
+      let lowerbound = (pageBound.lowerbound + 5);
       pageBounds = { current: 5, upperbound: upperbound, lowerbound: lowerbound }
     }
-    else if (Nav === "Prev" && (page) % 5 === 0){
-      let upperbound =(pageBound.upperbound - 5);
-      let lowerbound =(pageBound.lowerbound - 5);
+    else if (Nav === "Prev" && (page) % 5 === 0) {
+      let upperbound = (pageBound.upperbound - 5);
+      let lowerbound = (pageBound.lowerbound - 5);
       pageBounds = { current: 5, upperbound: upperbound, lowerbound: lowerbound }
     }
-    else if(page < 6)
-    {
+    else if (page < 6) {
       pageBounds = { current: 5, upperbound: 5, lowerbound: 0 }
     }
-    else{
-      pageBounds =pageBound;
+    else {
+      pageBounds = pageBound;
     }
-    
+
   }
   else {
     pageBounds = { current: totalPage, upperbound: totalPage, lowerbound: 0 }
@@ -63,33 +87,61 @@ export const PageController = (dashboard) => {
     successCount: successCount,
     failureCount: failureCount,
     delayCount: delayCount,
-    totalElements: filter ? arr.length : totalElements,
+    totalElements: totalElements,
     totalPage: totalPage,
-    page: page
+    page: page,
+    sourceList: dateFilter ? sourceListFilter : sourceList
   }
   filterdata = { ...dashboard, ...filterdata }
   return filterdata;
 }
 
 export const Filter = (dashboard, e) => {
-  let size = e.size ? e.size : e.filter ? dashboard.size : 5;
+  let size = e.size ? e.size : e.filter ? dashboard.size : 15;
   let page = e.page ? e.page : dashboard.page;
-  
-  let filterSource = e.page != undefined && e.page != dashboard.page && dashboard.filterSource.length > 0 ?dashboard.filterSource:e.filterSource;
-  let filter = filterSource !== undefined && filterSource ? true :false;
-  let nav = e.nav? e.nav : "";
-  let sourceNames = filterSource && filterSource.length > 0 ? filterSource : PaginationControl(page, size, dashboard.sourceList,true);
+  let filterSource = (e.page != undefined && e.page != dashboard.page) || (e.size != undefined && e.size != dashboard.size) && dashboard.filterSource.length > 0 ? dashboard.filterSource : e.filterSource;
+  let filter = filterSource !== undefined && filterSource.length > 0 ? true : false;
+  let nav = e.nav ? e.nav : "";
+  let sourceNames = filterSource && filterSource.length > 0 ? filterSource : PaginationControl(page, size, dashboard.sourceList, true);
   let request = {
     sourceName: JSON.stringify(sourceNames),
-    startLogdate: e.startdate ? moment(e.startdate).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD"),
-    endLogdate: e.enddate ? moment(e.enddate).format("YYYY-MM-DD") : "",
+    startLogdate: moment().format("YYYY-MM-DD"),
+    endLogdate: "",
   }
-  let filterdata = { ...dashboard, ...{ size: size, filter: filter, page: page, sourceNames: sourceNames , Nav : nav, filterSource:filterSource} }
+
+  let filterdata = { ...dashboard, ...{ size: size, filter: filter, page: page, sourceNames: sourceNames, Nav: nav, filterSource: filterSource } }
   return { filterdata, request }
 }
 
-export const PaginationControl = (page, size, filterData,map) => {
+export const PaginationControl = (page, size, filterData, map) => {
   let sizecheck = page * size;
   let pagecheck = (sizecheck - size)
-  return map ?filterData.slice(pagecheck, sizecheck).map((e, i) => { return e.source }):filterData.slice(pagecheck, sizecheck) ;
+  return map ? filterData.slice(pagecheck, sizecheck).map((e, i) => { return e.source }) : filterData.slice(pagecheck, sizecheck);
+}
+
+export const DateRangeControl = (e) => {
+  let request, filterdata = {};
+  if (e.startdate != undefined) {
+    let startdate = e.startdate, enddate = e.enddate;
+    if (e.startdate > e.enddate && enddate._isValid) {
+      startdate = e.enddate
+      enddate = e.startdate
+    }
+    request = {
+      sourceName: JSON.stringify([]),
+      startLogdate: startdate ? moment(startdate).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD"),
+      endLogdate: enddate ? !enddate._isValid ? moment(startdate).format("YYYY-MM-DD") : moment(enddate).format("YYYY-MM-DD") : "",
+    }
+
+    let filterstartdate = new Date(e.startdate)
+    let endcount = moment(enddate).diff(filterstartdate, 'days') === NaN ? 0 : moment(enddate).diff(filterstartdate, 'days');
+    filterdata = {
+      startdate: filterstartdate,
+      endcount: endcount,
+      page: 1,
+      dateFilter: true,
+      filterSource: false
+    }
+  }
+  return { filterdata, request }
 }

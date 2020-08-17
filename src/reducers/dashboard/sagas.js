@@ -1,8 +1,11 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest, select } from 'redux-saga/effects';
 import { fetch } from '../../utils'
 import types from './types'
 import moment from 'moment'
 import query from '../../assets/constant/query'
+import { PageController } from '../../pages/Dashboard/Components/Controller'
+
+const getdashboard = state => state.dashboard;
 
 export function* fetchSourceList() {
     let response;
@@ -28,7 +31,7 @@ export function* fetchSourceList() {
                 endLogdate: ""
             }
             yield* fetchList({payroll:request});
-            
+           
         }
 
     }
@@ -53,6 +56,9 @@ export function* fetchList(action) {
         }
         while (hasrow)
         yield put({ type: types.PIPELINE_LIST_SUCCESS, payroll: data });
+        const dashboard = yield select(getdashboard);
+        let filterdata = PageController(dashboard)
+        yield put({ type: types.FILTER_PIPELINE_PAGINATION, payroll: filterdata });
     }
     catch (error) {
 

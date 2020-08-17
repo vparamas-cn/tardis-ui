@@ -8,11 +8,11 @@ import ReactTooltip from 'react-tooltip';
 
 
 const StatusTable = props => {
-    const { filterData, page, size, startdate, endcount, sourceNames } = props.dataSource;
-    let dates = getDates(moment(startdate), moment(startdate).add(endcount, 'days'));
+    const { filterData, startdate, endcount, sourceNames } = props.dataSource;
+    let dates = startdate ? getDates(moment(startdate), moment(startdate).add(endcount, 'days')):[];
    
     return (
-        <Fragment>
+        filterData.length > 0 ?<Fragment>
             <div className="table-container">
                 <div className="leftheader">
                     <div className="space" ></div>
@@ -23,7 +23,7 @@ const StatusTable = props => {
                 <section className="tablescroll">
                     <div className="table">
                         <div className="header">
-                            {dates && dates.map((e, i) => {
+                            {filterData.length > 0 && dates && dates.map((e, i) => {
                                 return <div key={`header-${i}`} className="dataholder">
                                     <div className="date">{e}{(dates.length - 1) === i ? null : <div className="line" />}</div>
                                 </div>
@@ -54,6 +54,7 @@ const StatusTable = props => {
                                         })}
                                     </div>
                                 })}
+                                
                             </div>
 
                         </div>
@@ -62,6 +63,7 @@ const StatusTable = props => {
             </div>
             <Pagination dataSource={props.dataSource} dashboard={true} LoadRecord={(data) => { props.LoadRecords(data) }} />
         </Fragment>
+        : <div className="emptytable">No Data found!!</div>
     );
 };
 

@@ -18,6 +18,7 @@ const initialState = {
     sourceList:[],
     filterSource:[],
     Nav:"",
+    dateFilter:false
 }
 
 const sourceReducer = (state = initialState, action) => {
@@ -48,6 +49,7 @@ const sourceReducer = (state = initialState, action) => {
                 page: datafilter.page ? datafilter.page : state.page,
                 filter:datafilter.filter !=undefined ? datafilter.filter:false,
                 size: datafilter.size ? datafilter.size : 15,
+                totalElements:datafilter.totalElements ? datafilter.totalElements : state.totalElements,
                 totalPage: datafilter.totalPage ? datafilter.totalPage : 1,
                 sourceNames: datafilter.sourceNames ? datafilter.sourceNames : [],
                 pageBound: datafilter.pageBound ? datafilter.pageBound : { current: 1, upperbound: 1, lowerbound: 0 },
@@ -59,6 +61,7 @@ const sourceReducer = (state = initialState, action) => {
                 sourceList:datafilter.sourceList ? datafilter.sourceList : [],
                 Nav: datafilter.Nav? datafilter.Nav:"",
                 filterSource:datafilter.filterSource ? datafilter.filterSource : [],
+                dateFilter:datafilter.dateFilter !=undefined  ? datafilter.dateFilter : false
             }
         }
         case types.SOURCE_DASH_LIST_REQUEST: {
@@ -79,7 +82,8 @@ const sourceReducer = (state = initialState, action) => {
                 failureCount:0,
                 delayCount:0,
                 Nav:"",
-                filterSource:[]
+                filterSource:[],
+                dateFilter:false
             }
         }
         case types.SOURCE_DASH_LIST_SUCCESS: {
