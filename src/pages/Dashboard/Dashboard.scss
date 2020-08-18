@@ -1,4 +1,12 @@
 $color-black: #172b4d;
+.fullscreen{
+    .Dashboradpage {
+        margin-top: 0px !important;
+        .dashborad-control{
+            display: none !important;
+        }
+    }
+}
 .Dashboradpage {
     display: flex;
     justify-content: flex-start;

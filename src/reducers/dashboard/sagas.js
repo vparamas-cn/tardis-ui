@@ -23,8 +23,9 @@ export function* fetchSourceList() {
         while (hasrow)
         yield put({ type: types.SOURCE_DASH_LIST_SUCCESS, payroll: data });
         let sourceList = data.data.source.results;
+        const dashboard = yield select(getdashboard);
         if (sourceList.length > 0) {
-            let sourceNames = sourceList.slice(0, 15).map((e, i) => { return e.source });
+            let sourceNames = sourceList.slice(0, dashboard.size).map((e, i) => { return e.source });
             let request = {
                 sourceName: JSON.stringify(sourceNames),
                 startLogdate: moment().format("YYYY-MM-DD"),

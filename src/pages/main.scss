@@ -32,7 +32,7 @@ main {
 
 @keyframes fullscreenanimation {
   0% {
-    top: 140px;
+    top: 120px;
     left: 280px;
     right: 50px;
     bottom: 0px;
@@ -54,7 +54,7 @@ main {
   }
 
   100% {
-    top: 140px;
+    top: 120px;
     left: 280px;
     right: 50px;
     bottom: 0px;
@@ -73,6 +73,7 @@ main {
   overflow-y: auto;
   .page {
     border-radius: 0px;
+    min-height: 100vh !important;
   }
 }
 .originalscreen {
@@ -93,6 +94,7 @@ main {
     left: 0px;
     right: 0px;
     bottom: 0px;
+    display: block;
   }
 }
 @keyframes sidecloseanimation {
@@ -105,7 +107,7 @@ main {
 
   100% {
     top: 0px;
-    left: -50px;
+    left: -70px;
     right: 0px;
     bottom: 0px;
   }
@@ -113,15 +115,18 @@ main {
 .sideopen {
   z-index: 100500;
   animation-name: sideopenanimation;
-  animation-duration: 1s;
+  animation-duration: .5s;
   top: 0;
-  left: -50px;
+  left: 0px;
   right: 0;
   bottom: 0;
 }
 .sideclose {
   animation-name: sidecloseanimation;
-  animation-duration: 1s;
+  animation-duration: .5s;
+}
+.displaynone{
+  display: none;
 }
 //filter container
 .container-filter,.titleleft {

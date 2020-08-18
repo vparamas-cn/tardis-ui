@@ -170,11 +170,17 @@ export const fullscreen = () => {
   if (mainscreen.className.indexOf("fullscreen") > -1) {
     mainscreen.classList.remove("fullscreen");
     mainscreen.classList.add("originalscreen");
-    aside.style.display = "none";
+    setTimeout(()=>{aside.style.display = "none";},500) 
+    aside.classList.remove("sideopen");
+    aside.classList.add("sideclose");
     document.body.style.overflowY  ="auto";
+    
   } else {
     mainscreen.classList.add("fullscreen");
     aside.style.display = "block";
+    aside.classList.remove("displaynone")
+    aside.classList.remove("sideclose");
+    aside.classList.add("sideopen");
     mainscreen.classList.remove("originalscreen");
     document.body.style.overflowY  ="hidden";
   }

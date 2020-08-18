@@ -196,7 +196,7 @@ export const customStyles = {
   },
   overlay: {
     backgroundColor: "rgb(21 21 21 / 75%)",
-    zIndex: 2000,
+    zIndex: 101000,
     overflowY: "auto"
   }
 };

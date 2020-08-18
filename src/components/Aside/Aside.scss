@@ -1,17 +1,19 @@
 $color-blue: #3976eb;
 .sidebar {
-    margin: 0;
-    padding: 10px 5px;
     width: 60px;
-    background-color: $color-blue;
+    background-color: #3976eb;
     position: fixed;
     height: 100%;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
     top: 0px;
     z-index: 100500;
-    display: flex;
-    flex-direction: column;
-    display: none;
+    .sidemenuholder{
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
     a {
         display: block;
         color: black;
@@ -30,7 +32,8 @@ $color-blue: #3976eb;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 50px;
+        height: 40px;
+        width: 40px;
         cursor: pointer;
         margin: 20px 0px;
         img{
@@ -41,8 +44,8 @@ $color-blue: #3976eb;
         }
     }
     .selection{
-        background-color: #2855b4;
-        border-radius: 4px;
+        background-color: #2855b4 !important;
+        border-radius: 4px  !important;
         padding: 10px
     }
     .fillwhite{
@@ -77,4 +80,5 @@ $color-blue: #3976eb;
             }
           }
     }
+  }
 }

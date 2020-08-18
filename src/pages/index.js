@@ -12,7 +12,8 @@ import Profile from "./Profile"
 import Admin from "./Admin"
 import FileManager from "./FileManager"
 import TrendChart from "./TrendChart"
-import Dashboard from "./Dashboard";
+import Dashboard from "./Dashboard"; 
+import Customized from "./Dashboard/Customized"
 
 function Main(props) {
   return (
@@ -22,6 +23,7 @@ function Main(props) {
         <main id="maincontent">
           <Switch>
             <Route path="/dashboard" children={<Dashboard />} />
+            <Route path="/customized-dashboard" children={<Customized />} />
             <Route path="/maintennace" children={<Maintennace />} />
             <Route path="/support-link" children={<Support />} />
             <Route path="/configurations" children={<Configurations />} />

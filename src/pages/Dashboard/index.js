@@ -20,9 +20,10 @@ const Dashboard = ({ SourceDashRecords, PipelineRecords, UpdateFilterPagination 
     if (filter.dateFilter != undefined && !filter.dateFilter)
       SourceDashRecords();
     else {
-      UpdateFilterPagination(filterdata)
-      if (!dashboard.dateFilter)
+     if (!dashboard.dateFilter){
+        UpdateFilterPagination(filterdata)
         PipelineRecords(request)
+      }
       else {
         let record = { ...dashboard, ...filterdata }
         let response = PageController(record)

@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../Dashboard.scss";
-import { DropDown, DateRanger, Reset } from "../../../components";
+import { DropDown, DateRanger, Reset, Button } from "../../../components";
 import { Images } from "../../../assets/images";
 import SVG from 'react-inlinesvg';
+import { useHistory } from "react-router-dom";
 import moment from 'moment'
 import { useSelector } from 'react-redux';
+import { fullscreen } from '../../../utils'
 
 const TitleContainer = props => {
+    let history = useHistory();
     const ref = useRef();
     const dashboard = useSelector(state => state.dashboard);
     const [reset, setReset] = useState(false);
@@ -32,7 +35,7 @@ const TitleContainer = props => {
 
 
     const onReset = () => {
-        props.LoadRecords({ filterSource: false ,dateFilter:false});
+        props.LoadRecords({ filterSource: false, dateFilter: false });
         setReset(true);
         setResetDate(true);
     }
@@ -59,12 +62,21 @@ const TitleContainer = props => {
                 <StatusHolder count={dashboard.successCount} label={"Success"} margin={"40"} />
                 <StatusHolder count={dashboard.failureCount} label={"Failure"} margin={"40"} />
                 <StatusHolder count={dashboard.delayCount} label={"Delay"} margin={"20"} />
+                <Button
+                    class={"fullscreenicon"}
+                    leftimg={Images.Fullscreen}
+                    svg={true}
+                    onClick={() => {
+                        fullscreen();
+                    }}
+                />
             </div>
+
             <div className="dashborad-control" ref={ref}>
                 <DateRanger refer={ref} onChange={(data) => { SetRange(data) }} reset={resetDate}>
                     <SVG src={Images.calendardetails} className="dontclose" />
                 </DateRanger>
-                <div className="calendar">
+                <div className="calendar" onClick={()=>{history.push("/customized-dashboard");}}>
                     <span className="lable">Create Dashboard</span>
                     <div className="plus">
                         <span>&#43;</span></div>

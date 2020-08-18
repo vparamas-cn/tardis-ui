@@ -1,7 +1,7 @@
 import React from "react";
 import "./Button.scss";
 import Loader from "../Loader";
-
+import SVG from 'react-inlinesvg';
 const Button = props => {
   if(props.loading)
   return (
@@ -21,7 +21,7 @@ const Button = props => {
         props.onClick();
       }}
     >
-      {props.leftimg ? <img alt="" src={props.leftimg} /> : null}
+      {props.leftimg ? props.svg ? <SVG src={props.leftimg} /> :<img alt="" src={props.leftimg} /> : null}
       {props.name ? <span>{props.name}</span> : null}
       {props.rightimg ? <img alt="" src={props.rightimg} /> : null}
     </div>

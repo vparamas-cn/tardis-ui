@@ -58,6 +58,7 @@ const TitleContainer = props => {
         <Button
           class={"fullscreenicon"}
           leftimg={Images.Fullscreen}
+          svg={true}
           onClick={() => {
             fullscreen();
           }}

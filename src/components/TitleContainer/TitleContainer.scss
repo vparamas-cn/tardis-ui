@@ -90,11 +90,28 @@ $color-lightgray: #a6adbb;
       cursor: pointer;
     }
   }
+    .expand path:first-child{
+      transform: translateY(770px) translateX(-770px);
+    }
+    .expand path:nth-child(2){
+      transform: translateY(-770px) translateX(770px);
+    }
+    
+    .collapse path:first-child{
+      transform: translateY(0px) translateX(0px);
+    }
+    .collapse path:nth-child(2){
+      transform: translateY(0px) translateX(0px);
+    }
+    
+    
+   
+  
   .fullscreenicon {
     // padding: 0px 30px;
     width: 40px;
   }
-  .fullscreenicon img {
+  .fullscreenicon svg {
     height: 20px;
     cursor: pointer;
   }

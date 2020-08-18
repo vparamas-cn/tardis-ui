@@ -47,7 +47,7 @@ const StatusTable = props => {
                                                 </a>
                                                 <ReactTooltip id={`statusrec-${j}`} aria-haspopup='true' >
                                                     <p>Last Updated TS: <span>{lastUpdate}</span></p>
-                                                    {comments !== "" ? <p>Comments: <span>{comments}</span></p> : null}
+                                                    {comments && comments !=null && comments !== "" ? <p>Comments: <span>{comments.substring(0, 255)}</span></p> : null}
                                                 </ReactTooltip>
                                             </div>
 

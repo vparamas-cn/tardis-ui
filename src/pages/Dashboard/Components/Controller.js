@@ -24,7 +24,8 @@ export const PageController = (dashboard) => {
   else {
     totalElements = sourceList.length;
   }
-  sourceNames = dateFilter ? sourceNames.length > 0 ? sourceNames : unique : (filter ? sourceNames : (!filter && data.length > 0) ? sourceList.slice(0, size).map((e, i) => { return e.source }) : []);
+  let dateCheck = dateFilter ? (sourceNames.length === 0 ? true: false) :false;
+  sourceNames = sourceNames.length > 0 ? sourceNames :  dateFilter ? unique : (filter ? sourceNames : (!filter && data.length > 0) ? sourceList.slice(0, size).map((e, i) => { return e.source }) : []);
   let arr = [], startdate = false, endcount = 0;
   sourceNames.forEach((e) => {
     let filterarr = data.filter((item, i) => { return item.source.source === e }).sort((a, b) => new Date(a.logdate) - new Date(b.logdate));
@@ -52,8 +53,8 @@ export const PageController = (dashboard) => {
   if (totalPage < page || totalPage === 1) {
     page = 1
   }
-  sourceNames = filter || dateFilter ? PaginationControl(page, size, sourceNames) : sourceNames;
-  arr = filter || dateFilter ? PaginationControl(page, size, arr) : arr;
+  sourceNames = filter || dateCheck ? PaginationControl(page, size, sourceNames) : sourceNames;
+  arr = filter || dateCheck ? PaginationControl(page, size, arr) : arr;
   let pageBounds;
   if (totalPage > 5) {
     if (Nav === "Next" && (page - 1) % 5 === 0) {
@@ -97,7 +98,7 @@ export const PageController = (dashboard) => {
 }
 
 export const Filter = (dashboard, e) => {
-  let size = e.size ? e.size : e.filter ? dashboard.size : 15;
+  let size = e.size ? e.size : dashboard.size;
   let page = e.page ? e.page : dashboard.page;
   let filterSource = (e.page != undefined && e.page != dashboard.page) || (e.size != undefined && e.size != dashboard.size) && dashboard.filterSource.length > 0 ? dashboard.filterSource : e.filterSource;
   let filter = filterSource !== undefined && filterSource.length > 0 ? true : false;
