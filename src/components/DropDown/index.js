@@ -4,7 +4,7 @@ import { Images } from "../../assets/images";
 import useOnClickOutside from "./OutClickhandler";
 import Checkbox from "../Checkbox"
 import RadioBtn from "../RadioBtn"
-import { Multiselect } from 'multiselect-react-dropdown';
+import {Multiselect}  from '../Multiselect';
 import Button from "../Button/Button"
 
 const DropDown = props => {

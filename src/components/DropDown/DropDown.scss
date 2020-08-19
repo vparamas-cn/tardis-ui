@@ -123,9 +123,10 @@ $color-white: #f8f8fb;
     background: #f1f5f7;
     color: $color-black;
     border-radius: 3px;
-    padding: 4px 5px;
+    padding: 10px;
     .icon_cancel{
       font-size: 14px;
+      margin-left: 5px;
     }
   }
   .lhyQmCtWOINviMz0WG_gr{
@@ -144,6 +145,7 @@ $color-white: #f8f8fb;
     background: #f1f5f7;
   }
   .searchBox{
-    padding: 5px;;
+    padding: 5px;
+    width: 100%;
   }
 }

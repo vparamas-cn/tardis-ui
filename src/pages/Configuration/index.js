@@ -24,7 +24,7 @@ const Configuration = ({SourceType}) => {
     }
      if(page === "Slack")
     {
-        history.push("/slack-integration");
+        //history.push("/slack-integration");
     }
   }  
 
