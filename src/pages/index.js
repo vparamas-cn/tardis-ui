@@ -35,7 +35,7 @@ function Main(props) {
             <Route path="/file-manager" children={<FileManager />} />
             <Route path="/trend-chart" children={<TrendChart />} />
           </Switch>
-          <Redirect from="/" to="dashboard" />
+          <Redirect strict from="/" to="configurations" />
         </main>
         <Bottom />
         <Aside />

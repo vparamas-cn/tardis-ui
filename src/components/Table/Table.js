@@ -22,7 +22,7 @@ const Table = props => {
             <tr>
               {header &&
                 header.map((item, index) => {
-                  return <th key={`th-${index}`}>{item}</th>;
+                  return <th key={`th-${index}`} id={item.replace(" ","-")}>{item}</th>;
                 })}
             </tr>
           </thead>
@@ -34,13 +34,13 @@ const Table = props => {
           ) : props.name === "SourceMapConfig" ? (
             <SourceMapConfig dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)}/>
           ) : props.name === "SlackIntegration" ? (
-            <SlackRow />
+            <SlackRow dataSource={props.dataSource} />
           ) : props.name === "Admin" ? (
             <AdminRow />
           ) :null }
         </table>
       </section>
-      <Pagination dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)} />
+      <Pagination dataSource={props.dataSource} total={props.countcontrol} LoadRecord={(data)=>props.LoadRecord(data)} />
     </Fragment>
   );
 };

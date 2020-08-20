@@ -24,7 +24,7 @@ const Configuration = ({SourceType}) => {
     }
      if(page === "Slack")
     {
-        //history.push("/slack-integration");
+        history.push("/slack-integration");
     }
   }  
 
@@ -55,7 +55,7 @@ const Configuration = ({SourceType}) => {
           <FolderWrapper
             titlename="Slack Intergration"
             subname="Configuration"
-            selection={false}
+            selection={true}
             img={Images.slack}
             OnClick={()=>{onPagenavigation("Slack")}}
           />

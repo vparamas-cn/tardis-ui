@@ -6,7 +6,7 @@ import types from './types'
 export function* fetchList() {
     let response;
     try {
-        let hasrow = false, size = 1000, datalist = [];
+        let hasrow = false, size = 1000;
         do {
             response = yield call(fetch, query.source(size));
             const data = yield response.data;

@@ -3,8 +3,9 @@ import "./DropDown.scss";
 import { Images } from "../../assets/images";
 import useOnClickOutside from "./OutClickhandler";
 import Checkbox from "../Checkbox"
+import TagInput from "../TagInput"
 import RadioBtn from "../RadioBtn"
-import {Multiselect}  from '../Multiselect';
+import { Multiselect } from '../Multiselect';
 import Button from "../Button/Button"
 
 const DropDown = props => {
@@ -14,7 +15,8 @@ const DropDown = props => {
   const [isOpen, setOpen] = useState(false);
   const [listoption, setList] = useState([]);
   const [multilist, setMulti] = useState([]);
-  const { options, label, value, reset, radiobtn, checkbox } = props
+  const [slacktag, settags] = useState("");
+  const { options, label, value, reset, radiobtn, checkbox, tags } = props
   useEffect(
     () => {
       if (options && options.length > 0) {
@@ -37,7 +39,7 @@ const DropDown = props => {
     setOpen(false);
   });
   const onDropdown = e => {
-    if (e.target.className.indexOf("opendropdown") > -1 && !props.disabled && options !== undefined) {
+    if (typeof e.target.className === "string" && e.target.className.indexOf("opendropdown") > -1 && !props.disabled && options !== undefined) {
       setOpen(!isOpen);
       setList(options);
       props.onClick && props.onClick()
@@ -54,6 +56,9 @@ const DropDown = props => {
   };
   const onMultiSelectRemove = (data) => {
     setMulti(data)
+  }
+  const onTagsSelectRemove = (data) => {
+    settags(data)
   }
   return (
     <div
@@ -117,48 +122,65 @@ const DropDown = props => {
           </Fragment>
         )
           :
-          radiobtn && options ?
-            <li
-              className={`dontclose radiofilter`}
-            >
-              <RadioBtn name="isactive" options={options} value={value} onChange={(e) => props.onChange(e)} />
-            </li>
+          tags ?
+            <Fragment>
+              {slacktag && slacktag.length > 0 ? <div className="buttoncontainer"><Button
+                class="greenclr"
+                name="Apply"
+                onClick={() => {
+                  props.onFilterselect(slacktag)
+                  document.getElementById(props.id).click()
+                }} /><Button
+                  class="redclr"
+                  name="Reset"
+                  onClick={() => {
+                    props.onFilterselect("");
+                    settags("")
+                  }} /></div> : null}
+              <TagInput edit={true} id={props.id} inputstyle={{ width: 215 }} reset={reset} onChange={(e) => {onTagsSelectRemove(e) }} style={{ flexWrap: "wrap-reverse" }} />
+            </Fragment>
+            : radiobtn && options ?
+              <li
+                className={`dontclose radiofilter`}
+              >
+                <RadioBtn name="isactive" options={options} value={value} onChange={(e) => props.onChange(e)} />
+              </li>
 
-            :
-            listoption.length > 0 ? (
-              listoption.map((item, index) => {
-                if (checkbox) {
-                  return (
-                    <li
-                      key={"checkbox-" + index}
-                      className={`dontclose li`}
-                      onClick={() => {
-                        props.onChange && props.onChange(item)
-                      }}
-                    >
-                      <Checkbox name={item} label={item} class="dontclose" />
-                    </li>
-                  )
-                }
-                else {
-                  if (props.displaynode)
-                    item = item[props.displaynode]
-                  return (
-                    <li
-                      key={"dd" + index}
-                      className={`dontclose li ${selectedoption === item ? "foucs" : ""}`}
-                      onClick={e => {
-                        onSelectedItem(e, item);
-                      }}
-                    >
-                      {item}
-                    </li>
-                  );
-                }
-              })
-            ) : (
-                <li>No data found</li>
-              )}
+              :
+              listoption.length > 0 ? (
+                listoption.map((item, index) => {
+                  if (checkbox) {
+                    return (
+                      <li
+                        key={"checkbox-" + index}
+                        className={`dontclose li`}
+                        onClick={() => {
+                          props.onChange && props.onChange(item)
+                        }}
+                      >
+                        <Checkbox name={item} label={item} class="dontclose" />
+                      </li>
+                    )
+                  }
+                  else {
+                    if (props.displaynode)
+                      item = item[props.displaynode]
+                    return (
+                      <li
+                        key={"dd" + index}
+                        className={`dontclose li ${selectedoption === item ? "foucs" : ""}`}
+                        onClick={e => {
+                          onSelectedItem(e, item);
+                        }}
+                      >
+                        {item}
+                      </li>
+                    );
+                  }
+                })
+              ) : (
+                  <li>No data found</li>
+                )}
       </ul>
     </div>
   )

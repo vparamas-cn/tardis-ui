@@ -61,7 +61,7 @@ const StatusTable = props => {
                     </div>
                 </section>
             </div>
-            <Pagination dataSource={props.dataSource} dashboard={true} LoadRecord={(data) => { props.LoadRecords(data) }} />
+            <Pagination dataSource={props.dataSource} total={true} LoadRecord={(data) => { props.LoadRecords(data) }} />
         </Fragment>
         : <div className="emptytable">No Data found!!</div>
     );

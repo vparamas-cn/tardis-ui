@@ -19,7 +19,7 @@ const updateData = (data, update) => {
     }
     return data
 }
-const sourceReducer = (state = initialState, action) => {
+const mapReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case types.MAP_LIST_REQUEST: {
@@ -97,4 +97,4 @@ const sourceReducer = (state = initialState, action) => {
 
 }
 
-export default sourceReducer;
+export default mapReducer;

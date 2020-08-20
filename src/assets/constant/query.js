@@ -122,6 +122,42 @@ const query = {
         }
       }
     }`,
+    slackalert: () => `
+    query {
+      slackAlertLevel{
+        results{
+          alertLevel
+        }
+      }
+    }`,
+    slack: (params) =>
+    {
+      let alert = ""
+      if(params.alertLevel && params.alertLevel!=="")
+      {
+        alert = `alertLevel: \"${params.alertLevel}\"`
+      }
+     return `
+    query {
+      slackSubscription(sourceName:${params.sourceName} ,size:${params.size}, page:${params.page} ${alert}){
+        results{
+          id
+          source{
+            source
+          },
+          alertLevel{
+            alertLevel
+          },
+          slackChannels
+        },
+        totalElements,
+        size,
+        hasNextPage,
+        currentPage,
+        totalPages
+      }
+    }
+    `}
 
 }
 export default query

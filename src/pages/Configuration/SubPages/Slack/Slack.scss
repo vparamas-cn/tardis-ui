@@ -1,3 +1,56 @@
 .Slackpage {
+  
+}
+#maincontent:not(.fullscreen) {
+  .Slackpage {
+    .container-filter {
+      #sourcedd {
+        width: 260px;
+      }
+      #alertdd {
+        width: 200px;
+      }
+      #slackdd {
+        width: 260px;
+      }
+      .addbtn {
+        width: 185px;
+        margin-left: 0px;
+      }
+    }
+  }
+}
+.controls {
+  .source1 {
+    .slack {
+      .select-search__input {
+        height: 40px;
+      }
+    }
+  }
+}
+.slackadd{
+  width: 15px;
+  path {
+    fill: #ffffff;
+  }
+  rect {
+    fill: #ffffff;
+  }
+  ellipse {
+    fill: #ffffff;
+  }
+  circle {
+    fill: #ffffff;
+  }
+}
+.tagcontainer{
+  
+  width: 100%;
+  min-height: 150px;
+  margin: 10px 0px 30px 0px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
 
 }

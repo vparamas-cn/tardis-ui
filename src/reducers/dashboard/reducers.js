@@ -21,7 +21,7 @@ const initialState = {
     dateFilter:false
 }
 
-const sourceReducer = (state = initialState, action) => {
+const dashboardReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case types.PIPELINE_LIST_REQUEST: {
@@ -98,4 +98,4 @@ const sourceReducer = (state = initialState, action) => {
 
 }
 
-export default sourceReducer;
+export default dashboardReducer;
