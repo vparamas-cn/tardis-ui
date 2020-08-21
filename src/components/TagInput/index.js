@@ -5,6 +5,10 @@ import { Images } from "../../assets/images";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
+function hasWhiteSpace(s) {
+  return /\s/g.test(s);
+}
+
 const TagInput = (props) => {
     const {edit,id} = props;
     let slacklist =  props.slackChannels? props.slackChannels.split(","):[];
@@ -14,11 +18,11 @@ const TagInput = (props) => {
         SetTags(tags.filter((tag) => tag !== i))
         props.onChange && props.onChange(tags)
     }
-
+    
     const handleAddition = () => {
         let value = '#'+document.getElementById(`add-slack-${id}`).value;
         let slack =tags;
-        if(slack.indexOf(value) === -1 && value !== "#"){
+        if(slack.indexOf(value) === -1 && value !== "#" && !hasWhiteSpace(value)){
           slack.push(value);
           SetTags(slack);
           setStatus(!status);
@@ -32,7 +36,7 @@ const TagInput = (props) => {
     useEffect(()=>{
         if(props.reset)
         {
-            SetTags([]);
+            SetTags(props.slackChannels? props.slackChannels.split(","):[]);
         }
     },[props.reset])
    
@@ -41,7 +45,7 @@ const TagInput = (props) => {
       {tags.map((e, i) => {
         return <div className="slackchannel" key={`slackchannel-${i}`}>{e}{edit?<img src={Images.close} onClick={()=>{handleDelete(e)}} alt=""/>:null}</div>
       })}
-      {edit?<div className="slackchanneladd" >#<input type="text" style={props.inputstyle? props.inputstyle:{width: 100}} id={`add-slack-${id}`} placeholder="Slack Channel" /><FontAwesomeIcon icon={faCheckCircle} color={"#3976eb"} onClick={()=>{handleAddition()}} /></div>:null}
+      {edit?<div className="slackchanneladd" >#<input type="text" style={props.inputstyle? props.inputstyle:{width: 100}} id={`add-slack-${id}`} placeholder={props.placeholder?props.placeholder:"Slack Channel"} /><FontAwesomeIcon icon={faCheckCircle} color={"#3976eb"} onClick={()=>{handleAddition()}} /></div>:null}
       <input type="hidden" value={`${tags.join(",")}`} name="slackChannels"/>
       </div>
     );

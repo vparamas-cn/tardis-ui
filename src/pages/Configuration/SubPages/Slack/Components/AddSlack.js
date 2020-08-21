@@ -4,7 +4,8 @@ import {
   Button,
   DropDown,
   SelectSearch,
-  TagInput
+  TagInput,
+  RadioBtn
 } from "../../../../../components";
 import "../Slack.scss";
 import SVG from 'react-inlinesvg';
@@ -16,10 +17,10 @@ const AddSlack = props => {
   const {source, alertLevel} = props;
 
   const submit = () =>{
-    const form = document.getElementById("addmapsource")
+    const form = document.getElementById("addslack")
     var data = Object.values(form).reduce((obj,field) => { obj[field.name ? field.name: "unnamed"] = field.value; return obj }, {});
     delete data.unnamed;
-    data.isoptional = (data.isoptional === "True"); 
+    data.isActive = (data.isActive === "True");
     props.onSubmit(data)
   }
 
@@ -69,9 +70,12 @@ const AddSlack = props => {
                   disabled={false} name="source"
                 />
               </div>
+              <div className="isactive">
+                <span>IsActive</span> <RadioBtn name="isActive"  options={["True", "False"]} />
+              </div>
             </div>
             <div className="source2">
-            <div>
+            <div >
                 <span>ALERT LEVEL</span>
                 <DropDown
                   id={"alertLevel"}
@@ -84,8 +88,13 @@ const AddSlack = props => {
             </div>
             
           </div>
+          <div className="topspace">
+          
+          <span className="labelspan">SLACK CHANNEL</span>
           <div className="tagcontainer">
-                <TagInput edit={true} id={"addslack"}/>
+          
+                <TagInput edit={true} id={"addslack"} placeholder="Add Channel"/>
+            </div>
             </div>
         </form>
       </div>

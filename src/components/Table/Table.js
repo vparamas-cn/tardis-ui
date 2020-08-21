@@ -34,13 +34,13 @@ const Table = props => {
           ) : props.name === "SourceMapConfig" ? (
             <SourceMapConfig dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)}/>
           ) : props.name === "SlackIntegration" ? (
-            <SlackRow dataSource={props.dataSource} />
+            <SlackRow dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)}/>
           ) : props.name === "Admin" ? (
             <AdminRow />
           ) :null }
         </table>
       </section>
-      <Pagination dataSource={props.dataSource} total={props.countcontrol} LoadRecord={(data)=>props.LoadRecord(data)} />
+      <Pagination dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)} />
     </Fragment>
   );
 };

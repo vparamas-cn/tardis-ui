@@ -5,6 +5,7 @@ import Button from "../../Button/Button";
 import TimePicker from "../../TimePicker";
 import { Images } from "../../../assets/images";
 import { useDispatch } from 'react-redux';
+import FieldHolder from "../../InputText/FieldHolder"
 import query from '../../../assets/constant/query'
 import { showHide, ActionUpdate, fetch} from '../../../utils'
 import { ActionSource } from '../../../reducers/configuration/actions'
@@ -56,8 +57,11 @@ const SourceConfig = props => {
         <td onClick={() => {
           showHideRow(props);
         }}>
-          <img alt="" src={Images.RowEdit} className="editimg" />
-          <span>Edit</span>
+          <div id={`edittd-${props.id}`}>
+            <img alt="" src={Images.RowEdit} className="editimg" />
+            <span>Edit</span>
+          </div>
+          <img alt="" src={Images.close} className="editimg closetd" id={`closetd-${props.id}`} />
         </td>
       </tr>
     );
@@ -81,23 +85,37 @@ const SourceConfig = props => {
                         <span>{source}</span>
                         <input type="hidden" name="source" value={source} />
                       </div>
+                      <FieldHolder lable="Description">
                       <input type="text" id={`description-${props.id}`} name={`description-${props.id}`} className="sourceinput120" maxLength={255}/>
+                      </FieldHolder>
+                      <FieldHolder lable="Alias">
                       <input type="text" id={`alias-${props.id}`} name={`alias-${props.id}`}  className="sourceinput120" />
+                      </FieldHolder>
+                      <FieldHolder lable="Type">
                       <select id={`type-${props.id}`} name={`type-${props.id}`} className="customselect130" disabled>
                         {sourceType.map((e,i)=>{
                           return <option key={i} value={e.type}>{e.type}</option>
                         })}
                       </select>
+                      </FieldHolder>
+                      <FieldHolder lable="IsActive">
                       <select id={`isactive-${props.id}`} name={`isactive-${props.id}`} className="sourceinput60 customselect">
                         <option value={"true"}>True</option>
                         <option value={"false"}>False</option>
                       </select>
+                      </FieldHolder>
+                      <FieldHolder lable="NumPrevDays">
                       <input type="number" id={`numPrevDays-${props.id}`}  name={`numPrevDays-${props.id}`} className="sourceinput60" />
+                      </FieldHolder>
+                      <FieldHolder lable="DashTriggerId">
                       <input type="text" id={`dashTriggerId-${props.id}`} disabled={props.type && props.type.type === "Dashboard"?false:true} name={`dashTriggerId-${props.id}`} className="sourceinput120" />
+                      </FieldHolder>
+                      <FieldHolder lable="AvailabilitySchedule">
                       <TimePicker time={availabilitySchedule} className="sourceinput120"  name={`availabilitySchedule-${props.id}`} />
-                      <div className="detailbuttons">
+                      </FieldHolder>
+                      <div className="detailbuttons fieldholder">
                         <Button class="greenclr" name="Update" onClick={() => { Update(`formsource-${props.id}`,props.id) }} />
-                        <Button class="clearbtncolor" name="Clear" onClick={() => { ClearForm(`formsource-${props.id}`) }} />
+                        <Button class="clearbtncolor" name="Clear" onClick={() => { ClearForm(props,"source") }} />
                         <Button
                           class="deletebtn"
                           name="Delete Contact"

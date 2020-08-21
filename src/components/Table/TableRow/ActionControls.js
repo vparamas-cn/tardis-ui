@@ -20,6 +20,15 @@ export const UpdateData = (formid ,id, cb) => {
     cb(data);
 }
 
-export const ClearForm = (formid) => {
-    document.getElementById(formid).reset();
+export const ClearForm = (data,page) => {
+    for (var x of Object.keys(data)) {
+        try {
+            let name = `${x}-${data.id}`;
+            if (page === "source")
+            document.getElementById(name).value = x === "type" ? data[x].type : data[x];
+            else if (page === "sourceMap" || page === "slack")
+            document.getElementById(name).value = typeof data[x] == "object" && data[x] != null ? data[x].source : data[x] == null ? false : data[x];
+        }
+        catch (e) { }
+    }
 }

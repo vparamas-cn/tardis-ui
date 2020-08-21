@@ -32,6 +32,7 @@ const mapReducer = (state = initialState, action) => {
                 page: 1,
                 totalPage: 1,
                 totalElements: 0,
+                updatecount: 0,
             }
         }
         case types.MAP_LIST_SUCCESS: {

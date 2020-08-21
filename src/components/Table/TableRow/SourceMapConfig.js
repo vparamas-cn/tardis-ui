@@ -78,8 +78,11 @@ const SourceConfig = props => {
           <div className="action-td-container">
             <div className="edit-action" onClick={() => {
               showHideRow(props);
-            }}><img alt="" src={Images.RowEdit} className="editimg" />
-              <span>Edit</span></div>
+            }}><div id={`edittd-${props.id}`}>
+            <img alt="" src={Images.RowEdit} className="editimg" />
+            <span>Edit</span>
+          </div>
+          <img alt="" src={Images.close} className="editimg closetd" id={`closetd-${props.id}`} /></div>
           </div>
         </td>
       </tr>
@@ -125,7 +128,7 @@ const SourceConfig = props => {
                       </FieldHolder>
                       <div className="detailbuttons fieldholder">
                         <Button class="greenclr" name="Update" onClick={() => { Update(`formsourcemap-${props.id}`, props.id) }} />
-                        <Button class="clearbtncolor" name="Clear" onClick={() => { ClearForm(`formsourcemap-${props.id}`) }} />
+                        <Button class="clearbtncolor" name="Clear" onClick={() => { ClearForm(props,"sourceMap") }} />
                         <Button
                           class="deletebtn"
                           name="Delete Contact"

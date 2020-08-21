@@ -43,7 +43,7 @@ export const filterdata = (data, params) => {
   for (var y of Object.keys(params)) {
     if (Array.isArray(params[y])) {
       result = result.filter(function (e) {
-        if (typeof e[y] === "object" && e[y] != null) {
+        if (typeof e[y] === "object" && e[y] !== null) {
           return params[y].indexOf(e[y]["source"]) > -1;
         }
         else {
@@ -132,14 +132,20 @@ export const checkDates = (header,item) =>{
 export const showHide = (data, page) => {
   let selectedrow = `hidden_row${data.id}`;
   let arrowimg = `downimage${data.id}`;
+  let edittd = document.getElementById(`edittd-${data.id}`);
+  let closetd = document.getElementById(`closetd-${data.id}`);
   var trd = document.getElementById(selectedrow);
   var isopen = false;
   if (trd.className.indexOf("hidden_row") > -1) {
     trd.classList.remove("hidden_row");
+    edittd.style.display = "none";
+    closetd.style.display = "block";
     isopen = true;
   }
   else {
     trd.classList.add("hidden_row");
+    edittd.style.display = "block";
+    closetd.style.display = "none";
     isopen = false;
   }
 
@@ -157,7 +163,7 @@ export const showHide = (data, page) => {
         let name = `${x}-${data.id}`;
         if (page === "source")
           document.getElementById(name).value = x === "type" ? data[x].type : data[x];
-        else if (page === "sourceMap")
+        else if (page === "sourceMap" || page === "slack")
           document.getElementById(name).value = typeof data[x] == "object" && data[x] != null ? data[x].source : data[x] == null ? false : data[x];
       }
       catch (e) { }

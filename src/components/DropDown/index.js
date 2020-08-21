@@ -29,7 +29,7 @@ const DropDown = props => {
       if (value && !radiobtn && !checkbox) {
         setOption(value);
       }
-      if (reset) {
+      if (reset && multiselectRef.current) {
         multiselectRef.current.resetSelectedValues();
       }
     },

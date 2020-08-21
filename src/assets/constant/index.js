@@ -78,7 +78,7 @@ export const TableHeader = {
     "ACTIONS"
   ],
   SourceMapConfig: ["", "SOURCES", "CHILD SOURCES", "ISOPTIONAL", "ACTIONS"],
-  SlackIntegration: ["", "SOURCES", "ALERT LEVEL", "SLACK CHANNEL", "ACTIONS"],
+  SlackIntegration: ["", "SOURCES", "ALERT LEVEL", "ISACTIVE" ,"SLACK CHANNEL", "ACTIONS"],
   Admin: ["", "EMAIL", "PERMISSION LEVEL", "PERMISSION ENTITY", "STATUS", "ACTIONS"]
 };
 

@@ -3,14 +3,21 @@ import { fetch } from '../../utils'
 import query from '../../assets/constant/query'
 import types from './types'
 
-export function* fetchList(action) {
+export function* fetchList() {
     let response;
     try {
+        let hasrow = false, size = 1000;
+        do {
+            response = yield call(fetch, query.slack({size}));
+            const data = yield response.data;
+            size += 1000;
+            hasrow = data.data.slackSubscription.hasNextPage;
+            if (hasrow)
+                size = data.data.slackSubscription.totalElements;
+            yield put({ type: types.SLACK_LIST_SUCCESS, payroll: data });
+        }
+        while (hasrow)
 
-        response = yield call(fetch, query.slack(action.payroll));
-        const data = yield response.data;
-        yield put({ type: types.SLACK_LIST_SUCCESS, payroll: data });
-        
     }
     catch (error) {
         yield put({ type: types.SLACK_LIST_FAILURE });

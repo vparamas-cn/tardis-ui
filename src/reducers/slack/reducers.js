@@ -1,4 +1,5 @@
 import types from './types'
+
 const initialState = {
     isLoading: false,
     data: [],
@@ -8,22 +9,19 @@ const initialState = {
     size: 5,
     totalPage: 1,
     totalElements: 0,
-    pageBound: false,
-    sourceType: [],
+    pageBound: { current: 1, upperbound: 1, lowerbound: 0 },
     updatecount: 0,
-    sourceList:[],
-    AlertList:[]
+    AlertList:[],
+    sourceList:[]
 }
-const UpdatePageBound = (totalPage,pageBound) =>{
-    if(!pageBound){
-        if (totalPage > 5) {
-        pageBound = { current: 5, upperbound: 5, lowerbound: 0 }
-        }
-        else {
-        pageBound = { current: totalPage, upperbound: totalPage, lowerbound: 0 }
+const updateData = (data, update) => {
+    for (var x in data) {
+        if (data[x].id === update.id) {
+            data[x].slackChannels = update.slackChannels;
+            data[x].isActive = update.isActive;
         }
     }
-    return pageBound;
+    return data
 }
 const slackReducer = (state = initialState, action) => {
 
@@ -34,12 +32,11 @@ const slackReducer = (state = initialState, action) => {
                 isLoading: true,
                 data: [],
                 filterData: [],
-                filter: {},
-                updatecount: 0,
-                pageBound: false,
+                pageBound: { current: 1, upperbound: 1, lowerbound: 0 },
                 page: 1,
                 totalPage: 1,
                 totalElements: 0,
+                updatecount: 0,
             }
         }
         case types.SLACK_LIST_SUCCESS: {
@@ -50,11 +47,6 @@ const slackReducer = (state = initialState, action) => {
                 data: slackdata.results.filter
                     ((e) => e !== null),
                 totalElements: slackdata.totalElements,
-                page: slackdata.currentPage,
-                totalPage: slackdata.totalPages,
-                totalElements: slackdata.totalElements,
-                size: slackdata.size,
-                pageBound: UpdatePageBound(slackdata.totalPages, state.pageBound)
             }
         }
         case types.SLACK_LIST_FAILURE: {
@@ -68,8 +60,7 @@ const slackReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filter: datafilter.filter ? datafilter.filter : {},
-                filterData: datafilter.filterData ? datafilter.filterData.filter
-                ((e) => e !== null) : [],
+                filterData: datafilter.filterData ? datafilter.filterData : [],
                 page: datafilter.page ? datafilter.page : 1,
                 size: datafilter.size ? datafilter.size : 5,
                 totalPage: datafilter.totalPage ? datafilter.totalPage : 1,
@@ -80,9 +71,8 @@ const slackReducer = (state = initialState, action) => {
         case types.FILTER_SLACK_LIST_REQUEST: {
             return {
                 ...state,
-                isLoading: true,
-                sourceList:[],
-                AlertList:[]
+                AlertList:[],
+                sourceList:[]
             }
         }
         case types.SOURCE_SLACK_LIST_SUCCESS: {
@@ -97,6 +87,36 @@ const slackReducer = (state = initialState, action) => {
                 ...state,
                 AlertList: action.payroll.data.slackAlertLevel.results.filter
                     ((e) => e !== null)
+            }
+        }
+        case types.ACTION_SLACK_ADD: {
+            return {
+                ...state,
+                data: state.data.concat(action.payroll),
+                filterData: state.filterData.concat(action.payroll),
+                totalElements: state.totalElements + 1
+            }
+        }
+        case types.ACTION_SLACK_UPDATE: {
+            let payrolldataupdate = action.payroll.slackSubscription.slackSubscription;
+            var DataUpdate = updateData(state.data, payrolldataupdate);
+            var FilterUpdate = updateData(state.filterData, payrolldataupdate);
+            return {
+                ...state,
+                data: DataUpdate,
+                filterData: FilterUpdate,
+                updatecount: state.updatecount + 1
+            }
+        }
+        case types.ACTION_SLACK_DELETE: {
+            let payrolldelete = action.payroll;
+            let dataafterremoved = state.data.filter(e => e.id !== payrolldelete.id )
+            let filterdataafterremoved = state.filterData.filter(e => e.id !== payrolldelete.id )
+            return {
+                ...state,
+                data: dataafterremoved,
+                filterData: filterdataafterremoved,
+                totalElements: state.totalElements - 1
             }
         }
         default: return state;

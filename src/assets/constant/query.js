@@ -137,9 +137,19 @@ const query = {
       {
         alert = `alertLevel: \"${params.alertLevel}\"`
       }
-     return `
+      let sourceName = ""
+      if(params.sourceName)
+      {
+        sourceName = `sourceName: ${params.sourceName}`
+      }
+      let isActive = ""
+      if(params.isActive)
+      {
+        isActive = `isActive: ${params.isActive}`
+      }
+    return `
     query {
-      slackSubscription(sourceName:${params.sourceName} ,size:${params.size}, page:${params.page} ${alert}){
+      slackSubscription(size:${params.size}, ${alert} ${sourceName} ${isActive}){
         results{
           id
           source{
@@ -148,7 +158,8 @@ const query = {
           alertLevel{
             alertLevel
           },
-          slackChannels
+          slackChannels,
+          isActive
         },
         totalElements,
         size,
@@ -157,7 +168,9 @@ const query = {
         totalPages
       }
     }
-    `}
+    `},
+    slackaddupdate: (params) =>
+    `mutation{\n  slackSubscription(source: \"${params.source}\", alertLevel: \"${params.alertLevel}\", slackChannels:\"${params.slackChannels}\", isActive: ${params.isActive}){\n     slackSubscription{\n      id\n      source{\n            source\n          },\n          alertLevel{\n            alertLevel\n          },\n          slackChannels,\n          isActive\n    }\n  }\n}`
 
 }
 export default query
