@@ -1,22 +1,32 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { fetch } from '../../utils'
+import { all, call, put, takeLatest, select } from 'redux-saga/effects';
+import { fetch, paginationFilter } from '../../utils'
 import query from '../../assets/constant/query'
 import types from './types'
+
+const getslack = state => state.slack;
 
 export function* fetchList() {
     let response;
     try {
-        let hasrow = false, size = 1000;
+        let hasrow = false, size = 1000, data={};
         do {
             response = yield call(fetch, query.slack({size}));
-            const data = yield response.data;
+            data = yield response.data;
             size += 1000;
             hasrow = data.data.slackSubscription.hasNextPage;
             if (hasrow)
                 size = data.data.slackSubscription.totalElements;
-            yield put({ type: types.SLACK_LIST_SUCCESS, payroll: data });
-        }
+            }
         while (hasrow)
+        yield put({ type: types.SLACK_LIST_SUCCESS, payroll: data });
+        let slackList = data.data.slackSubscription.results;
+        const slack = yield select(getslack);
+        if(slackList.length > 0){
+            let result = paginationFilter(slack)
+            result.page = 1;
+            result.filter={};
+            yield put({ type: types.FILTER_SLACK_PAGINATION, payroll: result });
+        }
 
     }
     catch (error) {

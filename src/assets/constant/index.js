@@ -11,7 +11,7 @@ export const menulist = [
     image: require("../../assets/images/File.svg"),
     selection: false,
     notify: false,
-   // path: "/file-manager"
+    path: "/file-manager"
   },
   {
     name: "Admin",

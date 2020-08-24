@@ -35,7 +35,12 @@ const SourceConfig = props => {
     }
   }
   const Delete = async(data) => {
-
+    let request = {
+      source: data.source.source,
+      alertLevel: data.alertLevel.alertLevel
+    }
+    var response = await fetch(query.deleteSlack(request))
+    ActionUpdate(response, data, "Delete", (e) => { dispatch(ActionSource(e)); })
   }
   
 
@@ -86,7 +91,7 @@ const SourceConfig = props => {
                       type="text"
                       name={"source"}
                       value={props.source.source}
-                      className="sourceinput120"
+                      className="sourceinput200"
                       disabled={true}
                     />
                     </FieldHolder>

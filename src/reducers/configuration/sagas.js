@@ -1,22 +1,32 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { fetch } from '../../utils'
+import { all, call, put, takeLatest, select } from 'redux-saga/effects';
+import { fetch , paginationFilter} from '../../utils'
 import query from '../../assets/constant/query'
 import types from './types'
+
+const getsource = state => state.source;
 
 export function* fetchList() {
     let response;
     try {
-        let hasrow = false, size = 1000;
+        let hasrow = false, size = 1000, data = {};
         do {
             response = yield call(fetch, query.source(size));
-            const data = yield response.data;
+            data = yield response.data;
             size += 1000;
             hasrow = data.data.source.hasNextPage;
             if (hasrow)
                 size = data.data.source.totalElements;
-            yield put({ type: types.SOURCE_LIST_SUCCESS, payroll: data });
         }
         while (hasrow)
+        yield put({ type: types.SOURCE_LIST_SUCCESS, payroll: data });
+        let sourceList = data.data.source.results;
+        const source = yield select(getsource);
+        if(sourceList.length > 0){
+            let result = paginationFilter(source)
+            result.page = 1;
+            result.filter={};
+            yield put({ type: types.FILTER_SOURCE_PAGINATION, payroll: result });
+        }
 
     }
     catch (error) {

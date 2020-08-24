@@ -2,15 +2,29 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.scss";
 import Main from "./pages";
-import axios from 'axios';
-axios.defaults.headers.common['Authorization'] = 'Token 1c50e0aa64ec84880f0da736740373efc6c16785';
-axios.defaults.headers.common['Content-Type'] = 'application/json';
+import ScrollToTop from './ScrollController';
+import { isDev } from './utils'
+import { Security } from '@okta/okta-react';
+const config = {
+  clientId: '{clientId}',
+  issuer: 'https://${yourOktaDomain}/oauth2/default',
+  redirectUri: 'http://localhost:3000/',
+  scopes: ['openid', 'profile', 'email'],
+  pkce: true
+};
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/" children={<Main />} />
-      </Switch>
+      <ScrollToTop />
+      {isDev() ?
+        <Switch>
+          <Route path="/" children={<Main />} />
+        </Switch> :
+        <Security {...config}>
+          <Switch>
+            <Route path="/" children={<Main />} />
+          </Switch>
+        </Security>}
     </Router>
   );
 }

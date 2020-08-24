@@ -18,8 +18,6 @@ const Source = ({ SourceRecords, UpdateFilterPagination }) => {
   useEffect(() => {
     if(data.length> 0){
       let result = paginationFilter(source)
-      result.page = 1;
-      result.filter={};
       UpdateFilterPagination(result)
     }
   }, [data])

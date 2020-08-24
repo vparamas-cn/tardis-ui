@@ -72,7 +72,8 @@ const slackReducer = (state = initialState, action) => {
             return {
                 ...state,
                 AlertList:[],
-                sourceList:[]
+                sourceList:[],
+                isLoading: true,
             }
         }
         case types.SOURCE_SLACK_LIST_SUCCESS: {

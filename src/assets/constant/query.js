@@ -98,6 +98,9 @@ const query = {
         results{
           source{
             source
+            type {
+              isgroup
+            }
           }
           status{
         		status
@@ -119,6 +122,9 @@ const query = {
         hasNextPage
         results{
           source
+          type {
+            isgroup
+          }
         }
       }
     }`,
@@ -171,6 +177,9 @@ const query = {
     `},
     slackaddupdate: (params) =>
     `mutation{\n  slackSubscription(source: \"${params.source}\", alertLevel: \"${params.alertLevel}\", slackChannels:\"${params.slackChannels}\", isActive: ${params.isActive}){\n     slackSubscription{\n      id\n      source{\n            source\n          },\n          alertLevel{\n            alertLevel\n          },\n          slackChannels,\n          isActive\n    }\n  }\n}`
-
+    ,
+    deleteSlack: (params) =>
+    `mutation{\n  deleteSlackSubscription(source: \"${params.source}\", alertLevel: \"${params.alertLevel}\"){\n    deleteSlackSubscription\n  }\n}`
+    ,
 }
 export default query

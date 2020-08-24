@@ -17,8 +17,9 @@ const Pagination = props => {
   useEffect(() => {
     SetCount(current);
     setUpper(upperbound);
-    setLower(lowerbound)
-  }, [current,upperbound,lowerbound])
+    setLower(lowerbound);
+    SetSelection(page)
+  }, [current,upperbound,lowerbound,page])
 
   const setPrevAndNextBtnClass = (listid,nav) => {
     props.LoadRecord({ size: size, page: listid, nav: nav})

@@ -1,23 +1,33 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import "../Dashboard.scss";
 import moment from 'moment'
 import { getDates, checkDates } from '../../../utils'
 import { Images } from '../../../assets/images'
 import { Pagination } from "../../../components"
 import ReactTooltip from 'react-tooltip';
-
+import {  useHistory } from "react-router-dom";
 
 const StatusTable = props => {
-    const { filterData, startdate, endcount, sourceNames } = props.dataSource;
+    const { filterData, startdate, endcount, sourceNames, sourceList } = props.dataSource;
     let dates = startdate ? getDates(moment(startdate), moment(startdate).add(endcount, 'days')):[];
-   
+    const CheckGroup = (e) =>{
+        let result = sourceList.filter((item)=>{return item.source === e});
+        if(result.length > 0){
+            return result[0].type.isgroup;
+        }
+        return false
+    }
+    let history = useHistory();
+    const OnNavigate = (e) =>{
+        history.push("/file-manager/"+e)
+    }
     return (
         filterData.length > 0 ?<Fragment>
             <div className="table-container">
                 <div className="leftheader">
                     <div className="space" ></div>
                     {sourceNames && sourceNames.map((e, i) => {
-                        return <div className="headerleft" key={`leftheader-${i}`}>{e}</div>
+                        return <div className="headerleft" key={`leftheader-${i}`}>{CheckGroup(e)?<a onClick={()=>{OnNavigate(e)}}>{e}</a>:e}</div>
                     })}
                 </div>
                 <section className="tablescroll">

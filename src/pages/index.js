@@ -14,14 +14,18 @@ import FileManager from "./FileManager"
 import TrendChart from "./TrendChart"
 import Dashboard from "./Dashboard"; 
 import Customized from "./Dashboard/Customized"
-
+import axios from 'axios';
+axios.defaults.headers.common['Authorization'] = 'Token 1c50e0aa64ec84880f0da736740373efc6c16785';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 function Main(props) {
   return (
     <Router>
       <div className="tardis-container">
         <Header />
         <main id="maincontent">
+          
           <Switch>
+            <Redirect exact from="/" to="dashboard" />
             <Route path="/dashboard" children={<Dashboard />} />
             <Route path="/customized-dashboard" children={<Customized />} />
             <Route path="/maintennace" children={<Maintennace />} />
@@ -32,10 +36,10 @@ function Main(props) {
             <Route path="/slack-integration" children={<SlackIntegration />} />
             <Route path="/profile" children={<Profile />} />
             <Route path="/admin" children={<Admin />} />
-            <Route path="/file-manager" children={<FileManager />} />
+            <Route path="/file-manager/:sourcename?" children={<FileManager />} />
             <Route path="/trend-chart" children={<TrendChart />} />
           </Switch>
-          <Redirect strict from="/" to="configurations" />
+          
         </main>
         <Bottom />
         <Aside />

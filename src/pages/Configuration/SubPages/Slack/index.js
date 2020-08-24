@@ -15,8 +15,6 @@ const Slack = ({ SlackRecords, UpdateFilterPagination, FilterSlackRecords }) => 
   const onBackHandler = () => {
     history.push("/Configurations");
   };
-
-  
  
   useEffect(() => {
     FilterSlackRecords();
@@ -26,8 +24,6 @@ const Slack = ({ SlackRecords, UpdateFilterPagination, FilterSlackRecords }) => 
   useEffect(() => {
     if(data.length> 0){
       let result = paginationFilter(slack)
-      result.page = 1;
-      result.filter={};
       UpdateFilterPagination(result)
     }
   }, [data])

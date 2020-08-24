@@ -85,7 +85,7 @@ const sourceReducer = (state = initialState, action) => {
             let datafilter = action.payroll;
             return {
                 ...state,
-                filter: datafilter.filter ? datafilter.filter : {},
+                filter: datafilter.filter ? datafilter.filter : datafilter.filter,
                 filterData: datafilter.filterData ? datafilter.filterData.filter
                 ((e) => e !== null) : [],
                 page: datafilter.page ? datafilter.page : 1,
