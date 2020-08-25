@@ -79,7 +79,8 @@ export const TableHeader = {
   ],
   SourceMapConfig: ["", "SOURCES", "CHILD SOURCES", "ISOPTIONAL", "ACTIONS"],
   SlackIntegration: ["", "SOURCES", "ALERT LEVEL", "ISACTIVE" ,"SLACK CHANNEL", "ACTIONS"],
-  Admin: ["", "EMAIL", "PERMISSION LEVEL", "PERMISSION ENTITY", "STATUS", "ACTIONS"]
+  Admin: ["", "EMAIL", "PERMISSION LEVEL", "PERMISSION ENTITY", "STATUS", "ACTIONS"],
+  FileManager: ["", "GROUP NAME", "WEEKLY STATUS", "LAST RUN", "STATICTICS", "REPORT"]
 };
 
 export const SearchBar = [

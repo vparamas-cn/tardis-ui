@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import TitleContainer from "./Components/TitleContainer";
 import StatusTable from './Components/StatusTable'
 import "./Dashboard.scss"
@@ -6,6 +6,7 @@ import { connect, useSelector } from "react-redux";
 import { PipelineRecords, UpdateFilterPagination, SourceDashRecords } from "../../reducers/dashboard/actions"
 import { Loader } from "../../components"
 import { Filter, DateRangeControl, PageController } from "./Components/Controller"
+import Layout from '../../Layout';
 
 const Dashboard = ({ SourceDashRecords, PipelineRecords, UpdateFilterPagination }) => {
   const dashboard = useSelector(state => state.dashboard);
@@ -20,7 +21,7 @@ const Dashboard = ({ SourceDashRecords, PipelineRecords, UpdateFilterPagination 
     if (filter.dateFilter != undefined && !filter.dateFilter)
       SourceDashRecords();
     else {
-     if (!dashboard.dateFilter){
+      if (!dashboard.dateFilter) {
         UpdateFilterPagination(filterdata)
         PipelineRecords(request)
       }
@@ -37,16 +38,18 @@ const Dashboard = ({ SourceDashRecords, PipelineRecords, UpdateFilterPagination 
     PipelineRecords(request)
   }
   return (
-    <div className="Dashboradpage page" >
-      <TitleContainer
-        name="Tardis Dashborad"
-        LoadRecords={(e) => { onLoadRecords(e) }}
-        DateRange={(e) => { DateRange(e) }}
-      />
-      {isLoading ? <Loader /> :
-        <StatusTable dataSource={dashboard} LoadRecords={(e) => { onLoadRecords(e) }} />
-      }
-    </div>
+    <Layout>
+      <div className="Dashboradpage page" >
+        <TitleContainer
+          name="Tardis Dashborad"
+          LoadRecords={(e) => { onLoadRecords(e) }}
+          DateRange={(e) => { DateRange(e) }}
+        />
+        {isLoading ? <Loader /> :
+          <StatusTable dataSource={dashboard} LoadRecords={(e) => { onLoadRecords(e) }} />
+        }
+      </div>
+    </Layout>
   );
 };
 

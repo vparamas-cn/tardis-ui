@@ -138,14 +138,14 @@ export const showHide = (data, page) => {
   var isopen = false;
   if (trd.className.indexOf("hidden_row") > -1) {
     trd.classList.remove("hidden_row");
-    edittd.style.display = "none";
-    closetd.style.display = "block";
+    if(edittd != null) edittd.style.display = "none";
+    if(closetd != null) closetd.style.display = "block";
     isopen = true;
   }
   else {
     trd.classList.add("hidden_row");
-    edittd.style.display = "block";
-    closetd.style.display = "none";
+    if(edittd != null) edittd.style.display = "block";
+    if(closetd != null) closetd.style.display = "none";
     isopen = false;
   }
 

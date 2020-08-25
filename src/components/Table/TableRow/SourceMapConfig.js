@@ -158,7 +158,7 @@ const SourceConfig = props => {
               </Fragment>
             );
           }) :
-          <tr><td colSpan="10" className="norecord">No Data found!!</td></tr>
+          <tr><td colSpan="5" className="norecord">No Data found!!</td></tr>
         }
       </tbody>
       <Modal

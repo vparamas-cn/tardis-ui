@@ -2,15 +2,17 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.scss";
 import Main from "./pages";
+import Dev from "./pages/dev";
 import ScrollToTop from './ScrollController';
 import { isDev } from './utils'
 import { Security } from '@okta/okta-react';
 const config = {
-  clientId: '{clientId}',
-  issuer: 'https://${yourOktaDomain}/oauth2/default',
-  redirectUri: 'http://localhost:3000/',
+  clientId: process.env.CLIENT_ID,
+  issuer: process.env.ISSUER,
+  redirectUri: window.location.origin,
   scopes: ['openid', 'profile', 'email'],
-  pkce: true
+  pkce: true,
+  disableHttpsCheck:false
 };
 function App() {
   return (
@@ -18,7 +20,7 @@ function App() {
       <ScrollToTop />
       {isDev() ?
         <Switch>
-          <Route path="/" children={<Main />} />
+          <Route path="/" children={<Dev />} />
         </Switch> :
         <Security {...config}>
           <Switch>

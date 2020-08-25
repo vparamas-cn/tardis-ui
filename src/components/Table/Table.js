@@ -7,6 +7,7 @@ import SourceMapConfig from "./TableRow/SourceMapConfig";
 import SlackRow from "./TableRow/SlackRow";
 import Pagination from "./Pagination";
 import AdminRow from "./TableRow/AdminRow"
+import FileRow from "./TableRow/FileRow"
 import Loader from '../Loader'
 
 const Table = props => {
@@ -37,7 +38,9 @@ const Table = props => {
             <SlackRow dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)}/>
           ) : props.name === "Admin" ? (
             <AdminRow />
-          ) :null }
+          ) : props.name === "FileManager" ? (
+            <FileRow />
+          ):null }
         </table>
       </section>
       <Pagination dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)} />

@@ -6,24 +6,28 @@
   .sourceinput120 {
     width: 120px !important;
     margin: 0px 7px !important;
-    input{
+    input {
       width: 80% !important;
       border: none;
     }
   }
-  #SLACK-CHANNEL{
+  #SLACK-CHANNEL,
+  #WEEKLY-STATUS,
+  #LAST-RUN,
+  #STATICTICS,
+  #REPORT {
     text-align: center;
   }
 
-  .sourceinput200{
+  .sourceinput200 {
     width: 200px !important;
     margin: 0px 7px !important;
-    input{
+    input {
       width: 80% !important;
       border: none;
     }
   }
-  .reddot{
+  .reddot {
     width: 6px;
     height: 6px;
     border-radius: 3px;
@@ -31,7 +35,7 @@
     margin-right: 3px;
     margin-top: 1px;
   }
-  .greendot{
+  .greendot {
     width: 6px;
     height: 6px;
     border-radius: 3px;
@@ -39,39 +43,111 @@
     margin-right: 3px;
     margin-top: 1px;
   }
-  .action-td-container{
+  .action-td-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .edit-action{
+    .edit-action {
       cursor: pointer;
     }
   }
-  .fieldholder{
+  .fieldholder {
     margin-top: 20px;
-    .detailbtn{
+    .detailbtn {
       height: 30px;
     }
   }
-  .norecord{
+  .norecord {
     text-align: center;
     font-size: 14px;
   }
-  .customselect{
-    width: 75px!important;
+  .customselect {
+    width: 75px !important;
     border: 0.5px solid #a6adbb;
     font-size: 11px;
-    height:30px;
+    height: 30px;
   }
-  .customselect130{
-    width: 135px!important;
+  .customselect130 {
+    width: 135px !important;
     border: 0.5px solid #a6adbb;
     font-size: 11px;
     margin: 0px 7px !important;
-    height:30px;
+    height: 30px;
   }
-  .foucscell{
+  .foucscell {
     text-decoration: underline;
     cursor: pointer;
+  }
+  .cellholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .cell {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: #f1f5f7;
+      color: #9ca2b4;
+      margin: 0px 5px;
+    }
+    .selected{
+      background-color: #35b27d !important;
+      color: white;;
+    }
+    .trendbtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #a6adbb;
+      color: #9ca2b4;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      width: 65px;
+      cursor: pointer;
+    }
+    .disable{
+      border: none;
+      color: #9ca2b4;
+      background-color: #f1f5f7;
+      cursor:none;
+    }
+    .exportbtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #a6adbb;
+      color: #9ca2b4;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      width: 100px;
+      cursor: pointer;
+    }
+    .exportbtn:hover{
+      border: none;
+      color: white;
+      background-color: #3976eb;
+    }
+  }
+  .filerow {
+    height: 70px;
+    padding-right: 30px;
+  }
+  .checkboxtd {
+    width: 40px;
+    padding: 0px;
+    padding-left: 0px !important;
+    .filecheck {
+      width: 25px;
+      margin-left: 5px;
+      margin-right: 0px;
+    }
+  }
+  .width200 {
+    width: 200px;
   }
 }
