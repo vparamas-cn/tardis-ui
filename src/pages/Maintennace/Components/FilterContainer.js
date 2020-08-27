@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddMaintennace from "./AddMaintennace";
 import Modal from "react-modal";
 import {Images} from "../../../assets/images";
-import { DropDown, Button  } from "../../../components"
+import { DropDown, Button, Reset  } from "../../../components"
 import { customStyles } from "../../../assets/constant";
 
 const FilterContainer = props => {
@@ -24,7 +24,7 @@ const FilterContainer = props => {
         options={["String_1_Source", "String_2_Source", "String_3_Source"]}
       />
       <Button
-        class={"options"}
+        class={"options logdate"}
         name="Log Date"
         rightimg={Images.calendardetails}
         onClick={() => {}}
@@ -37,6 +37,7 @@ const FilterContainer = props => {
         imguri={Images.dropdownarrow}
         options={["Configuration Module"]}
       />
+      <Reset onClick={() => {}} isactive={false} />
       <Button
         class="greenclr addbtn"
         name="Add Item"

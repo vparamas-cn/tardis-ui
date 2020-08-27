@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const CustomDatePicker = props => {
-  const [startDate, SetDate] = useState(new Date());
+  const [startDate, SetDate] = useState(null);
   const handleChange = date => {
     SetDate(date)
     props.handleDate && props.handleDate(date);
@@ -14,6 +14,8 @@ const CustomDatePicker = props => {
         selected={startDate}
         onChange={handleChange}
         name={props.name} 
+        className={props.className&&props.className}
+        placeholderText={props.placeholder?props.placeholder:""}
         customInput={props.customDesign ? props.customDesign : null}
       />
   );

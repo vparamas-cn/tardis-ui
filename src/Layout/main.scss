@@ -188,6 +188,7 @@ main {
       height: 15px;
     }
   }
+  
   .modal-content {
     display: flex;
     .addform-container {
@@ -314,4 +315,72 @@ input:disabled {
       justify-content: flex-start;
     }
   }
+}
+
+.modal-main {
+  .modal-content {
+    .controls {   
+      .c1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 50%;
+        height: 100%;
+        padding-bottom: 3px;
+      }
+      .c2 {
+        width: 50%;
+      }
+      textarea {
+        resize: none;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 10px;
+        color: $color-black;
+        font-family: "Roboto-Regular";
+        :focus {
+          border: 1px solid #ccc;
+        }
+      }
+      .ddfailure {
+        width: 190px;
+        margin: 0 auto;
+        padding: 0px 10px;
+        background: #fff;
+        border-radius: 3px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5px;
+      }
+      .ddfailure span {
+        color: #172b4d;
+      }
+      .ddfailure img {
+        height: 6px;
+      }
+
+      .logdate {
+        width: 190px;
+        .react-datepicker-wrapper {
+          width: 100%;
+          margin-top: 5px;
+          input {
+            width: 100%;
+            height: 40px;
+            padding: 0px 10px;
+            border-radius: 3px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  
 }

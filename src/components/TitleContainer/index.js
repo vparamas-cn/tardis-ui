@@ -53,7 +53,9 @@ const TitleContainer = props => {
           onClick={() => {}}
         />
       </div>
+      
       <div className="centeralign">
+      {props.children?props.children:null}
         {/* <SearchField name={props.name}/> */}
         <Button
           class={"fullscreenicon"}

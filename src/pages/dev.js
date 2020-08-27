@@ -12,6 +12,8 @@ import FileManager from "./FileManager"
 import TrendChart from "./TrendChart"
 import Dashboard from "./Dashboard"; 
 import Customized from "./Dashboard/Customized"
+import NotFound from './NotFound'
+import ParticularTrend from './TrendChart/ParticularSource'
 import axios from 'axios';
 axios.defaults.headers.common['Authorization'] = 'Token 1c50e0aa64ec84880f0da736740373efc6c16785';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
@@ -32,6 +34,8 @@ function Main(props) {
             <Route path="/admin" children={<Admin />} />
             <Route path="/file-manager/:sourcename?" children={<FileManager />} />
             <Route path="/trend-chart" children={<TrendChart />} />
+            <Route path="/trend-selected-chart/:sourcename" children={<ParticularTrend />} />
+            <Route component={NotFound}/>
           </Switch>
     </Router>
   );

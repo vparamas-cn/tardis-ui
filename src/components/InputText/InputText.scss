@@ -71,8 +71,7 @@ $color-redshade: #fef8f8;
   font-family: "Roboto-Regular";
   border: 1px solid #efefef !important;
   border-radius: 15px !important;
-  .react-datepicker__triangle
-  {
+  .react-datepicker__triangle {
     right: 25px;
     left: inherit;
     bottom: 100%;
@@ -146,6 +145,34 @@ $color-redshade: #fef8f8;
     color: red;
     margin-left: 3px;
   }
+  .lable-text {
+    display: flex;
+    min-width: 410px;
+    justify-content: center;
+    align-items: center;
+    .img-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      border: 1px solid #a6adbb;
+      border-radius: 3px 0px 0px 3px;
+      border-right: none;
+      height: 45px;
+      img {
+        width: 17px;
+      }
+    }
+    input {
+      height: 45px;
+      width: 100%;
+      border: 1px solid #a6adbb;
+      border-radius: 0px 3px 3px 0px;
+      font-size: 15px;
+      padding: 5px;
+      margin: 5px 0px;
+    }
+  }
 }
 
 //Textarea
@@ -183,7 +210,7 @@ $color-redshade: #fef8f8;
     font-size: 10px;
     color: $color-gray1;
   }
-  .wrapper-dropdown{
+  .wrapper-dropdown {
     height: 30px;
   }
 }

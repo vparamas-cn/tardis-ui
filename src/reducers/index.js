@@ -4,6 +4,7 @@ import sourceReducers, {saga as sourceSaga} from './configuration'
 import sourceMapReducers, {saga as sourceMapSaga} from './mapSource'
 import dashboardMapReducers, {saga as dashboardMapSaga} from './dashboard'
 import slackMapReducers, {saga as slackMapSaga} from './slack'
+import maintennaceReducers from './slack'
 
 export function* rootSaga() {
     yield all([
@@ -19,4 +20,5 @@ export default combineReducers({
     map: sourceMapReducers,
     dashboard: dashboardMapReducers,
     slack: slackMapReducers,
+    maintennace: maintennaceReducers
 });

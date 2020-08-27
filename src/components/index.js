@@ -6,6 +6,7 @@ export {default as Bottom} from './Bottom/Bottom';
 export {default as Table} from './Table/Table';
 export {default as TitleContainer} from './TitleContainer';
 export {default as TextInput} from "./InputText/InputWithLable"
+export {default as ProfileInput} from "./InputText/ProfileInput"
 export {default as Textarea} from "./InputText/Textarea"
 export {default as Button} from "./Button/Button"
 export {default as FolderWrapper} from "./FolderWrapper"
@@ -22,3 +23,4 @@ export {default as useOnClickOutside} from "./DropDown/OutClickhandler"
 export {default as Loader} from "./Loader"
 export {default as Reset} from "./Reset"
 export {default as TagInput} from "./TagInput"
+export {default as Pie} from "./Chart/Pie"

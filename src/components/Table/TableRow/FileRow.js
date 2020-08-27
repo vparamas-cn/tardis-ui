@@ -5,7 +5,7 @@ import { Images } from "../../../assets/images";
 import { showHide } from '../../../utils'
 import { usePaginationControl } from './ActionControls'
 import CheckBox from "../../Checkbox";
-
+import { useHistory } from "react-router-dom";
 
 const FileRow = props => {
     const [data, setDate] = useState([{ id: 1, row: [{ id: 1 }, { id: 2 }, { id: 3 }] }, { id: 2, row: [{ id: 1 }, { id: 2 }, { id: 3 }] }])
@@ -14,6 +14,11 @@ const FileRow = props => {
 
     const showHideRow = (data) => {
         showHide(data, "file");
+    };
+
+    let history = useHistory();
+    const onBackHandler = () => {
+      history.push("/trend-selected-chart/test");
     };
 
     const Row = props => {
@@ -31,7 +36,7 @@ const FileRow = props => {
                 <td className="width200">Group Source Name</td>
                 <td>{<Weekly />}</td>
                 <td><div className="cellholder"> <div className="cell redclr">18</div> </div></td>
-                <td><div className="cellholder"><div className="trendbtn">Trend</div></div></td>
+                <td><div className="cellholder"><div className="trendbtn" onClick={()=>{onBackHandler()}}>Trend</div></div></td>
                 <td><div className="cellholder"><div className="exportbtn">Export Data</div></div></td>
             </tr>
         );

@@ -11,3 +11,148 @@ $color-gray: #9ca2b4;
     }
   }
 }
+.particular-page {
+    .options {
+      margin-right: 0px;
+      width: 110px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      padding-left: 15px;
+      background-color: #f1f5f7;
+      border-radius: 5px;
+      justify-content: space-between;
+      cursor: pointer;
+      font-weight: 500;
+      font-family: "Roboto-Regular";
+      font-size: 12px;
+      color: #172b4d;
+  }
+  .options img {
+    width: 13px;
+    width: 15px;
+    margin-right: 10px;
+  }
+  .submitbtn{
+    background-color: #3976eb;
+    height: 40px;
+    margin-left: 20px;
+    min-width: 80px;
+   }
+   .date-holder{
+    margin-left: 20px;
+   .filter-date{
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+   }
+  }
+  .pieholder {
+    display: flex;
+    flex-wrap: wrap;
+    .pie {
+      min-width: 300px;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      margin-top: 60px;
+      border-right: 1px solid #f1f1f1;
+      .piechart {
+        margin-left: 10%;
+      }
+      .title {
+        display: flex;
+        margin-bottom: 40px;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 15px;
+        .trendsoure {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          background-color: #f1f0ef;
+          margin-right: 10px;
+          svg {
+            width: 13px;
+            path {
+              fill: #40536c;
+            }
+            rect {
+              fill: #40536c;
+            }
+            ellipse {
+              fill: #40536c;
+            }
+            circle {
+              fill: #40536c;
+            }
+          }
+        }
+        span {
+          font-size: 16px;
+          color: #172b4d;
+        }
+      }
+    }
+    .donut-container {
+      margin-top: 65px;
+      .title {
+        margin-left: 60px;
+        display: flex;
+        justify-content: space-between;
+        margin-right: 45px;
+        .centeralign {
+          .exportbtn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #a6adbb;
+            color: #9ca2b4;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            width: 100px;
+            cursor: pointer;
+          }
+          .exportbtn:hover {
+            border: none;
+            color: white;
+            padding: 9px;
+            background-color: #3976eb;
+          }
+        }
+      }
+      .donut {
+        min-width: 640px;
+        padding: 40px;
+        display: flex;
+        flex-direction: row;
+        #donuttooltip {
+          position: absolute;
+          width: auto;
+          height: auto;
+          padding: 10px;
+          background-color: #000000;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;
+          -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+          -mox-box-shadow: 4px 4px 4px 10px rgba(0, 0, 0, 0.4);
+          box-shadow: 4px 4px 10px rbga(0, 0, 0, 0.4);
+          pointer-events: none;
+          color: white;
+        }
+        #donuttooltip.tooltiphidden {
+          opacity: 0;
+        }
+        #donuttooltip p {
+          margin: 0;
+          font-family: sans-serif;
+          font-size: 16px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}

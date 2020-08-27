@@ -1,2 +1,23 @@
 .ProfilePage {
+    .profiledetails{
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        .avatar{
+            min-width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            color: white;
+        }
+        .profileinput-holder{
+            display: flex;
+        }
+    }
 }

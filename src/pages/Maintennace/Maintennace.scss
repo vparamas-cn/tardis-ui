@@ -1,3 +1,23 @@
 .MaintennacePage {
 
 }
+#maincontent:not(.fullscreen) {
+    .MaintennacePage {
+      .container-filter {
+
+        #sourcedd {
+          width: 300px;
+        }
+        #failturedd {
+          width: 230px;
+        }
+        .logdate {
+          width: 200px;
+        }
+        .addbtn {
+          width: 165px;
+          margin-left: 0px;
+        }
+      }
+    }
+  }

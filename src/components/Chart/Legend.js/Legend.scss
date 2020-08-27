@@ -1,0 +1,50 @@
+.legend-bottom{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin:75px 40px 100px -30px;
+    .square{
+        margin-right: 20px;
+        margin-top: 10px;
+        .legendsquare{
+            width: 17px;
+            height: 15px;
+            margin-right: 10px;
+        }
+        span{
+            font-size: 14px;
+            color: #172b4d;
+        }
+    }
+}
+.legend-right{
+    margin-left: 25px;
+    min-width: 285px;
+    width: 285px;
+    height: 350px;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    .cirle{
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 10px;
+        .legend-holder{
+            display: flex;
+            .legendcirle{
+                width: 20px;
+                height: 20px;
+                border-radius: 20px;
+                margin-right: 10px;
+            }
+            span{
+                font-size: 14px;
+                color: #172b4d;
+            }
+        }
+        span{
+            font-size: 14px;
+            color: #9ca2b4;
+        }
+    }
+}

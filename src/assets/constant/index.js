@@ -39,7 +39,7 @@ export const menulist = [
     image: require("../../assets/images/Chart.svg"),
     selection: false,
     notify: false,
-   // path: "/trend-chart"
+    path: "/trend-chart"
   },
   {
     name: "User Manual",

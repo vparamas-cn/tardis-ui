@@ -1,5 +1,4 @@
 import React from "react";
-import "./FilterContainer.scss";
 import { Images } from "../../../assets/images";
 import { DropDown, Button, DatePicker,SelectSearch } from "../../../components"
 
