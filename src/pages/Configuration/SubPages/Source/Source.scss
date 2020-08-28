@@ -1,8 +1,8 @@
+@import "../../../../assets/constant/color";
+@import "../../../../assets/constant/mixin";
 .isactive {
   padding: 15px 0px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  @include flex-start-align;
 }
 
 .controls {
@@ -32,7 +32,7 @@
   .timezonearrow {
     height: 100%;
     padding: 0px 10px;
-    background-color: #2855b4;
+    background-color: $color-darkblue;
     margin-left: 25px;
     cursor: pointer;
     border-radius: 0px 3px 3px 0px;
@@ -58,14 +58,12 @@
   .sourceaddtzdropdown {
     width: 190px;
     padding: 0px 0px 0px 10px;
-    background: #fff;
+    background: $color-purewhite;
     border-radius: 3px;
     border: 1px solid rgba(0, 0, 0, 0.15);
     cursor: pointer;
     height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include spacebetween-align;
     margin-top: 5px;
     .opendropdown {
       font-size: 11px !important;
@@ -77,19 +75,17 @@
   .sourceadddropdown {
     width: 190px;
     padding: 0px 10px;
-    background: #fff;
+    background: $color-purewhite;
     border-radius: 3px;
     border: 1px solid rgba(0, 0, 0, 0.15);
     cursor: pointer;
     height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include spacebetween-align;
     margin-top: 5px;
   }
 
   .sourceadddropdown span {
-    color: #172b4d;
+    color: $color-black;
   }
   .sourceadddropdown img {
     height: 6px;

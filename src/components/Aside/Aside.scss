@@ -1,7 +1,8 @@
-$color-blue: #3976eb;
+@import "../../assets/constant/color";
+@import "../../assets/constant/mixin";
 .sidebar {
     width: 60px;
-    background-color: #3976eb;
+    background-color: $color-blue;
     position: fixed;
     height: 100%;
     overflow-x: hidden;
@@ -10,28 +11,10 @@ $color-blue: #3976eb;
     z-index: 100500;
     .sidemenuholder{
       flex-direction: column;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include center-align;
       width: 60px;
-    a {
-        display: block;
-        color: black;
-        padding: 16px;
-        text-decoration: none;
-    }
-    a.active {
-        background-color: #4caf50;
-        color: white;
-    }
-    a:hover:not(.active) {
-        background-color: #555;
-        color: white;
-    }
     div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include center-align;
         height: 40px;
         width: 40px;
         cursor: pointer;
@@ -44,39 +27,27 @@ $color-blue: #3976eb;
         }
     }
     .selection{
-        background-color: #2855b4 !important;
+        background-color: $color-darkblue !important;
         border-radius: 4px  !important;
         padding: 10px
     }
     .fillwhite{
-        background-color: #3976eb;
+        background-color: $color-blue;
         border-radius: 10px;
-        color: white;
+        color: $color-purewhite;
         .menuimg {
             width: 21px;
             height: 21px;
-           
-            path {
-              fill: #ffffff;
-            }
-            rect {
-              fill: #ffffff;
-            }
-            ellipse {
-              fill: #ffffff;
-            }
-            circle {
-              fill: #ffffff;
-            }
+            @include svg_fill_white;
           }
           .menufileimg {
             width: 21px;
             height: 21px;
             path {
-              stroke: #ffffff;
+              stroke: $color-purewhite;
             }
             circle {
-              fill: #ffffff;
+              fill: $color-purewhite;
             }
           }
     }

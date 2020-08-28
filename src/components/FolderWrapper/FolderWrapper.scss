@@ -1,6 +1,6 @@
-$color-black: #172b4d;
-$color-blue: #3976eb;
-$color-white: #f8f8fb;
+
+@import "../../assets/constant/color";
+@import "../../assets/constant/mixin";
 .folder-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -34,14 +34,12 @@ $color-white: #f8f8fb;
       background-color: $color-blue;
       border-radius: 0px 20px 20px 20px;
       .first-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        @include flex-start-align;
         padding: 20px;
         .imgholder {
           width: 45px;
           height: 45px;
-          background-color: white;
+          background-color: $color-purewhite;
           border-radius: 50%;
           margin-right: 10px;
           svg {
@@ -50,17 +48,15 @@ $color-white: #f8f8fb;
         }
         span {
           font-weight: 500;
-          color: white;
+          color: $color-purewhite;
           font-family: "Roboto-Regular";
           font-size: 14px;
         }
       }
       .second-container {
-        display: flex;
-        justify-content: space-between;
+        @include spacebetween-end;
         padding: 7px 20px;
-        align-items: flex-end;
-        color: white;
+        color: $color-purewhite;
         .folderview {
           display: flex;
           flex-direction: column;
@@ -91,13 +87,13 @@ $color-white: #f8f8fb;
   }
   .folder-container.selected:hover {
     .topcontainer {
-      background-color: #2855b4;
+      background-color: $color-darkblue;
       .whitecontainer {
-        background-color: #2855b4;
+        background-color: $color-darkblue;
       }
     }
     .main-container {
-      background-color: #2855b4;
+      background-color: $color-darkblue;
     }
 
   }
@@ -116,7 +112,7 @@ $color-white: #f8f8fb;
         height: 20px;
         background-color: $color-white;
         right: 0px;
-        border-top: 20px solid #ffffff;
+        border-top: 20px solid $color-purewhite;
         border-left: 20px solid transparent;
       }
     }
@@ -126,14 +122,12 @@ $color-white: #f8f8fb;
       background-color: $color-white;
       border-radius: 0px 20px 20px 20px;
       .first-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        @include flex-start-align;
         padding: 20px;
         .imgholder {
           width: 45px;
           height: 45px;
-          background-color: white;
+          background-color: $color-purewhite;
           border-radius: 50%;
           margin-right: 10px;
           svg {
@@ -148,10 +142,8 @@ $color-white: #f8f8fb;
         }
       }
       .second-container {
-        display: flex;
-        justify-content: space-between;
+        @include spacebetween-end;
         padding: 7px 20px;
-        align-items: flex-end;
         color: $color-black;
         .folderview {
           display: flex;

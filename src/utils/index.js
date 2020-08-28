@@ -31,11 +31,10 @@ export const pagename = () => {
   var url = window.location.pathname;
   if (url.indexOf("maintennace") > -1) return "Maintennace";
   else if (url.indexOf("support-link") > -1) return "Support Link";
-  else if (url.indexOf("configurations") > -1) return "Configurations";
+  else if (url.indexOf("configurations") > -1 || url.indexOf("slack-integration") > -1 ) return "Configurations";
   else if (url.indexOf("admin") > -1) return "Admin";
-  else if (url.indexOf("file-manager") > -1) return "File Manager";
   else if (url.indexOf("trend-chart") > -1) return "Trend Chart";
-  else if (url.indexOf("dashboard") > -1) return "Dashboard";
+  else if (url.indexOf("source-details/") > -1 || url.indexOf("trend-source-chart/") > -1 ||url.indexOf("dashboard") > -1) return "Dashboard";
 };
 
 export const filterdata = (data, params) => {

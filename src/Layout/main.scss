@@ -1,29 +1,42 @@
-$color-bule: #3976eb;
-$color-black: #172b4d;
-$color-white: #f8f8fb;
+@import "../assets/constant/mixin";
+@import "../assets/constant/color";
+
+@mixin main_position {
+  top: 120px;
+  left: 280px;
+  right: 50px;
+  bottom: 0px;
+}
+@mixin back_to_position {
+    top: 0;
+    left: 60px;
+    right: 0;
+    bottom: 0;
+}
+@mixin sidehide {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
 .tardis-container {
   min-width: 1024px;
 }
 .page {
   min-height: 99vh !important;
-  background-color: white;
+  background-color: $color-purewhite;
   border-radius: 10px 10px 0px 0px;
   padding: 60px 30px 30px 30px;
   min-width: 700px;
 }
 .centeralign {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include center-align;
 }
 
 main {
   position: absolute;
   z-index: 3;
-  top: 120px;
-  left: 280px;
-  right: 50px;
-  bottom: 0px;
+  @include main_position; 
 }
 
 .paddzero {
@@ -32,32 +45,20 @@ main {
 
 @keyframes fullscreenanimation {
   0% {
-    top: 120px;
-    left: 280px;
-    right: 50px;
-    bottom: 0px;
+    @include main_position; 
   }
 
   100% {
-    top: 0;
-    left: 60px;
-    right: 0;
-    bottom: 0;
+    @include back_to_position;
   }
 }
 @keyframes originalscreenanimation {
   0% {
-    top: 0;
-    left: 60px;
-    right: 0;
-    bottom: 0;
+    @include back_to_position;
   }
 
   100% {
-    top: 120px;
-    left: 280px;
-    right: 50px;
-    bottom: 0px;
+    @include main_position; 
   }
 }
 .fullscreen {
@@ -66,10 +67,7 @@ main {
   border-radius: 0px;
   animation-name: fullscreenanimation;
   animation-duration: 0.5s;
-  top: 0;
-  left: 60px;
-  right: 0;
-  bottom: 0;
+  @include back_to_position;
   overflow-y: auto;
   .page {
     border-radius: 0px;
@@ -90,19 +88,13 @@ main {
   }
 
   100% {
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+   @include sidehide;
     display: block;
   }
 }
 @keyframes sidecloseanimation {
   0% {
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    @include sidehide;
   }
 
   100% {
@@ -116,10 +108,7 @@ main {
   z-index: 100500;
   animation-name: sideopenanimation;
   animation-duration: .5s;
-  top: 0;
-  left: 0px;
-  right: 0;
-  bottom: 0;
+  @include sidehide;
 }
 .sideclose {
   animation-name: sidecloseanimation;
@@ -137,12 +126,10 @@ main {
     width: 100%;
     margin-right: 20px;
     height: 45px;
-    display: flex;
-    align-items: center;
+    @include spacebetween-align;
     padding-left: 30px;
-    background-color: #f1f5f7;
+    background-color: $color-fade-white;
     border-radius: 5px;
-    justify-content: space-between;
     cursor: pointer;
     font-weight: 500;
     font-family: "Roboto-Regular";
@@ -165,9 +152,7 @@ main {
 
 .modal-main {
   .modal-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include spacebetween-align;
     .title-left {
       font-weight: 500;
       font-family: "Roboto-Medium";
@@ -180,7 +165,7 @@ main {
     .detailimg {
       width: 35px;
       height: 35px;
-      background: $color-bule;
+      background: $color-blue;
       border-radius: 35px;
       margin-right: 20px;
     }
@@ -204,14 +189,14 @@ main {
       font-size: 12px;
     }
     .controls span {
-      color: #a6adbb;
+      color: $color-lightgray;
       font-size: 12px;
     }
   }
   .modaladdbtn {
     height: 35px;
-    background-color: #3976eb;
-    color: #ffffff;
+    background-color: $color-blue;
+    color: $color-purewhite;
     font-weight: 500;
     font-family: "Roboto-Regular";
     cursor: pointer;
@@ -234,8 +219,8 @@ select:focus {
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;
-  background-color: #333;
-  color: #fff;
+  background-color: $color-defalut-tooltip;
+  color: $color-purewhite;
   text-align: center;
   border-radius: 4px;
   padding: 16px;
@@ -297,8 +282,8 @@ select:focus {
 }
 
 .redclr {
-  background-color: #e65050 !important;
-  color:white !important;
+  background-color: $color-red-btn !important;
+  color:$color-purewhite !important;
 }
 
 input:disabled {
@@ -335,31 +320,29 @@ input:disabled {
       textarea {
         resize: none;
         margin-top: 5px;
-        border: 1px solid #ccc;
+        border: 1px solid $color-puregray;
         border-radius: 3px;
         padding: 10px;
         color: $color-black;
         font-family: "Roboto-Regular";
         :focus {
-          border: 1px solid #ccc;
+          border: 1px solid $color-puregray;
         }
       }
       .ddfailure {
         width: 190px;
         margin: 0 auto;
         padding: 0px 10px;
-        background: #fff;
+        background: $color-purewhite;
         border-radius: 3px;
         border: 1px solid rgba(0, 0, 0, 0.15);
         cursor: pointer;
         height: 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include spacebetween-align;
         margin-top: 5px;
       }
       .ddfailure span {
-        color: #172b4d;
+        color: $color-black;
       }
       .ddfailure img {
         height: 6px;

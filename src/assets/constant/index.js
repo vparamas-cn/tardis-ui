@@ -7,13 +7,6 @@ export const menulist = [
     path: "/dashboard"
   },
   {
-    name: "File Manager",
-    image: require("../../assets/images/File.svg"),
-    selection: false,
-    notify: false,
-    path: "/file-manager"
-  },
-  {
     name: "Admin",
     image: require("../../assets/images/Admin.svg"),
     selection: false,
@@ -40,12 +33,6 @@ export const menulist = [
     selection: false,
     notify: false,
     path: "/trend-chart"
-  },
-  {
-    name: "User Manual",
-    image: require("../../assets/images/Manual.svg"),
-    selection: true,
-    notify: false
   },
   {
     name: "Support Link",
@@ -80,7 +67,7 @@ export const TableHeader = {
   SourceMapConfig: ["", "SOURCES", "CHILD SOURCES", "ISOPTIONAL", "ACTIONS"],
   SlackIntegration: ["", "SOURCES", "ALERT LEVEL", "ISACTIVE" ,"SLACK CHANNEL", "ACTIONS"],
   Admin: ["", "EMAIL", "PERMISSION LEVEL", "PERMISSION ENTITY", "STATUS", "ACTIONS"],
-  FileManager: ["", "GROUP NAME", "WEEKLY STATUS", "LAST RUN", "STATICTICS", "REPORT"]
+  SourceDetailed: ["", "GROUP NAME", "WEEKLY STATUS", "LAST RUN", "STATICTICS", "REPORT"]
 };
 
 export const SearchBar = [

@@ -8,7 +8,7 @@ import Layout from '../../Layout';
 const ParticularChart = () => {
     let history = useHistory();
     const onBackHandler = () => {
-        history.push("/file-manager");
+        history.push("/source-details");
     };
     const [data, setData] = useState([{ label: "Compelte", value: 60 }, { label: "Failure", value: 15 }, { label: "Delay", value: 35 }]);
     let Failurelist = [{ label: "Luigi Server Issue", value: 12 }, { label: "Presto Issue", value: 8 }, { label: "Vendor Issue", value: 15 }, { label: "Technical Issue (Dev-Ops)", value: 25 },
@@ -23,7 +23,7 @@ const ParticularChart = () => {
         <Layout>
             <div className="particular-page page">
                 <TitleContainer
-                    name="Chart"
+                    name="Trends"
                     img={Images.Chart}
                     onBack={() => {
                         onBackHandler();
@@ -81,7 +81,7 @@ const ParticularChart = () => {
                                 height={350}
                                 innerRadius={105}
                                 outerRadius={175}
-                                color={["#36b27e", "#fd3031", "#1ccdf1", "#febb68", "#A52A2A", "#800080", "#00FF00", "#00FFFF"]}
+                                color={["#46acb0", "#f26523", "#f9aa7b", "#a6a8aa", "#666665", "#add5d7", "#fee8b0", "#fecd34"]}
                                 legend={"Right"}
                             />
                             <div id="donuttooltip" className="tooltiphidden">

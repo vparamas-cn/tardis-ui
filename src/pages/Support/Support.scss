@@ -1,6 +1,4 @@
-$color-black: #172b4d;
-$color-blue: #3976eb;
-$color-lightgray: #a6adbb;
+@import "../../assets/constant/color";
 .Support-page {
   .formcontainer {
     width: 50%;
@@ -24,7 +22,7 @@ $color-lightgray: #a6adbb;
       h3{
         margin: 10px 0px;
         font-weight: 500;
-        color: #172b4d;
+        color: $color-black;
       }
     }
     .inputcontainer {

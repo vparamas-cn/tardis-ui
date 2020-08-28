@@ -18,7 +18,7 @@ const FileRow = props => {
 
     let history = useHistory();
     const onBackHandler = () => {
-      history.push("/trend-selected-chart/test");
+      history.push("/trend-source-chart/test");
     };
 
     const Row = props => {

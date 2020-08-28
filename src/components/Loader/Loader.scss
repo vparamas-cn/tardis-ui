@@ -1,4 +1,4 @@
-$color-blue: #3976eb;
+@import "../../assets/constant/color";
 
 @mixin loading-spinner($activeColor: $color-blue, $selector: "&::before", $time: 1.5s ) {
     @keyframes spinner {
@@ -24,7 +24,7 @@ $color-blue: #3976eb;
     #{$selector} {
         animation: $time linear infinite spinner;
         animation-play-state: inherit;
-        border: solid 3px #dedede;
+        border: solid 3px $color-puregray;
         border-bottom-color: #{$activeColor};
         border-radius: 50%;
         content: "";

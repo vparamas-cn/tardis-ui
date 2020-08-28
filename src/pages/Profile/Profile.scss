@@ -1,20 +1,18 @@
+@import "../../assets/constant/color";
+@import "../../assets/constant/mixin";
 .ProfilePage {
     .profiledetails{
         margin-top: 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include spacebetween-align ;
         flex-wrap: wrap;
         .avatar{
             min-width: 150px;
             height: 150px;
             border-radius: 50%;
-            background-color: #ccc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-color: $color-puregray;
+            @include center-align ;
             font-size: 50px;
-            color: white;
+            color: $color-purewhite;
         }
         .profileinput-holder{
             display: flex;

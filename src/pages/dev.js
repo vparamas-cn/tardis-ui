@@ -8,7 +8,7 @@ import SourceMap from "./Configuration/SubPages/SourceMap"
 import SlackIntegration from "./Configuration/SubPages/Slack"
 import Profile from "./Profile"
 import Admin from "./Admin"
-import FileManager from "./FileManager"
+import Details from "./Dashboard/Details"
 import TrendChart from "./TrendChart"
 import Dashboard from "./Dashboard"; 
 import Customized from "./Dashboard/Customized"
@@ -32,9 +32,9 @@ function Main(props) {
             <Route path="/slack-integration" children={<SlackIntegration />} />
             <Route path="/profile" children={<Profile />} />
             <Route path="/admin" children={<Admin />} />
-            <Route path="/file-manager/:sourcename?" children={<FileManager />} />
+            <Route path="/source-details/:sourcename?" children={<Details />} />
             <Route path="/trend-chart" children={<TrendChart />} />
-            <Route path="/trend-selected-chart/:sourcename" children={<ParticularTrend />} />
+            <Route path="/trend-source-chart/:sourcename" children={<ParticularTrend />} />
             <Route component={NotFound}/>
           </Switch>
     </Router>

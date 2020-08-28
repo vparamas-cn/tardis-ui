@@ -1,15 +1,9 @@
-$color-blue: #3976eb;
-$color-green: #35b27d;
-$color-white: #f8f8fb;
-$color-red: #f53c56;
-$color-black: #172b4d;
-$color-gray1: #9ca2b4;
-$color-gray2: #a6adbb;
-$color-redshade: #fef8f8;
+@import "../../assets/constant/color";
+@import "../../assets/constant/mixin";
 
 .bottom-container {
   width: 100%;
-  background-color: #f8f8fb;
+  background-color: $color-white;
   min-height: calc(100vh - 350px);
   .sidemenu {
     display: flex;
@@ -17,12 +11,11 @@ $color-redshade: #fef8f8;
     width: 280px;
     padding: 20px;
     .menu {
-      display: flex;
+      @include center-align;
       flex-direction: column;
       width: 110px;
       height: 80px;
-      justify-content: center;
-      align-items: center;
+      
       cursor: pointer;
       position: relative;
       color: $color-black;
@@ -36,28 +29,17 @@ $color-redshade: #fef8f8;
       width: 21px;
       height: 21px;
       margin-bottom: 10px;
-      path {
-        fill: #40536c;
-      }
-      rect {
-        fill: #40536c;
-      }
-      ellipse {
-        fill: #40536c;
-      }
-      circle {
-        fill: #40536c;
-      }
+      @include svg_fill_black;
     }
     .menufileimg {
       width: 21px;
       height: 21px;
       margin-bottom: 10px;
       path {
-        stroke: #40536c;
+        stroke: $color-fill-svg;
       }
       circle {
-        fill: #ff9f00;
+        fill: $color-notify-orange;
       }
     }
     .btm-menu {
@@ -68,7 +50,7 @@ $color-redshade: #fef8f8;
     .notifydot {
       width: 7px;
       height: 7px;
-      background-color: #f3c65e;
+      background-color: $color-notify-orange;
       border-radius: 4px;
       position: absolute;
       right: 25px;
@@ -78,35 +60,24 @@ $color-redshade: #fef8f8;
       cursor: pointer;
       font-weight: 400;
       font-family: "Roboto-Regular";
-      color: $color-gray1;
+      color: $color-gray;
     }
     .selectionmenu {
-      background-color: #3976eb;
+      background-color: $color-blue;
       border-radius: 10px;
-      color: white;
+      color: $color-white;
       .menuimg {
-        path {
-          fill: #ffffff;
-        }
-        rect {
-          fill: #ffffff;
-        }
-        ellipse {
-          fill: #ffffff;
-        }
-        circle {
-          fill: #ffffff;
-        }
+        @include svg_fill_white;
       }
       .menufileimg {
         width: 21px;
         height: 21px;
         margin-bottom: 10px;
         path {
-          stroke: #ffffff;
+          stroke: $color-white;
         }
         circle {
-          fill: #ffffff;
+          fill: $color-white;
         }
       }
     }

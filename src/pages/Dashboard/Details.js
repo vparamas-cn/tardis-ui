@@ -1,12 +1,11 @@
 import React from "react";
 import { Table, TitleContainer } from "../../components";
 import { Images } from "../../assets/images";
-import "./FileManager.scss"
 import { useParams, useHistory } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import Layout from '../../Layout';
 
-const FileManager = () => {
+const Detail = () => {
   let { sourcename } = useParams();
   const source = useSelector(state => state.source);
   let history = useHistory();
@@ -16,18 +15,18 @@ const FileManager = () => {
 
   return (
     <Layout>
-      <div className="FileManagerPage page" >
+      <div className="DetailPage page" >
         <TitleContainer
-          name="File Manager"
-          img={Images.File}
-          onBack={sourcename ? () => {
+          name="Health Dashboard"
+          img={Images.Dashboard}
+          onBack={() => {
             onBackHandler();
-          } : false}
+          }}
         />
-        <Table name="FileManager" dataSource={source} LoadRecord={(e) => { }} />
+        <Table name="SourceDetailed" dataSource={source} LoadRecord={(e) => { }} />
       </div>
     </Layout>
   );
 };
 
-export default FileManager
+export default Detail

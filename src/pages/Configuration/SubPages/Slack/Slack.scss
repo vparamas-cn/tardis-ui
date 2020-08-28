@@ -1,6 +1,5 @@
-.Slackpage {
-  
-}
+@import "../../../../assets/constant/color";
+@import "../../../../assets/constant/mixin";
 #maincontent:not(.fullscreen) {
   .Slackpage {
     .container-filter {
@@ -34,18 +33,7 @@
 }
 .slackadd{
   width: 15px;
-  path {
-    fill: #ffffff;
-  }
-  rect {
-    fill: #ffffff;
-  }
-  ellipse {
-    fill: #ffffff;
-  }
-  circle {
-    fill: #ffffff;
-  }
+  @include svg_fill_white;
 }
 
 .topspace{
@@ -55,13 +43,13 @@
     width: 100%;
     min-height: 150px;
     margin: 10px 0px 30px 0px;
-    border: 1px solid #ccc;
+    border: 1px solid $color-puregray;
     border-radius: 4px;
     padding: 10px;
   
   }
   .labelspan{
-    color: #a6adbb;
+    color: $color-lightgray;
     font-size: 12px;
   }
 }

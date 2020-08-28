@@ -1,3 +1,4 @@
+@import "../../assets/constant/color";
 .detailbtn {
   width: 80px;
   height: 35px;
@@ -10,14 +11,14 @@
   margin: 0px 10px;
 }
 .greenclr {
-  background-color: #35b27d !important;
+  background-color: $color-green !important;
 }
 .clearbtncolor {
-  background-color: #9ca2b4;
+  background-color: $color-gray;
 }
 .deletebtn {
-  color: #ed4c4c;
-  background-color: #fef8f8;
+  color: $color-red-btn;
+  background-color: $color-redshade;
   width: 130px;
 }
 .deletebtn img {
@@ -31,6 +32,6 @@
   cursor: pointer;
   font-weight: 500;
   font-family: "Roboto-Regular";
-  color: white;
+  color: $color-purewhite;
   font-size: 13px;
 }

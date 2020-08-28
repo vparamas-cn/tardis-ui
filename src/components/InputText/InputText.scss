@@ -1,12 +1,5 @@
-$color-bule: #3976eb;
-$color-green: #35b27d;
-$color-white: #f8f8fb;
-$color-red: #f53c56;
-$color-black: #172b4d;
-$color-gray1: #9ca2b4;
-$color-gray2: #a6adbb;
-$color-redshade: #fef8f8;
-
+@import "../../assets/constant/color";
+@import "../../assets/constant/mixin";
 .buttonwrapper {
   position: relative;
   width: 280px;
@@ -18,11 +11,11 @@ $color-redshade: #fef8f8;
   border-radius: 4px;
   border: none;
   outline: none;
-  box-shadow: 0px 1px 7px #f5f3f3;
-  caret-color: #3976eb;
+  box-shadow: 0px 1px 7px $color-fade3-white;
+  caret-color: $color-blue;
 }
 ::placeholder {
-  color: $color-gray2;
+  color: $color-lightgray;
   opacity: 1;
   padding-left: 5px;
 }
@@ -39,11 +32,9 @@ $color-redshade: #fef8f8;
   text-align: center;
   font-weight: bold;
   padding: 2px;
-  background-color: #3976eb;
+  background-color: $color-blue;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include center-align;
 }
 .searchbtn img {
   height: 12px;
@@ -69,7 +60,7 @@ $color-redshade: #fef8f8;
 .react-datepicker {
   font-weight: 500;
   font-family: "Roboto-Regular";
-  border: 1px solid #efefef !important;
+  border: 1px solid $color-tab-br !important;
   border-radius: 15px !important;
   .react-datepicker__triangle {
     right: 25px;
@@ -79,11 +70,11 @@ $color-redshade: #fef8f8;
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid white;
+    border-bottom: 10px solid $color-purewhite;
   }
   .react-datepicker__header {
-    background-color: #ffffff;
-    border-bottom: 0.5px solid #aeaeae;
+    background-color: $color-purewhite;
+    border-bottom: 0.5px solid $color-lightgray;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 7px 0px;
@@ -93,7 +84,7 @@ $color-redshade: #fef8f8;
     }
   }
   .react-datepicker__day--selected {
-    background-color: $color-bule;
+    background-color: $color-blue;
   }
 
   .react-datepicker__navigation {
@@ -104,7 +95,7 @@ $color-redshade: #fef8f8;
   }
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
-    border-bottom-color: #fff;
+    border-bottom-color: $color-purewhite;
   }
   .react-datepicker__navigation--previous {
     left: 195px !important;
@@ -132,7 +123,7 @@ $color-redshade: #fef8f8;
     height: 35px;
     width: 100%;
     border-radius: 3px;
-    border: 1px solid #a6adbb;
+    border: 1px solid $color-lightgray;
     font-size: 12px;
     padding: 5px;
     margin: 5px 0px;
@@ -142,20 +133,16 @@ $color-redshade: #fef8f8;
     color: $color-black;
   }
   .required {
-    color: red;
+    color: $color-red;
     margin-left: 3px;
   }
   .lable-text {
-    display: flex;
+    @include center-align;
     min-width: 410px;
-    justify-content: center;
-    align-items: center;
     .img-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include center-align;
       width: 60px;
-      border: 1px solid #a6adbb;
+      border: 1px solid $color-lightgray;
       border-radius: 3px 0px 0px 3px;
       border-right: none;
       height: 45px;
@@ -166,7 +153,7 @@ $color-redshade: #fef8f8;
     input {
       height: 45px;
       width: 100%;
-      border: 1px solid #a6adbb;
+      border: 1px solid $color-lightgray;
       border-radius: 0px 3px 3px 0px;
       font-size: 15px;
       padding: 5px;
@@ -187,7 +174,7 @@ $color-redshade: #fef8f8;
     height: 90px;
     resize: none;
     border-radius: 3px;
-    border: 1px solid #a6adbb;
+    border: 1px solid $color-lightgray;
     font-size: 12px;
     padding: 5px;
   }
@@ -196,7 +183,7 @@ $color-redshade: #fef8f8;
     color: $color-black;
   }
   .required {
-    color: red;
+    color: $color-red;
     margin-left: 3px;
   }
 }
@@ -208,7 +195,7 @@ $color-redshade: #fef8f8;
   span {
     margin: 7px;
     font-size: 10px;
-    color: $color-gray1;
+    color: $color-gray;
   }
   .wrapper-dropdown {
     height: 30px;

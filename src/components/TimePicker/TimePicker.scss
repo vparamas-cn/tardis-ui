@@ -1,6 +1,4 @@
-$color-lightgray: #a6adbb;
-$color-blue: #3976eb;
-$color-black: #172b4d;
+@import "../../assets/constant/color";
 .CustomTimePicker {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 3px;

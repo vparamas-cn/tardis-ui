@@ -1,5 +1,5 @@
-$color-black: #172b4d;
-$color-white: #f8f8fb;
+@import "../../assets/constant/color";
+@import "../../assets/constant/mixin";
 .dropdown:after {
   content: "";
   width: 0;
@@ -9,7 +9,7 @@ $color-white: #f8f8fb;
   right: 40%;
   border-width: 0 6px 6px 6px;
   border-style: solid;
-  border-color: #fff transparent;
+  border-color: $color-white transparent;
 }
 
 .wrapper-dropdown {
@@ -36,7 +36,7 @@ $color-white: #f8f8fb;
   top: 100%;
   left: 0;
   right: 0;
-  background: white;
+  background: $color-purewhite;
   border-radius: inherit;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   font-weight: normal;
@@ -90,7 +90,7 @@ $color-white: #f8f8fb;
 }
 
 .wrapper-dropdown .dropdown .foucs{
-  background-color: #f1f5f7;
+  background-color: $color-fade-white;
 }
 
 
@@ -106,21 +106,21 @@ $color-white: #f8f8fb;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
   word-break: break-word;
-  border-bottom: thin solid #f1f1f1;
+  border-bottom: thin solid $color-fade2-white;
 }
 .wrapper-dropdown .dropdown .li:hover{
-  background: #f1f5f7;
+  background: $color-fade-white;
 }
 .wrapper-dropdown .dropdown li:first-of-type a {
   border-radius: 7px 7px 0 0;
 }
 
 #multiselectContainerReact{
-  background-color: #fff;
+  background-color: $color-white;
   .chip{
     white-space: pre-wrap;
     word-break: break-all;
-    background: #f1f5f7;
+    background: $color-fade-white;
     color: $color-black;
     border-radius: 3px;
     padding: 10px;
@@ -130,19 +130,17 @@ $color-white: #f8f8fb;
     }
   }
   .lhyQmCtWOINviMz0WG_gr{
-    background-color: #ffffff;
+    background-color: $color-purewhite;
   }
   .highlight{
-    background: #f1f5f7;
+    background: $color-fade-white;
   }
   .option{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    @include flex-start-align;
     color: $color-black
   }
   li:hover{
-    background: #f1f5f7;
+    background: $color-fade-white;
   }
   .searchBox{
     padding: 5px;

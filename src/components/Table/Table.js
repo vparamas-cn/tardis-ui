@@ -7,7 +7,7 @@ import SourceMapConfig from "./TableRow/SourceMapConfig";
 import SlackRow from "./TableRow/SlackRow";
 import Pagination from "./Pagination";
 import AdminRow from "./TableRow/AdminRow"
-import FileRow from "./TableRow/FileRow"
+import DetailRow from "./TableRow/DetailRow"
 import Loader from '../Loader'
 
 const Table = props => {
@@ -38,8 +38,8 @@ const Table = props => {
             <SlackRow dataSource={props.dataSource} LoadRecord={(data)=>props.LoadRecord(data)}/>
           ) : props.name === "Admin" ? (
             <AdminRow />
-          ) : props.name === "FileManager" ? (
-            <FileRow />
+          ) : props.name === "SourceDetailed" ? (
+            <DetailRow />
           ):null }
         </table>
       </section>

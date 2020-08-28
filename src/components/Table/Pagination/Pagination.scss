@@ -1,8 +1,7 @@
-$color-bule: #3976eb;
+@import "../../../assets/constant/color";
+@import "../../../assets/constant/mixin";
 .pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include spacebetween-align;
   margin-top: 30px;
   padding: 0px 10px;
   margin-bottom: 40px;
@@ -10,15 +9,15 @@ $color-bule: #3976eb;
     font-weight: 400;
     font-family: "Roboto-Regular";
     font-size: 12px;
-    color: #9ca2b4;
+    color: $color-gray;
     position: relative;
   }
   .leftpaginiation select {
     margin: 0px 5px;
-    border: 1px solid #9ca2b4;
+    border: 1px solid $color-gray;
     font-size: 10px;
     padding: 1px 0px;
-    color: #9ca2b4;
+    color: $color-gray;
     margin-right: 10px;
     height: 18px;
   }
@@ -35,7 +34,7 @@ $color-bule: #3976eb;
     left: 60px;
     width: 14px;
     height: 17px;
-    background-color: #3976eb;
+    background-color: $color-blue;
     pointer-events: none;
   }
   .rightpaginiation {
@@ -47,13 +46,11 @@ $color-bule: #3976eb;
       width: 25px;
       height: 25px;
       border-radius: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 0.5px solid #8898aa;
+      @include center-align;
+      border: 0.5px solid $color-pagination;
       margin: 0px 3px;
       font-size: 11px;
-      color: #3976eb;
+      color: $color-blue;
       cursor: pointer;
       font-weight: 400;
       font-family:"Roboto-Regular";
@@ -65,9 +62,9 @@ $color-bule: #3976eb;
       width: 6px;
     }
     .selectedpageno {
-      background-color: #3976eb;
-      border: 1px solid #3976eb;
-      color: white;
+      background-color: $color-blue;
+      border: 1px solid $color-blue;
+      color: $color-purewhite;
     }
   }
 }

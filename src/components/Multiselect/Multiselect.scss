@@ -1,3 +1,4 @@
+@import "../../assets/constant/color";
 .multiSelectContainer {
   position: relative;
   text-align: left;
@@ -8,7 +9,7 @@
   opacity: 0.5;
 }
 .searchWrapper {
-  border: 1px solid #cccccc;
+  border: 1px solid $color-puregray;
   border-radius: 4px;
   padding: 5px;
   min-height: 22px;
@@ -24,14 +25,14 @@
 }
 .chip {
   padding: 4px 10px;
-  background: #0096fb;
+  background: $color-blue;
   margin-right: 5px;
   margin-bottom: 5px;
   border-radius: 10px;
   display: inline-flex;
   align-items: center;
   font-size: 13px;
-  color: #fff;
+  color: $color-purewhite;
   white-space: nowrap;
 }
 .singleChip {
@@ -52,7 +53,7 @@
 .optionListContainer {
   position: absolute;
   width: 100%;
-  background: #fff;
+  background: $color-purewhite;
   border-radius: 4px;
   margin-top: 1px;
   z-index: 2;
@@ -61,7 +62,7 @@
   display: block;
   padding: 0;
   margin: 0;
-  border: 1px solid #ccc;
+  border: 1px solid $color-puregray;
   border-radius: 4px;
   max-height: 250px;
   overflow-y: auto;
@@ -70,8 +71,8 @@
   padding: 10px 10px;
 }
 .multiSelectContainer li:hover {
-  background: #0096fb;
-  color: #fff;
+  background: $color-blue;
+  color: $color-purewhite;
   cursor: pointer;
 }
 .checkbox {
@@ -82,8 +83,8 @@
   opacity: 0.5;
 }
 .highlightOption {
-  background: #0096fb;
-  color: #ffffff;
+  background: $color-blue;
+  color: $color-purewhite;
 }
 .displayBlock {
   display: block;
@@ -99,7 +100,7 @@
   padding-right: 20px;
 }
 li.groupHeading {
-  color: #908e8e;
+  color: $color-gray;
   pointer-events: none;
   padding: 5px 15px;
 }

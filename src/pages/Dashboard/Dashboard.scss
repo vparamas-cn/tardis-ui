@@ -1,4 +1,5 @@
-$color-black: #172b4d;
+@import "../../assets/constant/color";
+@import "../../assets/constant/mixin";
 .fullscreen{
     .Dashboradpage {
         margin-top: 0px !important;
@@ -26,9 +27,7 @@ $color-black: #172b4d;
             position: absolute;
             top: 0px;
             right: 0px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include center-align;
             .react-datepicker{
                 position: absolute;
                 right: 80%;
@@ -37,42 +36,27 @@ $color-black: #172b4d;
             svg{
                 height: 25px;
                 cursor: pointer;
-                path {
-                    fill: #ffffff;
-                  }
-                  rect {
-                    fill: #ffffff;
-                  }
-                  ellipse {
-                    fill: #ffffff;
-                  }
-                  circle {
-                    fill: #ffffff;
-                  }
+                @include svg_fill_white;
             }
             .calendar{
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include center-align;
                 margin-left: 20px;
-                background-color: #2b64d9;
+                background-color: $color-darkblue;
                 border-radius: 40px;
                 height: 40px;
                 font-size: 14px;
-                color: #ffffff;
+                color: $color-purewhite;
                 cursor: pointer;
                 .lable{
                     padding-left: 25px;
                     padding-right: 10px;    
                 }
                 .plus{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include center-align;
                     width: 40px;
                     border-radius: 40px;
                     height: 40px;
-                    background-color: #feac00;
+                    background-color: $color-notify-orange;
                     color:$color-black;
                     span{
                         font-size: 25px;
@@ -82,9 +66,7 @@ $color-black: #172b4d;
         }
         .titleleft {
             padding: 0px !important;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
+            @include flex-start-align;
             #sourcedd{
                 width: 220px;
                 margin-right: 35px;
@@ -100,34 +82,30 @@ $color-black: #172b4d;
             display: flex;
             height: 45px;;
             .holder {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include center-align;
                 color: $color-black;
                 font-family: "Roboto-Regular";
                 .statuscircle{
                     width: 100% !important;
                     padding: 5px 8px !important;
                     border-radius: 10px !important;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include center-align;
                     font-size: 12px;
                 }
                 .statustxt {
                     margin-left: 10px;
                 }
                 .success {
-                    color: white;
-                    background-color: #36b27e;
+                    color: $color-purewhite;
+                    background-color: $color-green;
                 }
                 .failure {
-                    color: white;
-                    background-color: #fd3031;
+                    color: $color-purewhite;
+                    background-color: $color-red;
                 }
                 .delay {
-                    color: black;
-                    background-color: #feac00;
+                    color: $color-pureblack;
+                    background-color: $color-notify-orange;
                 }
             }
             .margin40 {
@@ -143,7 +121,7 @@ $color-black: #172b4d;
         display: flex;
         flex-direction: row;
         .leftheader {
-            border-right: 1px solid #f1f1f1;
+            border-right: 1px solid $color-fade2-white;
             margin-right: 20px;
             width: 235px;
             .space {
@@ -164,7 +142,7 @@ $color-black: #172b4d;
                 overflow: hidden;
                 white-space: nowrap;
                 margin-right: 20px;
-                border-bottom: 1px solid #f1f1f1;
+                border-bottom: 1px solid $color-fade2-white;
                 a{
                     text-decoration: underline;
                     cursor: pointer;
@@ -172,24 +150,20 @@ $color-black: #172b4d;
             }
         }
         .header {
-            display: flex;
+            @include flex-start-align;
             font-size: 10px;
-            justify-content: flex-start;
-            align-items: center;
             .dataholder{
                 min-width: 48px;
                 display: flex;
                 justify-content: flex-start;
                 .date {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include center-align;
                     margin-right: 5px;
                     white-space: pre;
                     .line {
                         width: 7px;
                         height: 1px;
-                        background-color: #ccc;
+                        background-color: $color-puregray;
                         margin-left: 3px;
                     }
                 }
@@ -201,13 +175,11 @@ $color-black: #172b4d;
                 width: 100%;
                 margin-top: 30px;
                 .statusrow {
-                    display: flex;
-                    justify-content: flex-start;
+                    @include flex-start-align;
                     width: 100%;
-                    align-items: center;
                     margin-bottom: 5px;
                     height: 46px;
-                    border-bottom: 1px solid #ffffff;
+                    border-bottom: 1px solid $color-purewhite;
                     .status {
                         margin-right: 18px;
                         img{
@@ -221,9 +193,6 @@ $color-black: #172b4d;
                             visibility: hidden;
                         }
                     }
-                }
-                .emptyrow{
-                    //margin-bottom: 15.26px;
                 }
             }
           

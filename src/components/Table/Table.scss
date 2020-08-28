@@ -1,10 +1,5 @@
-$color-blue: #3976eb;
-$color-green: #35b27d;
-$color-white: #f8f8fb;
-$color-red: #f53c56;
-$color-gray: #9ca2b4;
-$color-lightgray: #a6adbb;
-
+@import "../../assets/constant/color";
+@import "../../assets/constant/mixin";
 .tablescroll {
   overflow-y: hidden;
   padding-right: 10px;
@@ -28,7 +23,7 @@ $color-lightgray: #a6adbb;
     border: 0.5px solid $color-lightgray;
     font-size: 11px;
     font-family: "Roboto-Regular";
-    background-color: #ffffff;
+    background-color: $color-purewhite;
   }
   table input:focus {
     
@@ -38,7 +33,7 @@ $color-lightgray: #a6adbb;
   }
   tbody tr {
     height: 60px;
-    box-shadow: 0px 1px 7px #f5f3f3;
+    box-shadow: 0px 1px 7px $color-fade3-white;
     font-weight: 500;
     font-family: "Roboto-Regular";
     font-size: 11px;
@@ -48,7 +43,7 @@ $color-lightgray: #a6adbb;
     font-size: 10px;
     font-weight: 500;
     font-family: "Roboto-Medium";
-    color: #9ca2b4;
+    color: $color-gray;
     padding: 0px 5px
   }
   .hidden_row {
@@ -112,7 +107,7 @@ $color-lightgray: #a6adbb;
     }
   }
   .rowarrow {
-    background-color: #f1f5f7;
+    background-color: $color-fade-white;
     cursor: pointer;
     justify-content: center;
     align-items: center;
@@ -137,9 +132,7 @@ $color-lightgray: #a6adbb;
    padding-left: 13px;
   }
   .detailcontainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include spacebetween-align;
   }
   .detailcontainer select {
     padding: 5px 10px;
@@ -156,10 +149,8 @@ $color-lightgray: #a6adbb;
     min-width: 100px;
   }
   .detailbuttons {
-    display: flex;
-    justify-content: flex-end;
+    @include flex-end-align;
     margin: 0px 10px;
-    align-items: center;
   }
   .nametitle {
     font-size: 10px;
@@ -188,22 +179,18 @@ $color-lightgray: #a6adbb;
     width: 22px;
     border-radius: 5px;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include center-align;
   }
   .calendaricon img {
     height: 12px;
   }
   .failuredd {
     width: 170px;
-    border: 1px solid #ccc;
+    border: 1px solid $color-puregray;
     padding: 7px 10px;
     border-radius: 3px;
     margin: 0px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include spacebetween-align;
   }
   .failuredd img {
     width: 8px;

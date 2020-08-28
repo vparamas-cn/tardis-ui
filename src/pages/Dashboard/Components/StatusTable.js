@@ -19,7 +19,7 @@ const StatusTable = props => {
     }
     let history = useHistory();
     const OnNavigate = (e) =>{
-        history.push("/file-manager/"+e)
+        history.push("/source-details/"+e)
     }
     return (
         filterData.length > 0 ?<Fragment>

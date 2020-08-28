@@ -1,6 +1,6 @@
-$color-blue: #3976eb;
+@import "../../assets/constant/color";
 .tab-list {
-  border-bottom: 2px solid #e8e8e8;
+  border-bottom: 2px solid $color-tab-br;
   padding-left: 0;
 }
 
@@ -15,6 +15,6 @@ $color-blue: #3976eb;
 }
 
 .tab-list-active {
-  background-color: white;
+  background-color: $color-purewhite;
   border-bottom: 2px solid $color-blue;
 }

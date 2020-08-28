@@ -1,3 +1,4 @@
+@import "../../../assets/constant/color";
 .legend-bottom{
     display: flex;
     flex-wrap: wrap;
@@ -13,7 +14,7 @@
         }
         span{
             font-size: 14px;
-            color: #172b4d;
+            color: $color-black;
         }
     }
 }
@@ -39,12 +40,12 @@
             }
             span{
                 font-size: 14px;
-                color: #172b4d;
+                color: $color-black;
             }
         }
         span{
             font-size: 14px;
-            color: #9ca2b4;
+            color: $color-gray;
         }
     }
 }
